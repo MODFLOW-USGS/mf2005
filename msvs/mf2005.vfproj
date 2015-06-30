@@ -24,7 +24,7 @@
 				<Tool Name="VFPreBuildEventTool"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
-		<Configuration Name="Debug|x64">
+		<Configuration Name="Debug|x64" TargetName="$(ProjectName)_$(PlatformName)d">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" WarnInterfaces="true" Traceback="true" BoundsCheck="true" StackFrameCheck="true" RuntimeLibrary="rtMultiThreadedDebug"/>
 				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalYes" SuppressStartupBanner="true" IgnoreDefaultLibraryNames="MSVCRTD" GenerateDebugInformation="true" SubSystem="subSystemConsole"/>
 				<Tool Name="VFResourceCompilerTool"/>
@@ -34,7 +34,7 @@
 				<Tool Name="VFPreBuildEventTool"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
-		<Configuration Name="Release|x64">
+		<Configuration Name="Release|x64" TargetName="$(ProjectName)_$(PlatformName)">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true"/>
 				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" IgnoreDefaultLibraryNames="MSVCRT" SubSystem="subSystemConsole"/>
 				<Tool Name="VFResourceCompilerTool"/>
@@ -50,6 +50,8 @@
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\src\de47.f"/>
 		<File RelativePath="..\src\gmg7.f"/>
+		<File RelativePath="..\src\gmg7_c_interface.f90"/>
+		<File RelativePath="..\src\gwf2swr7util.f"/>
 		<File RelativePath="..\src\gwf2bas7.f"/>
 		<File RelativePath="..\src\gwf2bcf7.f"/>
 		<File RelativePath="..\src\gwf2chd7.f"/>
@@ -76,6 +78,7 @@
 		<File RelativePath="..\src\gwf2str7.f"/>
 		<File RelativePath="..\src\gwf2sub7.f"/>
 		<File RelativePath="..\src\gwf2swi27.f"/>
+		<File RelativePath="..\src\gwf2swr7.f"/>
 		<File RelativePath="..\src\gwf2swt7.f"/>
 		<File RelativePath="..\src\gwf2uzf1.f"/>
 		<File RelativePath="..\src\gwf2wel7.f"/>

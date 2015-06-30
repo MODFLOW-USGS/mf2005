@@ -1,6 +1,8 @@
 /* File  : mf2kgmg.c
  * Author: John D. Wilson
  * Date  : August, 2004
+ * 25 Oct 2013  L. Baker  Replace int* GMGID with MF2KGMG_operator** GMGID.
+ *                        Add free(GMG_ptr) in MF2KGMG_FREE().
  */
 
 #include "mf2kgmg.h"
@@ -19,34 +21,34 @@
  *
  *  MF2K internal data includes:
  *
- *    NCOL   -- Number of columns.
- *    NROW   -- Number of rows.
- *    NLAY   -- Number of layers.
- *    CC     -- Conductances for columns.
- *    CR     -- Conductances for rows.
- *    CV     -- Conductances for layers.
+ *    NCOL   -- Number of columns
+ *    NROW   -- Number of rows
+ *    NLAY   -- Number of layers
+ *    CC     -- Conductances for columns
+ *    CR     -- Conductances for rows
+ *    CV     -- Conductances for layers
  *    HCOF   -- Source terms
- *    HNEW   -- Current approximation.
- *    RHS    -- Right-hand side.
- *    HNOFLO -- Value of no-flow condition.
+ *    HNEW   -- Current approximation
+ *    RHS    -- Right-hand side
+ *    HNOFLO -- Value of no-flow condition
  *    IBOUND -- Boundary flags
  *
  *  Data defined in the GMG FORTRAN interface program includes:
  *
- *    DRCLOSE -- Residaul convergence criterion.
- *    IITER   -- Max PCG iterations.
- *    IOUTGMG -- Print flag.
- *    IOUT    -- Fortran unit number.
- *    IPREC   -- Value of 0 indicates single precision; double otherwise.
- *    ISM     -- Smoother flag; not 0 indicates ILU0-D, SGS otherwise.
+ *    DRCLOSE -- Residaul convergence criterion
+ *    IITER   -- Max PCG iterations
+ *    IOUTGMG -- Print flag
+ *    IOUT    -- Fortran unit number
+ *    IPREC   -- Value of 0 indicates single precision; double otherwise
+ *    ISM     -- Smoother flag; not 0 indicates ILU0-D, SGS otherwise
  *    ISC     -- Semi-Coarsening Flag (see CCFD_MG_allocate)
- *    RELAX   -- If ISC=4, then RELAX can be used to improve condition number.
+ *    RELAX   -- If ISC=4, then RELAX can be used to improve condition number
  *
  *  Data returned to the GMG FORTRAN interface program includes:
  *
  *    GMGID -- Address of current instance of GMG
- *    ISIZ  -- Size in MB of data allocted by GMG.
- *    IERR  -- Value less than 0 indicates error.
+ *    ISIZ  -- Size in MB of data allocted by GMG
+ *    IERR  -- Value less than 0 indicates error
  *    ITER  -- PCG iterations
  *    BIGR0 -- l2-norm of initial residual
  *    BIGR  -- l2-norm of residual
@@ -56,7 +58,7 @@
 /*
  * Allocates GMG data
  */
-void MF2KGMG_ALLOCATE(int* GMGID, int* NCOL, int* NROW, int* NLAY,
+void MF2KGMG_ALLOCATE(MF2KGMG_operator** GMGID, int* NCOL, int* NROW, int* NLAY,
                       int* IPREC, int* ISM, int* ISC,
                       double* RELAX, int* ISIZ, int* IERR)
 {
@@ -150,7 +152,7 @@ void MF2KGMG_ALLOCATE(int* GMGID, int* NCOL, int* NROW, int* NLAY,
 
   GMG_ptr->w=*RELAX;
 
-  *GMGID=(int)GMG_ptr;
+  *GMGID=GMG_ptr;
 
   return;
 }
@@ -159,9 +161,9 @@ void MF2KGMG_ALLOCATE(int* GMGID, int* NCOL, int* NROW, int* NLAY,
  *  MF2KGMG_FREE: Deallocates  vectors and operators for cell-centered
  *  finite-diference problem.
  */
-void MF2KGMG_FREE(int* GMGID) 
+void MF2KGMG_FREE(MF2KGMG_operator** GMGID)
 {
-  MF2KGMG_operator* GMG_ptr=(MF2KGMG_operator*)*GMGID;
+  MF2KGMG_operator* GMG_ptr=*GMGID;
 
   GEN_free(&GMG_ptr->CCFDMG);
   GEN_free(&GMG_ptr->PCG);
@@ -172,6 +174,8 @@ void MF2KGMG_FREE(int* GMGID)
   free(GMG_ptr->CCFD_ptr->DD);
   free(GMG_ptr->CCFD_ptr);
 
+  free(GMG_ptr);
+
   return;
 }
 
@@ -179,24 +183,24 @@ void MF2KGMG_FREE(int* GMGID)
  * Local functions for assembling CCFD matrix.
  */
 /* Single precision CCFD assembly method. */
-void MF2KGMG_SCCFD_ASSEMBLE(MF2KGMG_operator* GMG_ptr, 
+void MF2KGMG_SCCFD_ASSEMBLE(MF2KGMG_operator* GMG_ptr,
                             double* BIGR0, float* RHS, float* HCOF,
                             float* HNOFLO, double* HNEW);
 
 /* Double precision CCFD assembly method. */
-void MF2KGMG_DCCFD_ASSEMBLE(MF2KGMG_operator* GMG_ptr, 
+void MF2KGMG_DCCFD_ASSEMBLE(MF2KGMG_operator* GMG_ptr,
                             double* BIGR0, double* RHS, double* HCOF,
                             double* HNOFLO, double* HNEW);
 
 /* Assemble GMG data:
- * Arguments that are pointer to void are either singel precision
+ * Arguments that are pointer to void are either single precision
  * or double precision and are resolved at run time.
  */
-void MF2KGMG_ASSEMBLE(int* GMGID, double* BIGR0, void* CR, void* CC, void* CV,
-                      void* HCOF, double* HNEW, void* RHS,
+void MF2KGMG_ASSEMBLE(MF2KGMG_operator** GMGID, double* BIGR0, void* CR,
+                      void* CC, void* CV, void* HCOF, double* HNEW, void* RHS,
                       void* HNOFLO, int* IBOUND, int* IERR)
 {
-  MF2KGMG_operator* GMG_ptr=(MF2KGMG_operator*)*GMGID;
+  MF2KGMG_operator* GMG_ptr=*GMGID;
 
   int size; /* Error Flag */
 
@@ -232,11 +236,11 @@ void MF2KGMG_ASSEMBLE(int* GMGID, double* BIGR0, void* CR, void* CC, void* CV,
  *  MF2KGMG_EVAL: Computes head change returning l2-norm of residual (BIGR)
  *  and number of iterations (ITER).
  */
-void MF2KGMG_EVAL(int* GMGID, int* ITER, double* BIGR, double* DRCLOSE,
-                  int* IITER, int* IOUTGMG, int* IOUT)
+void MF2KGMG_EVAL(MF2KGMG_operator** GMGID, int* ITER, double* BIGR,
+                  double* DRCLOSE, int* IITER, int* IOUTGMG, int* IOUT)
 
 {
-  MF2KGMG_operator* GMG_ptr=(MF2KGMG_operator*)*GMGID;
+  MF2KGMG_operator* GMG_ptr=*GMGID;
 
   /* Pointer to access PCG data */
   PCG_operator *PCG_ptr=GMG_ptr->PCG.A_ptr;
@@ -259,9 +263,9 @@ void MF2KGMG_EVAL(int* GMGID, int* ITER, double* BIGR, double* DRCLOSE,
 /*
  *  MF2KGMG_UPDATE: Adds damped head change to current approximation.
  */
-void MF2KGMG_UPDATE(int* GMGID, double* HNEW, double* DDAMP)
+void MF2KGMG_UPDATE(MF2KGMG_operator** GMGID, double* HNEW, double* DDAMP)
 {
-  MF2KGMG_operator* GMG_ptr=(MF2KGMG_operator*)*GMGID;
+  MF2KGMG_operator* GMG_ptr=*GMGID;
 
   r_vector p;
 
@@ -275,9 +279,10 @@ void MF2KGMG_UPDATE(int* GMGID, double* HNEW, double* DDAMP)
 /* Calculate l2-norm of residual and return location
  * of max residual.
  */
-void MF2KGMG_BIGR(int* GMGID, double* BIGR, int* IBIGR, int* JBIGR, int* KBIGR)
+void MF2KGMG_BIGR(MF2KGMG_operator** GMGID, double* BIGR, int* IBIGR,
+                  int* JBIGR, int* KBIGR)
 {
-  MF2KGMG_operator* GMG_ptr=(MF2KGMG_operator*)*GMGID;
+  MF2KGMG_operator* GMG_ptr=*GMGID;
 
   int l,m,n;
   int lm;
@@ -323,9 +328,10 @@ void MF2KGMG_BIGR(int* GMGID, double* BIGR, int* IBIGR, int* JBIGR, int* KBIGR)
  * Calculate max of head change and return location of max head change.
  * Absalute value of BIGH is max-norm of head change.
  */
-void MF2KGMG_BIGH(int* GMGID, double* BIGH, int* IBIGH, int* JBIGH, int* KBIGH)
+void MF2KGMG_BIGH(MF2KGMG_operator** GMGID, double* BIGH, int* IBIGH,
+                  int* JBIGH, int* KBIGH)
 {
-  MF2KGMG_operator* GMG_ptr=(MF2KGMG_operator*)*GMGID;
+  MF2KGMG_operator* GMG_ptr=*GMGID;
 
   int l,m,n;
   int lm;

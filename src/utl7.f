@@ -231,7 +231,7 @@ C2------Check for and decode EXTERNAL and OPEN/CLOSE records.
          IN=I
 C          TEST IF EXTERNAL FILE IS OPEN
          INQUIRE( UNIT=IN, OPENED=LVAL )
-         IF ( LVAL.EQ. .FALSE. ) THEN
+         IF ( LVAL.EQV. .FALSE. ) THEN
            WRITE ( CERR,110 ) IN
   110    FORMAT('External unit ', I4,' is not open')     
            WRITE ( IOUT,'(1X,A)' ) CERR
@@ -260,7 +260,7 @@ C          SEE FORM VARIABLE IN openspec.inc
          IN=NUNOPN
 C          TEST IF OPEN\CLOSE FILE EXISTS
          INQUIRE( FILE=FNAME, EXIST=LVAL )
-         IF ( LVAL.EQ. .FALSE. ) THEN
+         IF ( LVAL.EQV. .FALSE. ) THEN
            WRITE ( IOUT,112 ) LINE(ISTART:ISTOP)
   112      FORMAT('Specified OPEN/CLOSE file ',(A),' does not exit')
            CALL USTOP('Specified OPEN/CLOSE file does not exit')
