@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="mf2005" />
+		<Option pch_mode="2" />
+		<Option compiler="gfortran" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/mf2005" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gfortran" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/mf2005" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gfortran" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="../../src/ccfd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/ccfd.h" />
+		<Unit filename="../../src/de47.f" />
+		<Unit filename="../../src/gmg7.f" />
+		<Unit filename="../../src/gwf2bas7.f" />
+		<Unit filename="../../src/gwf2bcf7.f" />
+		<Unit filename="../../src/gwf2chd7.f" />
+		<Unit filename="../../src/gwf2drn7.f" />
+		<Unit filename="../../src/gwf2drt7.f" />
+		<Unit filename="../../src/gwf2ets7.f" />
+		<Unit filename="../../src/gwf2evt7.f" />
+		<Unit filename="../../src/gwf2fhb7.f" />
+		<Unit filename="../../src/gwf2gag7.f" />
+		<Unit filename="../../src/gwf2ghb7.f" />
+		<Unit filename="../../src/gwf2hfb7.f" />
+		<Unit filename="../../src/gwf2huf7.f" />
+		<Unit filename="../../src/gwf2hydmod7.f" />
+		<Unit filename="../../src/gwf2ibs7.f" />
+		<Unit filename="../../src/gwf2lak7.f" />
+		<Unit filename="../../src/gwf2lpf7.f" />
+		<Unit filename="../../src/gwf2mnw17.f" />
+		<Unit filename="../../src/gwf2mnw27.f" />
+		<Unit filename="../../src/gwf2mnw2i7.f" />
+		<Unit filename="../../src/gwf2rch7.f" />
+		<Unit filename="../../src/gwf2res7.f" />
+		<Unit filename="../../src/gwf2riv7.f" />
+		<Unit filename="../../src/gwf2sfr7.f" />
+		<Unit filename="../../src/gwf2str7.f" />
+		<Unit filename="../../src/gwf2sub7.f" />
+		<Unit filename="../../src/gwf2swi27.f" />
+		<Unit filename="../../src/gwf2swt7.f" />
+		<Unit filename="../../src/gwf2uzf1.f" />
+		<Unit filename="../../src/gwf2wel7.f" />
+		<Unit filename="../../src/gwfsfrmodule.f" />
+		<Unit filename="../../src/gwfuzfmodule.f" />
+		<Unit filename="../../src/hufutl7.f" />
+		<Unit filename="../../src/lmt7.f" />
+		<Unit filename="../../src/mf2005.f" />
+		<Unit filename="../../src/mf2kgmg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/mf2kgmg.h" />
+		<Unit filename="../../src/mhc7.f" />
+		<Unit filename="../../src/nogmg.txt" />
+		<Unit filename="../../src/obs2bas7.f" />
+		<Unit filename="../../src/obs2chd7.f" />
+		<Unit filename="../../src/obs2drn7.f" />
+		<Unit filename="../../src/obs2ghb7.f" />
+		<Unit filename="../../src/obs2riv7.f" />
+		<Unit filename="../../src/obs2str7.f" />
+		<Unit filename="../../src/openspec.inc" />
+		<Unit filename="../../src/parutl7.f" />
+		<Unit filename="../../src/pcg7.f" />
+		<Unit filename="../../src/pcgn2.f90" />
+		<Unit filename="../../src/pcgn_solve2.f90" />
+		<Unit filename="../../src/r_vector.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/r_vector.h" />
+		<Unit filename="../../src/sip7.f" />
+		<Unit filename="../../src/solvers.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../src/solvers.h" />
+		<Unit filename="../../src/utl7.f" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
