@@ -353,7 +353,6 @@ C5A-----GET LAYER, ROW & COLUMN OF CELL CONTAINING DRAIN.
           IF (ILR.NE.0) THEN  ! Condition added 8/26/08 ERB
             IRR = DRTF(7,L)
             ICR = DRTF(8,L)
-            IF (IBOUND(ICR,IRR,ILR) .LE. 0) ILR = 0
           ENDIF
         END IF
 C
@@ -375,7 +374,7 @@ C5D-----SUBTRACT Q FROM RATOUT.
           Q=QQ
           RATOUT=RATOUT-QQ
           IF (IDRTFL.GT.0) THEN
-            IF (ILR.NE.0) THEN
+            IF (ILR.NE.0 .AND. IBOUND(ICR,IRR,ILR).GT.0) THEN
               RFPROP = DRTF(9,L)
               QQIN = RFPROP*(CC*HHNEW-CEL)
               QIN = QQIN
