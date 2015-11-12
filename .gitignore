@@ -6,8 +6,6 @@
 Debug/
 Release/
 *.user
-*.list
-*.lst
 *.cbc
 *.hds
 *.ddn
@@ -18,3 +16,10 @@ Release/
 *.opensdf
 
 *.pyc
+
+bin/
+.idea/
+
+py.test/temp/
+py.test/.cache/
+
