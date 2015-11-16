@@ -21,5 +21,6 @@ bin/
 .idea/
 
 py.test/temp/
+py.test/*.log
 py.test/.cache/
 
