@@ -26,11 +26,17 @@ def run_mf2005(namefile, regression=True):
     """
 
     # Set root as the directory name where namefile is located
-    #testname = os.path.dirname(namefile).split(os.sep)[-1]
     testname = pymake.get_sim_name(namefile, rootpth=config.testpaths[0])[0]
 
     # Set nam as namefile name without path
     nam = os.path.basename(namefile)
+
+    #
+    ocf = pymake.get_filename_from_namefile(namefile, 'OC')
+    outd = flopy.modflow.ModflowOc.get_ocoutput_units(ocf)
+    headfn = None
+    if outd[0] != 0:
+        headfn = pymake.get_filename_from_namefile(namefile, unit=abs(outd[0]))
 
     # Setup
     testpth = os.path.join(config.testdir, testname)
@@ -56,11 +62,17 @@ def run_mf2005(namefile, regression=True):
                                             silent=True)
 
         # Make comparison
-        success_reg = compare(os.path.join(testpth, nam),
-                              os.path.join(testpth_reg, nam))
+        if headfn is None:
+            success_reg = compare(os.path.join(testpth, nam),
+                                  os.path.join(testpth_reg, nam))
+        else:
+            f1 = os.path.join(testpth, os.path.basename(headfn))
+            f2 = os.path.join(testpth_reg, os.path.basename(headfn))
+            success_reg = pymake.compare_heads(f1, f2,
+                                               outfile=os.path.join(testpth, 'hds.cmp'))
 
     # Clean things up
-    if success_reg and not config.retain:
+    if success and success_reg and not config.retain:
         pymake.teardown(testpth)
     assert success and success_reg
 

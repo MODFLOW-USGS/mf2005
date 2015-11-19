@@ -1,0 +1,3 @@
+ 0 62 63 # Data Set 1: WEL1flag, QSUMflag, BYNDflag
+1 # Data Set 2: MNWOBS
+PS1 200 0 0 # WELLID, UNIT, QNDflag, QBHflag

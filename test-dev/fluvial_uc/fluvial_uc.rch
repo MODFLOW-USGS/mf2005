@@ -1,0 +1,9 @@
+PARAMETER 2     PARAMETER NPEVT
+3   9          ITOP ICBC
+RCH_AQ RCH 0.01 1   PARNAM PARTYP Parval NCLU
+Aq_Pct ALL      Mltarr Zonarr IZ
+RCH_UP RCH 0.001 1   PARNAM PARTYP Parval NCLU
+Up_Pct ALL      Mltarr Zonarr IZ
+         2         Stress Period 1 -  INRECH
+RCH_AQ    -1     
+RCH_UP    -1     

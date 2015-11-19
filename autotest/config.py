@@ -8,7 +8,8 @@ exclude = 'MNW2-Fig28' #None
 
 # Development version information
 exdir = 'test-run'
-testpaths = [os.path.join('..', exdir)]
+testdev = 'test-dev'
+testpaths = [os.path.join('..', exdir), os.path.join('..', testdev)]
 srcdir = os.path.join('..', 'src')
 program = 'mf2005'
 version = '1.12.00'
