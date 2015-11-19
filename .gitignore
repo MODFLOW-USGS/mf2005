@@ -20,7 +20,7 @@ Release/
 bin/
 .idea/
 
-py.test/temp/
-py.test/*.log
-py.test/.cache/
+autotest/temp/
+autotest/*.log
+autotest/.cache/
 
