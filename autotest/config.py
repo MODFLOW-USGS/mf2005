@@ -2,9 +2,9 @@ import os
 
 # Autotest information
 testdir = 'temp'
-retain = False
+retain = True
 
-exclude = 'MNW2-Fig28' #None
+exclude = ('MNW2-Fig28', 'swi2ex4sww') #None
 
 # Development version information
 exdir = 'test-run'
