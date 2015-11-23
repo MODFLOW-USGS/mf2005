@@ -7,26 +7,6 @@ from pymake.autotest import get_namefiles, compare_budget, compare_heads
 import config
 
 
-def compare(namefile1, namefile2):
-    """
-    Compare the results from two simulations
-    """
-
-    # Compare budgets from the list files in namefile1 and namefile2
-    outfile = os.path.join(os.path.split(namefile1)[0], 'bud.cmp')
-    success1 = compare_budget(namefile1, namefile2, max_cumpd=0.01, max_incpd=0.01,
-                              outfile=outfile)
-
-    outfile = os.path.join(os.path.split(namefile1)[0], 'hds.cmp')
-    success2 = compare_heads(namefile1, namefile2, htol=0.001,
-                             outfile=outfile)
-
-    success = False
-    if success1 and success2:
-        success = True
-    return success
-
-
 def run_mf2005(namefile, regression=True):
     """
     Run the simulation.
@@ -38,13 +18,6 @@ def run_mf2005(namefile, regression=True):
 
     # Set nam as namefile name without path
     nam = os.path.basename(namefile)
-
-    # #
-    # ocf = pymake.get_filename_from_namefile(namefile, 'OC')
-    # outd = flopy.modflow.ModflowOc.get_ocoutput_units(ocf)
-    # headfn = None
-    # if outd[0] != 0:
-    #     headfn = pymake.get_filename_from_namefile(namefile, unit=abs(outd[0]))
 
     # Setup
     testpth = os.path.join(config.testdir, testname)
@@ -70,22 +43,19 @@ def run_mf2005(namefile, regression=True):
                                             silent=True)
 
         if success_reg:
-            success_reg = compare(os.path.join(testpth, nam),
-                                  os.path.join(testpth_reg, nam))
-        # # Make comparison
-        # if headfn is None:
-        #     success_reg = compare(os.path.join(testpth, nam),
-        #                           os.path.join(testpth_reg, nam))
-        # else:
-        #     f1 = os.path.join(testpth, os.path.basename(headfn))
-        #     f2 = os.path.join(testpth_reg, os.path.basename(headfn))
-        #     success_reg = pymake.compare_heads(f1, f2,
-        #                                        outfile=os.path.join(testpth, 'hds.cmp'))
+            outfile1 = os.path.join(os.path.split(os.path.join(testpth, nam))[0], 'bud.cmp')
+            outfile2 = os.path.join(os.path.split(os.path.join(testpth, nam))[0], 'hds.cmp')
+            success_reg = pymake.compare(os.path.join(testpth, nam),
+                                         os.path.join(testpth_reg, nam),
+                                         precision='single',
+                                         max_cumpd=0.01, max_incpd=0.01, htol=0.001,
+                                         outfile1=outfile1, outfile2=outfile2)
 
     # Clean things up
     if success and success_reg and not config.retain:
         pymake.teardown(testpth)
-    assert success and success_reg
+    assert success, 'model did not run'
+    assert success_reg, 'regression model did not meet comparison criteria'
 
     return
 

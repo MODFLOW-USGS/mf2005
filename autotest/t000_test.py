@@ -6,7 +6,7 @@ import config
 
 
 def test_compile_dev():
-    # Compile development version of the program from source.
+    # Compile development version of MODFLOW-2005 from source.
 
     # Compile
     target = config.target
@@ -34,7 +34,7 @@ def test_compile_ref():
     srcdir = config.srcdir_release
     target = config.target_release
 
-    # Download the MODFLOW-USG distribution
+    # Download the MODFLOW-2005 distribution
     pymake.download_and_unzip(url, pth=config.testdir)
 
     # compile

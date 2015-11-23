@@ -19,7 +19,7 @@ def compare(namefile1, namefile2):
     return success
 
 
-def run_mf2005(namefile, regression=True):
+def run_mf2005(namefile, comparison=True):
     """
     Run the simulation.
 
@@ -33,17 +33,27 @@ def run_mf2005(namefile, regression=True):
 
     # Setup
     testpth = os.path.join(config.testdir, testname)
-    pymake.setup(namefile, testpth)
+    #pymake.setup(namefile, testpth)
 
     # run test models
     print('running model...{}'.format(testname))
     exe_name = os.path.abspath(config.target)
-    success, buff = flopy.run_model(exe_name, nam, model_ws=testpth,
-                                    silent=True)
-    # Clean things up
-    if success and not config.retain:
-        pymake.teardown(testpth)
-    assert success
+    #success, buff = flopy.run_model(exe_name, nam, model_ws=testpth,
+    #                                silent=True)
+    success_cmp = True
+    if comparison:
+        testname_reg = os.path.basename(config.target_release)
+        testpth_reg = os.path.join(testpth, testname_reg)
+        action = pymake.setup_comparison(namefile, testpth)
+        #print('running regression model...{}'.format(testname_reg))
+        #exe_name = os.path.abspath(config.target_release)
+        #success_reg, buff = flopy.run_model(exe_name, nam,
+        #                                    model_ws=testpth_reg,
+        #                                    silent=True)
+    ## Clean things up
+    #if success and not config.retain:
+    #    pymake.teardown(testpth)
+    #assert success
 
     return
 
