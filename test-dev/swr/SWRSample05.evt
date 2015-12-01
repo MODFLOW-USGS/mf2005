@@ -1,0 +1,43 @@
+# MODFLOW2000 Recharge Package
+PARAMETER  0
+         3        00
+         1         1         1          
+        17     1.000(10e12.4)                   00     ET SURFACE
+       1.524       1.424       1.324       1.224       1.124       1.024
+       1.524       1.224       1.124       1.024       0.924       0.924
+       1.524       1.324       1.024       0.924      0.3048       1.024
+       1.524       1.224       1.124       1.024      0.3048       1.024
+       1.524       1.324       1.224       1.124       0.924       0.824
+       1.524       1.424       1.324       1.224       1.124       1.224
+        17    1.0000(10e12.4)                   00     EVAPOTRANSPIRATION RATE PERIOD 1
+  0.0000e+00  3.7498E-03  3.7498E-03  3.7498E-03  3.7498E-03  3.7498E-03
+  0.0000e+00  3.7498E-03  3.7498E-03  3.7498E-03  3.7498E-03  3.7498E-03
+  0.0000e+00  3.7498E-03  3.7498E-03  3.7498E-03  3.7498E-03  3.7498E-03
+  0.0000e+00  3.7498E-03  3.7498E-03  3.7498E-03  0.0000e+10  3.7498E-03
+  0.0000e+00  3.7498E-03  3.7498E-03  3.7498E-03  0.0000e+10  3.7498E-03
+  0.0000e+00  3.7498E-03  3.7498E-03  3.7498E-03  3.7498E-03  3.7498E-03
+         0    1.0000(10e12.4)                   00     EXTINCTION DEPTH PERIOD 1
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 2
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 3
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 4
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 5
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 6
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 7
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 8
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 9
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 10
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 11
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 12
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 13
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 14
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 15
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 16
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 17
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 18
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 19
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 20
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 21
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 22
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 23
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 24
+        -1        -1        -1                         EVAPOTRANSPIRATION PERIOD 25

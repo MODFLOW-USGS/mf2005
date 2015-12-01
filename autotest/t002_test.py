@@ -33,39 +33,64 @@ def run_mf2005(namefile, comparison=True):
 
     # Setup
     testpth = os.path.join(config.testdir, testname)
-    #pymake.setup(namefile, testpth)
+    pymake.setup(namefile, testpth)
 
     # run test models
     print('running model...{}'.format(testname))
     exe_name = os.path.abspath(config.target)
-    #success, buff = flopy.run_model(exe_name, nam, model_ws=testpth,
-    #                                silent=True)
+    success, buff = flopy.run_model(exe_name, nam, model_ws=testpth,
+                                    silent=True)
     success_cmp = True
     if comparison:
-        testname_reg = os.path.basename(config.target_release)
-        testpth_reg = os.path.join(testpth, testname_reg)
         action = pymake.setup_comparison(namefile, testpth)
-        #print('running regression model...{}'.format(testname_reg))
-        #exe_name = os.path.abspath(config.target_release)
-        #success_reg, buff = flopy.run_model(exe_name, nam,
-        #                                    model_ws=testpth_reg,
-        #                                    silent=True)
-    ## Clean things up
-    #if success and not config.retain:
-    #    pymake.teardown(testpth)
-    #assert success
+        testpth_cmp = os.path.join(testpth, action)
+        if action is not None:
+            files_cmp = None
+            if action.lower() == '.cmp':
+                files_cmp = []
+                files = os.listdir(testpth_cmp)
+                for file in files:
+                    files_cmp.append(os.path.abspath(os.path.join(testpth_cmp, file)))
+                success_cmp = True
+                print(files_cmp)
+            else:
+                print('running comparison model...{}'.format(testpth_cmp))
+                key = action.lower().replace('.cmp', '')
+                exe_name = os.path.abspath(config.target_dict[key])
+                success_cmp, buff = flopy.run_model(exe_name, nam,
+                                                    model_ws=testpth_cmp,
+                                                    silent=True)
+            if success_cmp:
+                outfile1 = os.path.join(os.path.split(os.path.join(testpth, nam))[0], 'bud.cmp')
+                outfile2 = os.path.join(os.path.split(os.path.join(testpth, nam))[0], 'hds.cmp')
+                success_cmp = pymake.compare(os.path.join(testpth, nam),
+                                             os.path.join(testpth_cmp, nam),
+                                             precision='single',
+                                             max_cumpd=0.01, max_incpd=0.01, htol=0.001,
+                                             outfile1=outfile1, outfile2=outfile2,
+                                             files2=files_cmp)
+
+    # Clean things up
+    if success and success_cmp and not config.retain:
+        pymake.teardown(testpth)
+    assert success, 'model did not run'
+    assert success_cmp, 'comparison model did not meet comparison criteria'
 
     return
 
 
 def test_mf2005():
-    namefiles = get_namefiles(config.testpaths[1])
+    exclude = list(config.exclude)
+    exclude.append('.cmp')
+    namefiles = get_namefiles(config.testpaths[1], exclude=exclude)
     for namefile in namefiles:
         yield run_mf2005, namefile
     return
 
 
 if __name__ == '__main__':
-    namefiles = get_namefiles(config.testpaths[1])
+    exclude = list(config.exclude)
+    exclude.append('.cmp')
+    namefiles = get_namefiles(config.testpaths[1], exclude=exclude)
     for namefile in namefiles:
         run_mf2005(namefile)
