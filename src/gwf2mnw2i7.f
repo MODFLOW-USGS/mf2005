@@ -11,6 +11,7 @@
       END MODULE GWFMNW2IMODULE
 c   GZH  20080208 
 C   LFK  March 2011  Revision in GWF2MNW2I7OT to fix WEL1 output file for inactive wells.
+C   LFK  Nov. 2012   Additional revisions--see read_me file.
 C
 C GWF2MNW2I7AR READ INIT DATA AND ALLOCATE SPACE FOR MNW WELLS DESIGNATED FOR OBSERVATION
 C
@@ -58,7 +59,7 @@ C5------FOR EACH OBS WELL, THERE ARE 6 DATA VALUES
       ALLOCATE (MNWILST(NMNWIVL,MNWOBS))
 C5------ALLOCATE SPACE FOR MNWIID ARRAY.
       ALLOCATE (MNWIID(MNWOBS+1))
-	END IF
+      END IF
 C7------SAVE POINTERS TO DATA AND RETURN.
       CALL SGWF2MNW2IPSV(IGRID)
 C
@@ -217,10 +218,17 @@ c     ------------------------------------------------------------------
      & iaux,naux
       DOUBLE PRECISION q,hwell,qin,qout,qnet,hcell,
      & QBH
+c--LFK  Nov. 2012
+      DOUBLE PRECISION COND,SEEPFLG
       CHARACTER*20 obssite
       CHARACTER*50 LFRMAT
+c--lfk
+      CHARACTER*50 dtext
 c
 c------------------------------------------------------------------
+c-lfk  10/10/2012
+      dtext = 'Hwell < value shown because of seepage face calc. '
+c
       CALL SGWF2MNW2PNT(IGRID)
       CALL SGWF2MNW2IPNT(IGRID)
 C
@@ -278,7 +286,7 @@ c  Print QSUM file
       if(QSUMflag.gt.0) then
 c   Write header
         if(kkstp.eq.1.and.kkper.eq.1) then
-           write(QSUMflag,'(200A)') 'WELLID                   Totim    
+           write(QSUMflag,'(200A)') 'WELLID                    Totim    
      &        Qin           Qout           Qnet          hwell'
         end if
 c   Loop over all wells
@@ -289,14 +297,23 @@ c   Loop over all wells
 c   Only operate on active wells (MNW2(1,iw)=1)
           if (MNW2(1,iw).EQ.1) then
 c   Loop over nodes in well
+c--lfk
+            NNDSIW=ABS(MNW2(2,iw))
+c-lfk
             firstnode=MNW2(4,iw)
-            lastnode=MNW2(4,iw)+ABS(MNW2(2,iw))-1
+C            lastnode=MNW2(4,iw)+ABS(MNW2(2,iw))-1
+            lastnode=MNW2(4,iw)+NNDSIW-1
             hwell=MNW2(17,iw)
             do INODE=firstnode,lastnode
               il=MNWNOD(1,INODE)              
               ir=MNWNOD(2,INODE)              
               ic=MNWNOD(3,INODE)              
               q=MNWNOD(4,INODE)
+C--LFK
+              HCELL=hnew(ic,ir,il)
+              SEEPFLG=MNWNOD(15,INODE)
+              COND=MNWNOD(14,INODE)
+C-LFK
               if(q.lt.0.0D0) then
                 qin=qin+q
               else
@@ -305,8 +322,24 @@ c   Loop over nodes in well
               qnet=qnet+q
             end do
 c            if(qnet.lt.(small*qin)) qnet=0.d0
+c--lfk  Nov. 2012
+              if(SEEPFLG.EQ.hwell.or.
+     &           SEEPFLG.eq.Hdry) then
+                  write(QSUMflag,'(A20,5(1x,1Pg14.6))')
+     &              WELLID(iw),totim,qin,qout,qnet,hwell
+              else
+c   If seepage face in cell, MNWNOD(15) will hold the bottom elev of the cell
+c--LFK  update Hwell to realistic value (not Hnew)for single-node MNW wells
+                if (NNDSIW.eq.1) then
+                   hwell=HCELL+(q/COND)
+                   write(QSUMflag,'(A20,5(1x,1Pg14.6),3x,A50)')
+     &              WELLID(iw),totim,qin,qout,qnet,hwell,dtext
+                else
             write(QSUMflag,'(A20,5(1x,1Pg14.6))')
      &              WELLID(iw),totim,qin,qout,qnet,hwell
+            end if
+           end if
+c--LFK
           end if
         end do     
       end if
@@ -335,16 +368,27 @@ c   Loop over nodes in well
               nd=INODE-firstnode+1
 c   If no seepage face in cell, don't print seepage elev.
               if(MNWNOD(15,INODE).EQ.hwell.or.
-     &           MNWNOD(15,INODE).eq.Hdry.OR.MNW2(2,iw).eq.1) then
+c--lfk  Nov. 2012
+     &           MNWNOD(15,INODE).eq.Hdry) then
+c--lfk     &           MNWNOD(15,INODE).eq.Hdry.OR.MNW2(2,iw).eq.1) then
                 write(BYNDflag,'(A20,4i6,1x,1P4e14.6)')
      &              WELLID(iw),nd,il,ir,ic,totim,q,hwell,hcell
               else
 c   If seepage face in cell, MNWNOD(15) will hold the bottom elev of the cell,
 c   which is used with hcell to get the gradient used to calculate the Q for the
 c   seepage face.  
+c--LFK  update Hwell to realistic value (not Hnew)for single-node MNW wells
+                if (firstnode.eq.lastnode) then
+                    hwell=hcell+(q/MNWNOD(14,INODE))
+                    write(BYNDflag,'(A20,4i6,1x,1P5e14.6,3x,A50)')
+     &                WELLID(iw),nd,il,ir,ic,totim,q,hwell,hcell,
+     &                MNWNOD(15,INODE),dtext
+                else
                 write(BYNDflag,'(A20,4i6,1x,1P5e14.6)')
      &              WELLID(iw),nd,il,ir,ic,totim,q,hwell,hcell,
      &              MNWNOD(15,INODE)
+              end if
+c--LFK
               end if
             end do
          end if
@@ -357,12 +401,26 @@ c  Print MNWOBS files
         obssite=MNWIID(iwobs)
         iw=MNWILST(1,iwobs)  
 c   Loop over nodes in well
+c--lfk  Nov. 2012
+          NNDSIW=ABS(MNW2(2,iw))
+c-lfk
           firstnode=MNW2(4,iw)
-          lastnode=MNW2(4,iw)+ABS(MNW2(2,iw))-1
+C            lastnode=MNW2(4,iw)+ABS(MNW2(2,iw))-1
+          lastnode=MNW2(4,iw)+NNDSIW-1
           hwell=MNW2(17,iw)
           qin=0.D0
           qout=0.D0
           do INODE=firstnode,lastnode
+C--LFK
+             if (MNW2(1,iw).EQ.1) then
+              il=MNWNOD(1,INODE)              
+              ir=MNWNOD(2,INODE)              
+              ic=MNWNOD(3,INODE)              
+              HCELL=hnew(ic,ir,il)
+              SEEPFLG=MNWNOD(15,INODE)
+              COND=MNWNOD(14,INODE)
+             end if
+C-LFK
             q=MNWNOD(4,INODE)
             if(q.lt.0.0D0) then
               qin=qin+q
@@ -371,6 +429,19 @@ c   Loop over nodes in well
             end if
             qnet=qnet+q
           end do
+c--lfk  Nov. 2012
+             if (MNW2(1,iw).EQ.1) then
+              sftest=0.0
+              if(SEEPFLG.ne.hwell.and.SEEPFLG.ne.Hdry) then
+c   If seepage face in cell, MNWNOD(15) [=seepflg] will hold the bottom elev of the cell
+c--LFK  update Hwell to realistic value (not Hnew)for single-node MNW wells
+                if (NNDSIW.eq.1) then
+                   hwell=HCELL+(q/COND)
+                   sftest=1.0
+                end if
+              end if
+             end if
+c--LFK
 c   Cumulative volume for this well
           MNWILST(2,iwobs)=MNWILST(2,iwobs)+qnet*DELT
             
@@ -388,23 +459,16 @@ c
 C  Create format for header--single node
 C  Ignore ND and BH flags
 C  Create format for header--single node
-          if(NNODES.eq.1) then
-            if(kkstp.eq.1.and.kkper.eq.1) then
-          Write (INT(MNWILST(3,iwobs)),'(A)') 'WELLID                
-     &      TOTIM           Qin
-     &          Qout          Qnet         QCumu         hwell'
-            end if
-C-LFK       write(INT(MNWILST(3,iwobs)),'(A20,1x,1P6e14.6)')
-            if (MNW2(1,iw).EQ.1)then
-               write(INT(MNWILST(3,iwobs)),
-     &             '(A20,1x,1P6e14.6)')
-     &             WELLID(iw),totim,qin,qout,qnet,MNWILST(2,IWOBS),hwell
-            else
-               write(INT(MNWILST(3,iwobs)),
-     &             '(A20,1x,1Pe14.6,"   (Well is inactive)")')
-     &             WELLID(iw),totim
-            end if
-          else
+c--lfk/Nov.2012:  eliminate separate processing for single-node MNW wells
+c          if(NNODES.eq.1) then
+c            if(kkstp.eq.1.and.kkper.eq.1) then
+c          Write (INT(MNWILST(3,iwobs)),'(A)') 'WELLID                
+c     &       TOTIM           Qin
+c     &          Qout          Qnet         QCumu         hwell'
+c            end if
+c            write(INT(MNWILST(3,iwobs)),'(A20,1x,1P6e14.6)')
+c     &             WELLID(iw),totim,qin,qout,qnet,MNWILST(2,IWOBS),hwell
+c          else
 c  all multi-node well output below
           if(QNDflag.eq.0) then
             if(QBHflag.eq.0) then
@@ -413,15 +477,26 @@ c  QNDflag=0, QBHflag=0, QCONCflag=0
 c write header
                 if(kkstp.eq.1.and.kkper.eq.1) then
           Write (INT(MNWILST(3,iwobs)),'(120A)') 'WELLID                
-     &      TOTIM           Qin
+     &       TOTIM           Qin
      &          Qout          Qnet      Cum.Vol.         hwell
      &   '
                 end if
 c   Only operate on active wells (MNW2(1,iw)=1)
                 if (MNW2(1,iw).EQ.1) then
-
+c--lfk
+                  if (sftest.lt.1.0) then
                 write(INT(MNWILST(3,iwobs)),'(A20,1x,1P6e14.6)')
      &             WELLID(iw),totim,qin,qout,qnet,MNWILST(2,IWOBS),hwell
+                  else
+                 write(INT(MNWILST(3,iwobs)),'(A20,1x,1P6e14.6,3x,A50)')
+     &             WELLID(iw),totim,qin,qout,qnet,MNWILST(2,IWOBS),hwell
+     &             ,dtext
+                  end if
+                else
+c-lfk-Nov 2012
+                  write(INT(MNWILST(3,iwobs)),
+     &             '(A20,1x,1Pe14.6,"   (Well is inactive)")')
+     &             WELLID(iw),totim
                 end if
               else
 c  QNDflag=0, QBHflag=0, QCONCflag=1
@@ -580,7 +655,7 @@ c  QNDflag=1, QBHflag=1, QCONCflag=1
               end if
             end if  
           end if  
-          end if   
+c-lfk-Nov. 2012          end if   
       end do
 c
       return

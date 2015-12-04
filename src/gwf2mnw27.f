@@ -29,6 +29,10 @@
 C     ******************************************************************
 C     ALLOCATE ARRAY STORAGE FOR MNW2 PACKAGE.
 C     ******************************************************************
+C     LFK  May 2015  Revision in GWF2MNW2BH to fix possible error in borehole flow calculation.
+C     LFK  May 2015  Revision in GWF2MNW27RP to add optional printout of data if PUMPLOC option selected.
+C     LFK  Sept 2015  Fix bug in calculation of cwc for case of horizontal well and losstype = general
+C     LFK  Nov 2015  Incorporate several code fixes and changes made by Scott Boyce (seb) [CA WSC]
 C
 C     SPECIFICATIONS:
 C     ------------------------------------------------------------------
@@ -49,8 +53,8 @@ C
 C2------IDENTIFY PACKAGE AND INITIALIZE NMNW2.
       WRITE(IOUT,1)IN
 C---LFK--modify dates & version
-    1 format(/,1x,'MNW2 -- MULTI-NODE WELL 2 PACKAGE, VERSION 7.2,',
-     +' 12/20/2012.',/,4X,'INPUT READ FROM UNIT ',i3)
+    1 format(/,1x,'MNW2 -- MULTI-NODE WELL 2 PACKAGE, VERSION 7.3,',
+     +' 11/18/2015.',/,4X,'INPUT READ FROM UNIT ',i3)
       NMNW2=0
       ntotnod=0
 c-lfk-Dec 2012
@@ -191,8 +195,29 @@ c         8   = QCUT (pump cutoff flag: QCUT>0 limit by rate, QCUT<0 limit by
 c                     fraction of QDES)
 c         9   = Qfrcmn (minimum rate for well to remain active)
 c        10   = Qfrcmx (maximum rate to reactivate)
-c        11   = Cprime (concentration of inflow)
-c        12   = 
+c        11   = PUMPLOC   
+c        12   = Cprime (concentration of inflow)
+c seb added definitions
+c        13   = First interval number in interval list that is the total intervals so far + 1. This is used to access the information in the interval array (MNWINT)
+c        14   = PUMPLAY from Data Set 2E
+c        15   = PUMPROW from Data Set 2E
+c        16   = PUMPCOL from Data Set 2E
+C        17   = Hwel WATER LEVEL IN WELL
+C        18   = qnet NET PUMPING RATE FOR WELL (USUALLY SET BY MNW2(30,:) WHICH HOLDS Qpot)
+c        19   = PPFLAG flag.  PPFLAG>0 means calculate partial penetration effect.
+C        20   = Flag to perform this q-limit check is mnw2(20,iw).  If > 0, limit has been met. Do not enforce q-limit oscillation-stopper until the 3rd iteration; hardwire=0. 
+c        21   = HWflag (horizontal well flag) to 0 as default; can be set to 1 (true) if NNODES>0 and any R,C is different than first; =1 Indicates non-vertical well
+c        22   = PUMPCAP: Pump capacity restraints
+c        23   = HLIFT: reference head (or elevation) corresponding to the discharge point for the well
+c        24   = CapMult
+c        25   = CapFlag 0 to discontinue doing capacity checks for current time step
+c        26   = Last Q that was looked up in table for next iteration
+c        27   = CapFlag2: If =1 then Q has been constrained, required for AD routine
+c        28   = HWTOL: Minimum absolute value of change in the computed water level in the well allowed between successive iterations
+c        29   = TEMP Storage for MISC values
+c        30   = USED TO STORE Qpot (Potial Pumping Rate) WHICH IS TRANSFERED TO MNW2(18,:)
+c        31   = CONC IN WELL
+c        31+  = USED FOR STORAGE OF AUXILARY VARIABLES
 c------------------------------------------------------------------
 c
 c  If past first stress period, skip reading data sets1+2
@@ -201,6 +226,7 @@ c     set defaults
       ntotnod=0
       INTTOT=0
 C-------SET SMALL DEPENDING ON CLOSURE CRITERIA OF THE SOLVER
+      SMALL = 0.0D0
       IF ( Iusip.NE.0 ) SMALL = HCLOSE
       IF ( Iude4.NE.0 ) SMALL = HCLOSEDE4
 !     IF ( Iusor.NE.0 ) SMALL = HCLOSESOR
@@ -310,8 +336,12 @@ c     warning if LOSSTYPE=SPECIFYCWC and PPFLAG>0 (no PP correction done for thi
           write(iout,*)
           write(iout,*) '***WARNING*** Partial penetration not',
      & ' calculated for LOSSTYPE = SPECIFYCWC'
+c-LFK (5/28/15) reset ppflag to 0; write note to output file
+          write(iout,*) '              PPFLAG reset to 0'
           write(iout,*)
-        end if
+          PPFLAG=0
+          MNW2(19,MNWID)=PPFLAG
+          end if
 c
 c     read Data Set 2c, depending on LOSSTYPE (MNW2(3,MNWID)
         SELECT CASE (INT(MNW2(3,MNWID)))
@@ -1161,7 +1191,7 @@ c     until ZDP (and ZPL) are set for the well
 c
     4     CONTINUE
 c         end loop over intervals
-c     reset NUMNODES to (number of nodes in interval) instead of -(# of intervals)
+c     reset NUMNODES to -(number of nodes in interval) instead of -(# of intervals)
             MNW2(2,MNWID)=-1*intnodes
 c
 c     Print interval information
@@ -1461,7 +1491,11 @@ c     if PUMPLOC>0, read PUMPLAY,PUMPROW,PUMPCOL
           MNW2(14,MNWID)=PUMPLAY
           MNW2(15,MNWID)=PUMPROW
           MNW2(16,MNWID)=PUMPCOL
-
+C--lfk
+          WRITE(IOUT,1106) PUMPLAY,PUMPROW,PUMPCOL
+ 1106 FORMAT(' PUMP LOCATION SET AT LAY = ',I3,', ROW = ',I3,', COL = ',
+     1I3)
+C
         ELSEIF(PUMPLOC.LT.0) THEN
 c     if PUMPLOC<0, read Zpump and calulate PUMPLAY,PUMPROW,PUMPCOL
           READ(in,*) Zpump
@@ -1488,12 +1522,25 @@ c     if PUMPLOC not in a node, assume it is at top and print warning
             write(iout,*) ' Pump assumed to be at top node'
             MNW2(11,MNWID)=0
           end if
+C--lfk
+          IF(ifound.eq.1) THEN
+            IL=MNW2(14,MNWID)
+            IR=MNW2(15,MNWID)
+            IC=MNW2(16,MNWID)
+            WRITE(IOUT,1108) zpump,IL,IR,IC
+          END IF
+ 1108 FORMAT(' ZPUMP (Elev.) = ',f9.3,', CONVERTED TO NODE LOCATION: LAY
+     1 = ',I3,', ROW = ',I3,', COL = ',I3)
+C
 	  END IF
 c
 c     end read Data Set 2e
 c
 c     read data set 2f (if Qlimit > 0)
 c
+C    INSERT next 2 lines following MODFLOW-NWT
+        Qfrcmn = 0.0  ! This is used below when not set. RGN 10/1912
+        Qfrcmx = 0.0
         IF(Qlimit.GT.0.0) THEN
           READ(in,*) Hlim,QCUT
           BACKSPACE in
@@ -1534,14 +1581,14 @@ c     error check Qfrcmx
             write(iout,*) '***ERROR*** Qfrcmx > 1 is out of range'
             STOP 'MNW2 ERROR - Qfrcmx'
            end if
-	    end if
-	  END IF
+          end if
+        END IF
 c
 c     end read Data Set 2f
 c
 c     read Data Sets 2g & 2h, PUMPCAP data
 c
-        IF(PUMPCAP.GT.0.0) THEN
+        IF(PUMPCAP.GT.0) THEN                    !seb CHANGED (PUMPCAP.GT.0.0) to (PUMPCAP.GT.0)
 c     if PUMPCAP>0, read Hlift, LIFTq0, LIFTqdes
           READ(in,*) Hlift,LIFTq0,LIFTqdes,HWtol   
           mnw2(23,MNWID)=Hlift
@@ -1599,7 +1646,9 @@ c     reset # of wells and active well flag
       if( itmp.lt.0 ) then
 c        if itmp less than zero, reuse data. print message and return.
         write(iout,6)
-    6   format(1h0,'REUSING MNW2 INFORMATION FROM LAST STRESS PERIOD')
+c    6   format(1h0,'REUSING MNW2 INFORMATION FROM LAST STRESS PERIOD')
+c LFK (5/29/2015) modify format control for consistency with other packages
+    6 format(1X,/1X,'REUSING MNW2 INFORMATION FROM LAST STRESS PERIOD')
         return
       else
 c  If itmp > 0, read ITMP wells
@@ -2377,7 +2426,7 @@ c  clear ratin and ratout accumulators.
       IF(IWL2CB.GT.0) IBD=ICBCFL
 C
 C2-----IF CELL-BY-CELL FLOWS WILL BE SAVED AS A LIST, WRITE HEADER.
-      IF(nmnw2.gt.0.AND.IBD.EQ.2) THEN  !swm: check if wells are active 
+      IF(IBD.EQ.2) THEN  !swm: check if wells are active; seb removed "nmnw2.gt.0.AND." which was added by swm (11/30/15)
          NAUX=NMNWVL-30
 C-LFK         NAUX = 0   !!   Set to zero -- Change order to dump
 c         IF(IAUXSV.EQ.0) NAUX=0
@@ -2414,13 +2463,15 @@ c   Loop over nodes in well
             ic=MNWNOD(3,INODE)              
             nd=INODE-firstnode+1
             DryTest = Hnew(ic,ir,il) - Hdry
+            IF(IBOUND(IC,IR,IL).EQ.0) DryTest=0D0                       !seb ADDED IBOUND CHECK FOR DRYCELL TEST
             if(ABS(DryTest).lt.verysmall) then
               MNWNOD(4,INODE)= 0.0D0
               MNW2(17,iw)=Hdry
               iweldry=1
               if(MNWPRNT.gt.1) then
                 write(iout,*) 'MNW2 node in dry cell, Q set to 0.0'
-                write(iout,*) 'Well: ',WELLID(iw),' Node: ',INODE
+c                write(iout,*) 'Well: ',WELLID(iw),' Node: ',INODE
+                write(iout,*) 'Well: ',WELLID(iw),' Node: ',ND        !seb CHANGED INODE TO ND
               end if
             else
               iweldry=0
@@ -2439,7 +2490,8 @@ c 200 FORMAT ('Node no. ',I3,'  of Multi-Node Well ', A20)
                 end if
 c
 c    Report all wells with production less than the desired rate......
-            if(ibound(ic,ir,il).ne.0 .or.ABS(DryTest).lt.verysmall) then
+            if(ibound(ic,ir,il).ne.0) then
+             if(ABS(DryTest).gt.verysmall) then
               if(MNW2(6,iw).NE.0) then
                 hlim = mnw2(7,iw)
               else
@@ -2481,6 +2533,7 @@ c -----pumping rate is positive(recharge). add it to ratin.
 c -----pumping rate is negative(discharge). add it to ratout.
                 ratout = ratout - q
               endif
+             endif
             endif
           enddo
 c warn about dry well
@@ -2625,7 +2678,8 @@ c   Loop over nodes in well
                 il=MNWNOD(1,INODE)
                 Q = MNWNOD(4,INODE)
 c  lfk  active well check
-                if(MNW2(1,iw).eq.0) Q=0.0
+                if(MNW2(1,iw).eq.0) Q=0.0D0
+                IF(NMNW2.EQ.0) Q=0.0D0                 !seb SET FLOW RATE TO 0 WHEN NO MNW2 WELLS ARE IN USE
 c
                 call UBDSVB(ioc,ncol,nrow,IC,IR,IL,real(Q),
      +                    real(mnw2(:,iw)),
@@ -2633,7 +2687,8 @@ c
               end do
 c            endif
             enddo
-          else                  !!  Write full 3D array
+          else                  !!  Write full 3D array for IBD=1 case
+            IF(NMNW2.EQ.0) buff=0.0                     !seb SET FLOW RATE TO 0 WHEN NO MNW2 WELLS ARE IN USE
             call ubudsv(kstp,kper,text,ioc, buff,ncol,nrow,nlay,iout)
           endif
         endif
@@ -2864,7 +2919,8 @@ C     FIND HORIZONTAL ANISOTROPY, THE RATIO Ky/Kx
           AH = CHANI(IZ)
          ELSE
 C-LFK     IF(ITRSS.NE.0) THEN 
-            AH = HANI(IX,IY,IZ)
+c            AH = HANI(IX,IY,IZ)
+            AH = HANI(IX,IY,NINT(-CHANI(IZ)))                      !  seb
 C-LFK     ELSE
 C-LFK       AH = HANI(1,1,1)
 C-LFK     END IF
@@ -3104,7 +3160,8 @@ C
 c   Loop over all wells
       do iw=1,MNWMAX
 c   Only operate on active wells (MNW2(1,iw)=1)
-       if (MNW2(1,iw).EQ.1) then
+c
+      if (MNW2(1,iw).EQ.1) then
         LOSSTYPE=INT(MNW2(3,iw))
         NNODES=INT(MNW2(2,iw))
         firstnode=MNW2(4,iw)
@@ -3207,7 +3264,22 @@ c   initialize specified conductance; will be summed for multiple intervals
 c   length of interval is ztop-zbotm     
                 ztop=MNWINT(1,iint)
                 zbotm=MNWINT(2,iint)
+c  LFK (11/30/15)
+                  MNWNOD(20,INODE)=ZTOP
+                  MNWNOD(21,INODE)=ZBOTM
 c   check boundaries/saturated thickness
+c LFK (6/3/15) check if bottom of well screen is above the water table.
+c              If yes, well node is dry; set PPFLAG=0; deactivate node.
+                if(zbotm.ge.top) then
+                  COND=0.0
+                  alpha=0.0
+                  MNWNOD(14,INODE)=0.0D0
+                  MNW2(19,iw)=0.0
+C
+                  if (mnwprnt.gt.0) WRITE(iout,83) wellid(iw),inode
+   83 FORMAT(1X,' Open interval above water table; MNW2 node deactivated
+     1 in Well ',A20,' Node ',I4)                  
+                end if
                 if(ztop.ge.top) ztop=top
                 if(zbotm.le.bot) zbotm=bot
                 if(ztop.gt.zbotm) then
@@ -3258,23 +3330,59 @@ c   calculate alpha for partial penetration effect if PPFLAG is on
                 if(alpha.gt.0.99.and.alpha.lt.1.0) then
                   if (MNWPRNT.gt.1.and.kiter.eq.1) then
                   nd=INODE-firstnode+1
-                  write(iout,*) 'Penetration fraction > 0.99 for node ',
-     & nd,' of well ',wellid(iw)
-                  write(iout,*) 'Value reset to 1.0 for this well'
+                  write (iout,81) nd,wellid(iw)
+   81 Format (1X,'Penetration fraction > 0.99 for node',I5,
+     &' of well ',A20,' Value reset to 1.0 for this well')
                   end if
                   alpha=1.0
                 end if
               else
-                alpha=1.0
+                if (cond.gt.0.0) alpha=1.0
+c-LFK 8/24/15   alpha=1.0
               endif
             end if  
 c
+c LFK (8/19/15) turn off PP calculation if convertible layer and hwell drops below (zbotm+0.01)
+c             set COND=0.0
+c              go to 567
+            IF(LAYHDT(IZ).GT.0.AND.PPFLAG.GT.0.and.KITER.GT.2) then
+              hwell=mnw2(17,iw)
+              alpha2=hwell-zbotm
+             IF(alpha2.lt.0.01) then
+               MNW2(19,IW)=0.0
+               PPFLAG=0
+               COND=0.0
+               if(mnwprnt.gt.0) WRITE(iout,85) wellid(iw),iw
+   85 FORMAT(1X,' hwell <(zbotm+0.01) in convertible layer; PPFLAG reset
+     1 to 0; WELLNAME = ',A20,'  iw = ',I4)
+               alpha=0.0
+c       write (iout,*) ' alpha reset to 0.0 '
+             else
+               alpha3=1.0
+               if(totlength.gt.0D0) then
+                 alpha3=alpha2/totlength
+               end if
+               if (alpha3.lt.0.10) then
+                 MNW2(19,IW)=0.0
+                 PPFLAG=0
+C                 COND=0.0
+                 if(mnwprnt.gt.0) WRITE(iout,87) wellid(iw)
+   87 FORMAT(1X,' MNW2 node in convertible layer & hwell at <10% open in
+     1terval; PPFLAG reset to 0; WELLNAME = ',A20)
+                 alpha=0.0
+c       write (iout,*) ' alpha reset to 0.0 '                
+              end if
+             END IF
+            END IF
+c567    continue  
 c
 c     Correct conductance calculation for partial penetration effect
 c
 c     prepare variables for partial penetration calculation
 c           only do partial penetration effect if PP>0 and alpha <1.0
             PPFLAG=INT(MNW2(19,iw))
+c lfk 
+c            IF(PPFLAG.GT.0.and.alpha.lt.1.D0.and.alpha.gt.0.0) then
             IF(PPFLAG.GT.0.and.alpha.lt.1.D0) then
 c
 c  use saved partial penetration effect if steady state and past 1st iter
@@ -3346,33 +3454,59 @@ c from top and bottom of screen info, calculate ZPD and ZPL for PPC routine
                 ZPL=top-bottomscreen
 c if ZPD is less that zero, the screen is at the "top", so set ZPD=0
                 if(ZPD.lt.0.D0) ZPD=0.D0
+c LFK (6/5/15) add check on negative ZPL
+                if(ZPL.lt.0.D0) ZPL=0.D0
 c
-C
+C  LFK (5/28/15) don't calculate pp correction if alpha=0 or q-node reset to 0
+C                  or cond reset to 0 or ppflag reset to 0
+                ippc=0
+                if (alpha.eq.0.0) ippc=1
+                if (zpd.eq.0.0.and.zpl.eq.0.0) ippc=ippc+2
+                if (mnwnod(14,inode).eq.0) ippc=ippc+3
+                if (ppflag.eq.0) ippc=ippc+4
+                if (zpd.eq.zpl) ippc=ippc+5
 c calculate dhp (Delta-H due to Penetration) using analytical solution          
 c
+              if(ippc.eq.0) then
+c
                 CALL PPC(dhp,ISOLNFLAG,thck,Kh,Kz,SS,QQ,rw,ZPD,ZPL)
+c
+              else
+                  if(zpd.eq.0.0.and.zpl.eq.0.0) then
+                    PPFLAG=0
+                    MNW2(19,IW)=0
+                    dhp=0.0
+                    MNWNOD(18,INODE)=dhp
+                  end if
+              end if
+              if (PPFLAG.EQ.0) GO TO 5
+c  LFK  end code change
 c          
 c  if analytical solution failed, report no partial penetration and set dhp=0.0
                 if(ISOLNFLAG.EQ.0.AND.ITFLAG.GT.0.and.QQ.ne.0.D0) then
 c  if alpha <= 0.2, shut well off if PPC did not converge
                   if(alpha.lt.0.2) then
                    if (MNWPRNT.gt.1) then
-                    nd=INODE-firstnode+1
-                    write(iout,*) 'Partial penetration solution did not
-     & converge; penetration fraction < 0.2,      resetting CWC= 0.0 for
-     & node '
-     & ,nd,' of well ',wellid(iw)
+                     nd=INODE-firstnode+1
+                     WRITE(iout,88) nd,wellid(iw)
+   88 FORMAT(1X,'Partial penetration solution did not converge; penetrat
+     &ion fraction < 0.2; resetting CWC= 0.0 for node',I5,' of well ',
+     1A20) 
+c
                    end if
                    cond=0.0
                   else
 c  if alpha > 0.2, set PPC effect = 0 if did not converge
                    if (MNWPRNT.gt.1) then
                     nd=INODE-firstnode+1
-                    write(iout,*) 'Partial penetration solution did not
-     & converge; penetration fraction > 0.2,      assume full 
-     & penetration for
-     & node ',nd,' of well ',wellid(iw)
+                    WRITE(iout,89) nd,wellid(iw)
+   89 FORMAT(1X,'Partial penetration solution did not converge; penetrat
+     &ion fraction > 0.2; assume full penetration for node',I5,
+     1' of well ',A20)              
+c 
                    end if
+                   ppflag=0
+                   mnw2(19,iw)=0
                    dhp=0.0 
                   endif
                 end if
@@ -3389,7 +3523,7 @@ c  correct partially penetrating node-defined cells by ratio of screenlength/sat
 c             
 c  re-calculate conductance to include partial penetration
 c    calculate dpp (partial penetration effect with specific Q) if Q and dhp "align" correctly 
-c    eg if removing water (Q<0), dhp should be positive
+c    e.g. if removing water (Q<0), dhp should be positive
 c    (dhp>0 signifies drawdown).  Q is either <> 0 so no div 0 problem
               if(ITFLAG.EQ.1.
 c     &          .AND.(Qact.lt.0.D0.AND.dhp.gt.0.D0)
@@ -3408,11 +3542,15 @@ c  LFK 6/2012  change check on dhp to include 0.0 to avoid unneeded warnings
                 write(iout,*) '***WARNING***  Partial penetration term
      & (dpp) set to 0.0 due to misalignment of dhp= ',dhp,' and Q=',Qact
 c LFK 6/2012  add well name to output
-     &, ' WELLNAME = ',wellid(iw)
-              end if     
+     &, ' WELLNAME = ',wellid(iw),' iw = ',iw
+c lfk temp debug add 'iw' above
+             end if     
             END IF              
 c           end if PP effect
-          endif
+C--LFK
+    5       continue
+c
+            endif
 c         endif LOSSTYP EQ 4 and NNODES GT 0
 c        Save conductance of each node
           MNWNOD(14,INODE) = cond
@@ -3429,35 +3567,118 @@ c--LFK
           else
             ctext='          '
           end if        
-c only write screen info for cells that have partial penetration
-         if(ipr.eq.1) then
+c only write screen info for cells that have partial penetration (chng 8/24/15:LFK)
+          if(ipr.eq.1) then
            PPFLAG=INT(MNW2(19,iw))
            if(PPFLAG.GT.0.and.alpha.lt.1.0D0) then
+c LFK 12/1/15       Determine correct top and bottom of open interval for printing:
+              if (nod.gt.1) then
+                if (topscreen.gt.top) then
+                  topscreen=top
+                end if
+                if (mnwnod(21,inode).lt.bot) then
+                  bottomscreen=bot
+                end if
+              end if
+c
             if(LOSSTYPE.eq.2) then
              write(iout,'(A15,I3,1PG12.4,1x,7G12.4,10A)') 
 c-LFK             write(iout,'(A15,I3,1P7G12.5,1PG12.4,9A)') 
      & WELLID(iw),nod,cond,
      & top,bot,topscreen,bottomscreen,alpha,Skin,B,ctext
             else 
-             write(iout,'(A15,I3,1PG12.4,1x,5G12.4,12A,12A,10A)') 
+c 
+            write(iout,'(A15,I3,1PG12.4,1x,5G12.4,12A,12A,10A)') 
 c-LFK             write(iout,'(A15,I3,1P6G12.5,12A,12A,9A)') 
      & WELLID(iw),nod,cond,
      & top,bot,topscreen,bottomscreen,alpha,'     N/A    ',
      & '     N/A    ',ctext
             end if
            else
-c for no partial penetration, just repeat top and bot of layer
-            if(LOSSTYPE.eq.2) then
-             write(iout,'(A15,I3,1PG12.4,1x,7G12.4,10A)') 
-c-lfk             write(iout,'(A15,I3,1P7G12.5,1PG12.4,9A)') 
-     & WELLID(iw),nod,cond,
-     & top,bot,top,bot,alpha,Skin,B,ctext
-            else
+c for no partial penetration, just repeat top and bot of layer 
+c       unless open interval defined by elevations    (chng 8/24/15:LFK)
+c
+c LFK 12/1/15       Determine correct top and bottom of open interval for printing:
+              t1=top
+              t2=bot
+              if (nnodes.lt.0.and.mnwnod(20,inode).lt.1e09) then
+                if (mnwnod(20,inode).gt.top) then
+                  t1=top
+                else  
+                  t1=mnwnod(20,inode)
+                end if
+                if (mnwnod(21,inode).lt.bot) then
+                  t2=bot
+                else  
+                  t2=mnwnod(21,inode)
+                end if
+                if (mnwnod(21,inode).gt.top) then
+                  t1=mnwnod(20,inode)
+                  t2=mnwnod(21,inode)
+                end if
+              end if
+c
+           if(LOSSTYPE.eq.2) then
+             if(nnodes.gt.0) then
+              write(iout,'(A15,I3,1PG12.4,1x,7G12.4,10A)') 
+     &        WELLID(iw),nod,cond,
+c-LFK   change following line 8/24/2015
+c     &top,bot,mnwnod(20,inode),mnwnod(21,inode),alpha,Skin,B,ctext      
+     &top,bot,top,bot,alpha,Skin,B,ctext      
+             else
+c
+               write(iout,'(A15,I3,1PG12.4,1x,7G12.4,10A)') 
+     &        WELLID(iw),nod,cond,
+c     & top,bot,mnwnod(20,inode),mnwnod(21,inode),alpha,Skin,B,ctext
+     & top,bot,t1,t2,alpha,Skin,B,ctext
+             end if
+c LFK 11/30/15
+           else if (losstype.eq.4) then
+             if(nnodes.gt.0) then
+              write(iout,'(A15,I3,1PG12.4,1x,7G12.4,10A)') 
+     &        WELLID(iw),nod,cond,
+     &top,bot,top,bot,'     N/A    ','     N/A    ','     N/A    ',ctext    
+             else
+              write(iout,'(A15,I3,1PG12.4,1x,7G12.4,10A)') 
+     &        WELLID(iw),nod,cond,
+c     & top,bot,mnwnod(20,inode),mnwnod(21,inode),'     N/A    ',
+     & top,bot,t1,t2,'     N/A    ',
+     & '     N/A    ','     N/A    ',ctext
+             end if
+c             
+           else
+c LFK 11/24/15
+c             if(nnodes.gt.0) then
+c             if(nnodes.gt.0.or.alpha.eq.1.0) then
+            if(nnodes.gt.0.and.alpha.eq.1.0) then
+             if (ppflag.eq.1) then
              write(iout,'(A15,I3,1PG12.4,1x,6G12.4,12A,12A,10A)') 
-c-lfk             write(iout,'(A15,I3,1P6G12.5,12A,12A,9A)') 
      & WELLID(iw),nod,cond,
-     & top,bot,top,bot,alpha,'     N/A    ',
+     &top,bot,top,bot,alpha,'     N/A    ',
      & '     N/A    ',ctext
+             else
+             write(iout,'(A15,I3,1PG12.4,1x,6G12.4,12A,12A,10A)') 
+     & WELLID(iw),nod,cond,
+c     &top,bot,top,bot,alpha,'     N/A    ',
+     &top,bot,top,bot,'     N/A    ','     N/A    ',
+     & '     N/A    ',ctext
+             end if
+            else
+c             
+             if (ppflag.eq.1) then
+             write(iout,'(A15,I3,1PG12.4,1x,6G12.4,12A,12A,10A)') 
+     & WELLID(iw),nod,cond,
+     & top,bot,t1,t2,alpha,'     N/A    ',
+     & '     N/A    ',ctext
+            else 
+             write(iout,'(A15,I3,1PG12.4,1x,6G12.4,12A,12A,10A)') 
+     & WELLID(iw),nod,cond,
+c     & top,bot,mnwnod(20,inode),mnwnod(21,inode),alpha,'     N/A    ',
+c     & top,bot,t1,t2,alpha,'     N/A    ',
+     & top,bot,t1,t2,'     N/A    ','     N/A    ',
+     & '     N/A    ',ctext
+            end if
+             end if
             end if
            end if
          end if
@@ -3542,7 +3763,12 @@ c--LFK--Dec 2012   IF Vert.Segment, Length & Cond. = 1/2 of calc. value.
 c
 c       For the "NONE" option, multiply the Kh by 1000 to equivalate Hnew and hwell
         if(LOSSTYPE.EQ.0) then
-          cel2wel2=1.0D3*((Txx*Tyy)**0.5D0)/thck    
+c seb
+          IF(thck.LE.0D0)THEN
+            cel2wel2=0D0
+          ELSE
+            cel2wel2=1.0D3*((Txx*Tyy)**0.5D0)/thck
+          END IF
 c
 c       THEIM option (LOSSTYPE.EQ.1) only needs A, so no need to calculate  B or C
 c
@@ -4068,7 +4294,8 @@ c   Loop over nodes in well
         do INODE=firstnode+1,lastnode
 c   Loop over other nodes in this MNW to set QBH
 c   QBH between successive nodes is Q at previous node - Q at node
-          if(nodepump.eq.inode) then
+C         if(nodepump.eq.inode) then
+          if(nodepump.eq.inode.and.inode.ne.lastnode) then
             MNWNOD(27,INODE)=MNWNOD(27,INODE-1)+MNWNOD(4,INODE-1)-Qnet
           else          
             MNWNOD(27,INODE)=MNWNOD(27,INODE-1)+MNWNOD(4,INODE-1)
@@ -4453,7 +4680,7 @@ c       if exit point is on boundary with second cell, done with both segments
           else
             lzf=0.d0
           end if
-c   if idone still=0, then there are blank spaces in between nodes.  Calculate
+c   if idone still=0, then there are blank spaces inbetween nodes.  Calculate
 c   length of that segment by getting intersection out of last node
           if(idone.eq.0) then
             is_intersection=0
@@ -4966,7 +5193,13 @@ c         this is from eqs 3 and 5 in orig MNW report
           C = 0.D0
 c       NONLINEAR option, calculate B and C
        else if (LOSSTYPE.EQ.3) then
-          B = B / Tpi2z 
+c--LFK (9/10/15)  Define B terms for GENERAL losstype case.
+c      Assumes no directional dependence of "B"; use specified value for Bx, By, & Bz.
+c         B = B / Tpi2z 
+          Bx=B
+          By=B
+          Bz=B
+c
           if(Cf.NE.0.0) then
             C = Cf * abs(Q)**(PLoss-1)
           else
@@ -5213,23 +5446,51 @@ C    NO DRAWDOWN CALCULATIONS ARE MADE FOR OBSERVATION WELLS
 C
 C   CALCULATE AQUIFER PARAMETERS
        AT=HKR*BB
-       XKD=HKZ/HKR
+c seb
+       IF ( abs(HKR).GT.1.0e-14 )THEN
+         XKD=HKZ/HKR
+       ELSE
+         XKD=0.0
+       END IF
        ASC=SS*BB
        SIGMA=0.0D0
 C12d-CALCULATE PUMPING-WELL DIMENSIONLESS PARAMETERS 
-      RWD=RW/BB
+c seb
+      IF ( abs(BB).GT.1.0e-14 ) THEN
+        RWD=RW/BB
+      ELSE
+        RWD = 0.0
+      END IF
       BETAW=XKD*(RWD*RWD)
       IF(IPWD.EQ.0)WD=0.0D0
       IF(IPWS.EQ.0)THEN
-       XDD=ZPD/BB
-       XLD=ZPL/BB
+c seb
+       IF ( abs(BB).GT.1.0e-14 ) THEN
+         XDD=ZPD/BB
+         XLD=ZPL/BB
+       ELSE
+         XDD=0.0
+         XLD=0.0
+       END IF
       ENDIF
 C
 C3--DEFINE SELECTED PROGRAM PARAMETERS
       PI=3.141592653589793D0
       IF(IFORMAT.GE.1)THEN
-       F1=(SS*RW*RW)/HKR
-       F2=QQ/(4.0D0*PI*HKR*BB)
+c seb
+       IF (abs(HKR).GT.1.0e-14)THEN
+         F1=(SS*RW*RW)/HKR
+       ELSE
+         F1 = 0.0
+       END IF
+       IF ( abs(HKR*BB).GT.1.0e-14 ) THEN
+         F2=QQ/(4.0D0*PI*HKR*BB)
+       ELSE
+         F2 = 0.0
+       END IF
+      ELSE
+       F1 = 0.0
+       F2 = 0.0
       ENDIF
 C
 C---EXPMAX IS THE MAXIMUM ALLOWABLE ABSOLUTE VALUE OF EXPONENTIAL ARGUMENTS
@@ -5295,7 +5556,12 @@ C
           GO TO 30
          ENDIF
 C
-         DDTEST=(DABS(DDPP-DDPPOLD))/DABS(DDPP)
+c seb
+         IF ( abs(DDPP).GT.1.0e-14 ) THEN
+           DDTEST=(DABS(DDPP-DDPPOLD))/DABS(DDPP)
+         ELSE
+           DDTEST=0.0
+         END IF
          IF(DDTEST.LT.EPSILON)THEN
           ISOLNFLAG=1
           GO TO 10
@@ -5443,16 +5709,27 @@ C
        XP=0.0D0
 C
       DO 1 I=1,NS
-       PP=XLN2*I/TD
-       Q0=DSQRT(PP)
+c seb
+       PP=XLN2*DBLE(I)/TD
+       IF ( pp.GT.1.0e-14 ) THEN                               
+         Q0=DSQRT(PP)
+       ELSE
+         Q0=0.0
+       END IF
        Q0RD=Q0*RD
        IF(Q0.GT.EXPMAX) Q0=EXPMAX
        IF(Q0RD.GT.EXPMAX) Q0RD=EXPMAX
        RE0=BESSK0(Q0)
        RE1=BESSK1(Q0)
        RE0X=BESSK0(Q0RD)
-       A0=RE0*(XLD-XDD)/(Q0*RE1)
-       E0=RE0X*(XLD-XDD)/(Q0*RE1)
+c seb
+       IF ( abs(Q0*RE1).GT.1.0e-14 ) THEN
+         A0=RE0*(XLD-XDD)/(Q0*RE1)
+         E0=RE0X*(XLD-XDD)/(Q0*RE1)
+       ELSE
+         A0= 0.0
+         E0= 0.0
+       END IF
        A=0.D0
        E=0.D0
        IF(IPWS.EQ.1) GOTO 30
@@ -5467,7 +5744,12 @@ C
        SUMTA=SUMA
        SUMTE=SUME
        XNPI=NNN*PI
-       QN=DSQRT(BETAW*XNPI*XNPI+PP)
+c seb
+       IF ( BETAW*XNPI*XNPI+PP.GT.1.0e-14 ) THEN
+         QN=DSQRT(BETAW*XNPI*XNPI+PP)
+       ELSE
+         QN=0.0
+       END IF
        IF(QN.GT.EXPMAX) QN=EXPMAX
        DB=DSIN(XNPI*(1.0D0-XDD))
        DA=DSIN(XNPI*(1.0D0-XLD))
@@ -5475,21 +5757,41 @@ C
        SINES=DB-DA
        RE0=BESSK0(QN)
        RE1=BESSK1(QN)
-       XNUM=RE0*SINES*SINES/(XNPI*(XLD-XDD))
+c seb
+       IF ( abs(XNPI*(XLD-XDD)).GT.1.0e-14 ) THEN
+         XNUM=RE0*SINES*SINES/(XNPI*(XLD-XDD))
+       ELSE
+        XNUM=0.0
+       END IF
        XDEN=0.5D0*QN*RE1*XNPI
-       A=XNUM/XDEN
+c seb
+       IF ( abs(XDEN).GT.1.0e-14 ) THEN
+         A=XNUM/XDEN
+       ELSE
+         A = 0.0
+       END IF
        SUMA=SUMTA+A
 C
        IF(KK.GT.1)THEN
         QNRD=QN*RD
         IF(QNRD.GT.EXPMAX) QNRD=EXPMAX
         RE0X=BESSK0(QNRD)
-        IF(IOWS.EQ.0) 
+c seb
+        IF ( abs((XNPI*(ZD2-ZD1))).GT.1.0e-14) THEN
+          IF(IOWS.EQ.0) 
      1   XNUM=RE0X*SINES*(DSIN(XNPI*ZD2)
      2   -DSIN(XNPI*ZD1))/(XNPI*(ZD2-ZD1))
+c seb
+        END IF
         IF(IOWS.EQ.2) 
      1   XNUM=RE0X*SINES*DCOS(XNPI*ZD)
+c seb
+        IF ( abs(XDEN).GT.1.0e-14 ) THEN
         E=XNUM/XDEN
+c seb
+        ELSE
+        E=0.0
+        END IF
         SUME=SUMTE+E
        ENDIF
 C
@@ -5509,8 +5811,10 @@ C
 C
        A=SUMA
 30     DENOM=(1.D0+WD*PP*(A0+A+SW))
-       IF(KK.EQ.1) PDL=(A0+A+SW)/(PP*DENOM)
-       IF(KK.GT.1) THEN
+c seb
+       IF ( abs((PP*DENOM)).GT.1.0e-14 ) THEN
+        IF(KK.EQ.1) PDL=(A0+A+SW)/(PP*DENOM)
+        IF(KK.GT.1) THEN
          E=SUME
          IF(IDPR.EQ.0) PDL=(E0+E)/(PP*DENOM)
          IF(IDPR.EQ.1) THEN
@@ -5518,12 +5822,22 @@ C
             PDL=SLUGF*(E0+E)/(PP*DENOM)
          ENDIF
        ENDIF
+C seb
+       ELSE
+         PDL = 0.0
+         E = 0.0
+         SLUGF= 0.0
+       ENDIF
 C
       XP=XP+V(I)*PDL
 C
 1     CONTINUE
 C
-       HD=2.D0*XP*XLN2/(TD*(XLD-XDD))
+       IF ( abs((TD*(XLD-XDD))).GT.1.0e-14 ) THEN
+         HD=2.D0*XP*XLN2/(TD*(XLD-XDD))
+       ELSE
+         HD = 0.0
+       END IF
 C
 C      IF(NNN.GE.NMAX) WRITE(IO,100)
 C
@@ -5554,7 +5868,9 @@ C---SPECIFICATIONS
       DATA Q1,Q2,Q3,Q4,Q5,Q6,Q7/1.25331414D0,-0.7832358D-1,0.2189568D-1,
      *    -0.1062446D-1,0.587872D-2,-0.251540D-2,0.53208D-3/
 C
-      IF (X.LE.2.D0) THEN
+      IF(X.LE.1.0E-14) THEN
+       BESSK0=1.0E30                                                    !seb Added additional IF to account for near zero values that cause LOG(0) error
+      ELSEIF (X.LE.2.D0) THEN
         Y=X*X/4.D0
         BESSK0=(-DLOG(X/2.D0)*BESSI0(X))+(P1+Y*(P2+Y*(P3+
      *        Y*(P4+Y*(P5+Y*(P6+Y*P7))))))
@@ -5622,7 +5938,9 @@ C---SPECIFICATIONS
       DATA Q1,Q2,Q3,Q4,Q5,Q6,Q7/1.25331414D0,0.23498619D0,-0.3655620D-1,
      *    0.1504268D-1,-0.780353D-2,0.325614D-2,-0.68245D-3/
 C
-      IF (X.LE.2.0) THEN
+      IF(X.LE.1.0E-14)THEN
+       BESSK1=1.0E30                                                    !seb Added additional IF to account for near zero values that cause LOG(0) error
+      ELSEIF (X.LE.2.0) THEN
         Y=X*X/4.0
         BESSK1=(LOG(X/2.0)*BESSI1(X))+(1.0/X)*(P1+Y*(P2+
      *      Y*(P3+Y*(P4+Y*(P5+Y*(P6+Y*P7))))))
@@ -5693,6 +6011,27 @@ C
 C
 c-lfk
         DEALLOCATE(LIMQ)
+C
+C NULLIFY THE LOCAL POINTERS
+c        IF(IGRID.EQ.1)THEN
+c          NMNW2       =>NULL()                       !seb ADDED TO FOLLOW STATEMENTS: GWFMNWDAT(IGRID)%
+c          MNWMAX      =>NULL()
+c          NMNWVL      =>NULL()
+c          IWL2CB      =>NULL()
+c          MNWPRNT     =>NULL()
+c          NODTOT      =>NULL()
+c          INTTOT      =>NULL()
+c          NTOTNOD     =>NULL()
+c          SMALL       =>NULL()
+c          WELLID      =>NULL()
+c          MNWAUX      =>NULL()
+c          MNW2        =>NULL()
+c          MNWNOD      =>NULL()
+c          MNWINT      =>NULL()
+c          CapTable    =>NULL()
+c          LIMQ        =>NULL()                        ! lfk
+C                     
+c      END IF
       RETURN
       END
       SUBROUTINE SGWF2MNW2PNT(IGRID)
@@ -5714,6 +6053,8 @@ C
         MNWNOD=>GWFMNWDAT(IGRID)%MNWNOD
         MNWINT=>GWFMNWDAT(IGRID)%MNWINT
         CapTable=>GWFMNWDAT(IGRID)%CapTable
+        LIMQ=>GWFMNWDAT(IGRID)%LIMQ                                     !seb MISSING POINTER REFERENCE
+
 C
       RETURN
       END
@@ -5736,6 +6077,7 @@ C
         GWFMNWDAT(IGRID)%MNWNOD=>MNWNOD
         GWFMNWDAT(IGRID)%MNWINT=>MNWINT
         GWFMNWDAT(IGRID)%CapTable=>CapTable
+        GWFMNWDAT(IGRID)%LIMQ=>LIMQ                                     !seb MISSING POINTER REFERENCE
 C
       RETURN
       END
