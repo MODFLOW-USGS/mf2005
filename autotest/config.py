@@ -5,12 +5,13 @@ testdir = 'temp'
 retain = False
 target_dict = {}
 
-exclude = ('MNW2-Fig28',) #, 'swi2ex4sww') #None
+exclude = None #('MNW2-Fig28',) #, 'swi2ex4sww') #None
 
 # Development version information
 exdir = 'test-run'
+arcdir = 'test-arc'
 testdev = 'test-dev'
-testpaths = [os.path.join('..', exdir), os.path.join('..', testdev)]
+testpaths = [os.path.join('..', exdir), os.path.join('..', arcdir), os.path.join('..', testdev)]
 srcdir = os.path.join('..', 'src')
 program = 'mf2005'
 version = '1.12.00'
