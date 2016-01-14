@@ -1,0 +1,10 @@
+LIST           7 SWR001.lst
+BAS6           1 SWR001.bas
+DIS           29 SWR001.dis
+LPF           11 SWR001.lpf
+GHB           17 SWR001.ghb
+OC            22 SWR001.oc
+PCG           19 SWR001.pcg
+SWR           61 SWR001.swr
+DATA(BINARY) 101 SWR001_PoolFlow.flow replace
+DATA(BINARY) 102 SWR001_Stage.stg     replace

@@ -398,6 +398,11 @@ C           PROGRAM CALCULATED DATA
           INTEGER :: ICALCQAQ                = IZERO
           DOUBLEPRECISION  :: OFFSET         = DZERO
           DOUBLEPRECISION  :: GWETRATE       = DZERO
+C           AVERAGE QAQ RATE(BY LAYER), QEVT, AND IEVT - FOR MT3D LINK FILE
+          DOUBLEPRECISION,  DIMENSION(:), ALLOCATABLE ::  QAQRATE
+          DOUBLEPRECISION   ::  QEVT
+          INTEGER           ::  IEVT          
+C           CURRENT FLOW TERMS
           TYPE (TFLOWDATA) :: CURRENT
 C           CUMULATIVE SUBSIDENCE
           DOUBLEPRECISION :: GCUMSUB         = DZERO
@@ -565,6 +570,7 @@ C         SWR VARIABLES
         DOUBLEPRECISION,SAVE,POINTER  :: TOLS,TOLR,PTOLR
         DOUBLEPRECISION,SAVE,POINTER  :: TOLA
         DOUBLEPRECISION,SAVE,POINTER  :: DAMPSS, DAMPTR
+        DOUBLEPRECISION,SAVE,POINTER  :: PTCDEL
         INTEGER,SAVE,POINTER          :: IPRSWR
         INTEGER,SAVE,POINTER          :: MUTSWR
         INTEGER,SAVE,POINTER          :: NCORESM
@@ -722,6 +728,7 @@ C         SWR VARIABLES
           DOUBLEPRECISION,POINTER  :: TOLS,TOLR,PTOLR
           DOUBLEPRECISION,POINTER  :: TOLA
           DOUBLEPRECISION,POINTER  :: DAMPSS, DAMPTR
+          DOUBLEPRECISION,POINTER  :: PTCDEL
           INTEGER,POINTER          :: IPRSWR
           INTEGER,POINTER          :: MUTSWR
           INTEGER,POINTER          :: NCORESM
@@ -1116,6 +1123,7 @@ C       SWR1 VARIABLES
       ALLOCATE(RTIME,RTIME0,RTMIN,RTMAX,RTSTMAX,RTPRN,RSWRPRN,RSWRPRN0)
       ALLOCATE(IBT)
       ALLOCATE(TOLS,TOLR,PTOLR,TOLA,DAMPSS,DAMPTR,IPRSWR,MUTSWR)
+      ALLOCATE(PTCDEL)
       ALLOCATE(NCORESM)
       ALLOCATE(NCORESV)
       ALLOCATE(ISWRDRO)
@@ -2160,6 +2168,12 @@ C-------ALLOCATE SPACE FOR DIRECT RUNOFF VARIABLES
           DRORMULT(1,1) = 1.0
           DRORVAL(1,1)  = 0.0
       END IF
+C
+C-------ALLOCATE QAQRATE FOR EACH REACH TO STORE AVERAGE AQUIFER
+C-------EXCHANGE RATE FOR THE TIME STEP - FOR MT3D LINK FILE
+      DO i = 1, NREACHES
+          ALLOCATE(REACH(i)%QAQRATE(NLAY))
+      ENDDO
 C
 C-------FINISH SWR TIMER FOR GWF2SWR7AR
       CALL SSWRTIMER(1,tim1,tim2,SWREXETOT)
@@ -5527,7 +5541,7 @@ C     + + + LOCAL DEFINITIONS + + +
       DOUBLEPRECISION :: b
       DOUBLEPRECISION :: gwet, getextd, qq, hhcof, rrhs
       DOUBLEPRECISION :: ratin, ratout, rrate, tsrate
-      DOUBLEPRECISION, DIMENSION(NLAY) :: layrate
+      !DOUBLEPRECISION, DIMENSION(NLAY) :: layrate
       DOUBLEPRECISION :: swrtot, dt, t0
       REAL :: tim1, tim2
       CHARACTER (LEN=16) :: text(2)
@@ -5618,7 +5632,10 @@ C
 C-------LOOP THROUGH EACH RIVER REACH CALCULATING FLOW.
       REACHES: DO irch = 1, NREACHES
         tsrate  = DZERO
-        layrate = DZERO
+        !layrate = DZERO
+        DO k = 1, NLAY
+          REACH(irch)%QAQRATE(k) = DZERO
+        END DO
 C---------GET ROW & COLUMN OF CELL CONTAINING REACH.
         ir      = REACH(irch)%IRCH
         jc      = REACH(irch)%JRCH
@@ -5666,7 +5683,9 @@ C-------------CALCULATE AQUIFER-REACH EXCHANGE USING APPROPRIATE METHOD
             END IF
             rrate       = b * dtscale
             tsrate      = tsrate + rrate
-            layrate(kk) = layrate(kk) + rrate
+            !layrate(kk) = layrate(kk) + rrate
+            !--SEAWAT: layrate(kk) = layrate(kk) + rrate
+            REACH(irch)%QAQRATE(kk) = REACH(irch)%QAQRATE(kk) + rrate
           END DO LAYERS
         END DO TIMES
 C---------PROCESS ACCUMULATED QAQFLOW DATA FOR CBC AND LIST OUTPUT
@@ -5676,7 +5695,8 @@ C-----------SET UPPER MOST ACTIVE LAYER FOR REACH
         LAYCBC: IF ( kact.LE.NLAY ) THEN 
           kk = MAX( REACH(irch)%LAYEND, kact )
           LAYEROUTPUT: DO kl = REACH(irch)%LAYSTR, kk
-            rate = layrate(kl)
+            !--SEAWAT: rate = layrate(kl)
+            rate = REACH(irch)%QAQRATE(kl)
 C-------------ADD AVERAGE RATE FOR EACH SWR TIMESTEP TO BUFFER.
             BUFF(jc,ir,kl) = BUFF(jc,ir,kl) + rate
 C-------------PRINT THE INDIVIDUAL RATES IF REQUESTED(IRIVCB<0).
@@ -5708,7 +5728,8 @@ C---------IF SAVING CELL-BY-CELL FLOWS IN A LIST, WRITE FLOW.
               ival   = 1
             END IF
             DO kl = REACH(irch)%LAYSTR, REACH(irch)%LAYEND
-              rate = layrate(kl)
+              !rate = layrate(kl)
+              rate = REACH(irch)%QAQRATE(kl)
               CALL UBDSVB(ISWRCB,NCOL,NROW,jc,ir,kl,rate,
      1                    AUXROW,ival,iaux,1,IBOUND,NLAY)
             END DO
@@ -5779,6 +5800,9 @@ C---------CALCULATE GROUNDWATER EVAPOTRANSPIRATION
       DO irch = 1, NREACHES
         k = 0
         rate = RZERO
+C         INITIALIZE EVT DATA FOR MT3D LINK FILE    
+        REACH(irch)%IEVT = 1
+        REACH(irch)%QEVT = 0.0
         IF ( REACH(irch)%IGEOTYPE.NE.5 ) GO TO 299
 C         ONLY PROCESS FOR REACHES WITH REMAINING EVAPORATION
         ir = REACH(irch)%IRCH
@@ -5819,6 +5843,9 @@ C         GROUNDWATER LEVEL IS BELOW EXTINCTION DEPTH
         END IF
         rate   = qq
         ratout = ratout - qq
+C         SAVE EVT DATA FOR MT3D LINK FILE    
+        REACH(irch)%IEVT = k
+        REACH(irch)%QEVT = rate
 C---------ADD AVERAGE RATE FOR EACH SWR TIMESTEP TO BUFFER.
         BUFF(jc,ir,k) = BUFF(jc,ir,k) + rate
 C-----------PRINT THE INDIVIDUAL RATES IF REQUESTED(IRIVCB<0).
@@ -6104,6 +6131,7 @@ C         SWR1 VARIABLES
         DEALLOCATE(GWFSWRDAT(Igrid)%DAMPTR)
         DEALLOCATE(GWFSWRDAT(Igrid)%IPRSWR)
         DEALLOCATE(GWFSWRDAT(Igrid)%MUTSWR)
+        DEALLOCATE(GWFSWRDAT(Igrid)%PTCDEL)
         DEALLOCATE(GWFSWRDAT(Igrid)%NCORESM)
         DEALLOCATE(GWFSWRDAT(Igrid)%NCORESV)
         DEALLOCATE(GWFSWRDAT(Igrid)%ISWRDRO)
@@ -6279,6 +6307,7 @@ C         SWR1 VARIABLES
         DAMPTR=>GWFSWRDAT(Igrid)%DAMPTR
         IPRSWR=>GWFSWRDAT(Igrid)%IPRSWR
         MUTSWR=>GWFSWRDAT(Igrid)%MUTSWR
+        PTCDEL=>GWFSWRDAT(Igrid)%PTCDEL
         NCORESM=>GWFSWRDAT(Igrid)%NCORESM
         NCORESV=>GWFSWRDAT(Igrid)%NCORESV
         ISWRDRO=>GWFSWRDAT(Igrid)%ISWRDRO
@@ -6454,6 +6483,7 @@ C         SWR1 VARIABLES
         GWFSWRDAT(Igrid)%DAMPTR=>DAMPTR
         GWFSWRDAT(Igrid)%IPRSWR=>IPRSWR
         GWFSWRDAT(Igrid)%MUTSWR=>MUTSWR
+        GWFSWRDAT(Igrid)%PTCDEL=>PTCDEL
         GWFSWRDAT(Igrid)%NCORESM=>NCORESM
         GWFSWRDAT(Igrid)%NCORESV=>NCORESV
         GWFSWRDAT(Igrid)%ISWRDRO=>ISWRDRO
@@ -8607,12 +8637,19 @@ C     + + + LOCAL DEFINITIONS + + +
         INTEGER :: n
         INTEGER :: ots, its
         INTEGER :: ia
+        INTEGER :: icheck
+        INTEGER :: i, j
         DOUBLEPRECISION :: deltaf, deltafi, deltax
         DOUBLEPRECISION :: fn, fn0
         DOUBLEPRECISION :: fni
+        DOUBLEPRECISION :: ptcfn0
+        DOUBLEPRECISION :: diagmin
+        DOUBLEPRECISION :: ratio
         DOUBLEPRECISION :: eta
         DOUBLEPRECISION :: damp
         DOUBLEPRECISION :: e
+        DOUBLEPRECISION :: botm
+        DOUBLEPRECISION :: xu
 C     + + + FUNCTIONS + + +
         DOUBLEPRECISION :: SSWR_CALC_FTOLR
         DOUBLEPRECISION :: GSOL_L2NORM
@@ -8672,12 +8709,38 @@ C-----------CALCULATE EXPLICIT INVARIANT QM AND UPDATE THE RESIDUAL
           END IF
 C-----------CALCULATE COMPRESSED JACOBIAN
           CALL SSWR_FDJACC(X,JAC%R,JAC%XS,JAC%FJACC)
+!C-----------PSEUDO-TRANSIENT CONTINUATION
+!          diagmin = 1.0D20
+!          DO n = 1, NSOLRG
+!            ia = JAC%IA(n)
+!            IF ( ABS(JAC%FJACC(ia)).EQ.DZERO ) CYCLE
+!            IF (ABS(JAC%FJACC(ia)) < diagmin) THEN
+!              diagmin = ABS(JAC%FJACC(ia))
+!            END IF
+!          END DO
+!          IF (ots > 1) THEN
+!            PTCDEL = PTCDEL * ptcfn0 / fni
+!          ELSE
+!            !PTCDEL = 1.0D-3
+!            PTCDEL = dble(NSOLRG) / (fni)
+!          END IF
+!          !if (done/ptcdel > 0.5d0*diagmin) then
+!          !  ptcdel = done / (0.5d0 * diagmin)
+!          !end if
+!          write(10691,'(i10,5(1x,g10.2))') ots, ptcdel, done/ptcdel, 
+!     &                                     ptcfn0, fni, ptcfn0/fni
+!          ptcfn0 = fni
+!          DO n = 1, NSOLRG
+!            ia = JAC%IA(n)
+!            JAC%FJACC(ia) = JAC%FJACC(ia) + (DONE / PTCDEL)
+!          END DO
 C-----------CHECK FOR ZERO ELEMENTS ALONG DIAGONAL
           DO n = 1, NSOLRG
             ia = JAC%IA(n)
             IF ( ABS(JAC%FJACC(ia)).EQ.DZERO ) THEN
               JAC%FJACC(ia) = DONE
               JAC%F(n)      = JAC%F(n) + DONE
+              !JAC%F(n)      = DONE
             END IF
           END DO
 C-----------CALCULATE THE MATRIX VECTOR PRODUCT J s(k-1)
@@ -8796,6 +8859,29 @@ C           ONLY APPLIED WHEN THERE HAS BEEN NO IMPROVEMENT IN THE L2NORM
               JAC%DX(n) = JAC%XS(n) - JAC%X0(n)
             END DO
           END IF
+!C-----------BOTTOM AVERAGING
+!          icheck = 0
+!          DO i = 1, NSOLRG
+!            j = JAC%ISMAP(i)
+!            botm = RCHGRP(j)%RGELEV(1)
+!            IF (JAC%XS(i) < botm) THEN
+!              icheck = icheck + 1
+!              xu = JAC%XI(j)*(0.1D0) + botm*0.9D0
+!              IF (xu > botm) THEN
+!                JAC%XS(i) = xu
+!              ELSE
+!                JAC%XS(i) = botm
+!              END IF
+!              JAC%DX(i) = JAC%XS(i) - JAC%X0(i)
+!            END IF
+!          END DO
+!          IF (icheck > 0) THEN
+!C-----------MAP SOLUTION TO ALL REACH GROUPS
+!            CALL SSWRS2C(JAC%XS,X)
+!            CALL SSWR_CALC_RGRESI(X,JAC%R)
+!            CALL SSWRC2S(JAC%R,JAC%F)
+!            fn = GSOL_L2NORM(NSOLRG, JAC%F)
+!          END IF
 C-----------CHECK FOR ABSOLUTE MINIMIZATION OF f
           deltaf  = DZERO
           deltafi = DZERO
@@ -8805,19 +8891,24 @@ C-----------CHECK FOR ABSOLUTE MINIMIZATION OF f
             deltafi = MAX( deltafi, ABS(JAC%F(n) - JAC%F0(n)) )
             deltax  = MAX( deltax,  ABS(JAC%DX(n)) )
           END DO
-          IF ( IFTOLR.NE.0 ) THEN
-            deltaf = SSWR_CALC_FTOLR(JAC%R)
-            IF ( deltaf.LT.PTOLR ) THEN
-              IF ( ots.GT.1 ) RETURN
-            END IF
-          ELSE IF ( IL2NORMTOLR.NE.0 ) THEN
-            deltaf = GSOL_L2NORM(NRCHGRP, JAC%R)
-            IF ( deltaf.LT.PTOLR ) THEN
-              IF ( ots.GT.1 ) RETURN
-            END IF
-          ELSE
-            IF ( deltaf.LT.TOLR .AND. deltafi.LT.TOLR ) THEN
-              IF ( ots.GT.1 ) RETURN
+          ratio = (DONE / ptcdel) / diagmin
+          icheck = 1
+          !if (ratio > 1.0D-6) icheck = 0
+          IF (icheck > 0) THEN
+            IF ( IFTOLR.NE.0 ) THEN
+              deltaf = SSWR_CALC_FTOLR(JAC%R)
+              IF ( deltaf.LT.PTOLR ) THEN
+                IF ( ots.GT.1 ) RETURN
+              END IF
+            ELSE IF ( IL2NORMTOLR.NE.0 ) THEN
+              deltaf = GSOL_L2NORM(NRCHGRP, JAC%R)
+              IF ( deltaf.LT.PTOLR ) THEN
+                IF ( ots.GT.1 ) RETURN
+              END IF
+            ELSE
+              IF ( deltaf.LT.TOLR .AND. deltafi.LT.TOLR ) THEN
+                IF ( ots.GT.1 ) RETURN
+              END IF
             END IF
           END IF
 C-----------SAVE CURRENT OUTER ITERATES

@@ -1,0 +1,2777 @@
+# MODFLOW2005 UZF Input File 
+#CONSTANT     0.15              1.000 (FREE)       1     #THTI after THTS
+#NUZTOP IUZFOPT IRUNFLG IETFLG IUZCB1 IUZFCB2 [NTRAIL2 NSETS2] NUZGAG SURFDEP
+      1       2       1      1     0        0       20     20       0    0.50
+INTERNAL     1        (FREE)     -1                     #IUZFBND
+0 1 1 1 1 1
+0 1 1 1 1 1
+0 1 1 1 0 1
+0 1 1 1 0 1
+0 1 1 1 1 1
+0 1 1 1 1 1
+INTERNAL     1        (FREE)     -1                     #IRUNBND
+ 000000 100007 100008 100014 100015 100015
+ 000000 100007 100008 100014 100015 100015
+ 000000 100011 100011 100014 000000 100016
+ 000000 100009 100010 100014 000000 100018
+ 000000 100009 100010 100017 100017 100018
+ 000000 100009 100010 100019 100019 100018
+CONSTANT     3.500             1.000 (FREE)      -1     #EPS
+CONSTANT     0.25              1.000 (FREE)       1     #THTS
+CONSTANT     0.15              1.000 (FREE)       1     #THTI after THTS
+1                                                       #NUZF1
+CONSTANT 0.0
+1                                                       #NUZF2
+CONSTANT  2.6249E-03  1.000 (FREE)                1     #PET
+1                                                       #NUZF3
+CONSTANT 0.25 1.000  (FREE)                       1     #ET Ext Depth
+1                                                       #NUZF4
+CONSTANT 0.05 1.000 (FREE)                        1     #Ext Water Content	
+1                                            #NUZF1 STRESS PERIOD 002
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 002
+-1                                           #NUZF3 STRESS PERIOD 002
+-1                                           #NUZF4 STRESS PERIOD 002
+1                                            #NUZF1 STRESS PERIOD 003
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 003
+-1                                           #NUZF3 STRESS PERIOD 003
+-1                                           #NUZF4 STRESS PERIOD 003
+1                                            #NUZF1 STRESS PERIOD 004
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 004
+-1                                           #NUZF3 STRESS PERIOD 004
+-1                                           #NUZF4 STRESS PERIOD 004
+1                                            #NUZF1 STRESS PERIOD 005
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 005
+-1                                           #NUZF3 STRESS PERIOD 005
+-1                                           #NUZF4 STRESS PERIOD 005
+1                                            #NUZF1 STRESS PERIOD 006
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 006
+-1                                           #NUZF3 STRESS PERIOD 006
+-1                                           #NUZF4 STRESS PERIOD 006
+1                                            #NUZF1 STRESS PERIOD 007
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 007
+   0.        0.000762  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000762  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000762  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000762  0.        0.        0.        0.       
+   0.        0.000762  0.        0.        0.        0.       
+   0.        0.000762  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 007
+-1                                           #NUZF3 STRESS PERIOD 007
+-1                                           #NUZF4 STRESS PERIOD 007
+1                                            #NUZF1 STRESS PERIOD 008
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 008
+-1                                           #NUZF3 STRESS PERIOD 008
+-1                                           #NUZF4 STRESS PERIOD 008
+1                                            #NUZF1 STRESS PERIOD 009
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 009
+-1                                           #NUZF3 STRESS PERIOD 009
+-1                                           #NUZF4 STRESS PERIOD 009
+1                                            #NUZF1 STRESS PERIOD 010
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 010
+-1                                           #NUZF3 STRESS PERIOD 010
+-1                                           #NUZF4 STRESS PERIOD 010
+1                                            #NUZF1 STRESS PERIOD 011
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 011
+-1                                           #NUZF3 STRESS PERIOD 011
+-1                                           #NUZF4 STRESS PERIOD 011
+1                                            #NUZF1 STRESS PERIOD 012
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 012
+-1                                           #NUZF3 STRESS PERIOD 012
+-1                                           #NUZF4 STRESS PERIOD 012
+1                                            #NUZF1 STRESS PERIOD 013
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 013
+-1                                           #NUZF3 STRESS PERIOD 013
+-1                                           #NUZF4 STRESS PERIOD 013
+1                                            #NUZF1 STRESS PERIOD 014
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 014
+-1                                           #NUZF3 STRESS PERIOD 014
+-1                                           #NUZF4 STRESS PERIOD 014
+1                                            #NUZF1 STRESS PERIOD 015
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 015
+-1                                           #NUZF3 STRESS PERIOD 015
+-1                                           #NUZF4 STRESS PERIOD 015
+1                                            #NUZF1 STRESS PERIOD 016
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 016
+-1                                           #NUZF3 STRESS PERIOD 016
+-1                                           #NUZF4 STRESS PERIOD 016
+1                                            #NUZF1 STRESS PERIOD 017
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 017
+-1                                           #NUZF3 STRESS PERIOD 017
+-1                                           #NUZF4 STRESS PERIOD 017
+1                                            #NUZF1 STRESS PERIOD 018
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 018
+-1                                           #NUZF3 STRESS PERIOD 018
+-1                                           #NUZF4 STRESS PERIOD 018
+1                                            #NUZF1 STRESS PERIOD 019
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 019
+   0.       0.0254   0.0254   0.0254   0.0254   0.0254  
+   0.       0.0254   0.0254   0.0254   0.0254   0.0254  
+   0.       0.0254   0.0254   0.0254   0.0254   0.0254  
+   0.       0.0254   0.02261  0.02261  0.02261  0.02261 
+   0.       0.0254   0.02261  0.02261  0.02261  0.02261 
+   0.       0.0254   0.02261  0.02261  0.02261  0.02261  
+-1                                           #NUZF2 STRESS PERIOD 019
+-1                                           #NUZF3 STRESS PERIOD 019
+-1                                           #NUZF4 STRESS PERIOD 019
+1                                            #NUZF1 STRESS PERIOD 020
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 020
+-1                                           #NUZF3 STRESS PERIOD 020
+-1                                           #NUZF4 STRESS PERIOD 020
+1                                            #NUZF1 STRESS PERIOD 021
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 021
+-1                                           #NUZF3 STRESS PERIOD 021
+-1                                           #NUZF4 STRESS PERIOD 021
+1                                            #NUZF1 STRESS PERIOD 022
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 022
+-1                                           #NUZF3 STRESS PERIOD 022
+-1                                           #NUZF4 STRESS PERIOD 022
+1                                            #NUZF1 STRESS PERIOD 023
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 023
+-1                                           #NUZF3 STRESS PERIOD 023
+-1                                           #NUZF4 STRESS PERIOD 023
+1                                            #NUZF1 STRESS PERIOD 024
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 024
+-1                                           #NUZF3 STRESS PERIOD 024
+-1                                           #NUZF4 STRESS PERIOD 024
+1                                            #NUZF1 STRESS PERIOD 025
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 025
+-1                                           #NUZF3 STRESS PERIOD 025
+-1                                           #NUZF4 STRESS PERIOD 025
+1                                            #NUZF1 STRESS PERIOD 026
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 026
+-1                                           #NUZF3 STRESS PERIOD 026
+-1                                           #NUZF4 STRESS PERIOD 026
+1                                            #NUZF1 STRESS PERIOD 027
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 027
+   0.        0.003048  0.003048  0.003048  0.003048  0.003048 
+   0.        0.003048  0.003048  0.003048  0.003048  0.003048 
+   0.        0.003048  0.003048  0.003048  0.003048  0.003048 
+   0.        0.003048  0.00254   0.00254   0.00254   0.00254  
+   0.        0.003048  0.00254   0.00254   0.00254   0.00254  
+   0.        0.003048  0.00254   0.00254   0.00254   0.00254   
+-1                                           #NUZF2 STRESS PERIOD 027
+-1                                           #NUZF3 STRESS PERIOD 027
+-1                                           #NUZF4 STRESS PERIOD 027
+1                                            #NUZF1 STRESS PERIOD 028
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 028
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.001016  0.001016  0.001016  0.001016 
+   0.        0.002286  0.001016  0.001016  0.001016  0.001016 
+   0.        0.002286  0.001016  0.001016  0.001016  0.001016  
+-1                                           #NUZF2 STRESS PERIOD 028
+-1                                           #NUZF3 STRESS PERIOD 028
+-1                                           #NUZF4 STRESS PERIOD 028
+1                                            #NUZF1 STRESS PERIOD 029
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 029
+-1                                           #NUZF3 STRESS PERIOD 029
+-1                                           #NUZF4 STRESS PERIOD 029
+1                                            #NUZF1 STRESS PERIOD 030
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 030
+-1                                           #NUZF3 STRESS PERIOD 030
+-1                                           #NUZF4 STRESS PERIOD 030
+1                                            #NUZF1 STRESS PERIOD 031
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 031
+   0.       0.01956  0.01956  0.01956  0.01956  0.01956 
+   0.       0.01956  0.01956  0.01956  0.01956  0.01956 
+   0.       0.01956  0.01956  0.01956  0.01956  0.01956 
+   0.       0.01956  0.01651  0.01651  0.01651  0.01651 
+   0.       0.01956  0.01651  0.01651  0.01651  0.01651 
+   0.       0.01956  0.01651  0.01651  0.01651  0.01651  
+-1                                           #NUZF2 STRESS PERIOD 031
+-1                                           #NUZF3 STRESS PERIOD 031
+-1                                           #NUZF4 STRESS PERIOD 031
+1                                            #NUZF1 STRESS PERIOD 032
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 032
+   0.       0.03404  0.03404  0.03404  0.03404  0.03404 
+   0.       0.03404  0.03404  0.03404  0.03404  0.03404 
+   0.       0.03404  0.03404  0.03404  0.03404  0.03404 
+   0.       0.03404  0.02819  0.02819  0.02819  0.02819 
+   0.       0.03404  0.02819  0.02819  0.02819  0.02819 
+   0.       0.03404  0.02819  0.02819  0.02819  0.02819  
+-1                                           #NUZF2 STRESS PERIOD 032
+-1                                           #NUZF3 STRESS PERIOD 032
+-1                                           #NUZF4 STRESS PERIOD 032
+1                                            #NUZF1 STRESS PERIOD 033
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 033
+   0.       0.00508  0.00508  0.00508  0.00508  0.00508 
+   0.       0.00508  0.00508  0.00508  0.00508  0.00508 
+   0.       0.00508  0.00508  0.00508  0.00508  0.00508 
+   0.       0.00508  0.00127  0.00127  0.00127  0.00127 
+   0.       0.00508  0.00127  0.00127  0.00127  0.00127 
+   0.       0.00508  0.00127  0.00127  0.00127  0.00127  
+-1                                           #NUZF2 STRESS PERIOD 033
+-1                                           #NUZF3 STRESS PERIOD 033
+-1                                           #NUZF4 STRESS PERIOD 033
+1                                            #NUZF1 STRESS PERIOD 034
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 034
+-1                                           #NUZF3 STRESS PERIOD 034
+-1                                           #NUZF4 STRESS PERIOD 034
+1                                            #NUZF1 STRESS PERIOD 035
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 035
+-1                                           #NUZF3 STRESS PERIOD 035
+-1                                           #NUZF4 STRESS PERIOD 035
+1                                            #NUZF1 STRESS PERIOD 036
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 036
+-1                                           #NUZF3 STRESS PERIOD 036
+-1                                           #NUZF4 STRESS PERIOD 036
+1                                            #NUZF1 STRESS PERIOD 037
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 037
+   0.        0.001778  0.001778  0.001778  0.001778  0.001778 
+   0.        0.001778  0.001778  0.001778  0.001778  0.001778 
+   0.        0.001778  0.001778  0.001778  0.001778  0.001778 
+   0.        0.001778  0.00127   0.00127   0.00127   0.00127  
+   0.        0.001778  0.00127   0.00127   0.00127   0.00127  
+   0.        0.001778  0.00127   0.00127   0.00127   0.00127   
+-1                                           #NUZF2 STRESS PERIOD 037
+-1                                           #NUZF3 STRESS PERIOD 037
+-1                                           #NUZF4 STRESS PERIOD 037
+1                                            #NUZF1 STRESS PERIOD 038
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 038
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000508  0.000508  0.000508  0.000508 
+   0.        0.        0.000508  0.000508  0.000508  0.000508 
+   0.        0.        0.000508  0.000508  0.000508  0.000508  
+-1                                           #NUZF2 STRESS PERIOD 038
+-1                                           #NUZF3 STRESS PERIOD 038
+-1                                           #NUZF4 STRESS PERIOD 038
+1                                            #NUZF1 STRESS PERIOD 039
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 039
+-1                                           #NUZF3 STRESS PERIOD 039
+-1                                           #NUZF4 STRESS PERIOD 039
+1                                            #NUZF1 STRESS PERIOD 040
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 040
+-1                                           #NUZF3 STRESS PERIOD 040
+-1                                           #NUZF4 STRESS PERIOD 040
+1                                            #NUZF1 STRESS PERIOD 041
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 041
+-1                                           #NUZF3 STRESS PERIOD 041
+-1                                           #NUZF4 STRESS PERIOD 041
+1                                            #NUZF1 STRESS PERIOD 042
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 042
+-1                                           #NUZF3 STRESS PERIOD 042
+-1                                           #NUZF4 STRESS PERIOD 042
+1                                            #NUZF1 STRESS PERIOD 043
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 043
+-1                                           #NUZF3 STRESS PERIOD 043
+-1                                           #NUZF4 STRESS PERIOD 043
+1                                            #NUZF1 STRESS PERIOD 044
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 044
+-1                                           #NUZF3 STRESS PERIOD 044
+-1                                           #NUZF4 STRESS PERIOD 044
+1                                            #NUZF1 STRESS PERIOD 045
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 045
+-1                                           #NUZF3 STRESS PERIOD 045
+-1                                           #NUZF4 STRESS PERIOD 045
+1                                            #NUZF1 STRESS PERIOD 046
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 046
+-1                                           #NUZF3 STRESS PERIOD 046
+-1                                           #NUZF4 STRESS PERIOD 046
+1                                            #NUZF1 STRESS PERIOD 047
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 047
+   0.        0.00381   0.00381   0.00381   0.00381   0.00381  
+   0.        0.00381   0.00381   0.00381   0.00381   0.00381  
+   0.        0.00381   0.00381   0.00381   0.00381   0.00381  
+   0.        0.00381   0.002032  0.002032  0.002032  0.002032 
+   0.        0.00381   0.002032  0.002032  0.002032  0.002032 
+   0.        0.00381   0.002032  0.002032  0.002032  0.002032  
+-1                                           #NUZF2 STRESS PERIOD 047
+-1                                           #NUZF3 STRESS PERIOD 047
+-1                                           #NUZF4 STRESS PERIOD 047
+1                                            #NUZF1 STRESS PERIOD 048
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 048
+-1                                           #NUZF3 STRESS PERIOD 048
+-1                                           #NUZF4 STRESS PERIOD 048
+1                                            #NUZF1 STRESS PERIOD 049
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 049
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508  
+-1                                           #NUZF2 STRESS PERIOD 049
+-1                                           #NUZF3 STRESS PERIOD 049
+-1                                           #NUZF4 STRESS PERIOD 049
+1                                            #NUZF1 STRESS PERIOD 050
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 050
+-1                                           #NUZF3 STRESS PERIOD 050
+-1                                           #NUZF4 STRESS PERIOD 050
+1                                            #NUZF1 STRESS PERIOD 051
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 051
+-1                                           #NUZF3 STRESS PERIOD 051
+-1                                           #NUZF4 STRESS PERIOD 051
+1                                            #NUZF1 STRESS PERIOD 052
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 052
+-1                                           #NUZF3 STRESS PERIOD 052
+-1                                           #NUZF4 STRESS PERIOD 052
+1                                            #NUZF1 STRESS PERIOD 053
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 053
+-1                                           #NUZF3 STRESS PERIOD 053
+-1                                           #NUZF4 STRESS PERIOD 053
+1                                            #NUZF1 STRESS PERIOD 054
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 054
+-1                                           #NUZF3 STRESS PERIOD 054
+-1                                           #NUZF4 STRESS PERIOD 054
+1                                            #NUZF1 STRESS PERIOD 055
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 055
+-1                                           #NUZF3 STRESS PERIOD 055
+-1                                           #NUZF4 STRESS PERIOD 055
+1                                            #NUZF1 STRESS PERIOD 056
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 056
+-1                                           #NUZF3 STRESS PERIOD 056
+-1                                           #NUZF4 STRESS PERIOD 056
+1                                            #NUZF1 STRESS PERIOD 057
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 057
+   0.       0.04547  0.04547  0.04547  0.04547  0.04547 
+   0.       0.04547  0.04547  0.04547  0.04547  0.04547 
+   0.       0.04547  0.04547  0.04547  0.04547  0.04547 
+   0.       0.04547  0.04115  0.04115  0.04115  0.04115 
+   0.       0.04547  0.04115  0.04115  0.04115  0.04115 
+   0.       0.04547  0.04115  0.04115  0.04115  0.04115  
+-1                                           #NUZF2 STRESS PERIOD 057
+-1                                           #NUZF3 STRESS PERIOD 057
+-1                                           #NUZF4 STRESS PERIOD 057
+1                                            #NUZF1 STRESS PERIOD 058
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 058
+-1                                           #NUZF3 STRESS PERIOD 058
+-1                                           #NUZF4 STRESS PERIOD 058
+1                                            #NUZF1 STRESS PERIOD 059
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 059
+-1                                           #NUZF3 STRESS PERIOD 059
+-1                                           #NUZF4 STRESS PERIOD 059
+1                                            #NUZF1 STRESS PERIOD 060
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 060
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.        0.        0.        0.       
+   0.        0.000508  0.        0.        0.        0.       
+   0.        0.000508  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 060
+-1                                           #NUZF3 STRESS PERIOD 060
+-1                                           #NUZF4 STRESS PERIOD 060
+1                                            #NUZF1 STRESS PERIOD 061
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 061
+-1                                           #NUZF3 STRESS PERIOD 061
+-1                                           #NUZF4 STRESS PERIOD 061
+1                                            #NUZF1 STRESS PERIOD 062
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 062
+-1                                           #NUZF3 STRESS PERIOD 062
+-1                                           #NUZF4 STRESS PERIOD 062
+1                                            #NUZF1 STRESS PERIOD 063
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 063
+-1                                           #NUZF3 STRESS PERIOD 063
+-1                                           #NUZF4 STRESS PERIOD 063
+1                                            #NUZF1 STRESS PERIOD 064
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 064
+-1                                           #NUZF3 STRESS PERIOD 064
+-1                                           #NUZF4 STRESS PERIOD 064
+1                                            #NUZF1 STRESS PERIOD 065
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 065
+-1                                           #NUZF3 STRESS PERIOD 065
+-1                                           #NUZF4 STRESS PERIOD 065
+1                                            #NUZF1 STRESS PERIOD 066
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 066
+-1                                           #NUZF3 STRESS PERIOD 066
+-1                                           #NUZF4 STRESS PERIOD 066
+1                                            #NUZF1 STRESS PERIOD 067
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 067
+-1                                           #NUZF3 STRESS PERIOD 067
+-1                                           #NUZF4 STRESS PERIOD 067
+1                                            #NUZF1 STRESS PERIOD 068
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 068
+-1                                           #NUZF3 STRESS PERIOD 068
+-1                                           #NUZF4 STRESS PERIOD 068
+1                                            #NUZF1 STRESS PERIOD 069
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 069
+-1                                           #NUZF3 STRESS PERIOD 069
+-1                                           #NUZF4 STRESS PERIOD 069
+1                                            #NUZF1 STRESS PERIOD 070
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 070
+-1                                           #NUZF3 STRESS PERIOD 070
+-1                                           #NUZF4 STRESS PERIOD 070
+1                                            #NUZF1 STRESS PERIOD 071
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 071
+-1                                           #NUZF3 STRESS PERIOD 071
+-1                                           #NUZF4 STRESS PERIOD 071
+1                                            #NUZF1 STRESS PERIOD 072
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 072
+-1                                           #NUZF3 STRESS PERIOD 072
+-1                                           #NUZF4 STRESS PERIOD 072
+1                                            #NUZF1 STRESS PERIOD 073
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 073
+-1                                           #NUZF3 STRESS PERIOD 073
+-1                                           #NUZF4 STRESS PERIOD 073
+1                                            #NUZF1 STRESS PERIOD 074
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 074
+-1                                           #NUZF3 STRESS PERIOD 074
+-1                                           #NUZF4 STRESS PERIOD 074
+1                                            #NUZF1 STRESS PERIOD 075
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 075
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.00127   0.00127   0.00127   0.00127  
+   0.        0.002286  0.00127   0.00127   0.00127   0.00127  
+   0.        0.002286  0.00127   0.00127   0.00127   0.00127   
+-1                                           #NUZF2 STRESS PERIOD 075
+-1                                           #NUZF3 STRESS PERIOD 075
+-1                                           #NUZF4 STRESS PERIOD 075
+1                                            #NUZF1 STRESS PERIOD 076
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 076
+-1                                           #NUZF3 STRESS PERIOD 076
+-1                                           #NUZF4 STRESS PERIOD 076
+1                                            #NUZF1 STRESS PERIOD 077
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 077
+   0.        0.004572  0.004572  0.004572  0.004572  0.004572 
+   0.        0.004572  0.004572  0.004572  0.004572  0.004572 
+   0.        0.004572  0.004572  0.004572  0.004572  0.004572 
+   0.        0.004572  0.000254  0.000254  0.000254  0.000254 
+   0.        0.004572  0.000254  0.000254  0.000254  0.000254 
+   0.        0.004572  0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 077
+-1                                           #NUZF3 STRESS PERIOD 077
+-1                                           #NUZF4 STRESS PERIOD 077
+1                                            #NUZF1 STRESS PERIOD 078
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 078
+-1                                           #NUZF3 STRESS PERIOD 078
+-1                                           #NUZF4 STRESS PERIOD 078
+1                                            #NUZF1 STRESS PERIOD 079
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 079
+-1                                           #NUZF3 STRESS PERIOD 079
+-1                                           #NUZF4 STRESS PERIOD 079
+1                                            #NUZF1 STRESS PERIOD 080
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 080
+-1                                           #NUZF3 STRESS PERIOD 080
+-1                                           #NUZF4 STRESS PERIOD 080
+1                                            #NUZF1 STRESS PERIOD 081
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 081
+-1                                           #NUZF3 STRESS PERIOD 081
+-1                                           #NUZF4 STRESS PERIOD 081
+1                                            #NUZF1 STRESS PERIOD 082
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 082
+-1                                           #NUZF3 STRESS PERIOD 082
+-1                                           #NUZF4 STRESS PERIOD 082
+1                                            #NUZF1 STRESS PERIOD 083
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 083
+-1                                           #NUZF3 STRESS PERIOD 083
+-1                                           #NUZF4 STRESS PERIOD 083
+1                                            #NUZF1 STRESS PERIOD 084
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 084
+-1                                           #NUZF3 STRESS PERIOD 084
+-1                                           #NUZF4 STRESS PERIOD 084
+1                                            #NUZF1 STRESS PERIOD 085
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 085
+   0.       0.00127  0.00127  0.00127  0.00127  0.00127 
+   0.       0.00127  0.00127  0.00127  0.00127  0.00127 
+   0.       0.00127  0.00127  0.00127  0.00127  0.00127 
+   0.       0.00127  0.       0.       0.       0.      
+   0.       0.00127  0.       0.       0.       0.      
+   0.       0.00127  0.       0.       0.       0.       
+-1                                           #NUZF2 STRESS PERIOD 085
+-1                                           #NUZF3 STRESS PERIOD 085
+-1                                           #NUZF4 STRESS PERIOD 085
+1                                            #NUZF1 STRESS PERIOD 086
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 086
+   0.        0.01803   0.01803   0.01803   0.01803   0.01803  
+   0.        0.01803   0.01803   0.01803   0.01803   0.01803  
+   0.        0.01803   0.01803   0.01803   0.01803   0.01803  
+   0.        0.01803   0.007874  0.007874  0.007874  0.007874 
+   0.        0.01803   0.007874  0.007874  0.007874  0.007874 
+   0.        0.01803   0.007874  0.007874  0.007874  0.007874  
+-1                                           #NUZF2 STRESS PERIOD 086
+-1                                           #NUZF3 STRESS PERIOD 086
+-1                                           #NUZF4 STRESS PERIOD 086
+1                                            #NUZF1 STRESS PERIOD 087
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 087
+   0.        0.009398  0.009398  0.009398  0.009398  0.009398 
+   0.        0.009398  0.009398  0.009398  0.009398  0.009398 
+   0.        0.009398  0.009398  0.009398  0.009398  0.009398 
+   0.        0.009398  0.002032  0.002032  0.002032  0.002032 
+   0.        0.009398  0.002032  0.002032  0.002032  0.002032 
+   0.        0.009398  0.002032  0.002032  0.002032  0.002032  
+-1                                           #NUZF2 STRESS PERIOD 087
+-1                                           #NUZF3 STRESS PERIOD 087
+-1                                           #NUZF4 STRESS PERIOD 087
+1                                            #NUZF1 STRESS PERIOD 088
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 088
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.000508  0.000508  0.000508  0.000508 
+   0.        0.002286  0.000508  0.000508  0.000508  0.000508 
+   0.        0.002286  0.000508  0.000508  0.000508  0.000508  
+-1                                           #NUZF2 STRESS PERIOD 088
+-1                                           #NUZF3 STRESS PERIOD 088
+-1                                           #NUZF4 STRESS PERIOD 088
+1                                            #NUZF1 STRESS PERIOD 089
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 089
+-1                                           #NUZF3 STRESS PERIOD 089
+-1                                           #NUZF4 STRESS PERIOD 089
+1                                            #NUZF1 STRESS PERIOD 090
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 090
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.        0.        0.        0.       
+   0.        0.000508  0.        0.        0.        0.       
+   0.        0.000508  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 090
+-1                                           #NUZF3 STRESS PERIOD 090
+-1                                           #NUZF4 STRESS PERIOD 090
+1                                            #NUZF1 STRESS PERIOD 091
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 091
+-1                                           #NUZF3 STRESS PERIOD 091
+-1                                           #NUZF4 STRESS PERIOD 091
+1                                            #NUZF1 STRESS PERIOD 092
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 092
+-1                                           #NUZF3 STRESS PERIOD 092
+-1                                           #NUZF4 STRESS PERIOD 092
+1                                            #NUZF1 STRESS PERIOD 093
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 093
+-1                                           #NUZF3 STRESS PERIOD 093
+-1                                           #NUZF4 STRESS PERIOD 093
+1                                            #NUZF1 STRESS PERIOD 094
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 094
+-1                                           #NUZF3 STRESS PERIOD 094
+-1                                           #NUZF4 STRESS PERIOD 094
+1                                            #NUZF1 STRESS PERIOD 095
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 095
+-1                                           #NUZF3 STRESS PERIOD 095
+-1                                           #NUZF4 STRESS PERIOD 095
+1                                            #NUZF1 STRESS PERIOD 096
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 096
+-1                                           #NUZF3 STRESS PERIOD 096
+-1                                           #NUZF4 STRESS PERIOD 096
+1                                            #NUZF1 STRESS PERIOD 097
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 097
+-1                                           #NUZF3 STRESS PERIOD 097
+-1                                           #NUZF4 STRESS PERIOD 097
+1                                            #NUZF1 STRESS PERIOD 098
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 098
+-1                                           #NUZF3 STRESS PERIOD 098
+-1                                           #NUZF4 STRESS PERIOD 098
+1                                            #NUZF1 STRESS PERIOD 099
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 099
+-1                                           #NUZF3 STRESS PERIOD 099
+-1                                           #NUZF4 STRESS PERIOD 099
+1                                            #NUZF1 STRESS PERIOD 100
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 100
+-1                                           #NUZF3 STRESS PERIOD 100
+-1                                           #NUZF4 STRESS PERIOD 100
+1                                            #NUZF1 STRESS PERIOD 101
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 101
+-1                                           #NUZF3 STRESS PERIOD 101
+-1                                           #NUZF4 STRESS PERIOD 101
+1                                            #NUZF1 STRESS PERIOD 102
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 102
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.        0.        0.        0.       
+   0.        0.000254  0.        0.        0.        0.       
+   0.        0.000254  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 102
+-1                                           #NUZF3 STRESS PERIOD 102
+-1                                           #NUZF4 STRESS PERIOD 102
+1                                            #NUZF1 STRESS PERIOD 103
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 103
+   0.        0.00254   0.00254   0.00254   0.00254   0.00254  
+   0.        0.00254   0.00254   0.00254   0.00254   0.00254  
+   0.        0.00254   0.00254   0.00254   0.00254   0.00254  
+   0.        0.00254   0.001524  0.001524  0.001524  0.001524 
+   0.        0.00254   0.001524  0.001524  0.001524  0.001524 
+   0.        0.00254   0.001524  0.001524  0.001524  0.001524  
+-1                                           #NUZF2 STRESS PERIOD 103
+-1                                           #NUZF3 STRESS PERIOD 103
+-1                                           #NUZF4 STRESS PERIOD 103
+1                                            #NUZF1 STRESS PERIOD 104
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 104
+   0.       0.02184  0.02184  0.02184  0.02184  0.02184 
+   0.       0.02184  0.02184  0.02184  0.02184  0.02184 
+   0.       0.02184  0.02184  0.02184  0.02184  0.02184 
+   0.       0.02184  0.02235  0.02235  0.02235  0.02235 
+   0.       0.02184  0.02235  0.02235  0.02235  0.02235 
+   0.       0.02184  0.02235  0.02235  0.02235  0.02235  
+-1                                           #NUZF2 STRESS PERIOD 104
+-1                                           #NUZF3 STRESS PERIOD 104
+-1                                           #NUZF4 STRESS PERIOD 104
+1                                            #NUZF1 STRESS PERIOD 105
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 105
+   0.       0.03429  0.03429  0.03429  0.03429  0.03429 
+   0.       0.03429  0.03429  0.03429  0.03429  0.03429 
+   0.       0.03429  0.03429  0.03429  0.03429  0.03429 
+   0.       0.03429  0.02311  0.02311  0.02311  0.02311 
+   0.       0.03429  0.02311  0.02311  0.02311  0.02311 
+   0.       0.03429  0.02311  0.02311  0.02311  0.02311  
+-1                                           #NUZF2 STRESS PERIOD 105
+-1                                           #NUZF3 STRESS PERIOD 105
+-1                                           #NUZF4 STRESS PERIOD 105
+1                                            #NUZF1 STRESS PERIOD 106
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 106
+-1                                           #NUZF3 STRESS PERIOD 106
+-1                                           #NUZF4 STRESS PERIOD 106
+1                                            #NUZF1 STRESS PERIOD 107
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 107
+-1                                           #NUZF3 STRESS PERIOD 107
+-1                                           #NUZF4 STRESS PERIOD 107
+1                                            #NUZF1 STRESS PERIOD 108
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 108
+-1                                           #NUZF3 STRESS PERIOD 108
+-1                                           #NUZF4 STRESS PERIOD 108
+1                                            #NUZF1 STRESS PERIOD 109
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 109
+-1                                           #NUZF3 STRESS PERIOD 109
+-1                                           #NUZF4 STRESS PERIOD 109
+1                                            #NUZF1 STRESS PERIOD 110
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 110
+-1                                           #NUZF3 STRESS PERIOD 110
+-1                                           #NUZF4 STRESS PERIOD 110
+1                                            #NUZF1 STRESS PERIOD 111
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 111
+-1                                           #NUZF3 STRESS PERIOD 111
+-1                                           #NUZF4 STRESS PERIOD 111
+1                                            #NUZF1 STRESS PERIOD 112
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 112
+-1                                           #NUZF3 STRESS PERIOD 112
+-1                                           #NUZF4 STRESS PERIOD 112
+1                                            #NUZF1 STRESS PERIOD 113
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 113
+-1                                           #NUZF3 STRESS PERIOD 113
+-1                                           #NUZF4 STRESS PERIOD 113
+1                                            #NUZF1 STRESS PERIOD 114
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 114
+-1                                           #NUZF3 STRESS PERIOD 114
+-1                                           #NUZF4 STRESS PERIOD 114
+1                                            #NUZF1 STRESS PERIOD 115
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 115
+-1                                           #NUZF3 STRESS PERIOD 115
+-1                                           #NUZF4 STRESS PERIOD 115
+1                                            #NUZF1 STRESS PERIOD 116
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 116
+-1                                           #NUZF3 STRESS PERIOD 116
+-1                                           #NUZF4 STRESS PERIOD 116
+1                                            #NUZF1 STRESS PERIOD 117
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 117
+-1                                           #NUZF3 STRESS PERIOD 117
+-1                                           #NUZF4 STRESS PERIOD 117
+1                                            #NUZF1 STRESS PERIOD 118
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 118
+-1                                           #NUZF3 STRESS PERIOD 118
+-1                                           #NUZF4 STRESS PERIOD 118
+1                                            #NUZF1 STRESS PERIOD 119
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 119
+   0.        0.001778  0.001778  0.001778  0.001778  0.001778 
+   0.        0.001778  0.001778  0.001778  0.001778  0.001778 
+   0.        0.001778  0.001778  0.001778  0.001778  0.001778 
+   0.        0.001778  0.00254   0.00254   0.00254   0.00254  
+   0.        0.001778  0.00254   0.00254   0.00254   0.00254  
+   0.        0.001778  0.00254   0.00254   0.00254   0.00254   
+-1                                           #NUZF2 STRESS PERIOD 119
+-1                                           #NUZF3 STRESS PERIOD 119
+-1                                           #NUZF4 STRESS PERIOD 119
+1                                            #NUZF1 STRESS PERIOD 120
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 120
+   0.       0.03683  0.03683  0.03683  0.03683  0.03683 
+   0.       0.03683  0.03683  0.03683  0.03683  0.03683 
+   0.       0.03683  0.03683  0.03683  0.03683  0.03683 
+   0.       0.03683  0.01575  0.01575  0.01575  0.01575 
+   0.       0.03683  0.01575  0.01575  0.01575  0.01575 
+   0.       0.03683  0.01575  0.01575  0.01575  0.01575  
+-1                                           #NUZF2 STRESS PERIOD 120
+-1                                           #NUZF3 STRESS PERIOD 120
+-1                                           #NUZF4 STRESS PERIOD 120
+1                                            #NUZF1 STRESS PERIOD 121
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 121
+   0.        0.00381   0.00381   0.00381   0.00381   0.00381  
+   0.        0.00381   0.00381   0.00381   0.00381   0.00381  
+   0.        0.00381   0.00381   0.00381   0.00381   0.00381  
+   0.        0.00381   0.001778  0.001778  0.001778  0.001778 
+   0.        0.00381   0.001778  0.001778  0.001778  0.001778 
+   0.        0.00381   0.001778  0.001778  0.001778  0.001778  
+-1                                           #NUZF2 STRESS PERIOD 121
+-1                                           #NUZF3 STRESS PERIOD 121
+-1                                           #NUZF4 STRESS PERIOD 121
+1                                            #NUZF1 STRESS PERIOD 122
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 122
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.        0.        0.        0.       
+   0.        0.000254  0.        0.        0.        0.       
+   0.        0.000254  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 122
+-1                                           #NUZF3 STRESS PERIOD 122
+-1                                           #NUZF4 STRESS PERIOD 122
+1                                            #NUZF1 STRESS PERIOD 123
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 123
+   0.        0.00127   0.00127   0.00127   0.00127   0.00127  
+   0.        0.00127   0.00127   0.00127   0.00127   0.00127  
+   0.        0.00127   0.00127   0.00127   0.00127   0.00127  
+   0.        0.00127   0.003556  0.003556  0.003556  0.003556 
+   0.        0.00127   0.003556  0.003556  0.003556  0.003556 
+   0.        0.00127   0.003556  0.003556  0.003556  0.003556  
+-1                                           #NUZF2 STRESS PERIOD 123
+-1                                           #NUZF3 STRESS PERIOD 123
+-1                                           #NUZF4 STRESS PERIOD 123
+1                                            #NUZF1 STRESS PERIOD 124
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 124
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.        0.        0.        0.       
+   0.        0.000508  0.        0.        0.        0.       
+   0.        0.000508  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 124
+-1                                           #NUZF3 STRESS PERIOD 124
+-1                                           #NUZF4 STRESS PERIOD 124
+1                                            #NUZF1 STRESS PERIOD 125
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 125
+   0.       0.05563  0.05563  0.05563  0.05563  0.05563 
+   0.       0.05563  0.05563  0.05563  0.05563  0.05563 
+   0.       0.05563  0.05563  0.05563  0.05563  0.05563 
+   0.       0.05563  0.05105  0.05105  0.05105  0.05105 
+   0.       0.05563  0.05105  0.05105  0.05105  0.05105 
+   0.       0.05563  0.05105  0.05105  0.05105  0.05105  
+-1                                           #NUZF2 STRESS PERIOD 125
+-1                                           #NUZF3 STRESS PERIOD 125
+-1                                           #NUZF4 STRESS PERIOD 125
+1                                            #NUZF1 STRESS PERIOD 126
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 126
+-1                                           #NUZF3 STRESS PERIOD 126
+-1                                           #NUZF4 STRESS PERIOD 126
+1                                            #NUZF1 STRESS PERIOD 127
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 127
+-1                                           #NUZF3 STRESS PERIOD 127
+-1                                           #NUZF4 STRESS PERIOD 127
+1                                            #NUZF1 STRESS PERIOD 128
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 128
+-1                                           #NUZF3 STRESS PERIOD 128
+-1                                           #NUZF4 STRESS PERIOD 128
+1                                            #NUZF1 STRESS PERIOD 129
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 129
+-1                                           #NUZF3 STRESS PERIOD 129
+-1                                           #NUZF4 STRESS PERIOD 129
+1                                            #NUZF1 STRESS PERIOD 130
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 130
+-1                                           #NUZF3 STRESS PERIOD 130
+-1                                           #NUZF4 STRESS PERIOD 130
+1                                            #NUZF1 STRESS PERIOD 131
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 131
+-1                                           #NUZF3 STRESS PERIOD 131
+-1                                           #NUZF4 STRESS PERIOD 131
+1                                            #NUZF1 STRESS PERIOD 132
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 132
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.01168  0.01168  0.01168  0.01168 
+   0.       0.       0.01168  0.01168  0.01168  0.01168 
+   0.       0.       0.01168  0.01168  0.01168  0.01168  
+-1                                           #NUZF2 STRESS PERIOD 132
+-1                                           #NUZF3 STRESS PERIOD 132
+-1                                           #NUZF4 STRESS PERIOD 132
+1                                            #NUZF1 STRESS PERIOD 133
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 133
+-1                                           #NUZF3 STRESS PERIOD 133
+-1                                           #NUZF4 STRESS PERIOD 133
+1                                            #NUZF1 STRESS PERIOD 134
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 134
+-1                                           #NUZF3 STRESS PERIOD 134
+-1                                           #NUZF4 STRESS PERIOD 134
+1                                            #NUZF1 STRESS PERIOD 135
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 135
+-1                                           #NUZF3 STRESS PERIOD 135
+-1                                           #NUZF4 STRESS PERIOD 135
+1                                            #NUZF1 STRESS PERIOD 136
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 136
+-1                                           #NUZF3 STRESS PERIOD 136
+-1                                           #NUZF4 STRESS PERIOD 136
+1                                            #NUZF1 STRESS PERIOD 137
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 137
+   0.        0.002794  0.002794  0.002794  0.002794  0.002794 
+   0.        0.002794  0.002794  0.002794  0.002794  0.002794 
+   0.        0.002794  0.002794  0.002794  0.002794  0.002794 
+   0.        0.002794  0.004064  0.004064  0.004064  0.004064 
+   0.        0.002794  0.004064  0.004064  0.004064  0.004064 
+   0.        0.002794  0.004064  0.004064  0.004064  0.004064  
+-1                                           #NUZF2 STRESS PERIOD 137
+-1                                           #NUZF3 STRESS PERIOD 137
+-1                                           #NUZF4 STRESS PERIOD 137
+1                                            #NUZF1 STRESS PERIOD 138
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 138
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000508  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000508  0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 138
+-1                                           #NUZF3 STRESS PERIOD 138
+-1                                           #NUZF4 STRESS PERIOD 138
+1                                            #NUZF1 STRESS PERIOD 139
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 139
+-1                                           #NUZF3 STRESS PERIOD 139
+-1                                           #NUZF4 STRESS PERIOD 139
+1                                            #NUZF1 STRESS PERIOD 140
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 140
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.        0.        0.        0.       
+   0.        0.001524  0.        0.        0.        0.       
+   0.        0.001524  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 140
+-1                                           #NUZF3 STRESS PERIOD 140
+-1                                           #NUZF4 STRESS PERIOD 140
+1                                            #NUZF1 STRESS PERIOD 141
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 141
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.001778  0.001778  0.001778  0.001778 
+   0.        0.        0.001778  0.001778  0.001778  0.001778 
+   0.        0.        0.001778  0.001778  0.001778  0.001778  
+-1                                           #NUZF2 STRESS PERIOD 141
+-1                                           #NUZF3 STRESS PERIOD 141
+-1                                           #NUZF4 STRESS PERIOD 141
+1                                            #NUZF1 STRESS PERIOD 142
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 142
+-1                                           #NUZF3 STRESS PERIOD 142
+-1                                           #NUZF4 STRESS PERIOD 142
+1                                            #NUZF1 STRESS PERIOD 143
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 143
+-1                                           #NUZF3 STRESS PERIOD 143
+-1                                           #NUZF4 STRESS PERIOD 143
+1                                            #NUZF1 STRESS PERIOD 144
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 144
+-1                                           #NUZF3 STRESS PERIOD 144
+-1                                           #NUZF4 STRESS PERIOD 144
+1                                            #NUZF1 STRESS PERIOD 145
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 145
+-1                                           #NUZF3 STRESS PERIOD 145
+-1                                           #NUZF4 STRESS PERIOD 145
+1                                            #NUZF1 STRESS PERIOD 146
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 146
+-1                                           #NUZF3 STRESS PERIOD 146
+-1                                           #NUZF4 STRESS PERIOD 146
+1                                            #NUZF1 STRESS PERIOD 147
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 147
+-1                                           #NUZF3 STRESS PERIOD 147
+-1                                           #NUZF4 STRESS PERIOD 147
+1                                            #NUZF1 STRESS PERIOD 148
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 148
+-1                                           #NUZF3 STRESS PERIOD 148
+-1                                           #NUZF4 STRESS PERIOD 148
+1                                            #NUZF1 STRESS PERIOD 149
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 149
+-1                                           #NUZF3 STRESS PERIOD 149
+-1                                           #NUZF4 STRESS PERIOD 149
+1                                            #NUZF1 STRESS PERIOD 150
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 150
+-1                                           #NUZF3 STRESS PERIOD 150
+-1                                           #NUZF4 STRESS PERIOD 150
+1                                            #NUZF1 STRESS PERIOD 151
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 151
+-1                                           #NUZF3 STRESS PERIOD 151
+-1                                           #NUZF4 STRESS PERIOD 151
+1                                            #NUZF1 STRESS PERIOD 152
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 152
+-1                                           #NUZF3 STRESS PERIOD 152
+-1                                           #NUZF4 STRESS PERIOD 152
+1                                            #NUZF1 STRESS PERIOD 153
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 153
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 153
+-1                                           #NUZF3 STRESS PERIOD 153
+-1                                           #NUZF4 STRESS PERIOD 153
+1                                            #NUZF1 STRESS PERIOD 154
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 154
+-1                                           #NUZF3 STRESS PERIOD 154
+-1                                           #NUZF4 STRESS PERIOD 154
+1                                            #NUZF1 STRESS PERIOD 155
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 155
+-1                                           #NUZF3 STRESS PERIOD 155
+-1                                           #NUZF4 STRESS PERIOD 155
+1                                            #NUZF1 STRESS PERIOD 156
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 156
+-1                                           #NUZF3 STRESS PERIOD 156
+-1                                           #NUZF4 STRESS PERIOD 156
+1                                            #NUZF1 STRESS PERIOD 157
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 157
+   0.        0.003048  0.003048  0.003048  0.003048  0.003048 
+   0.        0.003048  0.003048  0.003048  0.003048  0.003048 
+   0.        0.003048  0.003048  0.003048  0.003048  0.003048 
+   0.        0.003048  0.        0.        0.        0.       
+   0.        0.003048  0.        0.        0.        0.       
+   0.        0.003048  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 157
+-1                                           #NUZF3 STRESS PERIOD 157
+-1                                           #NUZF4 STRESS PERIOD 157
+1                                            #NUZF1 STRESS PERIOD 158
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 158
+-1                                           #NUZF3 STRESS PERIOD 158
+-1                                           #NUZF4 STRESS PERIOD 158
+1                                            #NUZF1 STRESS PERIOD 159
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 159
+   0.        0.02235   0.02235   0.02235   0.02235   0.02235  
+   0.        0.02235   0.02235   0.02235   0.02235   0.02235  
+   0.        0.02235   0.02235   0.02235   0.02235   0.02235  
+   0.        0.02235   0.000762  0.000762  0.000762  0.000762 
+   0.        0.02235   0.000762  0.000762  0.000762  0.000762 
+   0.        0.02235   0.000762  0.000762  0.000762  0.000762  
+-1                                           #NUZF2 STRESS PERIOD 159
+-1                                           #NUZF3 STRESS PERIOD 159
+-1                                           #NUZF4 STRESS PERIOD 159
+1                                            #NUZF1 STRESS PERIOD 160
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 160
+   0.       0.03835  0.03835  0.03835  0.03835  0.03835 
+   0.       0.03835  0.03835  0.03835  0.03835  0.03835 
+   0.       0.03835  0.03835  0.03835  0.03835  0.03835 
+   0.       0.03835  0.01905  0.01905  0.01905  0.01905 
+   0.       0.03835  0.01905  0.01905  0.01905  0.01905 
+   0.       0.03835  0.01905  0.01905  0.01905  0.01905  
+-1                                           #NUZF2 STRESS PERIOD 160
+-1                                           #NUZF3 STRESS PERIOD 160
+-1                                           #NUZF4 STRESS PERIOD 160
+1                                            #NUZF1 STRESS PERIOD 161
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 161
+   0.        0.008636  0.008636  0.008636  0.008636  0.008636 
+   0.        0.008636  0.008636  0.008636  0.008636  0.008636 
+   0.        0.008636  0.008636  0.008636  0.008636  0.008636 
+   0.        0.008636  0.002286  0.002286  0.002286  0.002286 
+   0.        0.008636  0.002286  0.002286  0.002286  0.002286 
+   0.        0.008636  0.002286  0.002286  0.002286  0.002286  
+-1                                           #NUZF2 STRESS PERIOD 161
+-1                                           #NUZF3 STRESS PERIOD 161
+-1                                           #NUZF4 STRESS PERIOD 161
+1                                            #NUZF1 STRESS PERIOD 162
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 162
+   0.        0.009398  0.009398  0.009398  0.009398  0.009398 
+   0.        0.009398  0.009398  0.009398  0.009398  0.009398 
+   0.        0.009398  0.009398  0.009398  0.009398  0.009398 
+   0.        0.009398  0.002032  0.002032  0.002032  0.002032 
+   0.        0.009398  0.002032  0.002032  0.002032  0.002032 
+   0.        0.009398  0.002032  0.002032  0.002032  0.002032  
+-1                                           #NUZF2 STRESS PERIOD 162
+-1                                           #NUZF3 STRESS PERIOD 162
+-1                                           #NUZF4 STRESS PERIOD 162
+1                                            #NUZF1 STRESS PERIOD 163
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 163
+   0.        0.007366  0.007366  0.007366  0.007366  0.007366 
+   0.        0.007366  0.007366  0.007366  0.007366  0.007366 
+   0.        0.007366  0.007366  0.007366  0.007366  0.007366 
+   0.        0.007366  0.003302  0.003302  0.003302  0.003302 
+   0.        0.007366  0.003302  0.003302  0.003302  0.003302 
+   0.        0.007366  0.003302  0.003302  0.003302  0.003302  
+-1                                           #NUZF2 STRESS PERIOD 163
+-1                                           #NUZF3 STRESS PERIOD 163
+-1                                           #NUZF4 STRESS PERIOD 163
+1                                            #NUZF1 STRESS PERIOD 164
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 164
+-1                                           #NUZF3 STRESS PERIOD 164
+-1                                           #NUZF4 STRESS PERIOD 164
+1                                            #NUZF1 STRESS PERIOD 165
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 165
+-1                                           #NUZF3 STRESS PERIOD 165
+-1                                           #NUZF4 STRESS PERIOD 165
+1                                            #NUZF1 STRESS PERIOD 166
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 166
+-1                                           #NUZF3 STRESS PERIOD 166
+-1                                           #NUZF4 STRESS PERIOD 166
+1                                            #NUZF1 STRESS PERIOD 167
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 167
+-1                                           #NUZF3 STRESS PERIOD 167
+-1                                           #NUZF4 STRESS PERIOD 167
+1                                            #NUZF1 STRESS PERIOD 168
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 168
+-1                                           #NUZF3 STRESS PERIOD 168
+-1                                           #NUZF4 STRESS PERIOD 168
+1                                            #NUZF1 STRESS PERIOD 169
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 169
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000508  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000508  0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 169
+-1                                           #NUZF3 STRESS PERIOD 169
+-1                                           #NUZF4 STRESS PERIOD 169
+1                                            #NUZF1 STRESS PERIOD 170
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 170
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.002286  0.002286  0.002286  0.002286 
+   0.        0.001524  0.002286  0.002286  0.002286  0.002286 
+   0.        0.001524  0.002286  0.002286  0.002286  0.002286  
+-1                                           #NUZF2 STRESS PERIOD 170
+-1                                           #NUZF3 STRESS PERIOD 170
+-1                                           #NUZF4 STRESS PERIOD 170
+1                                            #NUZF1 STRESS PERIOD 171
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 171
+-1                                           #NUZF3 STRESS PERIOD 171
+-1                                           #NUZF4 STRESS PERIOD 171
+1                                            #NUZF1 STRESS PERIOD 172
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 172
+   0.        0.01499   0.01499   0.01499   0.01499   0.01499  
+   0.        0.01499   0.01499   0.01499   0.01499   0.01499  
+   0.        0.01499   0.01499   0.01499   0.01499   0.01499  
+   0.        0.01499   0.004318  0.004318  0.004318  0.004318 
+   0.        0.01499   0.004318  0.004318  0.004318  0.004318 
+   0.        0.01499   0.004318  0.004318  0.004318  0.004318  
+-1                                           #NUZF2 STRESS PERIOD 172
+-1                                           #NUZF3 STRESS PERIOD 172
+-1                                           #NUZF4 STRESS PERIOD 172
+1                                            #NUZF1 STRESS PERIOD 173
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 173
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000508  0.000508  0.000508  0.000508 
+   0.        0.        0.000508  0.000508  0.000508  0.000508 
+   0.        0.        0.000508  0.000508  0.000508  0.000508  
+-1                                           #NUZF2 STRESS PERIOD 173
+-1                                           #NUZF3 STRESS PERIOD 173
+-1                                           #NUZF4 STRESS PERIOD 173
+1                                            #NUZF1 STRESS PERIOD 174
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 174
+   0.       0.03658  0.03658  0.03658  0.03658  0.03658 
+   0.       0.03658  0.03658  0.03658  0.03658  0.03658 
+   0.       0.03658  0.03658  0.03658  0.03658  0.03658 
+   0.       0.03658  0.00127  0.00127  0.00127  0.00127 
+   0.       0.03658  0.00127  0.00127  0.00127  0.00127 
+   0.       0.03658  0.00127  0.00127  0.00127  0.00127  
+-1                                           #NUZF2 STRESS PERIOD 174
+-1                                           #NUZF3 STRESS PERIOD 174
+-1                                           #NUZF4 STRESS PERIOD 174
+1                                            #NUZF1 STRESS PERIOD 175
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 175
+-1                                           #NUZF3 STRESS PERIOD 175
+-1                                           #NUZF4 STRESS PERIOD 175
+1                                            #NUZF1 STRESS PERIOD 176
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 176
+-1                                           #NUZF3 STRESS PERIOD 176
+-1                                           #NUZF4 STRESS PERIOD 176
+1                                            #NUZF1 STRESS PERIOD 177
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 177
+-1                                           #NUZF3 STRESS PERIOD 177
+-1                                           #NUZF4 STRESS PERIOD 177
+1                                            #NUZF1 STRESS PERIOD 178
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 178
+-1                                           #NUZF3 STRESS PERIOD 178
+-1                                           #NUZF4 STRESS PERIOD 178
+1                                            #NUZF1 STRESS PERIOD 179
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 179
+-1                                           #NUZF3 STRESS PERIOD 179
+-1                                           #NUZF4 STRESS PERIOD 179
+1                                            #NUZF1 STRESS PERIOD 180
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 180
+-1                                           #NUZF3 STRESS PERIOD 180
+-1                                           #NUZF4 STRESS PERIOD 180
+1                                            #NUZF1 STRESS PERIOD 181
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 181
+   0.       0.02489  0.02489  0.02489  0.02489  0.02489 
+   0.       0.02489  0.02489  0.02489  0.02489  0.02489 
+   0.       0.02489  0.02489  0.02489  0.02489  0.02489 
+   0.       0.02489  0.01143  0.01143  0.01143  0.01143 
+   0.       0.02489  0.01143  0.01143  0.01143  0.01143 
+   0.       0.02489  0.01143  0.01143  0.01143  0.01143  
+-1                                           #NUZF2 STRESS PERIOD 181
+-1                                           #NUZF3 STRESS PERIOD 181
+-1                                           #NUZF4 STRESS PERIOD 181
+1                                            #NUZF1 STRESS PERIOD 182
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 182
+   0.        0.004318  0.004318  0.004318  0.004318  0.004318 
+   0.        0.004318  0.004318  0.004318  0.004318  0.004318 
+   0.        0.004318  0.004318  0.004318  0.004318  0.004318 
+   0.        0.004318  0.005842  0.005842  0.005842  0.005842 
+   0.        0.004318  0.005842  0.005842  0.005842  0.005842 
+   0.        0.004318  0.005842  0.005842  0.005842  0.005842  
+-1                                           #NUZF2 STRESS PERIOD 182
+-1                                           #NUZF3 STRESS PERIOD 182
+-1                                           #NUZF4 STRESS PERIOD 182
+1                                            #NUZF1 STRESS PERIOD 183
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 183
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.00127  0.00127  0.00127  0.00127 
+   0.       0.       0.00127  0.00127  0.00127  0.00127 
+   0.       0.       0.00127  0.00127  0.00127  0.00127  
+-1                                           #NUZF2 STRESS PERIOD 183
+-1                                           #NUZF3 STRESS PERIOD 183
+-1                                           #NUZF4 STRESS PERIOD 183
+1                                            #NUZF1 STRESS PERIOD 184
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 184
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.003302  0.003302  0.003302  0.003302 
+   0.        0.        0.003302  0.003302  0.003302  0.003302 
+   0.        0.        0.003302  0.003302  0.003302  0.003302  
+-1                                           #NUZF2 STRESS PERIOD 184
+-1                                           #NUZF3 STRESS PERIOD 184
+-1                                           #NUZF4 STRESS PERIOD 184
+1                                            #NUZF1 STRESS PERIOD 185
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 185
+-1                                           #NUZF3 STRESS PERIOD 185
+-1                                           #NUZF4 STRESS PERIOD 185
+1                                            #NUZF1 STRESS PERIOD 186
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 186
+   0.       0.00254  0.00254  0.00254  0.00254  0.00254 
+   0.       0.00254  0.00254  0.00254  0.00254  0.00254 
+   0.       0.00254  0.00254  0.00254  0.00254  0.00254 
+   0.       0.00254  0.       0.       0.       0.      
+   0.       0.00254  0.       0.       0.       0.      
+   0.       0.00254  0.       0.       0.       0.       
+-1                                           #NUZF2 STRESS PERIOD 186
+-1                                           #NUZF3 STRESS PERIOD 186
+-1                                           #NUZF4 STRESS PERIOD 186
+1                                            #NUZF1 STRESS PERIOD 187
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 187
+   0.        0.009398  0.009398  0.009398  0.009398  0.009398 
+   0.        0.009398  0.009398  0.009398  0.009398  0.009398 
+   0.        0.009398  0.009398  0.009398  0.009398  0.009398 
+   0.        0.009398  0.000762  0.000762  0.000762  0.000762 
+   0.        0.009398  0.000762  0.000762  0.000762  0.000762 
+   0.        0.009398  0.000762  0.000762  0.000762  0.000762  
+-1                                           #NUZF2 STRESS PERIOD 187
+-1                                           #NUZF3 STRESS PERIOD 187
+-1                                           #NUZF4 STRESS PERIOD 187
+1                                            #NUZF1 STRESS PERIOD 188
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 188
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 188
+-1                                           #NUZF3 STRESS PERIOD 188
+-1                                           #NUZF4 STRESS PERIOD 188
+1                                            #NUZF1 STRESS PERIOD 189
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 189
+-1                                           #NUZF3 STRESS PERIOD 189
+-1                                           #NUZF4 STRESS PERIOD 189
+1                                            #NUZF1 STRESS PERIOD 190
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 190
+-1                                           #NUZF3 STRESS PERIOD 190
+-1                                           #NUZF4 STRESS PERIOD 190
+1                                            #NUZF1 STRESS PERIOD 191
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 191
+-1                                           #NUZF3 STRESS PERIOD 191
+-1                                           #NUZF4 STRESS PERIOD 191
+1                                            #NUZF1 STRESS PERIOD 192
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 192
+-1                                           #NUZF3 STRESS PERIOD 192
+-1                                           #NUZF4 STRESS PERIOD 192
+1                                            #NUZF1 STRESS PERIOD 193
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 193
+-1                                           #NUZF3 STRESS PERIOD 193
+-1                                           #NUZF4 STRESS PERIOD 193
+1                                            #NUZF1 STRESS PERIOD 194
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 194
+   0.       0.00254  0.00254  0.00254  0.00254  0.00254 
+   0.       0.00254  0.00254  0.00254  0.00254  0.00254 
+   0.       0.00254  0.00254  0.00254  0.00254  0.00254 
+   0.       0.00254  0.01397  0.01397  0.01397  0.01397 
+   0.       0.00254  0.01397  0.01397  0.01397  0.01397 
+   0.       0.00254  0.01397  0.01397  0.01397  0.01397  
+-1                                           #NUZF2 STRESS PERIOD 194
+-1                                           #NUZF3 STRESS PERIOD 194
+-1                                           #NUZF4 STRESS PERIOD 194
+1                                            #NUZF1 STRESS PERIOD 195
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 195
+-1                                           #NUZF3 STRESS PERIOD 195
+-1                                           #NUZF4 STRESS PERIOD 195
+1                                            #NUZF1 STRESS PERIOD 196
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 196
+   0.        0.003048  0.003048  0.003048  0.003048  0.003048 
+   0.        0.003048  0.003048  0.003048  0.003048  0.003048 
+   0.        0.003048  0.003048  0.003048  0.003048  0.003048 
+   0.        0.003048  0.000508  0.000508  0.000508  0.000508 
+   0.        0.003048  0.000508  0.000508  0.000508  0.000508 
+   0.        0.003048  0.000508  0.000508  0.000508  0.000508  
+-1                                           #NUZF2 STRESS PERIOD 196
+-1                                           #NUZF3 STRESS PERIOD 196
+-1                                           #NUZF4 STRESS PERIOD 196
+1                                            #NUZF1 STRESS PERIOD 197
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 197
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 197
+-1                                           #NUZF3 STRESS PERIOD 197
+-1                                           #NUZF4 STRESS PERIOD 197
+1                                            #NUZF1 STRESS PERIOD 198
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 198
+-1                                           #NUZF3 STRESS PERIOD 198
+-1                                           #NUZF4 STRESS PERIOD 198
+1                                            #NUZF1 STRESS PERIOD 199
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 199
+   0.       0.01168  0.01168  0.01168  0.01168  0.01168 
+   0.       0.01168  0.01168  0.01168  0.01168  0.01168 
+   0.       0.01168  0.01168  0.01168  0.01168  0.01168 
+   0.       0.01168  0.02337  0.02337  0.02337  0.02337 
+   0.       0.01168  0.02337  0.02337  0.02337  0.02337 
+   0.       0.01168  0.02337  0.02337  0.02337  0.02337  
+-1                                           #NUZF2 STRESS PERIOD 199
+-1                                           #NUZF3 STRESS PERIOD 199
+-1                                           #NUZF4 STRESS PERIOD 199
+1                                            #NUZF1 STRESS PERIOD 200
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 200
+   0.        0.003556  0.003556  0.003556  0.003556  0.003556 
+   0.        0.003556  0.003556  0.003556  0.003556  0.003556 
+   0.        0.003556  0.003556  0.003556  0.003556  0.003556 
+   0.        0.003556  0.00254   0.00254   0.00254   0.00254  
+   0.        0.003556  0.00254   0.00254   0.00254   0.00254  
+   0.        0.003556  0.00254   0.00254   0.00254   0.00254   
+-1                                           #NUZF2 STRESS PERIOD 200
+-1                                           #NUZF3 STRESS PERIOD 200
+-1                                           #NUZF4 STRESS PERIOD 200
+1                                            #NUZF1 STRESS PERIOD 201
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 201
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.        0.        0.        0.       
+   0.        0.002286  0.        0.        0.        0.       
+   0.        0.002286  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 201
+-1                                           #NUZF3 STRESS PERIOD 201
+-1                                           #NUZF4 STRESS PERIOD 201
+1                                            #NUZF1 STRESS PERIOD 202
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 202
+   0.        0.00254   0.00254   0.00254   0.00254   0.00254  
+   0.        0.00254   0.00254   0.00254   0.00254   0.00254  
+   0.        0.00254   0.00254   0.00254   0.00254   0.00254  
+   0.        0.00254   0.009398  0.009398  0.009398  0.009398 
+   0.        0.00254   0.009398  0.009398  0.009398  0.009398 
+   0.        0.00254   0.009398  0.009398  0.009398  0.009398  
+-1                                           #NUZF2 STRESS PERIOD 202
+-1                                           #NUZF3 STRESS PERIOD 202
+-1                                           #NUZF4 STRESS PERIOD 202
+1                                            #NUZF1 STRESS PERIOD 203
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 203
+   0.       0.02362  0.02362  0.02362  0.02362  0.02362 
+   0.       0.02362  0.02362  0.02362  0.02362  0.02362 
+   0.       0.02362  0.02362  0.02362  0.02362  0.02362 
+   0.       0.02362  0.02515  0.02515  0.02515  0.02515 
+   0.       0.02362  0.02515  0.02515  0.02515  0.02515 
+   0.       0.02362  0.02515  0.02515  0.02515  0.02515  
+-1                                           #NUZF2 STRESS PERIOD 203
+-1                                           #NUZF3 STRESS PERIOD 203
+-1                                           #NUZF4 STRESS PERIOD 203
+1                                            #NUZF1 STRESS PERIOD 204
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 204
+   0.       0.02337  0.02337  0.02337  0.02337  0.02337 
+   0.       0.02337  0.02337  0.02337  0.02337  0.02337 
+   0.       0.02337  0.02337  0.02337  0.02337  0.02337 
+   0.       0.02337  0.03429  0.03429  0.03429  0.03429 
+   0.       0.02337  0.03429  0.03429  0.03429  0.03429 
+   0.       0.02337  0.03429  0.03429  0.03429  0.03429  
+-1                                           #NUZF2 STRESS PERIOD 204
+-1                                           #NUZF3 STRESS PERIOD 204
+-1                                           #NUZF4 STRESS PERIOD 204
+1                                            #NUZF1 STRESS PERIOD 205
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 205
+-1                                           #NUZF3 STRESS PERIOD 205
+-1                                           #NUZF4 STRESS PERIOD 205
+1                                            #NUZF1 STRESS PERIOD 206
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 206
+-1                                           #NUZF3 STRESS PERIOD 206
+-1                                           #NUZF4 STRESS PERIOD 206
+1                                            #NUZF1 STRESS PERIOD 207
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 207
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.001778  0.001778  0.001778  0.001778 
+   0.        0.        0.001778  0.001778  0.001778  0.001778 
+   0.        0.        0.001778  0.001778  0.001778  0.001778  
+-1                                           #NUZF2 STRESS PERIOD 207
+-1                                           #NUZF3 STRESS PERIOD 207
+-1                                           #NUZF4 STRESS PERIOD 207
+1                                            #NUZF1 STRESS PERIOD 208
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 208
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.00127  0.00127  0.00127  0.00127 
+   0.       0.       0.00127  0.00127  0.00127  0.00127 
+   0.       0.       0.00127  0.00127  0.00127  0.00127  
+-1                                           #NUZF2 STRESS PERIOD 208
+-1                                           #NUZF3 STRESS PERIOD 208
+-1                                           #NUZF4 STRESS PERIOD 208
+1                                            #NUZF1 STRESS PERIOD 209
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 209
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 209
+-1                                           #NUZF3 STRESS PERIOD 209
+-1                                           #NUZF4 STRESS PERIOD 209
+1                                            #NUZF1 STRESS PERIOD 210
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 210
+   0.        0.008128  0.008128  0.008128  0.008128  0.008128 
+   0.        0.008128  0.008128  0.008128  0.008128  0.008128 
+   0.        0.008128  0.008128  0.008128  0.008128  0.008128 
+   0.        0.008128  0.01422   0.01422   0.01422   0.01422  
+   0.        0.008128  0.01422   0.01422   0.01422   0.01422  
+   0.        0.008128  0.01422   0.01422   0.01422   0.01422   
+-1                                           #NUZF2 STRESS PERIOD 210
+-1                                           #NUZF3 STRESS PERIOD 210
+-1                                           #NUZF4 STRESS PERIOD 210
+1                                            #NUZF1 STRESS PERIOD 211
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 211
+   0.       0.06706  0.06706  0.06706  0.06706  0.06706 
+   0.       0.06706  0.06706  0.06706  0.06706  0.06706 
+   0.       0.06706  0.06706  0.06706  0.06706  0.06706 
+   0.       0.06706  0.03327  0.03327  0.03327  0.03327 
+   0.       0.06706  0.03327  0.03327  0.03327  0.03327 
+   0.       0.06706  0.03327  0.03327  0.03327  0.03327  
+-1                                           #NUZF2 STRESS PERIOD 211
+-1                                           #NUZF3 STRESS PERIOD 211
+-1                                           #NUZF4 STRESS PERIOD 211
+1                                            #NUZF1 STRESS PERIOD 212
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 212
+   0.        0.007112  0.007112  0.007112  0.007112  0.007112 
+   0.        0.007112  0.007112  0.007112  0.007112  0.007112 
+   0.        0.007112  0.007112  0.007112  0.007112  0.007112 
+   0.        0.007112  0.00381   0.00381   0.00381   0.00381  
+   0.        0.007112  0.00381   0.00381   0.00381   0.00381  
+   0.        0.007112  0.00381   0.00381   0.00381   0.00381   
+-1                                           #NUZF2 STRESS PERIOD 212
+-1                                           #NUZF3 STRESS PERIOD 212
+-1                                           #NUZF4 STRESS PERIOD 212
+1                                            #NUZF1 STRESS PERIOD 213
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 213
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000508  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000508  0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 213
+-1                                           #NUZF3 STRESS PERIOD 213
+-1                                           #NUZF4 STRESS PERIOD 213
+1                                            #NUZF1 STRESS PERIOD 214
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 214
+   0.        0.003556  0.003556  0.003556  0.003556  0.003556 
+   0.        0.003556  0.003556  0.003556  0.003556  0.003556 
+   0.        0.003556  0.003556  0.003556  0.003556  0.003556 
+   0.        0.003556  0.000254  0.000254  0.000254  0.000254 
+   0.        0.003556  0.000254  0.000254  0.000254  0.000254 
+   0.        0.003556  0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 214
+-1                                           #NUZF3 STRESS PERIOD 214
+-1                                           #NUZF4 STRESS PERIOD 214
+1                                            #NUZF1 STRESS PERIOD 215
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 215
+   0.       0.07341  0.07341  0.07341  0.07341  0.07341 
+   0.       0.07341  0.07341  0.07341  0.07341  0.07341 
+   0.       0.07341  0.07341  0.07341  0.07341  0.07341 
+   0.       0.07341  0.06121  0.06121  0.06121  0.06121 
+   0.       0.07341  0.06121  0.06121  0.06121  0.06121 
+   0.       0.07341  0.06121  0.06121  0.06121  0.06121  
+-1                                           #NUZF2 STRESS PERIOD 215
+-1                                           #NUZF3 STRESS PERIOD 215
+-1                                           #NUZF4 STRESS PERIOD 215
+1                                            #NUZF1 STRESS PERIOD 216
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 216
+   0.       0.02438  0.02438  0.02438  0.02438  0.02438 
+   0.       0.02438  0.02438  0.02438  0.02438  0.02438 
+   0.       0.02438  0.02438  0.02438  0.02438  0.02438 
+   0.       0.02438  0.03302  0.03302  0.03302  0.03302 
+   0.       0.02438  0.03302  0.03302  0.03302  0.03302 
+   0.       0.02438  0.03302  0.03302  0.03302  0.03302  
+-1                                           #NUZF2 STRESS PERIOD 216
+-1                                           #NUZF3 STRESS PERIOD 216
+-1                                           #NUZF4 STRESS PERIOD 216
+1                                            #NUZF1 STRESS PERIOD 217
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 217
+   0.       0.02946  0.02946  0.02946  0.02946  0.02946 
+   0.       0.02946  0.02946  0.02946  0.02946  0.02946 
+   0.       0.02946  0.02946  0.02946  0.02946  0.02946 
+   0.       0.02946  0.02464  0.02464  0.02464  0.02464 
+   0.       0.02946  0.02464  0.02464  0.02464  0.02464 
+   0.       0.02946  0.02464  0.02464  0.02464  0.02464  
+-1                                           #NUZF2 STRESS PERIOD 217
+-1                                           #NUZF3 STRESS PERIOD 217
+-1                                           #NUZF4 STRESS PERIOD 217
+1                                            #NUZF1 STRESS PERIOD 218
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 218
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.01092  0.01092  0.01092  0.01092 
+   0.       0.       0.01092  0.01092  0.01092  0.01092 
+   0.       0.       0.01092  0.01092  0.01092  0.01092  
+-1                                           #NUZF2 STRESS PERIOD 218
+-1                                           #NUZF3 STRESS PERIOD 218
+-1                                           #NUZF4 STRESS PERIOD 218
+1                                            #NUZF1 STRESS PERIOD 219
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 219
+   0.       0.02642  0.02642  0.02642  0.02642  0.02642 
+   0.       0.02642  0.02642  0.02642  0.02642  0.02642 
+   0.       0.02642  0.02642  0.02642  0.02642  0.02642 
+   0.       0.02642  0.032    0.032    0.032    0.032   
+   0.       0.02642  0.032    0.032    0.032    0.032   
+   0.       0.02642  0.032    0.032    0.032    0.032    
+-1                                           #NUZF2 STRESS PERIOD 219
+-1                                           #NUZF3 STRESS PERIOD 219
+-1                                           #NUZF4 STRESS PERIOD 219
+1                                            #NUZF1 STRESS PERIOD 220
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 220
+   0.        0.009906  0.009906  0.009906  0.009906  0.009906 
+   0.        0.009906  0.009906  0.009906  0.009906  0.009906 
+   0.        0.009906  0.009906  0.009906  0.009906  0.009906 
+   0.        0.009906  0.00635   0.00635   0.00635   0.00635  
+   0.        0.009906  0.00635   0.00635   0.00635   0.00635  
+   0.        0.009906  0.00635   0.00635   0.00635   0.00635   
+-1                                           #NUZF2 STRESS PERIOD 220
+-1                                           #NUZF3 STRESS PERIOD 220
+-1                                           #NUZF4 STRESS PERIOD 220
+1                                            #NUZF1 STRESS PERIOD 221
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 221
+   0.        0.002794  0.002794  0.002794  0.002794  0.002794 
+   0.        0.002794  0.002794  0.002794  0.002794  0.002794 
+   0.        0.002794  0.002794  0.002794  0.002794  0.002794 
+   0.        0.002794  0.001778  0.001778  0.001778  0.001778 
+   0.        0.002794  0.001778  0.001778  0.001778  0.001778 
+   0.        0.002794  0.001778  0.001778  0.001778  0.001778  
+-1                                           #NUZF2 STRESS PERIOD 221
+-1                                           #NUZF3 STRESS PERIOD 221
+-1                                           #NUZF4 STRESS PERIOD 221
+1                                            #NUZF1 STRESS PERIOD 222
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 222
+   0.        0.01981   0.01981   0.01981   0.01981   0.01981  
+   0.        0.01981   0.01981   0.01981   0.01981   0.01981  
+   0.        0.01981   0.01981   0.01981   0.01981   0.01981  
+   0.        0.01981   0.001778  0.001778  0.001778  0.001778 
+   0.        0.01981   0.001778  0.001778  0.001778  0.001778 
+   0.        0.01981   0.001778  0.001778  0.001778  0.001778  
+-1                                           #NUZF2 STRESS PERIOD 222
+-1                                           #NUZF3 STRESS PERIOD 222
+-1                                           #NUZF4 STRESS PERIOD 222
+1                                            #NUZF1 STRESS PERIOD 223
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 223
+-1                                           #NUZF3 STRESS PERIOD 223
+-1                                           #NUZF4 STRESS PERIOD 223
+1                                            #NUZF1 STRESS PERIOD 224
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 224
+-1                                           #NUZF3 STRESS PERIOD 224
+-1                                           #NUZF4 STRESS PERIOD 224
+1                                            #NUZF1 STRESS PERIOD 225
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 225
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000508  0.000508  0.000508  0.000508 
+   0.        0.        0.000508  0.000508  0.000508  0.000508 
+   0.        0.        0.000508  0.000508  0.000508  0.000508  
+-1                                           #NUZF2 STRESS PERIOD 225
+-1                                           #NUZF3 STRESS PERIOD 225
+-1                                           #NUZF4 STRESS PERIOD 225
+1                                            #NUZF1 STRESS PERIOD 226
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 226
+   0.       0.01727  0.01727  0.01727  0.01727  0.01727 
+   0.       0.01727  0.01727  0.01727  0.01727  0.01727 
+   0.       0.01727  0.01727  0.01727  0.01727  0.01727 
+   0.       0.01727  0.01372  0.01372  0.01372  0.01372 
+   0.       0.01727  0.01372  0.01372  0.01372  0.01372 
+   0.       0.01727  0.01372  0.01372  0.01372  0.01372  
+-1                                           #NUZF2 STRESS PERIOD 226
+-1                                           #NUZF3 STRESS PERIOD 226
+-1                                           #NUZF4 STRESS PERIOD 226
+1                                            #NUZF1 STRESS PERIOD 227
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 227
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.        0.        0.        0.       
+   0.        0.000254  0.        0.        0.        0.       
+   0.        0.000254  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 227
+-1                                           #NUZF3 STRESS PERIOD 227
+-1                                           #NUZF4 STRESS PERIOD 227
+1                                            #NUZF1 STRESS PERIOD 228
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 228
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.        0.        0.        0.       
+   0.        0.000508  0.        0.        0.        0.       
+   0.        0.000508  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 228
+-1                                           #NUZF3 STRESS PERIOD 228
+-1                                           #NUZF4 STRESS PERIOD 228
+1                                            #NUZF1 STRESS PERIOD 229
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 229
+   0.       0.00127  0.00127  0.00127  0.00127  0.00127 
+   0.       0.00127  0.00127  0.00127  0.00127  0.00127 
+   0.       0.00127  0.00127  0.00127  0.00127  0.00127 
+   0.       0.00127  0.       0.       0.       0.      
+   0.       0.00127  0.       0.       0.       0.      
+   0.       0.00127  0.       0.       0.       0.       
+-1                                           #NUZF2 STRESS PERIOD 229
+-1                                           #NUZF3 STRESS PERIOD 229
+-1                                           #NUZF4 STRESS PERIOD 229
+1                                            #NUZF1 STRESS PERIOD 230
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 230
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.        0.        0.        0.       
+   0.        0.000254  0.        0.        0.        0.       
+   0.        0.000254  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 230
+-1                                           #NUZF3 STRESS PERIOD 230
+-1                                           #NUZF4 STRESS PERIOD 230
+1                                            #NUZF1 STRESS PERIOD 231
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 231
+   0.        0.002794  0.002794  0.002794  0.002794  0.002794 
+   0.        0.002794  0.002794  0.002794  0.002794  0.002794 
+   0.        0.002794  0.002794  0.002794  0.002794  0.002794 
+   0.        0.002794  0.        0.        0.        0.       
+   0.        0.002794  0.        0.        0.        0.       
+   0.        0.002794  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 231
+-1                                           #NUZF3 STRESS PERIOD 231
+-1                                           #NUZF4 STRESS PERIOD 231
+1                                            #NUZF1 STRESS PERIOD 232
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 232
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 232
+-1                                           #NUZF3 STRESS PERIOD 232
+-1                                           #NUZF4 STRESS PERIOD 232
+1                                            #NUZF1 STRESS PERIOD 233
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 233
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.002032  0.002032  0.002032  0.002032 
+   0.        0.000508  0.002032  0.002032  0.002032  0.002032 
+   0.        0.000508  0.002032  0.002032  0.002032  0.002032  
+-1                                           #NUZF2 STRESS PERIOD 233
+-1                                           #NUZF3 STRESS PERIOD 233
+-1                                           #NUZF4 STRESS PERIOD 233
+1                                            #NUZF1 STRESS PERIOD 234
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 234
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 234
+-1                                           #NUZF3 STRESS PERIOD 234
+-1                                           #NUZF4 STRESS PERIOD 234
+1                                            #NUZF1 STRESS PERIOD 235
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 235
+-1                                           #NUZF3 STRESS PERIOD 235
+-1                                           #NUZF4 STRESS PERIOD 235
+1                                            #NUZF1 STRESS PERIOD 236
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 236
+   0.        0.004318  0.004318  0.004318  0.004318  0.004318 
+   0.        0.004318  0.004318  0.004318  0.004318  0.004318 
+   0.        0.004318  0.004318  0.004318  0.004318  0.004318 
+   0.        0.004318  0.003048  0.003048  0.003048  0.003048 
+   0.        0.004318  0.003048  0.003048  0.003048  0.003048 
+   0.        0.004318  0.003048  0.003048  0.003048  0.003048  
+-1                                           #NUZF2 STRESS PERIOD 236
+-1                                           #NUZF3 STRESS PERIOD 236
+-1                                           #NUZF4 STRESS PERIOD 236
+1                                            #NUZF1 STRESS PERIOD 237
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 237
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.002032  0.002032  0.002032  0.002032 
+   0.        0.        0.002032  0.002032  0.002032  0.002032 
+   0.        0.        0.002032  0.002032  0.002032  0.002032  
+-1                                           #NUZF2 STRESS PERIOD 237
+-1                                           #NUZF3 STRESS PERIOD 237
+-1                                           #NUZF4 STRESS PERIOD 237
+1                                            #NUZF1 STRESS PERIOD 238
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 238
+   0.       0.01549  0.01549  0.01549  0.01549  0.01549 
+   0.       0.01549  0.01549  0.01549  0.01549  0.01549 
+   0.       0.01549  0.01549  0.01549  0.01549  0.01549 
+   0.       0.01549  0.02946  0.02946  0.02946  0.02946 
+   0.       0.01549  0.02946  0.02946  0.02946  0.02946 
+   0.       0.01549  0.02946  0.02946  0.02946  0.02946  
+-1                                           #NUZF2 STRESS PERIOD 238
+-1                                           #NUZF3 STRESS PERIOD 238
+-1                                           #NUZF4 STRESS PERIOD 238
+1                                            #NUZF1 STRESS PERIOD 239
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 239
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 239
+-1                                           #NUZF3 STRESS PERIOD 239
+-1                                           #NUZF4 STRESS PERIOD 239
+1                                            #NUZF1 STRESS PERIOD 240
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 240
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.001524  0.001524  0.001524  0.001524 
+   0.        0.        0.001524  0.001524  0.001524  0.001524 
+   0.        0.        0.001524  0.001524  0.001524  0.001524  
+-1                                           #NUZF2 STRESS PERIOD 240
+-1                                           #NUZF3 STRESS PERIOD 240
+-1                                           #NUZF4 STRESS PERIOD 240
+1                                            #NUZF1 STRESS PERIOD 241
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 241
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 241
+-1                                           #NUZF3 STRESS PERIOD 241
+-1                                           #NUZF4 STRESS PERIOD 241
+1                                            #NUZF1 STRESS PERIOD 242
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 242
+   0.        0.02362   0.02362   0.02362   0.02362   0.02362  
+   0.        0.02362   0.02362   0.02362   0.02362   0.02362  
+   0.        0.02362   0.02362   0.02362   0.02362   0.02362  
+   0.        0.02362   0.005334  0.005334  0.005334  0.005334 
+   0.        0.02362   0.005334  0.005334  0.005334  0.005334 
+   0.        0.02362   0.005334  0.005334  0.005334  0.005334  
+-1                                           #NUZF2 STRESS PERIOD 242
+-1                                           #NUZF3 STRESS PERIOD 242
+-1                                           #NUZF4 STRESS PERIOD 242
+1                                            #NUZF1 STRESS PERIOD 243
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 243
+-1                                           #NUZF3 STRESS PERIOD 243
+-1                                           #NUZF4 STRESS PERIOD 243
+1                                            #NUZF1 STRESS PERIOD 244
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 244
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.005334  0.005334  0.005334  0.005334 
+   0.        0.        0.005334  0.005334  0.005334  0.005334 
+   0.        0.        0.005334  0.005334  0.005334  0.005334  
+-1                                           #NUZF2 STRESS PERIOD 244
+-1                                           #NUZF3 STRESS PERIOD 244
+-1                                           #NUZF4 STRESS PERIOD 244
+1                                            #NUZF1 STRESS PERIOD 245
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 245
+   0.        0.004064  0.004064  0.004064  0.004064  0.004064 
+   0.        0.004064  0.004064  0.004064  0.004064  0.004064 
+   0.        0.004064  0.004064  0.004064  0.004064  0.004064 
+   0.        0.004064  0.000762  0.000762  0.000762  0.000762 
+   0.        0.004064  0.000762  0.000762  0.000762  0.000762 
+   0.        0.004064  0.000762  0.000762  0.000762  0.000762  
+-1                                           #NUZF2 STRESS PERIOD 245
+-1                                           #NUZF3 STRESS PERIOD 245
+-1                                           #NUZF4 STRESS PERIOD 245
+1                                            #NUZF1 STRESS PERIOD 246
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 246
+   0.        0.005334  0.005334  0.005334  0.005334  0.005334 
+   0.        0.005334  0.005334  0.005334  0.005334  0.005334 
+   0.        0.005334  0.005334  0.005334  0.005334  0.005334 
+   0.        0.005334  0.002794  0.002794  0.002794  0.002794 
+   0.        0.005334  0.002794  0.002794  0.002794  0.002794 
+   0.        0.005334  0.002794  0.002794  0.002794  0.002794  
+-1                                           #NUZF2 STRESS PERIOD 246
+-1                                           #NUZF3 STRESS PERIOD 246
+-1                                           #NUZF4 STRESS PERIOD 246
+1                                            #NUZF1 STRESS PERIOD 247
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 247
+   0.        0.004572  0.004572  0.004572  0.004572  0.004572 
+   0.        0.004572  0.004572  0.004572  0.004572  0.004572 
+   0.        0.004572  0.004572  0.004572  0.004572  0.004572 
+   0.        0.004572  0.00508   0.00508   0.00508   0.00508  
+   0.        0.004572  0.00508   0.00508   0.00508   0.00508  
+   0.        0.004572  0.00508   0.00508   0.00508   0.00508   
+-1                                           #NUZF2 STRESS PERIOD 247
+-1                                           #NUZF3 STRESS PERIOD 247
+-1                                           #NUZF4 STRESS PERIOD 247
+1                                            #NUZF1 STRESS PERIOD 248
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 248
+   0.        0.00381   0.00381   0.00381   0.00381   0.00381  
+   0.        0.00381   0.00381   0.00381   0.00381   0.00381  
+   0.        0.00381   0.00381   0.00381   0.00381   0.00381  
+   0.        0.00381   0.003556  0.003556  0.003556  0.003556 
+   0.        0.00381   0.003556  0.003556  0.003556  0.003556 
+   0.        0.00381   0.003556  0.003556  0.003556  0.003556  
+-1                                           #NUZF2 STRESS PERIOD 248
+-1                                           #NUZF3 STRESS PERIOD 248
+-1                                           #NUZF4 STRESS PERIOD 248
+1                                            #NUZF1 STRESS PERIOD 249
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 249
+   0.       0.03962  0.03962  0.03962  0.03962  0.03962 
+   0.       0.03962  0.03962  0.03962  0.03962  0.03962 
+   0.       0.03962  0.03962  0.03962  0.03962  0.03962 
+   0.       0.03962  0.03861  0.03861  0.03861  0.03861 
+   0.       0.03962  0.03861  0.03861  0.03861  0.03861 
+   0.       0.03962  0.03861  0.03861  0.03861  0.03861  
+-1                                           #NUZF2 STRESS PERIOD 249
+-1                                           #NUZF3 STRESS PERIOD 249
+-1                                           #NUZF4 STRESS PERIOD 249
+1                                            #NUZF1 STRESS PERIOD 250
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 250
+   0.       0.04521  0.04521  0.04521  0.04521  0.04521 
+   0.       0.04521  0.04521  0.04521  0.04521  0.04521 
+   0.       0.04521  0.04521  0.04521  0.04521  0.04521 
+   0.       0.04521  0.03251  0.03251  0.03251  0.03251 
+   0.       0.04521  0.03251  0.03251  0.03251  0.03251 
+   0.       0.04521  0.03251  0.03251  0.03251  0.03251  
+-1                                           #NUZF2 STRESS PERIOD 250
+-1                                           #NUZF3 STRESS PERIOD 250
+-1                                           #NUZF4 STRESS PERIOD 250
+1                                            #NUZF1 STRESS PERIOD 251
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 251
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.01448  0.01448  0.01448  0.01448 
+   0.       0.       0.01448  0.01448  0.01448  0.01448 
+   0.       0.       0.01448  0.01448  0.01448  0.01448  
+-1                                           #NUZF2 STRESS PERIOD 251
+-1                                           #NUZF3 STRESS PERIOD 251
+-1                                           #NUZF4 STRESS PERIOD 251
+1                                            #NUZF1 STRESS PERIOD 252
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 252
+   0.       0.03937  0.03937  0.03937  0.03937  0.03937 
+   0.       0.03937  0.03937  0.03937  0.03937  0.03937 
+   0.       0.03937  0.03937  0.03937  0.03937  0.03937 
+   0.       0.03937  0.01854  0.01854  0.01854  0.01854 
+   0.       0.03937  0.01854  0.01854  0.01854  0.01854 
+   0.       0.03937  0.01854  0.01854  0.01854  0.01854  
+-1                                           #NUZF2 STRESS PERIOD 252
+-1                                           #NUZF3 STRESS PERIOD 252
+-1                                           #NUZF4 STRESS PERIOD 252
+1                                            #NUZF1 STRESS PERIOD 253
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 253
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 253
+-1                                           #NUZF3 STRESS PERIOD 253
+-1                                           #NUZF4 STRESS PERIOD 253
+1                                            #NUZF1 STRESS PERIOD 254
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 254
+   0.        0.003048  0.003048  0.003048  0.003048  0.003048 
+   0.        0.003048  0.003048  0.003048  0.003048  0.003048 
+   0.        0.003048  0.003048  0.003048  0.003048  0.003048 
+   0.        0.003048  0.        0.        0.        0.       
+   0.        0.003048  0.        0.        0.        0.       
+   0.        0.003048  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 254
+-1                                           #NUZF3 STRESS PERIOD 254
+-1                                           #NUZF4 STRESS PERIOD 254
+1                                            #NUZF1 STRESS PERIOD 255
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 255
+-1                                           #NUZF3 STRESS PERIOD 255
+-1                                           #NUZF4 STRESS PERIOD 255
+1                                            #NUZF1 STRESS PERIOD 256
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 256
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.        0.        0.        0.       
+   0.        0.000508  0.        0.        0.        0.       
+   0.        0.000508  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 256
+-1                                           #NUZF3 STRESS PERIOD 256
+-1                                           #NUZF4 STRESS PERIOD 256
+1                                            #NUZF1 STRESS PERIOD 257
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 257
+-1                                           #NUZF3 STRESS PERIOD 257
+-1                                           #NUZF4 STRESS PERIOD 257
+1                                            #NUZF1 STRESS PERIOD 258
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 258
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.        0.        0.        0.       
+   0.        0.001524  0.        0.        0.        0.       
+   0.        0.001524  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 258
+-1                                           #NUZF3 STRESS PERIOD 258
+-1                                           #NUZF4 STRESS PERIOD 258
+1                                            #NUZF1 STRESS PERIOD 259
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 259
+-1                                           #NUZF3 STRESS PERIOD 259
+-1                                           #NUZF4 STRESS PERIOD 259
+1                                            #NUZF1 STRESS PERIOD 260
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 260
+   0.       0.01829  0.01829  0.01829  0.01829  0.01829 
+   0.       0.01829  0.01829  0.01829  0.01829  0.01829 
+   0.       0.01829  0.01829  0.01829  0.01829  0.01829 
+   0.       0.01829  0.01829  0.01829  0.01829  0.01829 
+   0.       0.01829  0.01829  0.01829  0.01829  0.01829 
+   0.       0.01829  0.01829  0.01829  0.01829  0.01829  
+-1                                           #NUZF2 STRESS PERIOD 260
+-1                                           #NUZF3 STRESS PERIOD 260
+-1                                           #NUZF4 STRESS PERIOD 260
+1                                            #NUZF1 STRESS PERIOD 261
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 261
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524 
+   0.        0.001524  0.001524  0.001524  0.001524  0.001524  
+-1                                           #NUZF2 STRESS PERIOD 261
+-1                                           #NUZF3 STRESS PERIOD 261
+-1                                           #NUZF4 STRESS PERIOD 261
+1                                            #NUZF1 STRESS PERIOD 262
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 262
+-1                                           #NUZF3 STRESS PERIOD 262
+-1                                           #NUZF4 STRESS PERIOD 262
+1                                            #NUZF1 STRESS PERIOD 263
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 263
+   0.       0.04547  0.04547  0.04547  0.04547  0.04547 
+   0.       0.04547  0.04547  0.04547  0.04547  0.04547 
+   0.       0.04547  0.04547  0.04547  0.04547  0.04547 
+   0.       0.04547  0.04547  0.04547  0.04547  0.04547 
+   0.       0.04547  0.04547  0.04547  0.04547  0.04547 
+   0.       0.04547  0.04547  0.04547  0.04547  0.04547  
+-1                                           #NUZF2 STRESS PERIOD 263
+-1                                           #NUZF3 STRESS PERIOD 263
+-1                                           #NUZF4 STRESS PERIOD 263
+1                                            #NUZF1 STRESS PERIOD 264
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 264
+-1                                           #NUZF3 STRESS PERIOD 264
+-1                                           #NUZF4 STRESS PERIOD 264
+1                                            #NUZF1 STRESS PERIOD 265
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 265
+   0.        0.000762  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000762  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000762  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000762  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000762  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000762  0.000762  0.000762  0.000762  0.000762  
+-1                                           #NUZF2 STRESS PERIOD 265
+-1                                           #NUZF3 STRESS PERIOD 265
+-1                                           #NUZF4 STRESS PERIOD 265
+1                                            #NUZF1 STRESS PERIOD 266
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 266
+   0.        0.005588  0.005588  0.005588  0.005588  0.005588 
+   0.        0.005588  0.005588  0.005588  0.005588  0.005588 
+   0.        0.005588  0.005588  0.005588  0.005588  0.005588 
+   0.        0.005588  0.005588  0.005588  0.005588  0.005588 
+   0.        0.005588  0.005588  0.005588  0.005588  0.005588 
+   0.        0.005588  0.005588  0.005588  0.005588  0.005588  
+-1                                           #NUZF2 STRESS PERIOD 266
+-1                                           #NUZF3 STRESS PERIOD 266
+-1                                           #NUZF4 STRESS PERIOD 266
+1                                            #NUZF1 STRESS PERIOD 267
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 267
+   0.       0.02261  0.02261  0.02261  0.02261  0.02261 
+   0.       0.02261  0.02261  0.02261  0.02261  0.02261 
+   0.       0.02261  0.02261  0.02261  0.02261  0.02261 
+   0.       0.02261  0.02261  0.02261  0.02261  0.02261 
+   0.       0.02261  0.02261  0.02261  0.02261  0.02261 
+   0.       0.02261  0.02261  0.02261  0.02261  0.02261  
+-1                                           #NUZF2 STRESS PERIOD 267
+-1                                           #NUZF3 STRESS PERIOD 267
+-1                                           #NUZF4 STRESS PERIOD 267
+1                                            #NUZF1 STRESS PERIOD 268
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 268
+-1                                           #NUZF3 STRESS PERIOD 268
+-1                                           #NUZF4 STRESS PERIOD 268
+1                                            #NUZF1 STRESS PERIOD 269
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 269
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 269
+-1                                           #NUZF3 STRESS PERIOD 269
+-1                                           #NUZF4 STRESS PERIOD 269
+1                                            #NUZF1 STRESS PERIOD 270
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 270
+   0.       0.02667  0.02667  0.02667  0.02667  0.02667 
+   0.       0.02667  0.02667  0.02667  0.02667  0.02667 
+   0.       0.02667  0.02667  0.02667  0.02667  0.02667 
+   0.       0.02667  0.032    0.032    0.032    0.032   
+   0.       0.02667  0.032    0.032    0.032    0.032   
+   0.       0.02667  0.032    0.032    0.032    0.032    
+-1                                           #NUZF2 STRESS PERIOD 270
+-1                                           #NUZF3 STRESS PERIOD 270
+-1                                           #NUZF4 STRESS PERIOD 270
+1                                            #NUZF1 STRESS PERIOD 271
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 271
+   0.        0.008636  0.008636  0.008636  0.008636  0.008636 
+   0.        0.008636  0.008636  0.008636  0.008636  0.008636 
+   0.        0.008636  0.008636  0.008636  0.008636  0.008636 
+   0.        0.008636  0.009652  0.009652  0.009652  0.009652 
+   0.        0.008636  0.009652  0.009652  0.009652  0.009652 
+   0.        0.008636  0.009652  0.009652  0.009652  0.009652  
+-1                                           #NUZF2 STRESS PERIOD 271
+-1                                           #NUZF3 STRESS PERIOD 271
+-1                                           #NUZF4 STRESS PERIOD 271
+1                                            #NUZF1 STRESS PERIOD 272
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 272
+-1                                           #NUZF3 STRESS PERIOD 272
+-1                                           #NUZF4 STRESS PERIOD 272
+1                                            #NUZF1 STRESS PERIOD 273
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 273
+   0.        0.00381   0.00381   0.00381   0.00381   0.00381  
+   0.        0.00381   0.00381   0.00381   0.00381   0.00381  
+   0.        0.00381   0.00381   0.00381   0.00381   0.00381  
+   0.        0.00381   0.009144  0.009144  0.009144  0.009144 
+   0.        0.00381   0.009144  0.009144  0.009144  0.009144 
+   0.        0.00381   0.009144  0.009144  0.009144  0.009144  
+-1                                           #NUZF2 STRESS PERIOD 273
+-1                                           #NUZF3 STRESS PERIOD 273
+-1                                           #NUZF4 STRESS PERIOD 273
+1                                            #NUZF1 STRESS PERIOD 274
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 274
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.002032  0.002032  0.002032  0.002032 
+   0.        0.000254  0.002032  0.002032  0.002032  0.002032 
+   0.        0.000254  0.002032  0.002032  0.002032  0.002032  
+-1                                           #NUZF2 STRESS PERIOD 274
+-1                                           #NUZF3 STRESS PERIOD 274
+-1                                           #NUZF4 STRESS PERIOD 274
+1                                            #NUZF1 STRESS PERIOD 275
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 275
+-1                                           #NUZF3 STRESS PERIOD 275
+-1                                           #NUZF4 STRESS PERIOD 275
+1                                            #NUZF1 STRESS PERIOD 276
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 276
+   0.       0.00254  0.00254  0.00254  0.00254  0.00254 
+   0.       0.00254  0.00254  0.00254  0.00254  0.00254 
+   0.       0.00254  0.00254  0.00254  0.00254  0.00254 
+   0.       0.00254  0.       0.       0.       0.      
+   0.       0.00254  0.       0.       0.       0.      
+   0.       0.00254  0.       0.       0.       0.       
+-1                                           #NUZF2 STRESS PERIOD 276
+-1                                           #NUZF3 STRESS PERIOD 276
+-1                                           #NUZF4 STRESS PERIOD 276
+1                                            #NUZF1 STRESS PERIOD 277
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 277
+   0.        0.002794  0.002794  0.002794  0.002794  0.002794 
+   0.        0.002794  0.002794  0.002794  0.002794  0.002794 
+   0.        0.002794  0.002794  0.002794  0.002794  0.002794 
+   0.        0.002794  0.001524  0.001524  0.001524  0.001524 
+   0.        0.002794  0.001524  0.001524  0.001524  0.001524 
+   0.        0.002794  0.001524  0.001524  0.001524  0.001524  
+-1                                           #NUZF2 STRESS PERIOD 277
+-1                                           #NUZF3 STRESS PERIOD 277
+-1                                           #NUZF4 STRESS PERIOD 277
+1                                            #NUZF1 STRESS PERIOD 278
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 278
+   0.        0.009652  0.009652  0.009652  0.009652  0.009652 
+   0.        0.009652  0.009652  0.009652  0.009652  0.009652 
+   0.        0.009652  0.009652  0.009652  0.009652  0.009652 
+   0.        0.009652  0.003302  0.003302  0.003302  0.003302 
+   0.        0.009652  0.003302  0.003302  0.003302  0.003302 
+   0.        0.009652  0.003302  0.003302  0.003302  0.003302  
+-1                                           #NUZF2 STRESS PERIOD 278
+-1                                           #NUZF3 STRESS PERIOD 278
+-1                                           #NUZF4 STRESS PERIOD 278
+1                                            #NUZF1 STRESS PERIOD 279
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 279
+-1                                           #NUZF3 STRESS PERIOD 279
+-1                                           #NUZF4 STRESS PERIOD 279
+1                                            #NUZF1 STRESS PERIOD 280
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 280
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.000508  0.000508  0.000508  0.000508 
+   0.        0.000508  0.        0.        0.        0.       
+   0.        0.000508  0.        0.        0.        0.       
+   0.        0.000508  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 280
+-1                                           #NUZF3 STRESS PERIOD 280
+-1                                           #NUZF4 STRESS PERIOD 280
+1                                            #NUZF1 STRESS PERIOD 281
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 281
+   0.       0.00889  0.00889  0.00889  0.00889  0.00889 
+   0.       0.00889  0.00889  0.00889  0.00889  0.00889 
+   0.       0.00889  0.00889  0.00889  0.00889  0.00889 
+   0.       0.00889  0.00254  0.00254  0.00254  0.00254 
+   0.       0.00889  0.00254  0.00254  0.00254  0.00254 
+   0.       0.00889  0.00254  0.00254  0.00254  0.00254  
+-1                                           #NUZF2 STRESS PERIOD 281
+-1                                           #NUZF3 STRESS PERIOD 281
+-1                                           #NUZF4 STRESS PERIOD 281
+1                                            #NUZF1 STRESS PERIOD 282
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 282
+   0.       0.02108  0.02108  0.02108  0.02108  0.02108 
+   0.       0.02108  0.02108  0.02108  0.02108  0.02108 
+   0.       0.02108  0.02108  0.02108  0.02108  0.02108 
+   0.       0.02108  0.01194  0.01194  0.01194  0.01194 
+   0.       0.02108  0.01194  0.01194  0.01194  0.01194 
+   0.       0.02108  0.01194  0.01194  0.01194  0.01194  
+-1                                           #NUZF2 STRESS PERIOD 282
+-1                                           #NUZF3 STRESS PERIOD 282
+-1                                           #NUZF4 STRESS PERIOD 282
+1                                            #NUZF1 STRESS PERIOD 283
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 283
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 283
+-1                                           #NUZF3 STRESS PERIOD 283
+-1                                           #NUZF4 STRESS PERIOD 283
+1                                            #NUZF1 STRESS PERIOD 284
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 284
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.00127   0.00127   0.00127   0.00127  
+   0.        0.000254  0.00127   0.00127   0.00127   0.00127  
+   0.        0.000254  0.00127   0.00127   0.00127   0.00127   
+-1                                           #NUZF2 STRESS PERIOD 284
+-1                                           #NUZF3 STRESS PERIOD 284
+-1                                           #NUZF4 STRESS PERIOD 284
+1                                            #NUZF1 STRESS PERIOD 285
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 285
+-1                                           #NUZF3 STRESS PERIOD 285
+-1                                           #NUZF4 STRESS PERIOD 285
+1                                            #NUZF1 STRESS PERIOD 286
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 286
+   0.        0.003556  0.003556  0.003556  0.003556  0.003556 
+   0.        0.003556  0.003556  0.003556  0.003556  0.003556 
+   0.        0.003556  0.003556  0.003556  0.003556  0.003556 
+   0.        0.003556  0.003556  0.003556  0.003556  0.003556 
+   0.        0.003556  0.003556  0.003556  0.003556  0.003556 
+   0.        0.003556  0.003556  0.003556  0.003556  0.003556  
+-1                                           #NUZF2 STRESS PERIOD 286
+-1                                           #NUZF3 STRESS PERIOD 286
+-1                                           #NUZF4 STRESS PERIOD 286
+1                                            #NUZF1 STRESS PERIOD 287
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 287
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.002032  0.002032  0.002032  0.002032 
+   0.        0.        0.002032  0.002032  0.002032  0.002032 
+   0.        0.        0.002032  0.002032  0.002032  0.002032  
+-1                                           #NUZF2 STRESS PERIOD 287
+-1                                           #NUZF3 STRESS PERIOD 287
+-1                                           #NUZF4 STRESS PERIOD 287
+1                                            #NUZF1 STRESS PERIOD 288
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 288
+-1                                           #NUZF3 STRESS PERIOD 288
+-1                                           #NUZF4 STRESS PERIOD 288
+1                                            #NUZF1 STRESS PERIOD 289
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 289
+   0.       0.02311  0.02311  0.02311  0.02311  0.02311 
+   0.       0.02311  0.02311  0.02311  0.02311  0.02311 
+   0.       0.02311  0.02311  0.02311  0.02311  0.02311 
+   0.       0.02311  0.04089  0.04089  0.04089  0.04089 
+   0.       0.02311  0.04089  0.04089  0.04089  0.04089 
+   0.       0.02311  0.04089  0.04089  0.04089  0.04089  
+-1                                           #NUZF2 STRESS PERIOD 289
+-1                                           #NUZF3 STRESS PERIOD 289
+-1                                           #NUZF4 STRESS PERIOD 289
+1                                            #NUZF1 STRESS PERIOD 290
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 290
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.00381  0.00381  0.00381  0.00381 
+   0.       0.       0.00381  0.00381  0.00381  0.00381 
+   0.       0.       0.00381  0.00381  0.00381  0.00381  
+-1                                           #NUZF2 STRESS PERIOD 290
+-1                                           #NUZF3 STRESS PERIOD 290
+-1                                           #NUZF4 STRESS PERIOD 290
+1                                            #NUZF1 STRESS PERIOD 291
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 291
+-1                                           #NUZF3 STRESS PERIOD 291
+-1                                           #NUZF4 STRESS PERIOD 291
+1                                            #NUZF1 STRESS PERIOD 292
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 292
+-1                                           #NUZF3 STRESS PERIOD 292
+-1                                           #NUZF4 STRESS PERIOD 292
+1                                            #NUZF1 STRESS PERIOD 293
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 293
+-1                                           #NUZF3 STRESS PERIOD 293
+-1                                           #NUZF4 STRESS PERIOD 293
+1                                            #NUZF1 STRESS PERIOD 294
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 294
+   0.        0.001016  0.001016  0.001016  0.001016  0.001016 
+   0.        0.001016  0.001016  0.001016  0.001016  0.001016 
+   0.        0.001016  0.001016  0.001016  0.001016  0.001016 
+   0.        0.001016  0.        0.        0.        0.       
+   0.        0.001016  0.        0.        0.        0.       
+   0.        0.001016  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 294
+-1                                           #NUZF3 STRESS PERIOD 294
+-1                                           #NUZF4 STRESS PERIOD 294
+1                                            #NUZF1 STRESS PERIOD 295
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 295
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.006858  0.006858  0.006858  0.006858 
+   0.        0.        0.006858  0.006858  0.006858  0.006858 
+   0.        0.        0.006858  0.006858  0.006858  0.006858  
+-1                                           #NUZF2 STRESS PERIOD 295
+-1                                           #NUZF3 STRESS PERIOD 295
+-1                                           #NUZF4 STRESS PERIOD 295
+1                                            #NUZF1 STRESS PERIOD 296
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 296
+   0.       0.03734  0.03734  0.03734  0.03734  0.03734 
+   0.       0.03734  0.03734  0.03734  0.03734  0.03734 
+   0.       0.03734  0.03734  0.03734  0.03734  0.03734 
+   0.       0.03734  0.02134  0.02134  0.02134  0.02134 
+   0.       0.03734  0.02134  0.02134  0.02134  0.02134 
+   0.       0.03734  0.02134  0.02134  0.02134  0.02134  
+-1                                           #NUZF2 STRESS PERIOD 296
+-1                                           #NUZF3 STRESS PERIOD 296
+-1                                           #NUZF4 STRESS PERIOD 296
+1                                            #NUZF1 STRESS PERIOD 297
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 297
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000508  0.000508  0.000508  0.000508 
+   0.        0.        0.000508  0.000508  0.000508  0.000508 
+   0.        0.        0.000508  0.000508  0.000508  0.000508  
+-1                                           #NUZF2 STRESS PERIOD 297
+-1                                           #NUZF3 STRESS PERIOD 297
+-1                                           #NUZF4 STRESS PERIOD 297
+1                                            #NUZF1 STRESS PERIOD 298
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 298
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.000762  0.000762  0.000762  0.000762 
+   0.        0.002286  0.000762  0.000762  0.000762  0.000762 
+   0.        0.002286  0.000762  0.000762  0.000762  0.000762  
+-1                                           #NUZF2 STRESS PERIOD 298
+-1                                           #NUZF3 STRESS PERIOD 298
+-1                                           #NUZF4 STRESS PERIOD 298
+1                                            #NUZF1 STRESS PERIOD 299
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 299
+-1                                           #NUZF3 STRESS PERIOD 299
+-1                                           #NUZF4 STRESS PERIOD 299
+1                                            #NUZF1 STRESS PERIOD 300
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 300
+-1                                           #NUZF3 STRESS PERIOD 300
+-1                                           #NUZF4 STRESS PERIOD 300
+1                                            #NUZF1 STRESS PERIOD 301
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 301
+-1                                           #NUZF3 STRESS PERIOD 301
+-1                                           #NUZF4 STRESS PERIOD 301
+1                                            #NUZF1 STRESS PERIOD 302
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 302
+-1                                           #NUZF3 STRESS PERIOD 302
+-1                                           #NUZF4 STRESS PERIOD 302
+1                                            #NUZF1 STRESS PERIOD 303
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 303
+-1                                           #NUZF3 STRESS PERIOD 303
+-1                                           #NUZF4 STRESS PERIOD 303
+1                                            #NUZF1 STRESS PERIOD 304
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 304
+-1                                           #NUZF3 STRESS PERIOD 304
+-1                                           #NUZF4 STRESS PERIOD 304
+1                                            #NUZF1 STRESS PERIOD 305
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 305
+-1                                           #NUZF3 STRESS PERIOD 305
+-1                                           #NUZF4 STRESS PERIOD 305
+1                                            #NUZF1 STRESS PERIOD 306
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 306
+-1                                           #NUZF3 STRESS PERIOD 306
+-1                                           #NUZF4 STRESS PERIOD 306
+1                                            #NUZF1 STRESS PERIOD 307
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 307
+-1                                           #NUZF3 STRESS PERIOD 307
+-1                                           #NUZF4 STRESS PERIOD 307
+1                                            #NUZF1 STRESS PERIOD 308
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 308
+-1                                           #NUZF3 STRESS PERIOD 308
+-1                                           #NUZF4 STRESS PERIOD 308
+1                                            #NUZF1 STRESS PERIOD 309
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 309
+-1                                           #NUZF3 STRESS PERIOD 309
+-1                                           #NUZF4 STRESS PERIOD 309
+1                                            #NUZF1 STRESS PERIOD 310
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 310
+-1                                           #NUZF3 STRESS PERIOD 310
+-1                                           #NUZF4 STRESS PERIOD 310
+1                                            #NUZF1 STRESS PERIOD 311
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 311
+-1                                           #NUZF3 STRESS PERIOD 311
+-1                                           #NUZF4 STRESS PERIOD 311
+1                                            #NUZF1 STRESS PERIOD 312
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 312
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.006604  0.006604  0.006604  0.006604 
+   0.        0.        0.006604  0.006604  0.006604  0.006604 
+   0.        0.        0.006604  0.006604  0.006604  0.006604  
+-1                                           #NUZF2 STRESS PERIOD 312
+-1                                           #NUZF3 STRESS PERIOD 312
+-1                                           #NUZF4 STRESS PERIOD 312
+1                                            #NUZF1 STRESS PERIOD 313
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 313
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 313
+-1                                           #NUZF3 STRESS PERIOD 313
+-1                                           #NUZF4 STRESS PERIOD 313
+1                                            #NUZF1 STRESS PERIOD 314
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 314
+-1                                           #NUZF3 STRESS PERIOD 314
+-1                                           #NUZF4 STRESS PERIOD 314
+1                                            #NUZF1 STRESS PERIOD 315
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 315
+   0.        0.000762  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000762  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000762  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000762  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000762  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000762  0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 315
+-1                                           #NUZF3 STRESS PERIOD 315
+-1                                           #NUZF4 STRESS PERIOD 315
+1                                            #NUZF1 STRESS PERIOD 316
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 316
+-1                                           #NUZF3 STRESS PERIOD 316
+-1                                           #NUZF4 STRESS PERIOD 316
+1                                            #NUZF1 STRESS PERIOD 317
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 317
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 317
+-1                                           #NUZF3 STRESS PERIOD 317
+-1                                           #NUZF4 STRESS PERIOD 317
+1                                            #NUZF1 STRESS PERIOD 318
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 318
+-1                                           #NUZF3 STRESS PERIOD 318
+-1                                           #NUZF4 STRESS PERIOD 318
+1                                            #NUZF1 STRESS PERIOD 319
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 319
+-1                                           #NUZF3 STRESS PERIOD 319
+-1                                           #NUZF4 STRESS PERIOD 319
+1                                            #NUZF1 STRESS PERIOD 320
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 320
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.       0.       0.       0.      
+   0.       0.       0.00127  0.00127  0.00127  0.00127 
+   0.       0.       0.00127  0.00127  0.00127  0.00127 
+   0.       0.       0.00127  0.00127  0.00127  0.00127  
+-1                                           #NUZF2 STRESS PERIOD 320
+-1                                           #NUZF3 STRESS PERIOD 320
+-1                                           #NUZF4 STRESS PERIOD 320
+1                                            #NUZF1 STRESS PERIOD 321
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 321
+-1                                           #NUZF3 STRESS PERIOD 321
+-1                                           #NUZF4 STRESS PERIOD 321
+1                                            #NUZF1 STRESS PERIOD 322
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 322
+-1                                           #NUZF3 STRESS PERIOD 322
+-1                                           #NUZF4 STRESS PERIOD 322
+1                                            #NUZF1 STRESS PERIOD 323
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 323
+-1                                           #NUZF3 STRESS PERIOD 323
+-1                                           #NUZF4 STRESS PERIOD 323
+1                                            #NUZF1 STRESS PERIOD 324
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 324
+-1                                           #NUZF3 STRESS PERIOD 324
+-1                                           #NUZF4 STRESS PERIOD 324
+1                                            #NUZF1 STRESS PERIOD 325
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 325
+-1                                           #NUZF3 STRESS PERIOD 325
+-1                                           #NUZF4 STRESS PERIOD 325
+1                                            #NUZF1 STRESS PERIOD 326
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 326
+-1                                           #NUZF3 STRESS PERIOD 326
+-1                                           #NUZF4 STRESS PERIOD 326
+1                                            #NUZF1 STRESS PERIOD 327
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 327
+-1                                           #NUZF3 STRESS PERIOD 327
+-1                                           #NUZF4 STRESS PERIOD 327
+1                                            #NUZF1 STRESS PERIOD 328
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 328
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000508  0.000508  0.000508  0.000508 
+   0.        0.        0.000508  0.000508  0.000508  0.000508 
+   0.        0.        0.000508  0.000508  0.000508  0.000508  
+-1                                           #NUZF2 STRESS PERIOD 328
+-1                                           #NUZF3 STRESS PERIOD 328
+-1                                           #NUZF4 STRESS PERIOD 328
+1                                            #NUZF1 STRESS PERIOD 329
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 329
+-1                                           #NUZF3 STRESS PERIOD 329
+-1                                           #NUZF4 STRESS PERIOD 329
+1                                            #NUZF1 STRESS PERIOD 330
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 330
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000254  0.000762  0.000762  0.000762  0.000762 
+   0.        0.000254  0.000762  0.000762  0.000762  0.000762  
+-1                                           #NUZF2 STRESS PERIOD 330
+-1                                           #NUZF3 STRESS PERIOD 330
+-1                                           #NUZF4 STRESS PERIOD 330
+1                                            #NUZF1 STRESS PERIOD 331
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 331
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286  
+-1                                           #NUZF2 STRESS PERIOD 331
+-1                                           #NUZF3 STRESS PERIOD 331
+-1                                           #NUZF4 STRESS PERIOD 331
+1                                            #NUZF1 STRESS PERIOD 332
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 332
+-1                                           #NUZF3 STRESS PERIOD 332
+-1                                           #NUZF4 STRESS PERIOD 332
+1                                            #NUZF1 STRESS PERIOD 333
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 333
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 333
+-1                                           #NUZF3 STRESS PERIOD 333
+-1                                           #NUZF4 STRESS PERIOD 333
+1                                            #NUZF1 STRESS PERIOD 334
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 334
+-1                                           #NUZF3 STRESS PERIOD 334
+-1                                           #NUZF4 STRESS PERIOD 334
+1                                            #NUZF1 STRESS PERIOD 335
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 335
+-1                                           #NUZF3 STRESS PERIOD 335
+-1                                           #NUZF4 STRESS PERIOD 335
+1                                            #NUZF1 STRESS PERIOD 336
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 336
+-1                                           #NUZF3 STRESS PERIOD 336
+-1                                           #NUZF4 STRESS PERIOD 336
+1                                            #NUZF1 STRESS PERIOD 337
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 337
+-1                                           #NUZF3 STRESS PERIOD 337
+-1                                           #NUZF4 STRESS PERIOD 337
+1                                            #NUZF1 STRESS PERIOD 338
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 338
+-1                                           #NUZF3 STRESS PERIOD 338
+-1                                           #NUZF4 STRESS PERIOD 338
+1                                            #NUZF1 STRESS PERIOD 339
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 339
+-1                                           #NUZF3 STRESS PERIOD 339
+-1                                           #NUZF4 STRESS PERIOD 339
+1                                            #NUZF1 STRESS PERIOD 340
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 340
+-1                                           #NUZF3 STRESS PERIOD 340
+-1                                           #NUZF4 STRESS PERIOD 340
+1                                            #NUZF1 STRESS PERIOD 341
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 341
+-1                                           #NUZF3 STRESS PERIOD 341
+-1                                           #NUZF4 STRESS PERIOD 341
+1                                            #NUZF1 STRESS PERIOD 342
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 342
+-1                                           #NUZF3 STRESS PERIOD 342
+-1                                           #NUZF4 STRESS PERIOD 342
+1                                            #NUZF1 STRESS PERIOD 343
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 343
+-1                                           #NUZF3 STRESS PERIOD 343
+-1                                           #NUZF4 STRESS PERIOD 343
+1                                            #NUZF1 STRESS PERIOD 344
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 344
+-1                                           #NUZF3 STRESS PERIOD 344
+-1                                           #NUZF4 STRESS PERIOD 344
+1                                            #NUZF1 STRESS PERIOD 345
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 345
+-1                                           #NUZF3 STRESS PERIOD 345
+-1                                           #NUZF4 STRESS PERIOD 345
+1                                            #NUZF1 STRESS PERIOD 346
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 346
+-1                                           #NUZF3 STRESS PERIOD 346
+-1                                           #NUZF4 STRESS PERIOD 346
+1                                            #NUZF1 STRESS PERIOD 347
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 347
+-1                                           #NUZF3 STRESS PERIOD 347
+-1                                           #NUZF4 STRESS PERIOD 347
+1                                            #NUZF1 STRESS PERIOD 348
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 348
+-1                                           #NUZF3 STRESS PERIOD 348
+-1                                           #NUZF4 STRESS PERIOD 348
+1                                            #NUZF1 STRESS PERIOD 349
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 349
+-1                                           #NUZF3 STRESS PERIOD 349
+-1                                           #NUZF4 STRESS PERIOD 349
+1                                            #NUZF1 STRESS PERIOD 350
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 350
+-1                                           #NUZF3 STRESS PERIOD 350
+-1                                           #NUZF4 STRESS PERIOD 350
+1                                            #NUZF1 STRESS PERIOD 351
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 351
+-1                                           #NUZF3 STRESS PERIOD 351
+-1                                           #NUZF4 STRESS PERIOD 351
+1                                            #NUZF1 STRESS PERIOD 352
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 352
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 352
+-1                                           #NUZF3 STRESS PERIOD 352
+-1                                           #NUZF4 STRESS PERIOD 352
+1                                            #NUZF1 STRESS PERIOD 353
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 353
+-1                                           #NUZF3 STRESS PERIOD 353
+-1                                           #NUZF4 STRESS PERIOD 353
+1                                            #NUZF1 STRESS PERIOD 354
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 354
+-1                                           #NUZF3 STRESS PERIOD 354
+-1                                           #NUZF4 STRESS PERIOD 354
+1                                            #NUZF1 STRESS PERIOD 355
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 355
+-1                                           #NUZF3 STRESS PERIOD 355
+-1                                           #NUZF4 STRESS PERIOD 355
+1                                            #NUZF1 STRESS PERIOD 356
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 356
+-1                                           #NUZF3 STRESS PERIOD 356
+-1                                           #NUZF4 STRESS PERIOD 356
+1                                            #NUZF1 STRESS PERIOD 357
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 357
+-1                                           #NUZF3 STRESS PERIOD 357
+-1                                           #NUZF4 STRESS PERIOD 357
+1                                            #NUZF1 STRESS PERIOD 358
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 358
+-1                                           #NUZF3 STRESS PERIOD 358
+-1                                           #NUZF4 STRESS PERIOD 358
+1                                            #NUZF1 STRESS PERIOD 359
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 359
+-1                                           #NUZF3 STRESS PERIOD 359
+-1                                           #NUZF4 STRESS PERIOD 359
+1                                            #NUZF1 STRESS PERIOD 360
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 360
+-1                                           #NUZF3 STRESS PERIOD 360
+-1                                           #NUZF4 STRESS PERIOD 360
+1                                            #NUZF1 STRESS PERIOD 361
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 361
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.000254  0.000254  0.000254  0.000254 
+   0.        0.000254  0.        0.        0.        0.       
+   0.        0.000254  0.        0.        0.        0.       
+   0.        0.000254  0.        0.        0.        0.        
+-1                                           #NUZF2 STRESS PERIOD 361
+-1                                           #NUZF3 STRESS PERIOD 361
+-1                                           #NUZF4 STRESS PERIOD 361
+1                                            #NUZF1 STRESS PERIOD 362
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 362
+-1                                           #NUZF3 STRESS PERIOD 362
+-1                                           #NUZF4 STRESS PERIOD 362
+1                                            #NUZF1 STRESS PERIOD 363
+CONSTANT 0.0
+-1                                           #NUZF2 STRESS PERIOD 363
+-1                                           #NUZF3 STRESS PERIOD 363
+-1                                           #NUZF4 STRESS PERIOD 363
+1                                            #NUZF1 STRESS PERIOD 364
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 364
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.        0.        0.        0.       
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254 
+   0.        0.        0.000254  0.000254  0.000254  0.000254  
+-1                                           #NUZF2 STRESS PERIOD 364
+-1                                           #NUZF3 STRESS PERIOD 364
+-1                                           #NUZF4 STRESS PERIOD 364
+1                                            #NUZF1 STRESS PERIOD 365
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 365
+   0.        0.004826  0.004826  0.004826  0.004826  0.004826 
+   0.        0.004826  0.004826  0.004826  0.004826  0.004826 
+   0.        0.004826  0.004826  0.004826  0.004826  0.004826 
+   0.        0.004826  0.004064  0.004064  0.004064  0.004064 
+   0.        0.004826  0.004064  0.004064  0.004064  0.004064 
+   0.        0.004826  0.004064  0.004064  0.004064  0.004064  
+-1                                           #NUZF2 STRESS PERIOD 365
+-1                                           #NUZF3 STRESS PERIOD 365
+-1                                           #NUZF4 STRESS PERIOD 365
+1                                            #NUZF1 STRESS PERIOD 366
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 366
+   0.        0.005334  0.005334  0.005334  0.005334  0.005334 
+   0.        0.005334  0.005334  0.005334  0.005334  0.005334 
+   0.        0.005334  0.005334  0.005334  0.005334  0.005334 
+   0.        0.005334  0.005588  0.005588  0.005588  0.005588 
+   0.        0.005334  0.005588  0.005588  0.005588  0.005588 
+   0.        0.005334  0.005588  0.005588  0.005588  0.005588  
+-1                                           #NUZF2 STRESS PERIOD 366
+-1                                           #NUZF3 STRESS PERIOD 366
+-1                                           #NUZF4 STRESS PERIOD 366
+1                                            #NUZF1 STRESS PERIOD 367
+INTERNAL 1.0 (FREE)   -1 #STRESS PERIOD 367
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.002286  0.002286  0.002286  0.002286 
+   0.        0.002286  0.00381   0.00381   0.00381   0.00381  
+   0.        0.002286  0.00381   0.00381   0.00381   0.00381  
+   0.        0.002286  0.00381   0.00381   0.00381   0.00381   
+-1                                           #NUZF2 STRESS PERIOD 367
+-1                                           #NUZF3 STRESS PERIOD 367
+-1                                           #NUZF4 STRESS PERIOD 367

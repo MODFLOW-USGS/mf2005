@@ -1,0 +1,10 @@
+LIST           7 SWR002.lst
+BAS6           1 SWR002.bas
+DIS           29 SWR002.dis
+LPF           11 SWR002.lpf
+GHB           17 SWR002.ghb
+OC            22 SWR002.oc
+PCG           19 SWR002.pcg
+SWR           61 SWR002.swr
+DATA(BINARY) 102 SWR002_Stage.stg    replace
+DATA(BINARY) 103 SWR002_Velocity.bin replace

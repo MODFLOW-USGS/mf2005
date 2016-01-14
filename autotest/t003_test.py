@@ -14,7 +14,8 @@ def compare(namefile1, namefile2):
 
     # Compare budgets from the list files in namefile1 and namefile2
     outfile = os.path.join(os.path.split(namefile1)[0], 'bud.cmp')
-    success = compare_budget(namefile1, namefile2, max_cumpd=0.01, max_incpd=0.1,
+    success = compare_budget(namefile1, namefile2, max_cumpd=0.01,
+                             max_incpd=0.1,
                              outfile=outfile)
     return success
 
@@ -50,7 +51,8 @@ def run_mf2005(namefile, comparison=True):
                 files_cmp = []
                 files = os.listdir(testpth_cmp)
                 for file in files:
-                    files_cmp.append(os.path.abspath(os.path.join(testpth_cmp, file)))
+                    files_cmp.append(
+                        os.path.abspath(os.path.join(testpth_cmp, file)))
                 success_cmp = True
                 print(files_cmp)
             else:
@@ -61,13 +63,23 @@ def run_mf2005(namefile, comparison=True):
                                                     model_ws=testpth_cmp,
                                                     silent=True)
             if success_cmp:
-                outfile1 = os.path.join(os.path.split(os.path.join(testpth, nam))[0], 'bud.cmp')
-                outfile2 = os.path.join(os.path.split(os.path.join(testpth, nam))[0], 'hds.cmp')
+                outfile1 = os.path.join(
+                        os.path.split(os.path.join(testpth, nam))[0],
+                        'bud.cmp')
+                outfile2 = os.path.join(
+                        os.path.split(os.path.join(testpth, nam))[0],
+                        'hds.cmp')
+                outfile3 = os.path.join(
+                        os.path.split(os.path.join(testpth, nam))[0],
+                        'swr.bud.cmp')
                 success_cmp = pymake.compare(os.path.join(testpth, nam),
                                              os.path.join(testpth_cmp, nam),
                                              precision='single',
-                                             max_cumpd=0.01, max_incpd=0.01, htol=0.001,
-                                             outfile1=outfile1, outfile2=outfile2,
+                                             max_cumpd=0.01, max_incpd=0.01,
+                                             htol=0.001,
+                                             outfile1=outfile1,
+                                             outfile2=outfile2,
+                                             outfile3=outfile3,
                                              files2=files_cmp)
 
     # Clean things up

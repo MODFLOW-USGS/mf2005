@@ -1,0 +1,12 @@
+LIST           7 SWR004.lst
+BAS6           1 SWR004.bas
+DIS           29 SWR004.dis
+LPF           11 SWR004.lpf
+OC            22 SWR004.oc
+PCG           19 SWR004.pcg
+SWR           61 SWR004.swr
+DATA         201 Data/Reach1Inflow.ref
+DATA         202 Data/Reach5Inflow.ref
+DATA(BINARY) 101 SWR004_GroupFlow.flow replace
+DATA         102 SWR004_Stage.csv
+DATA(BINARY) 103 SWR004_Velocity.vel   replace
