@@ -1,0 +1,9 @@
+LIST           7 SWR003.lst
+BAS6           1 SWR003.bas
+DIS           29 SWR003.dis
+LPF           11 SWR003.lpf
+OC            22 SWR003.oc
+PCG           19 SWR003.pcg
+SWR           61 SWR003.swr
+DATA(BINARY) 101 SWR003_GroupFlow.cbb replace
+DATA(BINARY) 102 SWR003_Stage.stg     replace

@@ -1,0 +1,14 @@
+LIST           7 swr005.lst
+BAS6           1 swr005.bas
+DIS           29 swr005.dis
+LPF           11 swr005.lpf
+OC            22 swr005.oc
+PCG           19 swr005.pcg
+UZF           18 swr005.uzf
+GHB           16 swr005.ghb
+SWR           61 swr005.swr
+DATA         201 swr005_stage.ref
+DATA(BINARY) 102 swr005.stg REPLACE
+DATA(BINARY) 101 swr005.flow REPLACE
+DATA(BINARY) 103 swr005.qaq REPLACE
+DATA(BINARY) 111 swr005.hds REPLACE

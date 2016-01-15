@@ -1,0 +1,2923 @@
+                                  MODFLOW-2005     
+      U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
+                            VERSION 1.12.00 x/x/2015
+
+ LIST FILE: SWR001.lst
+                         UNIT    7
+
+ OPENING SWR001.bas
+ FILE TYPE:BAS6   UNIT    1   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING SWR001.dis
+ FILE TYPE:DIS   UNIT   29   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING SWR001.lpf
+ FILE TYPE:LPF   UNIT   11   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING SWR001.ghb
+ FILE TYPE:GHB   UNIT   17   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING SWR001.oc
+ FILE TYPE:OC   UNIT   22   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING SWR001.pcg
+ FILE TYPE:PCG   UNIT   19   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING SWR001.swr
+ FILE TYPE:SWR   UNIT   61   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING SWR001_PoolFlow.flow
+ FILE TYPE:DATA(BINARY)   UNIT  101   STATUS:REPLACE
+ FORMAT:UNFORMATTED            ACCESS:STREAM              
+
+ OPENING SWR001_Stage.stg
+ FILE TYPE:DATA(BINARY)   UNIT  102   STATUS:REPLACE
+ FORMAT:UNFORMATTED            ACCESS:STREAM              
+
+ BAS -- BASIC PACKAGE, VERSION 7, 5/2/2005 INPUT READ FROM UNIT    1
+
+ MODFLOW was compiled using mixed precision
+ Precision of REAL variables:           6
+ Precision of DOUBLE PRECISION variables:          15
+
+ DISCRETIZATION INPUT DATA READ FROM UNIT   29
+ # MODFLOW2000 Discretization File
+    1 LAYERS         1 ROWS         1 COLUMNS
+   21 STRESS PERIOD(S) IN SIMULATION
+ MODEL TIME UNIT IS SECONDS
+ MODEL LENGTH UNIT IS METERS
+  Confining bed flag for each layer:
+   0
+
+                     DELR =   10.0000    
+
+                     DELC =   10.0000    
+
+ TOP ELEVATION OF LAYER 1 =   5.00000    
+
+   MODEL LAYER BOTTOM EL. =  -5.00000     FOR LAYER   1
+
+
+ STRESS PERIOD     LENGTH       TIME STEPS     MULTIPLIER FOR DELT    SS FLAG
+ ----------------------------------------------------------------------------
+        1         600.0000          1                    1.000         TR
+        2         600.0000          1                    1.000         TR
+        3         600.0000          1                    1.000         TR
+        4         600.0000          1                    1.000         TR
+        5         600.0000          1                    1.000         TR
+        6         600.0000          1                    1.000         TR
+        7         600.0000          1                    1.000         TR
+        8         600.0000          1                    1.000         TR
+        9         600.0000          1                    1.000         TR
+       10         600.0000          1                    1.000         TR
+       11         600.0000          1                    1.000         TR
+       12         600.0000          1                    1.000         TR
+       13         600.0000          1                    1.000         TR
+       14         600.0000          1                    1.000         TR
+       15         600.0000          1                    1.000         TR
+       16         600.0000          1                    1.000         TR
+       17         600.0000          1                    1.000         TR
+       18         600.0000          1                    1.000         TR
+       19         600.0000          1                    1.000         TR
+       20         600.0000          1                    1.000         TR
+       21         600.0000          1                    1.000         TR
+
+ TRANSIENT SIMULATION
+
+
+
+
+ # MODFLOW2005 Basic Package                                                     
+ #MODFLOW Data Set Created by Groundwater Vistas                                 
+ #
+
+           BOUNDARY ARRAY =              1 FOR LAYER   1
+
+ AQUIFER HEAD WILL BE SET TO   999.00     AT ALL NO-FLOW NODES (IBOUND=0).
+
+             INITIAL HEAD =   2.00000     FOR LAYER   1
+
+ OUTPUT CONTROL IS SPECIFIED ONLY AT TIME STEPS FOR WHICH OUTPUT IS DESIRED
+ HEAD PRINT FORMAT CODE IS   0    DRAWDOWN PRINT FORMAT CODE IS   0
+ HEADS WILL BE SAVED ON UNIT    0    DRAWDOWNS WILL BE SAVED ON UNIT    0
+
+ LPF -- LAYER-PROPERTY FLOW PACKAGE, VERSION 7, 5/2/2005
+         INPUT READ FROM UNIT   11
+ # MODFLOW2000 Layer Property Flow (LPF) Package
+ HEAD AT CELLS THAT CONVERT TO DRY= -1.00000E+30
+ No named parameters
+
+   LAYER FLAGS:
+ LAYER       LAYTYP        LAYAVG         CHANI        LAYVKA        LAYWET
+ ---------------------------------------------------------------------------
+    1             1             0     1.000E+00             0             0
+
+   INTERPRETATION OF LAYER FLAGS:
+                        INTERBLOCK     HORIZONTAL    DATA IN
+         LAYER TYPE   TRANSMISSIVITY   ANISOTROPY   ARRAY VKA   WETTABILITY
+ LAYER      (LAYTYP)      (LAYAVG)       (CHANI)      (LAYVKA)      (LAYWET)
+ ---------------------------------------------------------------------------
+    1   CONVERTIBLE      HARMONIC     1.000E+00    VERTICAL K  NON-WETTABLE
+
+ WETTING CAPABILITY IS NOT ACTIVE IN ANY LAYER
+
+    HYD. COND. ALONG ROWS =   1.00000     FOR LAYER   1
+
+      VERTICAL HYD. COND. =   1.00000     FOR LAYER   1
+
+         SPECIFIC STORAGE =   1.00000     FOR LAYER   1
+
+           SPECIFIC YIELD =  0.200000     FOR LAYER   1
+
+ GHB -- GENERAL-HEAD BOUNDARY PACKAGE, VERSION 7, 5/2/2005
+         INPUT READ FROM UNIT   17
+ # MODFLOW2000 General Head Boundary Package
+          0 Named Parameters              0 List entries
+ MAXIMUM OF      1 ACTIVE GHB CELLS AT ONE TIME
+
+
+     0 GHB parameters
+
+ PCG -- CONJUGATE-GRADIENT SOLUTION PACKAGE, VERSION 7, 5/2/2005
+ MAXIMUM OF    100 CALLS OF SOLUTION ROUTINE
+ MAXIMUM OF     25 INTERNAL ITERATIONS PER CALL TO SOLUTION ROUTINE
+ MATRIX PRECONDITIONING TYPE :    1
+ IHCOFADD option -- When an active cell is surrounded by dry cells, convert
+ the cell to dry only if storage and head-dependent boundary flow are 0.
+
+
+
+                                    SOLUTION BY THE CONJUGATE-GRADIENT METHOD
+                                   -------------------------------------------
+                    MAXIMUM NUMBER OF CALLS TO PCG ROUTINE =      100
+                        MAXIMUM ITERATIONS PER CALL TO PCG =       25
+                               MATRIX PRECONDITIONING TYPE =        1
+        RELAXATION FACTOR (ONLY USED WITH PRECOND. TYPE 1) =    0.10000E+01
+ PARAMETER OF POLYNOMIAL PRECOND. = 2 (2) OR IS CALCULATED :        2
+                         HEAD CHANGE CRITERION FOR CLOSURE =    0.10000E-02
+                     RESIDUAL CHANGE CRITERION FOR CLOSURE =    0.10000E+01
+            PCG HEAD AND RESIDUAL CHANGE PRINTOUT INTERVAL =        5
+     PRINTING FROM SOLVER IS LIMITED(1) OR SUPPRESSED (>1) =        0
+                            STEADY-STATE DAMPING PARAMETER =    0.10000E+01
+                               TRANSIENT DAMPING PARAMETER =    0.10000E+01
+
+ SWR -- SURFACE-WATER ROUTING PACKAGE,
+ $Id: gwf2swr7.f 1.04 2014-03-06 15:00:00Z jdhughes $            
+ INPUT READ FROM UNIT   61
+
+ ...READING SWR1 PROCESS DATASET 1A
+
+ ...READING SWR1 PROCESS DATASET 2
+
+ ...READING SWR1 PROCESS DATASET 3
+
+ NUMBER OF REACHES                         =    1
+ SURFACE WATER ONLY SIMULATION (>0=TRUE)   =    1
+ LENGTH CONVERSION FACTOR                  =   1.000000    
+ TIME CONVERSION FACTOR                    =   1.000000    
+ MINIMUM GRADIENT FOR FLOW                 =   0.000000    
+ MAXIMUM DEPTH FOR SCALING REACH OUTFLOW   =   0.000000    
+ MINIMUM DEPTH FOR REACH OUTFLOW           =   0.000000    
+ DIFFUSIVE-WAVE APPROX. SPATIAL WEIGHTING  = CENTRAL             
+ DEPTH SCALING                             = NONE                
+ TWO-DIMENSIONAL COORD.-INVARIANT APPROACH = EXPLICIT            
+ MINIMUM ROUTING TIME STEP LENGTH          =   600.0000    
+ MAXIMUM ROUTING TIME STEP LENGTH          =   600.0000    
+ INITIAL ROUTING TIME STEP LENGTH          =   600.0000    
+ OUTPUT PRINT INCREMENT                    =   600.0000    
+ ADAPTIVE TIME STEP INCREMENT (RTMULT)     =   1.000000    
+ ADAPTIVE TIME STEP INCREMENT FREQUENCY    =    1
+ MAXIMUM RAINFALL      PER ROUTING STEP    =   0.000000    
+ MAXIMUM STAGE  CHANGE PER ROUTING STEP    =   0.000000    
+ MAXIMUM INFLOW CHANGE PER ROUTING STEP    =   0.000000    
+
+ CBC OUTPUT UNIT (ISWRCBC)                 =    0
+ GROUP FLOW TERMS OUTPUT UNIT (ISWRPRGF)   = -101
+ REACH STAGE OUTPUT UNIT (ISWRPSTG)        = -102
+ REACH AQ-RCH FLOW OUTPUT UNIT (ISWRPQAQ)  =    0
+ REACH LATERAL FLOW OUTPUT UNIT (ISWRPQM)  =    0
+ STRUCTURE FLOW OUTPUT UNIT (ISWRPSTR)     =    0
+ SUMMARY VELOCITY AND FROUDE INFORMATION   =    F
+
+
+               --- SWR SOLVER PARAMETERS ---
+ SOLVER = LU DECOMPOSITION USING CROUT’S ALGORITHM
+ PRECONDITIONER                            = NONE                
+ JACOBIAN SCALING                          = NO SCALING          
+ MAXIMUM NUMBER OF OUTER ITERATIONS        =   30
+ MAXIMUM NUMBER OF INNER ITERATIONS        =    1
+ NON-CONVERGENCE CONT.OF SWR AND MODFLOW   =    F
+ MAXIMUM STAGE    TOLERANCE (TOLS)         =  0.1000000E-08
+ MAXIMUM ROOT     TOLERANCE (TOLR)         =  0.1000000E-08
+ INEXACT NEWTON APPROACH (INEXCTNWT)       =    F
+ MAXIMUM AQ-RCH FLOW TOLERANCE (TOLA)      =  0.0000000E+00
+ STEADY-STATE DAMPENING PARAMETER (DAMPSS) =  0.1000000E+01
+ TRANSIENT DAMPENING PARAMETER (DAMPTR)    =  0.1000000E+01
+ PSEUDO-TRANSIENT CONTINUATION APPROACH    =    F
+ SOLVER OUTPUT FREQUENCY (IPRSWR)          =  999
+ CONVERGENCE PRINTING FLAG (MUTSWR)        =    3
+   0 - MAXIMUM RESIDUAL EACH SWR TIMESTEP
+   1 - TOTAL NUMBER OF ITERATIONS EACH SWR TIMESTEP
+   2 - NO PRINTING
+   3 - PRINTING IF CONVERGENCE FAILS
+ BACKTRACKING ALLOWED                      =    F
+
+
+ SURFACE WATER ONLY SIMULATION
+ SETTING MODFLOW IBOUND TO ZERO FOR ALL CELLS
+
+ ...READING SWR1 PROCESS DATASET 4A
+
+ ...READING SWR1 PROCESS DATASET 4B
+
+ -----------------------------------------------------------
+ FULL REACH CONNECTIVITY FOR EACH REACH
+
+ -----------------------------------------------------------
+ REACH  =     1
+               -----------------CONNECTIONS-----------------
+
+ -----------------------------------------------------------
+ REACHES            NONE     
+ -----------------------------------------------------------
+
+
+ TIME-INVARIANT SURFACE-WATER ROUTING REACH DATA
+  REACH IROUTETYPE SOLUTION METHOD      IRGNUM    IRG    LAY    ROW    COL       DLEN
+ --------------------------------------------------------------------------------------------------
+      1          1 LEVEL-POOL ROUTING        1      1      1      1      1   1.00    
+
+
+ SWR REACH GROUPS: REACHES IN REACH GROUP
+ ---------------------------------------------------------------------
+ REACH GROUP =     1 IRGNUM =     1    REACHES     1
+1
+                            STRESS PERIOD NO.    1, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ BOUND. NO. LAYER   ROW   COL     STAGE      CONDUCTANCE         
+ ----------------------------------------------------------------
+      1      1      1      1       2.000           4000.    
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 6
+
+
+  SUMMARY OF SWR REACH BOUNDARY CONDITIONS
+        IRG   INACTIVE   CONSTANT     ACTIVE
+ ---------- ---------- ---------- ----------
+          1          0          0          1
+
+
+                         CONSTANT STAGE/INACTIVE REACH GROUPS
+ ------------------------------------------------------------------------------------------
+ ALL REACHES ACTIVE
+
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING BOUNDARY DATA 
+      REACH    ISWRBND BND TYPE       
+ ------------------------------------
+          1          1 ACTIVE         
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.000E+00
+
+ ...READING SWR1 PROCESS DATASET 10
+
+ ...READING SWR1 PROCESS DATASET 11
+
+ OPENING FILE ON UNIT   99:
+ ReservoirGeometry01.dat                                                                                                                                                                                 
+
+
+ SURFACE-WATER ROUTING GENERIC GEOMETRY DATA FOR STRESS PERIOD         1
+
+   GEO ITEM    IGEONUM   IGEOTYPE    IGCNDOP    NGEOPTS   GMANNING     GWIDTH     GBELEV    GSSLOPE   CONDUCT.   LEAKANCE     GCNDLN    GETEXTD
+ ----------------------------------------------------------------------------------------------------------------------------------------------
+          1          1          4          0         13   1.00                                        0.00                                     
+
+ SPECIFIED STAGE, AREA, VOLUME, WETTED PERIMETER, TOP WIDTH RELATION FOR REACH =     1
+          N   ELEVATION [L]  XSECTAREA [L2]     VOLUME [L3] WET. PERIM. [L]   TOP WIDTH [L] SURF. AREA [L2]
+ ---------- --------------- --------------- --------------- --------------- --------------- ---------------
+          1    1.520000        3.000000        0.000000        1.000000        0.000000        2.000000    
+          2    1.830000        3.000000        1233.520        1.000000        0.000000        2.000000    
+          3    2.130000        3.000000        2467.030        1.000000        0.000000        2.000000    
+          4    2.440000        3.000000        3700.550        1.000000        0.000000        2.000000    
+          5    2.740000        3.000000        4934.060        1.000000        0.000000        2.000000    
+          6    3.050000        3.000000        6167.580        1.000000        0.000000        2.000000    
+          7    3.350000        3.000000        7401.090        1.000000        0.000000        2.000000    
+          8    3.660000        3.000000        9251.370        1.000000        0.000000        2.000000    
+          9    3.960000        3.000000        12951.91        1.000000        0.000000        2.000000    
+         10    4.270000        3.000000        14802.19        1.000000        0.000000        2.000000    
+         11    4.570000        3.000000        16652.46        1.000000        0.000000        2.000000    
+         12    4.880000        3.000000        24670.31        1.000000        0.000000        2.000000    
+         13    5.180000        3.000000        27137.34        1.000000        0.000000        2.000000    
+
+
+ REACH RATING CURVE DATA FOR STRESS PERIOD
+ ------------------------------------------------------------------------------------------
+
+ REACH   =     1
+ LAYSTR  =     1
+ LAYEND  =     1
+          N   ELEVATION [L]  XSECTAREA [L2]     VOLUME [L3] WET. PERIM. [L]   TOP WIDTH [L] SURF. AREA [L2]
+ ---------- --------------- --------------- --------------- --------------- --------------- ---------------
+          1    1.520000        3.000000        0.000000        1.000000        0.000000        2.000000    
+          2    1.830000        3.000000        1233.520        1.000000        0.000000        2.000000    
+          3    2.130000        3.000000        2467.030        1.000000        0.000000        2.000000    
+          4    2.440000        3.000000        3700.550        1.000000        0.000000        2.000000    
+          5    2.740000        3.000000        4934.060        1.000000        0.000000        2.000000    
+          6    3.050000        3.000000        6167.580        1.000000        0.000000        2.000000    
+          7    3.350000        3.000000        7401.090        1.000000        0.000000        2.000000    
+          8    3.660000        3.000000        9251.370        1.000000        0.000000        2.000000    
+          9    3.960000        3.000000        12951.91        1.000000        0.000000        2.000000    
+         10    4.270000        3.000000        14802.19        1.000000        0.000000        2.000000    
+         11    4.570000        3.000000        16652.46        1.000000        0.000000        2.000000    
+         12    4.880000        3.000000        24670.31        1.000000        0.000000        2.000000    
+         13    5.180000        3.000000        27137.34        1.000000        0.000000        2.000000    
+
+ ...READING SWR1 PROCESS DATASET 12
+
+ ...READING SWR1 PROCESS DATASET 13
+
+ SURFACE-WATER ROUTING REACH STRUCTURE DATA 
+      REACH  STRUCTURE   ISTRTYPE   ISTRCONN      STRCD     STRCD2     STRCD3     STRINV    STRINV2     STRWID    STRWID2     STRLEN     STRMAN     STRVAL  FLOW DIR. BOUNDARY TYPE
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+          1          1          4          0                                                                                                                          EXTERNAL STRUCTURE BOUNDARY   
+
+ SURFACE-WATER STAGE-DISCHARGE STRUCTURE DATA 
+      REACH  STRUCTURE   ISTRTYPE   ISTRCONN    STRELEV       STRQ
+ ------------------------------------------------------------------
+          1          1          4          0       1.52       0.00
+          1          1          4          0       1.83      0.420
+          1          1          4          0       2.13      0.910
+          1          1          4          0       2.44       1.56
+          1          1          4          0       2.74       2.55
+          1          1          4          0       3.05       3.54
+          1          1          4          0       3.35       4.47
+          1          1          4          0       3.66       5.24
+          1          1          4          0       3.96       5.95
+          1          1          4          0       4.27       6.51
+          1          1          4          0       4.57       7.08
+          1          1          4          0       4.88       7.65
+          1          1          4          0       5.18       8.21
+
+
+
+ ...READING SWR1 PROCESS DATASET 14A
+
+
+ STAGE DATA FOR STRESS PERIOD          1
+ REACH      STAGE     STATUS
+ ---------------------------
+     1   1.52            RAW
+
+
+ REACH OFFSETS FOR STRESS PERIOD
+          1
+ -------------------------------------------------------------------------------------------------------------
+     0.0000
+
+
+ DOWNSTREAM REACH FOR EACH REACH GROUP (RCHGRP) FOR STRESS PERIOD
+ -----------------------------------------------------------------------------------
+ RG0001 =    1
+
+
+ NEW RATING CURVE FOR REACH GROUPS FOR STRESS PERIOD
+ ------------------------------------------------------------------------------------------
+
+ REACH GROUP =     1 GROUP =     1
+
+          N   ELEVATION [L]       DEPTH [L]     VOLUME [L3]
+ ---------- --------------- --------------- ---------------
+          1    1.520000        0.000000        0.000000    
+          2    1.830000       0.3100000        1233.520    
+          3    2.130000       0.6100000        2467.030    
+          4    2.440000       0.9200000        3700.550    
+          5    2.740000        1.220000        4934.060    
+          6    3.050000        1.530000        6167.580    
+          7    3.350000        1.830000        7401.090    
+          8    3.660000        2.140000        9251.370    
+          9    3.960000        2.440000        12951.91    
+         10    4.270000        2.750000        14802.19    
+         11    4.570000        3.050000        16652.46    
+         12    4.880000        3.360000        24670.31    
+         13    5.180000        3.660000        27137.34    
+
+ -----------------------------------------------------------
+ NUMBER OF REACH GROUPS                  =     1
+ LU DECOMPOSITION STORAGE APPROACH:
+   FULL JACOBIAN STORAGE (NSOLRG X NSOLRG)           
+
+ -----------------------------------------------------------
+ MODIFIED COMPRESSED ROW STORAGE DATA STRUCTURE
+   DIAGONAL IS FIRST ENTRY IN ENTRIES FOR INDIVIDUAL
+   SOLUTION REACH GROUPS
+POS.     1     2
+ -----------------------------------------------------------
+RG       1
+SE       1
+JA       1
+IA       1     2
+IU       0
+ -----------------------------------------------------------
+
+ -----------------------------------------------------------
+ FULL REACH CONNECTIVITY FOR EACH REACH GROUP
+   A NEGATIVE IRCHC REACH NUMBER INDICATES THE CONNECTION
+   IS STRUCTURE CONTROLLED
+
+ -----------------------------------------------------------
+ RCHGRP =     1
+ IRGNUM =     1
+               -----------------CONNECTIONS-----------------
+                            1
+ -----------------------------------------------------------
+ IRCHC REACHES      NONE     
+ -----------------------------------------------------------
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD    1   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    1   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      600.00                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD    1
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+               TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+              TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD   1
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    1
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+1
+1
+                            STRESS PERIOD NO.    2, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.170E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD    2   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    2   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      1200.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD    2
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =        1020.0000         LATERAL FLOW  =           1.7000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+               TOTAL IN =        1020.0000              TOTAL IN =           1.7000
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =         173.0303        BOUNDARY FLOW  =           0.2884
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =         846.9697              STORAGE  =           1.4116
+
+              TOTAL OUT =        1020.0000             TOTAL OUT =           1.7000
+
+               IN - OUT =           0.0000              IN - OUT =       1.1921E-07
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD   2
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    2
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  1200.0      20.000     0.33333     1.38889E-02 3.80257E-05
+1
+1
+                            STRESS PERIOD NO.    3, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.340E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD    3   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    3   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      1800.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD    3
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =        3060.0000         LATERAL FLOW  =           3.4000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+               TOTAL IN =        3060.0000              TOTAL IN =           3.4000
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =         694.7675        BOUNDARY FLOW  =           0.8696
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =        2365.2324              STORAGE  =           2.5304
+
+              TOTAL OUT =        3060.0000             TOTAL OUT =           3.4000
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD   3
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    3
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  1800.0      30.000     0.50000     2.08333E-02 5.70386E-05
+1
+1
+                            STRESS PERIOD NO.    4, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.510E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD    4   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    4   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      2400.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD    4
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =        6120.0000         LATERAL FLOW  =           5.1000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+               TOTAL IN =        6120.0000              TOTAL IN =           5.1000
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =        1887.1149        BOUNDARY FLOW  =           1.9872
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =        4232.8853              STORAGE  =           3.1128
+
+              TOTAL OUT =        6120.0000             TOTAL OUT =           5.1000
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD   4
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    4
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  2400.0      40.000     0.66667     2.77778E-02 7.60514E-05
+1
+1
+                            STRESS PERIOD NO.    5, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.680E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD    5   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    5   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      3000.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD    5
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       10200.0000         LATERAL FLOW  =           6.8000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+               TOTAL IN =       10200.0000              TOTAL IN =           6.8000
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =        4017.7507        BOUNDARY FLOW  =           3.5511
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =        6182.2495              STORAGE  =           3.2489
+
+              TOTAL OUT =       10200.0000             TOTAL OUT =           6.8000
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD   5
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    5
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  3000.0      50.000     0.83333     3.47222E-02 9.50643E-05
+1
+1
+                            STRESS PERIOD NO.    6, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.850E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD    6   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    6   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      3600.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD    6
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       15300.0000         LATERAL FLOW  =           8.5000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+               TOTAL IN =       15300.0000              TOTAL IN =           8.5000
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =        6939.3462        BOUNDARY FLOW  =           4.8693
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =        8360.6543              STORAGE  =           3.6307
+
+              TOTAL OUT =       15300.0000             TOTAL OUT =           8.5000
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD   6
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    6
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  3600.0      60.000      1.0000     4.16667E-02 1.14077E-04
+1
+1
+                            STRESS PERIOD NO.    7, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.102E+02
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD    7   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    7   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      4200.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD    7
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       21414.0000         LATERAL FLOW  =          10.1900
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+               TOTAL IN =       21414.0000              TOTAL IN =          10.1900
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       10297.9990        BOUNDARY FLOW  =           5.5978
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       11116.0010              STORAGE  =           4.5922
+
+              TOTAL OUT =       21414.0000             TOTAL OUT =          10.1900
+
+               IN - OUT =           0.0000              IN - OUT =      -9.5367E-07
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =          -0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD   7
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    7
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  4200.0      70.000      1.1667     4.86111E-02 1.33090E-04
+1
+1
+                            STRESS PERIOD NO.    8, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.906E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD    8   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    8   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      4800.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD    8
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       26850.0000         LATERAL FLOW  =           9.0600
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+               TOTAL IN =       26850.0000              TOTAL IN =           9.0600
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       13872.6230        BOUNDARY FLOW  =           5.9577
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       12977.3770              STORAGE  =           3.1023
+
+              TOTAL OUT =       26850.0000             TOTAL OUT =           9.0600
+
+               IN - OUT =           0.0000              IN - OUT =       9.5367E-07
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD   8
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    8
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  4800.0      80.000      1.3333     5.55556E-02 1.52103E-04
+1
+1
+                            STRESS PERIOD NO.    9, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.793E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD    9   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    9   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      5400.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD    9
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       31608.0000         LATERAL FLOW  =           7.9300
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+               TOTAL IN =       31608.0000              TOTAL IN =           7.9300
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       17629.1152        BOUNDARY FLOW  =           6.2608
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       13978.8848              STORAGE  =           1.6692
+
+              TOTAL OUT =       31608.0000             TOTAL OUT =           7.9300
+
+               IN - OUT =           0.0000              IN - OUT =      -4.7684E-07
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =          -0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD   9
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    9
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  5400.0      90.000      1.5000     6.25000E-02 1.71116E-04
+1
+1
+                            STRESS PERIOD NO.   10, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.680E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD   10   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD   10   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      6000.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD   10
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       35688.0000         LATERAL FLOW  =           6.8000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+               TOTAL IN =       35688.0000              TOTAL IN =           6.8000
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       21435.3262        BOUNDARY FLOW  =           6.3437
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       14252.6738              STORAGE  =           0.4563
+
+              TOTAL OUT =       35688.0000             TOTAL OUT =           6.8000
+
+               IN - OUT =           0.0000              IN - OUT =       4.7684E-07
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD  10
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD   10
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  6000.0      100.00      1.6667     6.94444E-02 1.90129E-04
+1
+1
+                            STRESS PERIOD NO.   11, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.566E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD   11   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD   11   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      6600.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD   11
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       39084.0000         LATERAL FLOW  =           5.6600
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =         347.1674              STORAGE  =           0.5786
+
+               TOTAL IN =       39431.1680              TOTAL IN =           6.2386
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       25178.4941        BOUNDARY FLOW  =           6.2386
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       14252.6738              STORAGE  =           0.0000
+
+              TOTAL OUT =       39431.1680             TOTAL OUT =           6.2386
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD  11
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD   11
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  6600.0      110.00      1.8333     7.63889E-02 2.09141E-04
+1
+1
+                            STRESS PERIOD NO.   12, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.453E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD   12   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD   12   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      7200.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD   12
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       41802.0000         LATERAL FLOW  =           4.5300
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =        1214.7811              STORAGE  =           1.4460
+
+               TOTAL IN =       43016.7812              TOTAL IN =           5.9760
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       28764.1074        BOUNDARY FLOW  =           5.9760
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       14252.6738              STORAGE  =           0.0000
+
+              TOTAL OUT =       43016.7812             TOTAL OUT =           5.9760
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD  12
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD   12
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  7200.0      120.00      2.0000     8.33333E-02 2.28154E-04
+1
+1
+                            STRESS PERIOD NO.   13, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.340E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD   13   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD   13   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      7800.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD   13
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       43842.0000         LATERAL FLOW  =           3.4000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =        2595.7090              STORAGE  =           2.3015
+
+               TOTAL IN =       46437.7109              TOTAL IN =           5.7015
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       32185.0352        BOUNDARY FLOW  =           5.7015
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       14252.6738              STORAGE  =           0.0000
+
+              TOTAL OUT =       46437.7109             TOTAL OUT =           5.7015
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD  13
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD   13
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  7800.0      130.00      2.1667     9.02778E-02 2.47167E-04
+1
+1
+                            STRESS PERIOD NO.   14, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.227E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD   14   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD   14   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      8400.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD   14
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       45204.0000         LATERAL FLOW  =           2.2700
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =        4442.0850              STORAGE  =           3.0773
+
+               TOTAL IN =       49646.0859              TOTAL IN =           5.3473
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       35393.4102        BOUNDARY FLOW  =           5.3473
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       14252.6738              STORAGE  =           0.0000
+
+              TOTAL OUT =       49646.0859             TOTAL OUT =           5.3473
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD  14
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD   14
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  8400.0      140.00      2.3333     9.72222E-02 2.66180E-04
+1
+1
+                            STRESS PERIOD NO.   15, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.113E+01
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD   15   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD   15   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      9000.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD   15
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       45882.0000         LATERAL FLOW  =           1.1300
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =        6527.1045              STORAGE  =           3.4750
+
+               TOTAL IN =       52409.1055              TOTAL IN =           4.6050
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       38156.4297        BOUNDARY FLOW  =           4.6050
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       14252.6738              STORAGE  =           0.0000
+
+              TOTAL OUT =       52409.1016             TOTAL OUT =           4.6050
+
+               IN - OUT =       3.9062E-03              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD  15
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD   15
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  9000.0      150.00      2.5000     0.10417     2.85193E-04
+1
+1
+                            STRESS PERIOD NO.   16, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 9A
+
+ SURFACE-WATER ROUTING REACH STRESS DATA 
+      REACH       RAIN       EVAP   QLATFLOW
+ -------------------------------------------
+          1  0.000E+00  0.000E+00  0.000E+00
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD   16   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD   16   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      9600.0                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD   16
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       45882.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =        8467.1328              STORAGE  =           3.2334
+
+               TOTAL IN =       54349.1328              TOTAL IN =           3.2334
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       40096.4570        BOUNDARY FLOW  =           3.2334
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       14252.6738              STORAGE  =           0.0000
+
+              TOTAL OUT =       54349.1328             TOTAL OUT =           3.2334
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD  16
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD   16
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  9600.0      160.00      2.6667     0.11111     3.04206E-04
+1
+1
+                            STRESS PERIOD NO.   17, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+
+ REUSING SURFACE-WATER ROUTING REACHES FROM LAST STRESS PERIOD
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD   17   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD   17   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      10200.                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD   17
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       45882.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =        9776.5918              STORAGE  =           2.1824
+
+               TOTAL IN =       55658.5938              TOTAL IN =           2.1824
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       41405.9141        BOUNDARY FLOW  =           2.1824
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       14252.6738              STORAGE  =           0.0000
+
+              TOTAL OUT =       55658.5859             TOTAL OUT =           2.1824
+
+               IN - OUT =       7.8125E-03              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD  17
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD   17
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  10200.      170.00      2.8333     0.11806     3.23218E-04
+1
+1
+                            STRESS PERIOD NO.   18, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+
+ REUSING SURFACE-WATER ROUTING REACHES FROM LAST STRESS PERIOD
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD   18   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD   18   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      10800.                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD   18
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       45882.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       10674.0439              STORAGE  =           1.4958
+
+               TOTAL IN =       56556.0430              TOTAL IN =           1.4958
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       42303.3672        BOUNDARY FLOW  =           1.4958
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       14252.6738              STORAGE  =           0.0000
+
+              TOTAL OUT =       56556.0391             TOTAL OUT =           1.4958
+
+               IN - OUT =       3.9062E-03              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD  18
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD   18
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  10800.      180.00      3.0000     0.12500     3.42231E-04
+1
+1
+                            STRESS PERIOD NO.   19, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+
+ REUSING SURFACE-WATER ROUTING REACHES FROM LAST STRESS PERIOD
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD   19   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD   19   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      11400.                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD   19
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       45882.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       11355.9111              STORAGE  =           1.1364
+
+               TOTAL IN =       57237.9102              TOTAL IN =           1.1364
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       42985.2344        BOUNDARY FLOW  =           1.1364
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       14252.6738              STORAGE  =           0.0000
+
+              TOTAL OUT =       57237.9062             TOTAL OUT =           1.1364
+
+               IN - OUT =       3.9062E-03              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD  19
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD   19
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  11400.      190.00      3.1667     0.13194     3.61244E-04
+1
+1
+                            STRESS PERIOD NO.   20, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+
+ REUSING SURFACE-WATER ROUTING REACHES FROM LAST STRESS PERIOD
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD   20   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD   20   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      12000.                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD   20
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       45882.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       11879.5332              STORAGE  =           0.8727
+
+               TOTAL IN =       57761.5312              TOTAL IN =           0.8727
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       43508.8555        BOUNDARY FLOW  =           0.8727
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       14252.6738              STORAGE  =           0.0000
+
+              TOTAL OUT =       57761.5312             TOTAL OUT =           0.8727
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD  20
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD   20
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  12000.      200.00      3.3333     0.13889     3.80257E-04
+1
+1
+                            STRESS PERIOD NO.   21, LENGTH =   600.0000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =     1
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   600.0000    
+
+ REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
+
+      1 GHB CELLS
+
+ ...READING SWR1 PROCESS DATASET 5
+
+
+ REUSING SURFACE-WATER ROUTING REACHES FROM LAST STRESS PERIOD
+
+ SOLVING FOR HEAD 
+ INITIAL HNEW IS AN EXACT SOLUTION.
+
+ OUTPUT CONTROL FOR STRESS PERIOD   21   TIME STEP    1
+    SAVE BUDGET
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD   21   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      12600.                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP     1 IN STRESS PERIOD   21
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =       45882.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       12302.3730              STORAGE  =           0.7047
+
+               TOTAL IN =       58184.3750              TOTAL IN =           0.7047
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =           0.0000        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =       43931.6953        BOUNDARY FLOW  =           0.7047
+         CONSTANT FLOW  =           0.0000        CONSTANT FLOW  =           0.0000
+               STORAGE  =       14252.6738              STORAGE  =           0.0000
+
+              TOTAL OUT =       58184.3672             TOTAL OUT =           0.7047
+
+               IN - OUT =       7.8125E-03              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP    1, STRESS PERIOD  21
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =           0.0000              TOTAL IN =           0.0000
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =           0.0000         CONSTANT HEAD =           0.0000
+     HEAD DEP BOUNDS =           0.0000       HEAD DEP BOUNDS =           0.0000
+         SWR LEAKAGE =           0.0000           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =           0.0000             TOTAL OUT =           0.0000
+
+            IN - OUT =           0.0000              IN - OUT =           0.0000
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD   21
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+ STRESS PERIOD TIME  600.00      10.000     0.16667     6.94444E-03 1.90129E-05
+         TOTAL TIME  12600.      210.00      3.5000     0.14583     3.99270E-04
+1
+
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2016/01/14 12:31:14
+ Elapsed run time:  0.019 Seconds
+
+
+
+ SUMMARY OF SWR1 PROCESS EXECUTION TIME
+ TOTAL SWR1 EXECUTION TIME:    0.3906250E-02 SECONDS

@@ -1,0 +1,25 @@
+# MODFLOW2000 General Head Boundary Package
+PARAMETER  0  0
+        01         0
+        01         0                      Stress Period 1
+         1         1         1     2.000 4.000e+03         1
+        -1         0                      Stress Period 2
+        -1         0                      Stress Period 3
+        -1         0                      Stress Period 4
+        -1         0                      Stress Period 5
+        -1         0                      Stress Period 6
+        -1         0                      Stress Period 7
+        -1         0                      Stress Period 8
+        -1         0                      Stress Period 9
+        -1         0                      Stress Period 10
+        -1         0                      Stress Period 11
+        -1         0                      Stress Period 12
+        -1         0                      Stress Period 13
+        -1         0                      Stress Period 14
+        -1         0                      Stress Period 15
+        -1         0                      Stress Period 16
+        -1         0                      Stress Period 17
+        -1         0                      Stress Period 18
+        -1         0                      Stress Period 19
+        -1         0                      Stress Period 20
+        -1         0                      Stress Period 21

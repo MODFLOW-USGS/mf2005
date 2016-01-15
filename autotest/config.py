@@ -2,16 +2,18 @@ import os
 
 # Autotest information
 testdir = 'temp'
-retain = False
+retain = True
 target_dict = {}
 
-exclude = None #('MNW2-Fig28',) #, 'swi2ex4sww') #None
+exclude = ('swr001', 'swr002', 'swr003', 'swr005', 'swr006/', 'swr007') #None #('MNW2-Fig28',) #, 'swi2ex4sww') #None
 
 # Development version information
 exdir = 'test-run'
 arcdir = 'test-arc'
 testdev = 'test-dev'
-testpaths = [os.path.join('..', exdir), os.path.join('..', arcdir), os.path.join('..', testdev)]
+testswr = 'test-swr'
+testpaths = [os.path.join('..', exdir), os.path.join('..', arcdir),
+             os.path.join('..', testdev), os.path.join('..', testswr)]
 srcdir = os.path.join('..', 'src')
 program = 'mf2005'
 version = '1.12.00'

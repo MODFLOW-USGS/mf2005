@@ -1,0 +1,14 @@
+list          16 swr007.lst
+BAS6          15 swr007.ba6
+LPF           17 swr007.lpf
+WEL           12 swr007.wel
+PCG           13 swr007.pcg
+OC            14 swr007.oc  
+SWR           11 swr007.swr
+DIS           10 swr007.dis
+ZONE          18 swr007.zon
+DATA(BINARY)  76 swr007.hds replace
+DATA(BINARY)  77 swr007.cbc replace
+DATA         101 swr007_swr.flow.csv
+DATA(BINARY) 102 swr007_swr.bin replace
+DATA         103 swr007_swr.baseflow.csv

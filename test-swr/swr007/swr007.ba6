@@ -1,0 +1,8 @@
+#Locally Refined Grid:  Simple Heterogeneity
+#Steffen Mehl 02/23/2004-> HETEROGENEOUS and PUMPING WELL
+FREE CHTOCH
+OPEN/CLOSE swr007.ibd    1 (108i3)   +9  IBOUND layer   1
+-9.990E+02  HNOFLO
+OPEN/CLOSE swr007.shd    1 (108f5.3) +9  Initial Head layer   1
+~
+

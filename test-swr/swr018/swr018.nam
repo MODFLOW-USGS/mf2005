@@ -1,0 +1,12 @@
+LIST           7 swr018.lst
+BAS6           1 swr018.bas
+DIS           29 swr018.dis
+LPF           11 swr018.lpf
+OC            22 swr018.oc
+PCG           19 swr018.pcg
+SWR           61 swr018.swr
+DATA         201 ref/USInflow.dat
+DATA(BINARY) 101 swr018.flo replace
+DATA(BINARY) 102 swr018.stg replace
+DATA(BINARY) 103 swr018.hds replace
+

@@ -69,9 +69,6 @@ def run_mf2005(namefile, comparison=True):
                 outfile2 = os.path.join(
                         os.path.split(os.path.join(testpth, nam))[0],
                         'hds.cmp')
-                outfile3 = os.path.join(
-                        os.path.split(os.path.join(testpth, nam))[0],
-                        'swr.bud.cmp')
                 success_cmp = pymake.compare(os.path.join(testpth, nam),
                                              os.path.join(testpth_cmp, nam),
                                              precision='single',
@@ -79,7 +76,6 @@ def run_mf2005(namefile, comparison=True):
                                              htol=0.001,
                                              outfile1=outfile1,
                                              outfile2=outfile2,
-                                             outfile3=outfile3,
                                              files2=files_cmp)
 
     # Clean things up

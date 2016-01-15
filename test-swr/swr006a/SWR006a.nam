@@ -1,0 +1,8 @@
+LIST           7 SWR006.lst
+BAS6           1 SWR006.bas
+DIS           29 SWR006a.dis
+LPF           11 SWR006.lpf
+OC            22 SWR006.oc
+PCG           19 SWR006.pcg
+SWR           61 SWR006a.swr
+DATA(BINARY) 102 SWR006.stg replace
