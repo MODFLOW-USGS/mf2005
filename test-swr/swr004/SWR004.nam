@@ -10,3 +10,5 @@ DATA         202 Data/Reach5Inflow.ref
 DATA(BINARY) 101 SWR004.flow replace
 DATA(BINARY) 102 SWR004.stg  replace
 DATA(BINARY) 103 SWR004.vel  replace
+DATA(BINARY) 104 SWR004.obs  replace
+DATA(BINARY) 105 SWR004.str  replace

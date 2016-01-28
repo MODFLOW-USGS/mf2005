@@ -52,7 +52,7 @@ def run_mf2005(namefile, comparison=True):
                 files = os.listdir(testpth_cmp)
                 for file in files:
                     files_cmp.append(
-                        os.path.abspath(os.path.join(testpth_cmp, file)))
+                            os.path.abspath(os.path.join(testpth_cmp, file)))
                 success_cmp = True
                 print(files_cmp)
             else:
@@ -89,7 +89,17 @@ def run_mf2005(namefile, comparison=True):
                                                        max_incpd=0.01,
                                                        outfile=outfile3,
                                                        files2=files_cmp)
-                if success_cmp and success_swr:
+
+                # stage comparison
+                outfile4 = os.path.join(
+                        os.path.split(os.path.join(testpth, nam))[0],
+                        'swr.stage.cmp')
+                success_stg = pymake.compare_stages(namefile1=namefile1,
+                                                    htol=0.001,
+                                                    outfile=outfile4,
+                                                    files2=files_cmp)
+
+                if success_cmp and success_swr and success_stg:
                     success_cmp = True
                 else:
                     success_cmp = False

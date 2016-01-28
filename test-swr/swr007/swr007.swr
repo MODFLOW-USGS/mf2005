@@ -2,7 +2,7 @@
 # TITLE - SHRTEST10
 # DATASET 1A - DIMENSIONS AND PRELIMINARIES
 # NREACHES ISWRONLY ILPRCBC ILPRPFL ILPRSTG ILPRBFL ISWRPQM ISWRPSTR ISWRPFRN Option    
-       108        0       0     101    -102     103       0        0        1 SWROPTIONS
+       108        0       0    -101    -102    -103       0        0        1 SWROPTIONS
 
 # DATASET 1B - SWR1 OPTIONS
 USE_NONCONVERGENCE_CONTINUE
@@ -14,9 +14,10 @@ END
 
 # DATASET 3 - SOLVER PARAMETERS
 # SOLVER NOUTER NINNER IBT    TOLX     TOLF TOLA DAMPSS DAMPTR IPRSWR MUTSWR IPC NLEVELS DROPTOL IBTPRT
-##     1    101      1  10 1.0E-09  1.0E-03 0.00   0.01    1.0      0      3                          1
-       1    101      1   0 1.0E-09  1.0E-03 0.00  0.008    1.0      1      0                          1
-#      1    101      1  10 1.0E-09  1.0E-03 0.00    1.0    1.0      1      0                          1
+###    1    101      1  10 1.0E-09  1.0E-03 0.00   0.01    1.0      0      3                          1
+##     1    101      1   0 1.0E-09  1.0E-03 0.00  0.008    1.0      1      0                          1
+       1    101      1   0 1.0E-09  1.0E-03 0.00    1.0    1.0      1      0                          1
+#      2     50    100   0 1.0E-04  1.0E-03 0.00    1.0    1.0      1      0   3                      1
 
 # DATASET 4 - REACH LOCATION DATA
 #                                     LAY   ROW   COL

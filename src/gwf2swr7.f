@@ -48,7 +48,7 @@ C           THAN CELL-BASED REACHES (IGEOTYPE=5)
 C         - SUMMARY CONVERGENCE INFORMATION WRITTEN TO SCREEN (ONLY WHEN ISWRSCRN=1) ONLY
 C           INCLUDES INFORMATION FOR ACTIVE REACH GROUPS
 C
-C     VERSION 1.04 SWR1 for MODFLOW NWT
+C     VERSION 1.04 SWR1 for MODFLOW-2005 (1.12) AND MODFLOW NWT (1.1.0)
 C     CHANGES
 C     o ADDED STATE FUNCTION SUBROUTINES - RETRIEVE STAGE, FLOW, OR STRUCTURE FLOW
 C       AT THE END OF THE PREVIOUS MODFLOW TIME STEP
@@ -61,6 +61,14 @@ C       SPECIFIED AND THE RSTAGE VALUE IS THE REACH USED TO DEFINE THE STAGE. ON
 C       REACH STAGE DATA SPECIFIED USING LIST INPUT
 C     o ADDED KINEMATIC-WAVE OPTION (IROUTETYPE = 4)
 C       *** THIS NEEDS TO BE REFINED FOR TWO-DIMENSIONAL PROBLEMS ***
+C     o ADDED MATRIX LEVEL PSEUDO-TRANSIENT CONTINUATION APPROACH FOR STEADY-STATE STRESS 
+C       PERIODS (BASED ON KELLEY AND KEYES (1998). INITIAL PSEUDO-TRANSIENT CONTINUATION
+C       TIMESTEP (PTCDEL) IS CALCULATED USING THE COMPUTED WAVE CELERITY
+C       BASED ON SAVANT AND OTHERS (2011) - PTCDEL0 = DLEN / SQRT(g depth). 
+C       ORIGINAL PSEUDO-TRANSIENT CONTINUATION APPROACH DESCRIBED IN THE DOCUMENTATION 
+C       HAS BEEN DEPRECATED.      
+C     o ADDED BOTTOM AVERAGING TO DAMPEN OSCILLATING SOLUTIONS - ALGORITHM IS IDENTICAL TO
+C       THE ALGORITHM USED IN MODFLOW-USG (PANDAY AND OTHERS, 2013).
 C      
 C     o MINOR BUG FIXES IN:
 C         - CALCULATION OF QAQ EXCHANGE PERIMETER FOR EACH LAYER
@@ -95,7 +103,7 @@ C-----------------------------------------------------------------------------
 C      
       MODULE GWFSWRMODULE
         CHARACTER(LEN=64),PARAMETER :: VERSION_SWR =
-     +'$Id: gwf2swr7.f 1.04 2014-03-06 15:00:00Z jdhughes $'
+     +'$Id: gwf2swr7.f 1.04 2016-01-28 15:00:00Z jdhughes $'
 C
 C---------INVARIANT PARAMETERS
         INTEGER, PARAMETER          :: IUZFOFFS     = 100000
@@ -1321,7 +1329,12 @@ C           USE_UPSTREAM_WEIGHTING
 C           USE_INEXACT_NEWTON
           IF ( swroptions(10)%ioptionused.NE.0 ) INEXCTNWT   =  1
 C           USE_STEADYSTATE_STORAGE
-          IF ( swroptions(11)%ioptionused.NE.0 ) ISSSTOR     =  1
+          IF ( swroptions(11)%ioptionused.NE.0 ) THEN
+            !ISSSTOR     =  1
+            WRITE (IOUT,'(1X,A)') 'ORIGINAL PSEUDO-TRANSIENT' //
+     &                            'CONTINUATION APPROACH DEPRECATED' //
+     &                            ' -- USING MATRIX APPROACH'
+          END IF
 C           USE_LAGGED_OPR_DATA
           IF ( swroptions(12)%ioptionused.NE.0 ) ILAGSTROPR  =  1
 C           USE_LINEAR_DEPTH_SCALING
@@ -4877,7 +4890,7 @@ C
 C-----------SOLUTION USING APPROXIMATE NEWTON METHOD AND SPECIFIED SOLVER
           isoln = 0
           fmax0 = DZERO
-          CALL SSWR_GSOLWRP(iouter,isoln,JAC%PS,checkresult)
+          CALL SSWR_GSOLWRP(Kkiter,iouter,isoln,JAC%PS,checkresult)
           
           CALL SSWR_CALC_RGRESI(JAC%PS,JAC%R)
           SWRTIME(n)%ICNVG    = n
@@ -8623,11 +8636,12 @@ C
 C
 C-------WRAPPER FOR CONSOLIDATED OUTER ITERATIONS (NON-LINEAR NEWTON STEP)
 C       AND ALL LINEAR SOLVERS 
-      SUBROUTINE SSWR_GSOLWRP(Iouter,Isoln,X,Check)
+      SUBROUTINE SSWR_GSOLWRP(Kmf,Iouter,Isoln,X,Check)
         USE GLOBAL,       ONLY: IOUT
         USE GWFSWRMODULE
         IMPLICIT NONE
 C     + + + DUMMY ARGUMENTS + + +
+        INTEGER, INTENT(IN) :: Kmf
         INTEGER, INTENT(INOUT) :: Iouter
         INTEGER, INTENT(INOUT) :: Isoln
         DOUBLEPRECISION, DIMENSION(NRCHGRP), INTENT(INOUT) :: X
@@ -8650,6 +8664,8 @@ C     + + + LOCAL DEFINITIONS + + +
         DOUBLEPRECISION :: e
         DOUBLEPRECISION :: botm
         DOUBLEPRECISION :: xu
+        DOUBLEPRECISION :: d, g, dt
+        logical :: l
 C     + + + FUNCTIONS + + +
         DOUBLEPRECISION :: SSWR_CALC_FTOLR
         DOUBLEPRECISION :: GSOL_L2NORM
@@ -8709,38 +8725,59 @@ C-----------CALCULATE EXPLICIT INVARIANT QM AND UPDATE THE RESIDUAL
           END IF
 C-----------CALCULATE COMPRESSED JACOBIAN
           CALL SSWR_FDJACC(X,JAC%R,JAC%XS,JAC%FJACC)
-!C-----------PSEUDO-TRANSIENT CONTINUATION
-!          diagmin = 1.0D20
-!          DO n = 1, NSOLRG
-!            ia = JAC%IA(n)
-!            IF ( ABS(JAC%FJACC(ia)).EQ.DZERO ) CYCLE
-!            IF (ABS(JAC%FJACC(ia)) < diagmin) THEN
-!              diagmin = ABS(JAC%FJACC(ia))
-!            END IF
-!          END DO
-!          IF (ots > 1) THEN
-!            PTCDEL = PTCDEL * ptcfn0 / fni
-!          ELSE
-!            !PTCDEL = 1.0D-3
-!            PTCDEL = dble(NSOLRG) / (fni)
-!          END IF
-!          !if (done/ptcdel > 0.5d0*diagmin) then
-!          !  ptcdel = done / (0.5d0 * diagmin)
-!          !end if
-!          write(10691,'(i10,5(1x,g10.2))') ots, ptcdel, done/ptcdel, 
-!     &                                     ptcfn0, fni, ptcfn0/fni
-!          ptcfn0 = fni
-!          DO n = 1, NSOLRG
-!            ia = JAC%IA(n)
-!            JAC%FJACC(ia) = JAC%FJACC(ia) + (DONE / PTCDEL)
-!          END DO
+C-----------CALCULATE PSEUDO-TRANSIENT CONTINUATION TERM
+          IF (ISWRSS.GT.0) THEN
+            diagmin = 1.0D20
+            DO n = 1, NSOLRG
+              ia = JAC%IA(n)
+              IF ( ABS(JAC%FJACC(ia)).EQ.DZERO ) CYCLE
+              IF (ABS(JAC%FJACC(ia)) < diagmin) THEN
+                diagmin = ABS(JAC%FJACC(ia))
+              END IF
+            END DO
+            fn = GSOL_L2NORM(NSOLRG, JAC%F)
+            IF (ots < 2) THEN
+              ptcfn0 = fn
+!              INQUIRE (unit=10691, OPENED=l)
+!              if (l .eqv. .false.) then
+!                open(unit=10691,file='ptc.dat',status='replace')
+!              end if
+!              write(10691,'(7(a10,1x))') 
+!     &          '   MFOUTER', ' OUTERITER', '    PTCDEL',
+!     &          '  PTCDEL-1', '   L2NORM0',
+!     &          '    L2NORM', ' L2NORMRAT'
+              PTCDEL = 1.0D+20 !RTMIN
+              g = GRAVITY * DLENCONV * TIMECONV * TIMECONV
+              DO n = 1, NSOLRG 
+                j = JAC%ISMAP(n)
+                IF (RCHGRP(j)%INACTIVE .EQV. .TRUE. .OR.
+     &              RCHGRP(j)%CONSTANT .EQV. .TRUE.) THEN
+                  CYCLE
+                END IF
+                d = JAC%XS(n) - RCHGRP(j)%RGELEV(1)
+                IF (d.GT.DZERO) THEN
+                  dt = RCHGRP(j)%DLEN / SQRT(g * d)
+                  IF (dt.LT.PTCDEL) PTCDEL = dt
+                END IF
+              END DO
+            END IF
+            PTCDEL = PTCDEL * ptcfn0 / fn
+!            write(10691,'(i10,1x,i10,5(1x,g10.2))') 
+!     &         Kmf, ots, ptcdel, done/ptcdel, 
+!     &         ptcfn0, fn, ptcfn0/fn
+            ptcfn0 = fn
+            DO n = 1, NSOLRG
+              ia = JAC%IA(n)
+              JAC%FJACC(ia) = JAC%FJACC(ia) - (DONE / PTCDEL)
+            END DO
+          END IF
 C-----------CHECK FOR ZERO ELEMENTS ALONG DIAGONAL
           DO n = 1, NSOLRG
             ia = JAC%IA(n)
             IF ( ABS(JAC%FJACC(ia)).EQ.DZERO ) THEN
               JAC%FJACC(ia) = DONE
-              JAC%F(n)      = JAC%F(n) + DONE
-              !JAC%F(n)      = DONE
+              !JAC%F(n)      = JAC%F(n) + DONE
+              JAC%F(n) = DZERO
             END IF
           END DO
 C-----------CALCULATE THE MATRIX VECTOR PRODUCT J s(k-1)
@@ -8859,29 +8896,30 @@ C           ONLY APPLIED WHEN THERE HAS BEEN NO IMPROVEMENT IN THE L2NORM
               JAC%DX(n) = JAC%XS(n) - JAC%X0(n)
             END DO
           END IF
-!C-----------BOTTOM AVERAGING
-!          icheck = 0
-!          DO i = 1, NSOLRG
-!            j = JAC%ISMAP(i)
-!            botm = RCHGRP(j)%RGELEV(1)
-!            IF (JAC%XS(i) < botm) THEN
-!              icheck = icheck + 1
-!              xu = JAC%XI(j)*(0.1D0) + botm*0.9D0
-!              IF (xu > botm) THEN
-!                JAC%XS(i) = xu
-!              ELSE
-!                JAC%XS(i) = botm
-!              END IF
-!              JAC%DX(i) = JAC%XS(i) - JAC%X0(i)
-!            END IF
-!          END DO
-!          IF (icheck > 0) THEN
-!C-----------MAP SOLUTION TO ALL REACH GROUPS
-!            CALL SSWRS2C(JAC%XS,X)
-!            CALL SSWR_CALC_RGRESI(X,JAC%R)
-!            CALL SSWRC2S(JAC%R,JAC%F)
-!            fn = GSOL_L2NORM(NSOLRG, JAC%F)
-!          END IF
+C-----------NEWTON HEAD DAMPENING
+          icheck = 0
+          DO i = 1, NSOLRG
+            j = JAC%ISMAP(i)
+            botm = RCHGRP(j)%RGELEV(1)
+            IF (JAC%XS(i) < botm) THEN
+              icheck = icheck + 1
+              xu = JAC%XI(j)*(0.1D0) + botm*0.9D0
+              IF (xu > botm) THEN
+                JAC%XS(i) = xu
+              ELSE
+                JAC%XS(i) = botm
+              END IF
+              JAC%DX(i) = JAC%XS(i) - JAC%X0(i)
+            END IF
+          END DO
+          IF (icheck > 0) THEN
+C-------------MAP SOLUTION MODIFIED BY NEWTON HEAD DAMPENING
+C             TO ALL REACH GROUPS
+            CALL SSWRS2C(JAC%XS,X)
+            CALL SSWR_CALC_RGRESI(X,JAC%R)
+            CALL SSWRC2S(JAC%R,JAC%F)
+            fn = GSOL_L2NORM(NSOLRG, JAC%F)
+          END IF
 C-----------CHECK FOR ABSOLUTE MINIMIZATION OF f
           deltaf  = DZERO
           deltafi = DZERO
@@ -8891,9 +8929,13 @@ C-----------CHECK FOR ABSOLUTE MINIMIZATION OF f
             deltafi = MAX( deltafi, ABS(JAC%F(n) - JAC%F0(n)) )
             deltax  = MAX( deltax,  ABS(JAC%DX(n)) )
           END DO
-          ratio = (DONE / ptcdel) / diagmin
+C-----------CHECK THAT THE PSEUDO-TRANSIENT CONTINUATION TERM HAS DECAYED
+C                     
           icheck = 1
-          !if (ratio > 1.0D-6) icheck = 0
+          IF (ISWRSS.GT.0 .AND. ots.LT.NOUTER) THEN
+            ratio = (DONE / ptcdel) / diagmin
+            if (ratio > 1.0D-6) icheck = 0
+          END IF
           IF (icheck > 0) THEN
             IF ( IFTOLR.NE.0 ) THEN
               deltaf = SSWR_CALC_FTOLR(JAC%R)
@@ -11420,7 +11462,15 @@ C---------SKIP IF STAGE (trs) AND GROUNDWATER HEAD (h) IS BELOW REACH BOTTOM (rb
 C-----------CALCULATE MAXIMUM INCREMENTAL WETTED PERIMETER FOR CURRENT HEAD
           wps = MAX(h,trs)
           !IF (k.EQ.1) zgtop = MAX(wps,zgtop)
-          IF (k.EQ.1) zgtop = MIN(wps,zgtop) !Jan Jeppesen bug fix
+          !IF (k.EQ.1) zgtop = MIN(wps,zgtop) !JAN JEPPESEN FIX
+C-----------JAN JEPPESEN FIX
+          IF (k.EQ.1) THEN
+            IF (dtop.GT.Rch%GBELEV) THEN
+              zgtop = MIN(wps,zgtop)
+            ELSE
+              zgtop = wps
+            END IF
+          END IF
           IF (zgtop.LT.zgbot) zgtop = zgbot
           wptop = SSWR_LININT(Rch%GEO%ELEV,
      2                        Rch%GEO%WETPER,zgtop)
@@ -11429,7 +11479,7 @@ C-----------CALCULATE MAXIMUM INCREMENTAL WETTED PERIMETER FOR CURRENT HEAD
      2                        Rch%GEO%WETPER,zgbot)
           twp = wptop
           !IF (Rch%IGEOTYPE.NE.5) twp = wptop - wpbot
-          IF (Rch%LAYSTR.NE.Rch%LAYEND) twp = wptop - wpbot !Jan Jeppesen bug fix
+          IF (Rch%LAYSTR.NE.Rch%LAYEND) twp = wptop - wpbot !JAN JEPPESEN FIX
           Rch%CURRENTQAQ(k)%WETTEDPERIMETER     = twp
 C-----------CALCULATE DYNAMIC CONDUCTANCE
           IF (Rch%IGCNDOP.GT.0) THEN
@@ -11599,7 +11649,15 @@ C---------SKIP IF STAGE (trs) AND GROUNDWATER HEAD (h) IS BELOW REACH BOTTOM (rb
 C-----------CALCULATE MAXIMUM INCREMENTAL WETTED PERIMETER FOR CURRENT HEAD
           wps = MAX(h,trs)
           !IF (k.EQ.1) zgtop = MAX(wps,zgtop)
-          IF (k.EQ.1) zgtop = MIN(wps,zgtop) !Jan Jeppesen bug fix
+          !IF (k.EQ.1) zgtop = MIN(wps,zgtop) !JAN JEPPESEN FIX
+C-----------JAN JEPPESEN FIX
+          IF (k.EQ.1) THEN
+            IF (dtop.GT.Rch%GBELEV) THEN
+              zgtop = MIN(wps,zgtop)
+            ELSE
+              zgtop = wps
+            END IF
+          END IF
           IF (zgtop.LT.zgbot) zgtop = zgbot
           wptop = SSWR_LININT(Rch%GEO%ELEV,
      2                        Rch%GEO%WETPER,zgtop)
@@ -11608,7 +11666,7 @@ C-----------CALCULATE MAXIMUM INCREMENTAL WETTED PERIMETER FOR CURRENT HEAD
      2                        Rch%GEO%WETPER,zgbot)
           twp = wptop
           !IF (Rch%IGEOTYPE.NE.5) twp = wptop - wpbot
-          IF (Rch%LAYSTR.NE.Rch%LAYEND) twp = wptop - wpbot !Jan Jeppesen bug fix
+          IF (Rch%LAYSTR.NE.Rch%LAYEND) twp = wptop - wpbot !JAN JEPPESEN FIX
           Rch%CURRENTQAQ(k)%WETTEDPERIMETER     = twp
 C-----------CALCULATE DYNAMIC CONDUCTANCE
           IF (Rch%IGCNDOP.GT.0) THEN

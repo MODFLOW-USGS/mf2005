@@ -7,6 +7,7 @@ Debug/
 Release/
 *.user
 *.cbc
+*.cbb
 *.hds
 *.ddn
 *.ucn
@@ -14,6 +15,13 @@ Release/
 *.out
 *.sdf
 *.opensdf
+*.flow
+*.stg
+*.str
+*.vel
+*.qaq
+*.lst
+*.obs
 
 *.pyc
 
@@ -24,3 +32,4 @@ autotest/temp/
 autotest/*.log
 autotest/.cache/
 
+.ipynb_checkpoints/
