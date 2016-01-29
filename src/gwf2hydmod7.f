@@ -15,6 +15,7 @@ C  inital SE call in the AR subroutine.
         REAL,       SAVE,       POINTER                ::HYDNOH
         LOGICAL,    SAVE,       POINTER,DIMENSION(:)   ::IBHYDBAS
         LOGICAL,    SAVE,       POINTER,DIMENSION(:)   ::INTRPHYDBAS
+        CHARACTER(LEN=1), SAVE, POINTER, DIMENSION(:)  ::INTYPHYDBAS
         INTEGER,    SAVE,       POINTER,DIMENSION(:,:) ::JIKHYDBAS
         REAL,       SAVE,       POINTER,DIMENSION(:,:) ::HYDBASWT
         REAL,       SAVE,       POINTER,DIMENSION(:)   ::HYDBASSTRT
@@ -27,6 +28,7 @@ C  inital SE call in the AR subroutine.
           REAL,             POINTER                ::HYDNOH
           LOGICAL,          POINTER,DIMENSION(:)   ::IBHYDBAS
           LOGICAL,          POINTER,DIMENSION(:)   ::INTRPHYDBAS
+          CHARACTER(LEN=1), POINTER, DIMENSION(:)  ::INTYPHYDBAS
           INTEGER,          POINTER,DIMENSION(:,:) ::JIKHYDBAS
           REAL,             POINTER,DIMENSION(:,:) ::HYDBASWT
           REAL,             POINTER,DIMENSION(:)   ::HYDBASSTRT
@@ -165,6 +167,7 @@ C  ALLOCATE MEMORY FOR BAS HYDROGRAPH DATA
       IF(NHYDBAS.GT.0) THEN
         ALLOCATE(IBHYDBAS(NHYDBAS))
         ALLOCATE(INTRPHYDBAS(NHYDBAS))
+        ALLOCATE(INTYPHYDBAS(NHYDBAS))
         ALLOCATE(JIKHYDBAS(3,NHYDBAS))
         ALLOCATE(HYDBASWT(4,NHYDBAS))
         ALLOCATE(HYDBASSTRT(NHYDBAS))
@@ -172,6 +175,7 @@ C  ALLOCATE MEMORY FOR BAS HYDROGRAPH DATA
       ELSE
         ALLOCATE(IBHYDBAS(1))
         ALLOCATE(INTRPHYDBAS(1))
+        ALLOCATE(INTYPHYDBAS(1))
         ALLOCATE(JIKHYDBAS(3,1))
         ALLOCATE(HYDBASWT(4,1))
         ALLOCATE(HYDBASSTRT(1))
@@ -233,6 +237,12 @@ C  Not head or drawdown, so error.
 C
 C  Find the grid coodrdinates for the cell.
       CALL SGWF2HYD7GRDLOC(XL,YL,NR1,NC1,NR2,NC2,X1,X2,Y1,Y2)
+
+C
+C KEEP TRACK OF THE INTERPOLATION TYPE
+       INTYPHYDBAS(NHYDBAS) = INTYP
+
+
 C
 C  Check if interpolating between nodes.
       IF(INTYP.EQ.'C') THEN
@@ -969,10 +979,14 @@ C -----at or around hydrograph point.
 C
 C -----Check if hydrograph value is HEAD.
       IF(HYDBASARR(N).EQ.'HD') THEN
-         IF(IBHYDBAS(N) .AND. IBFACT.EQ.0) THEN
-            HYDVAL(N,IHYDLOC)=HYDNOH
-         ELSE
-            HYDVAL(N,IHYDLOC)=SHYD7WTAVG(NN)
+         IF (INTYPHYDBAS(N).EQ.'I') THEN
+            IF(IBHYDBAS(N) .AND. IBFACT.EQ.0) THEN
+               HYDVAL(N,IHYDLOC)=HYDNOH
+            ELSE
+               HYDVAL(N,IHYDLOC)=SHYD7WTAVG(NN)
+            ENDIF
+         ELSEIF (INTYPHYDBAS(N).EQ.'H') THEN
+            HYDVAL(N,IHYDLOC)=SHYD7WTAVGEDGE(NN)
          ENDIF
 C
 C -----Hydrograph value is DRAWDOWN if NOT HEAD
@@ -1425,6 +1439,44 @@ C     ------------------------------------------------------------------
       SHYD7WTAVG=HTOT
       RETURN
       END
+      
+      FUNCTION SHYD7WTAVGEDGE(N)
+C     ******************************************************************
+C     COMPUTE WEIGHTED AVERAGE OF HEAD AT AN EDGE CELL
+C     ******************************************************************
+C
+C     SPECIFICATIONS:
+C     ------------------------------------------------------------------
+      USE GLOBAL,    ONLY: NCOL,NROW,NLAY,HNEW, IBOUND
+      USE HYDBASMODULE, ONLY: JIKHYDBAS,HYDBASWT
+      DOUBLE PRECISION W1,W2,W3,W4,HTOT
+      DOUBLE PRECISION H1, H2, H3, H4
+C     ------------------------------------------------------------------
+      J=JIKHYDBAS(1,N)
+      I=JIKHYDBAS(2,N)
+      K=JIKHYDBAS(3,N)
+      W1=HYDBASWT(1,N)
+      W2=HYDBASWT(2,N)
+      W3=HYDBASWT(3,N)
+      W4=HYDBASWT(4,N)
+      
+      H1 = HNEW(J, I, K)
+      H2 = HNEW(J+1,I,K)
+      H3 = HNEW(J+1,I-1,K)
+      H4 = HNEW(J,I-1,K)
+
+      WRITE (*,*) 'OH, HI THERE!'
+      WRITE (*,*) IBOUND(J,I,K)
+      HTOT=H1*W1
+      if(W2.gt.0.)HTOT=HTOT+H2*W2
+      if(W3.gt.0.)HTOT=HTOT+H3*W3
+      if(W4.gt.0.)HTOT=HTOT+H4*W4
+      SHYD7WTAVGEDGE=HTOT
+      RETURN
+      END
+
+      
+      
       SUBROUTINE SGWF2HYD7MW(X0,Y0,X1,X2,Y1,Y2,W1,W2,W3,W4)
 C     ******************************************************************
 C     COMPUTE WEIGHTS FOR BILINEAR INTERPOLATION
