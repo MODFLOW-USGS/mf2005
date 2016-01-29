@@ -254,13 +254,20 @@ C  Do not interpolate
          HYDBASWT(2,NHYDBAS)=ZERO
          HYDBASWT(3,NHYDBAS)=ZERO
          HYDBASWT(4,NHYDBAS)=ZERO
-      ELSE IF(INTYP.EQ.'I') THEN
-C
+      ELSE IF(INTYP.EQ.'I'.OR.INTYP.EQ.'H') THEN
+      
+CMNF ---> DEBUG
+        IF(INTYP.EQ.'H') THEN
+           WRITE(*,*) 'YATZEE!!!'
+        ENDIF
+C   
 C  Interpolate between cells
          INTRPHYDBAS(NHYDBAS)=.TRUE.
          CALL SGWF2HYD7MW(XL,YL,X1,X2,Y1,Y2,W1,W2,W3,W4)
          IF(NR2.LT.2.OR.NR2.GT.NROW.OR.NC2.LT.1.OR.NC2.GT.(NCOL-1)) THEN
-            WRITE(IOUT,26) LINE
+            WRITE(IOUT,27) LINE
+ 27         FORMAT(' Coordinates of at least one interpolation point ',
+     &      'for record are outside of the model grid:',/,A80)
             NHYDBAS=NHYDBAS-1
             GO TO 20
          ENDIF
@@ -274,8 +281,8 @@ C  Interpolate between cells
       ELSE
 C
 C  Interpolation coding error.
-         WRITE(IOUT,27) LINE
- 27      FORMAT(' Invalid interpolation type was found on the ',
+         WRITE(IOUT,28) LINE
+ 28      FORMAT(' Invalid interpolation type was found on the ',
      &   'following record:',/,A80)
          WRITE(IOUT,*) 'Hydrograph Record will be ignored.'
          NHYDBAS=NHYDBAS-1
@@ -415,7 +422,7 @@ C  Use cell value without interpolation
          IF(NR1.LT.1.OR.NR1.GT.NROW.OR.NC1.LT.1.OR.NC1.GT.NCOL) THEN
             WRITE(IOUT,26) LINE
  26         FORMAT(' Coordinates of the following record are ',
-     &           'outside of the model grid:',/,A80)
+     &      'outside of the model grid:',/,A80)
             WRITE(IOUT,*) 'Hydrograph Record will be ignored.'
             NHYDIBS=NHYDIBS-1
             GO TO 15
@@ -432,7 +439,9 @@ C  Interpolate value between nodes
          INTRPHYDIBS(NHYDIBS)=.TRUE.
          CALL SGWF2HYD7MW(XL,YL,X1,X2,Y1,Y2,W1,W2,W3,W4)
          IF(NR2.LT.2.OR.NR2.GT.NROW.OR.NC2.LT.1.OR.NC2.GT.NCOL-1) THEN
-            WRITE(IOUT,26) LINE
+            WRITE(IOUT,27) LINE
+ 27         FORMAT(' Coordinates of at least one interpolation point ',
+     &      'for record are outside of the model grid:',/,A80)
             NHYDIBS=NHYDIBS-1
             GO TO 15
          ENDIF
@@ -444,8 +453,8 @@ C  Interpolate value between nodes
          HYDIBSWT(3,NHYDIBS)=W3
          HYDIBSWT(4,NHYDIBS)=W4
       ELSE
-         WRITE(IOUT,27) LINE
- 27      FORMAT(' Invalid interpolation type was found on the ',
+         WRITE(IOUT,28) LINE
+ 28      FORMAT(' Invalid interpolation type was found on the ',
      &   'following hydrograph record:',/,A80)
          WRITE(IOUT,*) 'Hydrograph Record will be ignored.'
          NHYDIBS=NHYDIBS-1
@@ -590,7 +599,10 @@ C  Interpolate value between nodes
          INTRPHYDSUB(NHYDSUB)=.TRUE.
          CALL SGWF2HYD7MW(XL,YL,X1,X2,Y1,Y2,W1,W2,W3,W4)
          IF(NR2.LT.2.OR.NR2.GT.NROW.OR.NC2.LT.1.OR.NC2.GT.NCOL-1) THEN
-            WRITE(IOUT,26) LINE
+            WRITE(IOUT,27) LINE
+27         FORMAT(' Coordinates of at least one interpolation point ',
+     &     'for record are outside of the model grid:',/,A80)
+
             NHYDSUB=NHYDSUB-1
             GO TO 15
          ENDIF
@@ -602,8 +614,8 @@ C  Interpolate value between nodes
          HYDSUBWT(3,NHYDSUB)=W3
          HYDSUBWT(4,NHYDSUB)=W4
       ELSE
-         WRITE(IOUT,27) LINE
- 27      FORMAT(' Invalid interpolation type was found on the ',
+         WRITE(IOUT,28) LINE
+ 28      FORMAT(' Invalid interpolation type was found on the ',
      &   'following hydrograph record:',/,A80)
          WRITE(IOUT,*) 'Hydrograph Record will be ignored.'
          NHYDSUB=NHYDSUB-1
@@ -1421,6 +1433,8 @@ C
 C        SPECIFICATIONS:
 C     ------------------------------------------------------------------
 C
+C     NOTE: These conventions follow that of polin2 function in 
+C           Numerical Recipes
       DX=(X0-X1)/(X2-X1)
       DY=(Y0-Y1)/(Y2-Y1)
       DXY=DX*DY
