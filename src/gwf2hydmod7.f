@@ -266,20 +266,19 @@ C  Do not interpolate
          HYDBASWT(4,NHYDBAS)=ZERO
       ELSE IF(INTYP.EQ.'I'.OR.INTYP.EQ.'H') THEN
       
-CMNF ---> DEBUG
-        IF(INTYP.EQ.'H') THEN
-           WRITE(*,*) 'YATZEE!!!'
-        ENDIF
 C   
 C  Interpolate between cells
          INTRPHYDBAS(NHYDBAS)=.TRUE.
          CALL SGWF2HYD7MW(XL,YL,X1,X2,Y1,Y2,W1,W2,W3,W4)
-         IF(NR2.LT.2.OR.NR2.GT.NROW.OR.NC2.LT.1.OR.NC2.GT.(NCOL-1)) THEN
-            WRITE(IOUT,27) LINE
- 27         FORMAT(' Coordinates of at least one interpolation point ',
-     &      'for record are outside of the model grid:',/,A80)
-            NHYDBAS=NHYDBAS-1
+        IF (INTYPHYDBAS(NHYDBAS).EQ.'I') THEN
+        IF(NR2.LT.2.OR.NR2.GT.NROW.OR.NC2.LT.1.OR.NC2.GT.(NCOL-1)) THEN
+              WRITE(IOUT,27) LINE
+ 27           FORMAT(' Coordinates of at least one interpolation point ',
+     &        'for record are outside of the model grid',/,
+     &        ' Consider using type "C" or "H":',/,A80)
+              NHYDBAS=NHYDBAS-1
             GO TO 20
+         ENDIF
          ENDIF
          JIKHYDBAS(1,NHYDBAS)=NC2
          JIKHYDBAS(2,NHYDBAS)=NR2
@@ -991,11 +990,15 @@ C -----Check if hydrograph value is HEAD.
 C
 C -----Hydrograph value is DRAWDOWN if NOT HEAD
       ELSE
-         IF(IBHYDBAS(N) .AND. IBFACT.EQ.0) THEN
-            HYDVAL(N,IHYDLOC)=HYDNOH
-         ELSE
-            HYDVAL(N,IHYDLOC)=HYDBASSTRT(N) - SHYD7WTAVG(NN)
-         ENDIF
+         IF (INTYPHYDBAS(N).EQ.'I') THEN
+             IF(IBHYDBAS(N) .AND. IBFACT.EQ.0) THEN
+                HYDVAL(N,IHYDLOC)=HYDNOH
+             ELSE
+                HYDVAL(N,IHYDLOC)=HYDBASSTRT(N) - SHYD7WTAVG(NN)
+             ENDIF
+        ELSEIF (INTYPHYDBAS(N).EQ.'H') THEN
+            HYDVAL(N,IHYDLOC)=HYDBASSTRT(N) - SHYD7WTAVGEDGE(NN)
+        ENDIF
       ENDIF
    50 CONTINUE
 C
@@ -1447,10 +1450,11 @@ C     ******************************************************************
 C
 C     SPECIFICATIONS:
 C     ------------------------------------------------------------------
-      USE GLOBAL,    ONLY: NCOL,NROW,NLAY,HNEW, IBOUND
-      USE HYDBASMODULE, ONLY: JIKHYDBAS,HYDBASWT
+      USE GLOBAL,    ONLY: HNEW, IBOUND, NROW, NCOL
+      USE HYDBASMODULE, ONLY: JIKHYDBAS, HYDBASWT
       DOUBLE PRECISION W1,W2,W3,W4,HTOT
-      DOUBLE PRECISION H1, H2, H3, H4
+      DOUBLE PRECISION H1, H2, H3, H4, IB1, IB2, IB3, IB4
+      INTEGER HACT1, HACT2, HACT3, HACT4
 C     ------------------------------------------------------------------
       J=JIKHYDBAS(1,N)
       I=JIKHYDBAS(2,N)
@@ -1459,14 +1463,158 @@ C     ------------------------------------------------------------------
       W2=HYDBASWT(2,N)
       W3=HYDBASWT(3,N)
       W4=HYDBASWT(4,N)
-      
-      H1 = HNEW(J, I, K)
-      H2 = HNEW(J+1,I,K)
-      H3 = HNEW(J+1,I-1,K)
-      H4 = HNEW(J,I-1,K)
+C     HACT# IS AN INDICATOR IF HEAD VALUE IS GOOD AT A LOCATION      
+      HACT1 = 1
+      HACT2 = 1
+      HACT3 = 1
+      HACT4 = 1
 
-      WRITE (*,*) 'OH, HI THERE!'
-      WRITE (*,*) IBOUND(J,I,K)
+C     NOTE THE GEOMETRY IS LIKE THIS
+C
+C      ____ ____
+C     | H4 | H3 |
+C      ____ ____
+C     | H1 | H2 |
+C      ____ ____
+C
+
+C     READ IN THE HEAD AND IBOUND VALUES .... HANDLE THE EDGE CASES
+      IF (J.LE.NCOL .AND. I.LE.NROW) THEN      
+        H1 = HNEW(J, I, K)
+        IB1 = IBOUND(J, I, K)
+      ELSE
+        H1 = HYDNOH
+      ENDIF
+      
+      IF (J.LE.(NCOL-1) .AND. I.LE.NROW) THEN      
+        H2 = HNEW(J+1,I,K)
+        IB2 = IBOUND(J+1,I,K)
+      ELSE
+        H2 = HYDNOH
+      ENDIF
+      
+      IF (J.LE.(NCOL-1) .AND. I.GT.1) THEN      
+        H3 = HNEW(J+1,I-1,K)
+        IB3 = IBOUND(J+1,I-1,K)
+      ELSE
+        H3 = HYDNOH
+      ENDIF
+      
+      IF (J.LE.NCOL .AND. I.GT.1) THEN      
+        H4 = HNEW(J,I-1,K)
+        IB4 = IBOUND(J,I-1,K)
+      ELSE
+        H4 = HYDNOH
+      ENDIF
+C     IF EITHER THE HEAD IN A NODE IS EQUAL TO HYDNOH OR THE IBOUND VALUE IS 0
+C     SET HACT = 0
+      IF (H1.EQ.HYDNOH .OR. IB1.EQ.0) THEN
+          HACT1 = 0
+      ENDIF
+      IF (H2.EQ.HYDNOH .OR. IB2.EQ.0) THEN
+          HACT2 = 0
+      ENDIF
+      IF (H3.EQ.HYDNOH .OR. IB3.EQ.0) THEN
+          HACT3 = 0
+      ENDIF
+      IF (H4.EQ.HYDNOH .OR. IB4.EQ.0) THEN
+          HACT4 = 0
+      ENDIF
+
+C     NOW WORK THROUGH THE POSSIBLE INACTIVE CELLS. IF APPROPRIATE, A 
+C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
+      
+      SELECT CASE (HACT1)
+        CASE (0) !HACT1
+          SELECT CASE (HACT2)
+            CASE (0) !HACT2
+              SELECT CASE(HACT3)
+                CASE (0) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (1) !HACT4
+                      H1 = H4
+                      H2 = H4
+                      H3 = H4
+                    CASE (0) !HACT4
+                      H2 = H1
+                      H3 = H1
+                      H4 = H1
+                  END SELECT
+                CASE (1) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE(0) !HACT4
+                      H1 = H3
+                      H2 = H3 
+                     H4 = H3
+                    CASE(1) !HACT4
+                      H2 = H3
+                      H1 = H2                     
+                  END SELECT
+               END SELECT
+            CASE (1) !HACT2
+              SELECT CASE (HACT3)
+                CASE (0) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (0) !HACT4
+                      H1 = H2
+                      H3 = H2
+                      H4 = H2
+                    CASE (1) !HACT4
+                      H1 = H2
+                      H4 = H3
+                  END SELECT
+                CASE (1) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (0) !HACT4
+                      H1 = H2
+                      H4 = H3
+                    CASE (1) !HACT4
+                      H1 = H3
+                  END SELECT
+              END SELECT
+          END SELECT
+        CASE(1) !HACT1
+          SELECT CASE (HACT2)
+            CASE (0) !HACT2
+              SELECT CASE (HACT3)
+                CASE (0) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (0) !HACT4
+                      H2 = H1
+                      H3 = H1
+                      H4 = H1
+                    CASE (1) !HACT4
+                      H2 = H1
+                      H3 = H4
+                  END SELECT
+                CASE (1) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (0) !HACT4
+                      H2 = H1
+                      H4 = H3
+                    CASE (1) !HACT4
+                      H2 = H4
+                  END SELECT
+              END SELECT
+            CASE (1) !HACT2
+              SELECT CASE (HACT3)
+                CASE (0) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (0) !HACT4
+                      H3 = H2
+                      H4 = H1
+                    CASE (1) !HACT4
+                      H3 = H1
+                  END SELECT
+                CASE (1) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (0) !HACT4
+                      H4 = H2
+                  END SELECT
+              END SELECT
+          END SELECT
+      END SELECT
+      
       HTOT=H1*W1
       if(W2.gt.0.)HTOT=HTOT+H2*W2
       if(W3.gt.0.)HTOT=HTOT+H3*W3
