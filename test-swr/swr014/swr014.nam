@@ -1,0 +1,14 @@
+LIST           7 swr014.lst
+BAS6           1 swr014.bas
+DIS           29 swr014.dis
+LPF           11 swr014.lpf
+OC            22 swr014.oc
+PCG           19 swr014.pcg
+SWR           61 swr014.swr
+DRN           62 swr014.drn
+DATA         201 swr_inflow.ref
+DATA         202 swr_dt.ref
+DATA(BINARY) 101 swr014.flow
+DATA(BINARY) 102 swr014.stg
+DATA(BINARY) 103 swr014.qaq
+DATA(BINARY) 111 swr014.hds

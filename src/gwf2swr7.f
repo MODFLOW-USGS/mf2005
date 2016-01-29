@@ -8912,14 +8912,16 @@ C-----------NEWTON HEAD DAMPENING
               JAC%DX(i) = JAC%XS(i) - JAC%X0(i)
             END IF
           END DO
+C-----------MAP SOLUTION MODIFIED BY NEWTON HEAD DAMPENING
+C           TO ALL REACH GROUPS
           IF (icheck > 0) THEN
-C-------------MAP SOLUTION MODIFIED BY NEWTON HEAD DAMPENING
-C             TO ALL REACH GROUPS
             CALL SSWRS2C(JAC%XS,X)
             CALL SSWR_CALC_RGRESI(X,JAC%R)
             CALL SSWRC2S(JAC%R,JAC%F)
             fn = GSOL_L2NORM(NSOLRG, JAC%F)
-          END IF
+      END IF
+C-----------END OF NEWTON HEAD DAMPENING
+C      
 C-----------CHECK FOR ABSOLUTE MINIMIZATION OF f
           deltaf  = DZERO
           deltafi = DZERO
@@ -9325,7 +9327,7 @@ C       SURFACE WATER ROUTING BUDGET FOR MODEL
         USE GLOBAL,       ONLY: IOUT, ISSFLG, NCOL, NROW, NLAY, IBOUND
         USE GWFBASMODULE, ONLY: DELT, TOTIM, IBUDFL
         USE GWFSWRMODULE, ONLY: IKND, IZERO, RZERO, DZERO, DONE, DTWO,
-     &                          ISWRONLY, NUMTIME, ISWRDT,
+     &                          ISWRONLY, NUMTIME, ISWRSS, ISWRDT,
      &                          REACH, 
      &                          NREACHES, NRCHGRP, RCHGRP,
      &                          ICALCQAQ, NBDITEMS, INCBD, CUMBD, 
@@ -9475,7 +9477,14 @@ C           SKIP CONNECTION IF CONNECTED REACH IS INACTIVE
             v       = SSWR_CALC_VOL(irch,rs)
             rs0 = RSTAGE(irch,n-1)
             v0  = SSWR_CALC_VOL(irch,rs0)
-            dv  = ( v0 - v ) / SWRTIME(n)%SWRDT
+C-------------NO STORAGE CHANGE FOR STEADY STATE SIMULATIONS
+C             v1.04 JDH 1/29/2016
+C             PRIOR VERSIONS INCLUDED STORAGE CHANGES IN BUDGETS            
+            IF ( ISWRSS.GT.0 ) THEN
+              dv = DZERO
+            ELSE
+              dv  = ( v0 - v ) / SWRTIME(n)%SWRDT
+            END IF
 C             CALCULATE CONSTANT STAGE REACH CONSTANT FLOW CHANGE
 C             DUE TO CHANGES IN CONSTANT STAGES
             cv  = DZERO

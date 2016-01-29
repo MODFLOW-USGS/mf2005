@@ -1,0 +1,10 @@
+# MODFLOW2005 Discretization File
+ 3  1 21  001 4  2
+ 0 0 0
+  CONSTANT   500.00 (10E12.4)                    0     DELTA-X or C
+  CONSTANT   500.00 (10E12.4)                    0     DELTA-Y or R
+  CONSTANT     1.00 (10e12.4)                   -1     TOP of Model
+  CONSTANT    -2.00 (10e12.4)                   -1     BOTTOM of Layer   1
+  CONSTANT    -3.00 (10e12.4)                   -1     BOTTOM of Layer   2
+  CONSTANT    -4.00 (10e12.4)                   -1     BOTTOM of Layer   3
+200. 200  1.00      TR  STRESS PERIOD 001

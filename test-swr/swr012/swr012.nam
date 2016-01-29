@@ -1,0 +1,11 @@
+LIST           7 swr012.lst
+BAS6           1 swr012.bas
+DIS           29 swr012.dis
+LPF           11 swr012.lpf
+GHB           17 swr012.ghb
+OC            22 swr012.oc
+PCG           19 swr012.pcg
+SWR           61 swr012.swr
+DATA(BINARY) 101 swr012.flow
+DATA(BINARY) 102 swr012.stg
+DATA(BINARY) 103 swr012.vel
