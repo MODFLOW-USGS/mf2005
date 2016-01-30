@@ -1467,7 +1467,7 @@ C     ------------------------------------------------------------------
       W2=HYDBASWT(2,N)
       W3=HYDBASWT(3,N)
       W4=HYDBASWT(4,N)
-      write (*,*) HYDLBL
+      write (*,*) HYDLBL(N)
       write(*,*) I
       write(*,*) J
 C     HACT# IS AN INDICATOR IF HEAD VALUE IS GOOD AT A LOCATION      
@@ -1526,24 +1526,20 @@ C     READ IN THE HEAD AND IBOUND VALUES .... HANDLE THE EDGE CASES
       ENDIF
 C     IF EITHER THE HEAD IN A NODE IS EQUAL TO HYDNOH OR THE IBOUND VALUE IS 0
 C     OR IF THE CELL IS DRY OR NO FLOW SET HACT = 0
-      IF (H1.EQ.HYDNOH .OR. IB1.EQ.0 ) THEN
-          HACT1 = 0
-      ELSEIF (H1.EQ.HNOFLO .OR. H1.EQ.HDRY) THEN
+      IF (H1.EQ.HYDNOH .OR. IB1.EQ.0 .OR. 
+     &               H1.EQ.HNOFLO .OR. H1.EQ.HDRY) THEN
           HACT1 = 0
       ENDIF
-      IF (H2.EQ.HYDNOH .OR. IB2.EQ.0) THEN
-          HACT2 = 0
-      ELSEIF (H2.EQ.HNOFLO .OR. H2.EQ.HDRY) THEN
+      IF (H2.EQ.HYDNOH .OR. IB2.EQ.0 .OR. 
+     &               H2.EQ.HNOFLO .OR. H2.EQ.HDRY) THEN
           HACT2 = 0
       ENDIF
-      IF (H3.EQ.HYDNOH .OR. IB3.EQ.0) THEN
-          HACT3 = 0
-      ELSEIF (H3.EQ.HNOFLO .OR. H3.EQ.HDRY) THEN
+      IF (H3.EQ.HYDNOH .OR. IB3.EQ.0 .OR. 
+     &                H3.EQ.HNOFLO .OR. H3.EQ.HDRY) THEN
           HACT3 = 0
       ENDIF
-      IF (H4.EQ.HYDNOH .OR. IB4.EQ.0) THEN
-          HACT4 = 0
-      ELSEIF (H4.EQ.HNOFLO .OR. H4.EQ.HDRY) THEN
+      IF (H4.EQ.HYDNOH .OR. IB4.EQ.0 .OR. 
+     &                H4.EQ.HNOFLO .OR. H4.EQ.HDRY) THEN
           HACT4 = 0
       ENDIF
       write(*,*) 'H'
