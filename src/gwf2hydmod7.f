@@ -1454,7 +1454,7 @@ C
 C     SPECIFICATIONS:
 C     ------------------------------------------------------------------
       USE GLOBAL,    ONLY: HNEW, IBOUND, NROW, NCOL
-      USE HYDBASMODULE, ONLY: JIKHYDBAS, HYDBASWT
+      USE HYDBASMODULE, ONLY: JIKHYDBAS, HYDBASWT, HYDLBL
       USE GWFBASMODULE, ONLY: HNOFLO, HDRY
       DOUBLE PRECISION W1,W2,W3,W4,HTOT
       DOUBLE PRECISION H1, H2, H3, H4, IB1, IB2, IB3, IB4
@@ -1467,6 +1467,7 @@ C     ------------------------------------------------------------------
       W2=HYDBASWT(2,N)
       W3=HYDBASWT(3,N)
       W4=HYDBASWT(4,N)
+      write (*,*) HYDLBL
       write(*,*) I
       write(*,*) J
 C     HACT# IS AN INDICATOR IF HEAD VALUE IS GOOD AT A LOCATION      
@@ -1496,7 +1497,7 @@ C
        
 
 C     READ IN THE HEAD AND IBOUND VALUES .... HANDLE THE EDGE CASES
-      IF (J.LE.NCOL .AND. I.LE.NROW) THEN      
+      IF (J.LE.NCOL .AND. J.GT.0 .AND. I.LE.NROW .AND. I.GT.0) THEN      
         H1 = HNEW(J, I, K)
         IB1 = IBOUND(J, I, K)
       ELSE
