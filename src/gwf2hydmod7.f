@@ -119,7 +119,7 @@ C
 C1------IDENTIFY PROGRAM.
       WRITE(IOUT,1) IN
     1 FORMAT(1X,/1X,'HYD -- HYDROGRAPH DATA FOR BAS PACKAGE,',
-     1  ' VERSION 7, 07/14/2006',/
+     1  ' VERSION 7.1, 01/29/2016',/
      2  1X,'        INPUT READ FROM UNIT',I3)
 C
 C4------READ NUMBER OF HYDROGRAPHS AND UNIT FOR SAVING UNFORMATTED
@@ -271,14 +271,15 @@ C  Interpolate between cells
          INTRPHYDBAS(NHYDBAS)=.TRUE.
          CALL SGWF2HYD7MW(XL,YL,X1,X2,Y1,Y2,W1,W2,W3,W4)
         IF (INTYPHYDBAS(NHYDBAS).EQ.'I') THEN
-        IF(NR2.LT.2.OR.NR2.GT.NROW.OR.NC2.LT.1.OR.NC2.GT.(NCOL-1)) THEN
+          IF(NR2.LT.2 .OR. NR2.GT.NROW .OR. NC2.LT.1 
+     &     .OR. NC2.GT.(NCOL-1)) THEN
               WRITE(IOUT,27) LINE
  27           FORMAT(' Coordinates of at least one interpolation point ',
      &        'for record are outside of the model grid',/,
      &        ' Consider using type "C" or "H":',/,A80)
               NHYDBAS=NHYDBAS-1
             GO TO 20
-         ENDIF
+           ENDIF
          ENDIF
          JIKHYDBAS(1,NHYDBAS)=NC2
          JIKHYDBAS(2,NHYDBAS)=NR2
@@ -938,6 +939,8 @@ C
 C ------RETURN
       RETURN
       END
+      
+      
       SUBROUTINE GWF2HYD7BAS7SE(IHYDLOC,IGRID)
 C     ******************************************************************
 C     COMPUTE HYDROGRAPH RECORDS FOR BAS
@@ -1452,6 +1455,7 @@ C     SPECIFICATIONS:
 C     ------------------------------------------------------------------
       USE GLOBAL,    ONLY: HNEW, IBOUND, NROW, NCOL
       USE HYDBASMODULE, ONLY: JIKHYDBAS, HYDBASWT
+      USE GWFBASMODULE, ONLY: HNOFLO, HDRY
       DOUBLE PRECISION W1,W2,W3,W4,HTOT
       DOUBLE PRECISION H1, H2, H3, H4, IB1, IB2, IB3, IB4
       INTEGER HACT1, HACT2, HACT3, HACT4
@@ -1463,6 +1467,8 @@ C     ------------------------------------------------------------------
       W2=HYDBASWT(2,N)
       W3=HYDBASWT(3,N)
       W4=HYDBASWT(4,N)
+      write(*,*) I
+      write(*,*) J
 C     HACT# IS AN INDICATOR IF HEAD VALUE IS GOOD AT A LOCATION      
       HACT1 = 1
       HACT2 = 1
@@ -1477,6 +1483,17 @@ C      ____ ____
 C     | H1 | H2 |
 C      ____ ____
 C
+    
+       write(*,*) 'H1'
+       write(*,*) I,J
+       write(*,*) 'H2'
+       write(*,*) I,J+1
+       write(*,*) 'H3'
+       write(*,*) I-1,J+1
+       write(*,*) 'H4'
+       write(*,*) I-1,J
+      write(*,*) 'BS-->', HNEW(J,I-1,K)
+       
 
 C     READ IN THE HEAD AND IBOUND VALUES .... HANDLE THE EDGE CASES
       IF (J.LE.NCOL .AND. I.LE.NROW) THEN      
@@ -1493,34 +1510,50 @@ C     READ IN THE HEAD AND IBOUND VALUES .... HANDLE THE EDGE CASES
         H2 = HYDNOH
       ENDIF
       
-      IF (J.LE.(NCOL-1) .AND. I.GT.1) THEN      
+      IF (J.LE.(NCOL-1) .AND. I.GT.2) THEN      
         H3 = HNEW(J+1,I-1,K)
         IB3 = IBOUND(J+1,I-1,K)
       ELSE
         H3 = HYDNOH
       ENDIF
       
-      IF (J.LE.NCOL .AND. I.GT.1) THEN      
+      IF (J.LE.NCOL .AND. I.GT.2) THEN      
         H4 = HNEW(J,I-1,K)
         IB4 = IBOUND(J,I-1,K)
       ELSE
         H4 = HYDNOH
       ENDIF
 C     IF EITHER THE HEAD IN A NODE IS EQUAL TO HYDNOH OR THE IBOUND VALUE IS 0
-C     SET HACT = 0
-      IF (H1.EQ.HYDNOH .OR. IB1.EQ.0) THEN
+C     OR IF THE CELL IS DRY OR NO FLOW SET HACT = 0
+      IF (H1.EQ.HYDNOH .OR. IB1.EQ.0 ) THEN
+          HACT1 = 0
+      ELSEIF (H1.EQ.HNOFLO .OR. H1.EQ.HDRY) THEN
           HACT1 = 0
       ENDIF
       IF (H2.EQ.HYDNOH .OR. IB2.EQ.0) THEN
           HACT2 = 0
+      ELSEIF (H2.EQ.HNOFLO .OR. H2.EQ.HDRY) THEN
+          HACT2 = 0
       ENDIF
       IF (H3.EQ.HYDNOH .OR. IB3.EQ.0) THEN
+          HACT3 = 0
+      ELSEIF (H3.EQ.HNOFLO .OR. H3.EQ.HDRY) THEN
           HACT3 = 0
       ENDIF
       IF (H4.EQ.HYDNOH .OR. IB4.EQ.0) THEN
           HACT4 = 0
+      ELSEIF (H4.EQ.HNOFLO .OR. H4.EQ.HDRY) THEN
+          HACT4 = 0
       ENDIF
-
+      write(*,*) 'H'
+      write(*,*) H1, H2, H3, H4      
+      write(*,*) 'w'
+      write(*,*) w1, w2, w3, w4
+      write(*,*) 'IB'
+      write(*,*) IB1, IB2, IB3, IB4
+      write(*,*) 'HACT'
+      write(*,*) HACT1, HACT2, HACT3, HACT4
+      
 C     NOW WORK THROUGH THE POSSIBLE INACTIVE CELLS. IF APPROPRIATE, A 
 C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
       
@@ -1569,7 +1602,11 @@ C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
                       H1 = H2
                       H4 = H3
                     CASE (1) !HACT4
-                      H1 = H3
+                      IF ((W2*W4).LE.1.0E-06) THEN
+                        H1 = (H2+H4)/2.0
+                      ELSE
+                        H1 = (H2*W2 + H4*W4)/(W2+W4)
+                      ENDIF
                   END SELECT
               END SELECT
           END SELECT
@@ -1593,7 +1630,12 @@ C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
                       H2 = H1
                       H4 = H3
                     CASE (1) !HACT4
-                      H2 = H4
+                     
+                      IF ((W3*W1).LE.1.0E-06) THEN
+                        H2 = (H3+H1)/2.0
+                      ELSE
+                        H2 = (H1*W1 + H3*W3)/(W1+W3)
+                      ENDIF    
                   END SELECT
               END SELECT
             CASE (1) !HACT2
@@ -1604,17 +1646,28 @@ C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
                       H3 = H2
                       H4 = H1
                     CASE (1) !HACT4
-                      H3 = H1
+                      IF ((W2*W4).LE.1.0E-06) THEN
+                        H3 = (H2+H4)/2.0
+                      ELSE
+                        H3 = (H2*W2 + H4*W4)/(W2+W4)
+                      ENDIF                    
                   END SELECT
                 CASE (1) !HACT3
                   SELECT CASE (HACT4)
                     CASE (0) !HACT4
-                      H4 = H2
+                      IF ((W3*W1).LE.1.0E-06) THEN
+                        H4 = (H3+H1)/2.0
+                      ELSE
+                        H4 = (H1*W1 + H3*W3)/(W1+W3)
+                      ENDIF                    
                   END SELECT
               END SELECT
           END SELECT
       END SELECT
-      
+
+      write(*,*) 'H after'
+      write(*,*) H1, H2, H3, H4
+
       HTOT=H1*W1
       if(W2.gt.0.)HTOT=HTOT+H2*W2
       if(W3.gt.0.)HTOT=HTOT+H3*W3
