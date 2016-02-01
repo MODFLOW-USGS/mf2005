@@ -271,7 +271,7 @@ C  Interpolate between cells
          INTRPHYDBAS(NHYDBAS)=.TRUE.
          CALL SGWF2HYD7MW(XL,YL,X1,X2,Y1,Y2,W1,W2,W3,W4)
         IF (INTYPHYDBAS(NHYDBAS).EQ.'I') THEN
-          IF(NR2.LT.2 .OR. NR2.GT.NROW .OR. NC2.LT.1 
+          IF(NR2.LT.1 .OR. NR2.GT.NROW .OR. NC2.LT.2 
      &     .OR. NC2.GT.(NCOL-1)) THEN
               WRITE(IOUT,27) LINE
  27           FORMAT(' Coordinates of at least one interpolation point ',
@@ -1370,7 +1370,8 @@ C     ------------------------------------------------------------------
       XCF=X2+DXF
       IF(XL.LE.X2) THEN
          NC1=N
-         IF(XL.LT.XC) THEN
+C ADDED CHECK FOR EDGES --> Only effects interpolation type 'H'
+         IF(XL.LT.XC .AND. N.GT.1) THEN
             NC2=N-1
             XX1=XCB
             XX2=XC
@@ -1402,7 +1403,7 @@ C     ------------------------------------------------------------------
       YCF=Y2+DYF
       IF(YL.LE.Y2) THEN
          NR1=N
-         IF(YL.LT.YC) THEN
+        IF(YL.LT.YC) THEN
             NR2=N+1
             YY1=YCB
             YY2=YC
@@ -1439,9 +1440,9 @@ C     ------------------------------------------------------------------
       W3=HYDBASWT(3,N)
       W4=HYDBASWT(4,N)
       HTOT=HNEW(J,I,K)*W1
-      if(W2.gt.0.)HTOT=HTOT+HNEW(J+1,I,K)*W2
-      if(W3.gt.0.)HTOT=HTOT+HNEW(J+1,I-1,K)*W3
-      if(W4.gt.0.)HTOT=HTOT+HNEW(J,I-1,K)*W4
+      HTOT=HTOT+HNEW(J+1,I,K)*W2
+      HTOT=HTOT+HNEW(J+1,I-1,K)*W3
+      HTOT=HTOT+HNEW(J,I-1,K)*W4
       SHYD7WTAVG=HTOT
       RETURN
       END
@@ -1467,9 +1468,7 @@ C     ------------------------------------------------------------------
       W2=HYDBASWT(2,N)
       W3=HYDBASWT(3,N)
       W4=HYDBASWT(4,N)
-      write (*,*) HYDLBL(N)
-      write(*,*) I
-      write(*,*) J
+
 C     HACT# IS AN INDICATOR IF HEAD VALUE IS GOOD AT A LOCATION      
       HACT1 = 1
       HACT2 = 1
@@ -1484,16 +1483,7 @@ C      ____ ____
 C     | H1 | H2 |
 C      ____ ____
 C
-    
-       write(*,*) 'H1'
-       write(*,*) I,J
-       write(*,*) 'H2'
-       write(*,*) I,J+1
-       write(*,*) 'H3'
-       write(*,*) I-1,J+1
-       write(*,*) 'H4'
-       write(*,*) I-1,J
-      write(*,*) 'BS-->', HNEW(J,I-1,K)
+
        
 
 C     READ IN THE HEAD AND IBOUND VALUES .... HANDLE THE EDGE CASES
@@ -1502,27 +1492,31 @@ C     READ IN THE HEAD AND IBOUND VALUES .... HANDLE THE EDGE CASES
         IB1 = IBOUND(J, I, K)
       ELSE
         H1 = HYDNOH
+        IB1 = 0
       ENDIF
       
-      IF (J.LE.(NCOL-1) .AND. I.LE.NROW) THEN      
+      IF (J.LE.(NCOL-1) .AND. I.LE.NROW  .AND.I.GT.0) THEN      
         H2 = HNEW(J+1,I,K)
         IB2 = IBOUND(J+1,I,K)
       ELSE
         H2 = HYDNOH
+        IB2 = 0
       ENDIF
       
-      IF (J.LE.(NCOL-1) .AND. I.GT.2) THEN      
+      IF (J.LE.(NCOL-1) .AND. I.GT.1) THEN      
         H3 = HNEW(J+1,I-1,K)
         IB3 = IBOUND(J+1,I-1,K)
       ELSE
         H3 = HYDNOH
+        IB3 = 0
       ENDIF
       
-      IF (J.LE.NCOL .AND. I.GT.2) THEN      
+      IF (J.LE.NCOL .AND. I.GT.1 .AND.J.GT.0) THEN      
         H4 = HNEW(J,I-1,K)
         IB4 = IBOUND(J,I-1,K)
       ELSE
         H4 = HYDNOH
+        IB4 = 0
       ENDIF
 C     IF EITHER THE HEAD IN A NODE IS EQUAL TO HYDNOH OR THE IBOUND VALUE IS 0
 C     OR IF THE CELL IS DRY OR NO FLOW SET HACT = 0
@@ -1542,14 +1536,6 @@ C     OR IF THE CELL IS DRY OR NO FLOW SET HACT = 0
      &                H4.EQ.HNOFLO .OR. H4.EQ.HDRY) THEN
           HACT4 = 0
       ENDIF
-      write(*,*) 'H'
-      write(*,*) H1, H2, H3, H4      
-      write(*,*) 'w'
-      write(*,*) w1, w2, w3, w4
-      write(*,*) 'IB'
-      write(*,*) IB1, IB2, IB3, IB4
-      write(*,*) 'HACT'
-      write(*,*) HACT1, HACT2, HACT3, HACT4
       
 C     NOW WORK THROUGH THE POSSIBLE INACTIVE CELLS. IF APPROPRIATE, A 
 C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
@@ -1575,10 +1561,10 @@ C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
                     CASE(0) !HACT4
                       H1 = H3
                       H2 = H3 
-                     H4 = H3
+                      H4 = H3
                     CASE(1) !HACT4
                       H2 = H3
-                      H1 = H2                     
+                      H1 = H4                    
                   END SELECT
                END SELECT
             CASE (1) !HACT2
@@ -1591,7 +1577,7 @@ C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
                       H4 = H2
                     CASE (1) !HACT4
                       H1 = H2
-                      H4 = H3
+                      H3 = H4
                   END SELECT
                 CASE (1) !HACT3
                   SELECT CASE (HACT4)
@@ -1599,7 +1585,7 @@ C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
                       H1 = H2
                       H4 = H3
                     CASE (1) !HACT4
-                      IF ((W2*W4).LE.1.0E-06) THEN
+                      IF ((W2+W4).LE.1.0E-06) THEN
                         H1 = (H2+H4)/2.0
                       ELSE
                         H1 = (H2*W2 + H4*W4)/(W2+W4)
@@ -1624,11 +1610,11 @@ C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
                 CASE (1) !HACT3
                   SELECT CASE (HACT4)
                     CASE (0) !HACT4
-                      H2 = H1
-                      H4 = H3
+                      H2 = H3
+                      H4 = H1
                     CASE (1) !HACT4
                      
-                      IF ((W3*W1).LE.1.0E-06) THEN
+                      IF ((W3+W1).LE.1.0E-06) THEN
                         H2 = (H3+H1)/2.0
                       ELSE
                         H2 = (H1*W1 + H3*W3)/(W1+W3)
@@ -1643,7 +1629,7 @@ C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
                       H3 = H2
                       H4 = H1
                     CASE (1) !HACT4
-                      IF ((W2*W4).LE.1.0E-06) THEN
+                      IF ((W2+W4).LE.1.0E-06) THEN
                         H3 = (H2+H4)/2.0
                       ELSE
                         H3 = (H2*W2 + H4*W4)/(W2+W4)
@@ -1652,7 +1638,7 @@ C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
                 CASE (1) !HACT3
                   SELECT CASE (HACT4)
                     CASE (0) !HACT4
-                      IF ((W3*W1).LE.1.0E-06) THEN
+                      IF ((W3+W1).LE.1.0E-06) THEN
                         H4 = (H3+H1)/2.0
                       ELSE
                         H4 = (H1*W1 + H3*W3)/(W1+W3)
@@ -1662,13 +1648,11 @@ C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
           END SELECT
       END SELECT
 
-      write(*,*) 'H after'
-      write(*,*) H1, H2, H3, H4
 
       HTOT=H1*W1
-      if(W2.gt.0.)HTOT=HTOT+H2*W2
-      if(W3.gt.0.)HTOT=HTOT+H3*W3
-      if(W4.gt.0.)HTOT=HTOT+H4*W4
+      HTOT=HTOT+H2*W2
+      HTOT=HTOT+H3*W3
+      HTOT=HTOT+H4*W4
       SHYD7WTAVGEDGE=HTOT
       RETURN
       END
