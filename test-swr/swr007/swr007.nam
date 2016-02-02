@@ -9,6 +9,6 @@ DIS           10 swr007.dis
 ZONE          18 swr007.zon
 DATA(BINARY)  76 swr007.hds replace
 DATA(BINARY)  77 swr007.cbc replace
-DATA         101 swr007_swr.flow.csv
-DATA(BINARY) 102 swr007_swr.bin replace
-DATA         103 swr007_swr.baseflow.csv
+DATA(BINARY) 101 swr007.flow replace
+DATA(BINARY) 102 swr007.stg replace
+DATA(BINARY) 103 swr007.qaq

@@ -8,7 +8,10 @@ UZF           18 swr005.uzf
 GHB           16 swr005.ghb
 SWR           61 swr005.swr
 DATA         201 swr005_stage.ref
+DATA         202 swr005_dt.ref
 DATA(BINARY) 102 swr005.stg REPLACE
 DATA(BINARY) 101 swr005.flow REPLACE
 DATA(BINARY) 103 swr005.qaq REPLACE
+DATA(BINARY) 104 swr005.str REPLACE
+DATA(BINARY) 105 swr005.obs REPLACE
 DATA(BINARY) 111 swr005.hds REPLACE
