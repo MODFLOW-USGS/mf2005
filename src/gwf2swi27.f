@@ -45,8 +45,6 @@ C         SWI PARAMETERS
 C         SWI DIMENSIONS
         INTEGER, SAVE, POINTER :: NSRF,ISTRAT,NSWIOPT,NZONES
         INTEGER, SAVE, POINTER :: IFIXED
-        INTEGER, SAVE, POINTER :: IANTILOCKOPT, ISWI2ADOPT
-        INTEGER, SAVE, POINTER :: ITIPTOEOPT
 C         SWI ADAPTIVE TIME STEP
         INTEGER, SAVE, POINTER :: NADPTFLG
         INTEGER, SAVE, POINTER :: NADPTMX
@@ -124,8 +122,6 @@ C---------STORAGE FOR SOLVERS
 C           SWI DIMENSIONS
           INTEGER, POINTER :: NSRF,ISTRAT,NSWIOPT,NZONES
           INTEGER, POINTER :: IFIXED
-          INTEGER, POINTER :: IANTILOCKOPT, ISWI2ADOPT
-          INTEGER, POINTER :: ITIPTOEOPT
 C           SWI ADAPTIVE TIME STEP
           INTEGER, POINTER :: NADPTFLG
           INTEGER, POINTER :: NADPTMX
@@ -299,17 +295,11 @@ C---------ALLOCATE VARIABLES - INITIALIZE IF POSSIBLE
         ALLOCATE(TOESLOPE,TIPSLOPE,ALPHA,BETA)
         
         ALLOCATE(IFIXED)
-        ALLOCATE(IANTILOCKOPT)
-        ALLOCATE(ISWI2ADOPT)
-        ALLOCATE(ITIPTOEOPT)
 
         IOBSHEADER   = 0
         iadptflg     = 0
         NSWIOPT      = 0
         IFIXED       = 0
-        IANTILOCKOPT = 0
-        ISWI2ADOPT   = 0
-        ITIPTOEOPT   = 0
 C
 C---------IDENTIFY PACKAGE AND INITIALIZE
         WRITE(IOUT,1) In
@@ -333,13 +323,6 @@ C         TEST FOR KEYWORD ARGUMENTS
               NSWIOPT = 1
             CASE ( 'FIXEDZETA' )
               IFIXED = 1
-            CASE ( 'ANTILOCK2' )
-              IANTILOCKOPT = 1
-            CASE ( 'ADVANCE_ADJUST' )
-              ISWI2ADOPT = 1
-            CASE ( 'NO_TIPTOE' )
-            
-              ITIPTOEOPT = 1
             CASE ( '0', '' )
               EXIT
             CASE DEFAULT
@@ -365,8 +348,7 @@ C---------WRITE DATASET 1
      2                    ISWIZT, ISWICB, ISWIOBS
 C         DATASET 1 OPTIONS
         IF ( NSWIOPT.NE.0 .OR. iadptflg.NE.0 .OR.
-     2       IANTILOCKOPT.NE.0 .OR. ISWI2ADOPT.NE.0 .OR.
-     3       ITIPTOEOPT.NE.0 .OR. IFIXED.NE.0 ) THEN
+     2       IFIXED.NE.0 ) THEN
           WRITE (IOUT,2300)
           IF ( NSWIOPT.NE.0 ) THEN
             WRITE (IOUT,2310) 
@@ -379,18 +361,6 @@ C         DATASET 1 OPTIONS
           IF ( IFIXED.NE.0 ) THEN
             WRITE (IOUT,2310) 
      2        'FIXED ZETA SURFACES OPTION   '
-          END IF
-          IF ( IANTILOCKOPT.NE.0 ) THEN
-            WRITE (IOUT,2310) 
-     2        'ANTILOCKING BASED ON MINIMUM THICKNESS OPTION   '
-          END IF
-          IF ( ISWI2ADOPT.NE.0 ) THEN
-            WRITE (IOUT,2310) 
-     2        'TIP/TOE AND ANTILOCKING UPDATED IN ADVANCE      '
-          END IF
-          IF ( ITIPTOEOPT.NE.0 ) THEN
-            WRITE (IOUT,2310) 
-     2        'TIP/TOE ADJUSTMENTS WILL MADE BE MADE           '
           END IF
           WRITE (IOUT,2320)
         END IF
@@ -1020,23 +990,6 @@ C---------UPDATE ZETA FOR UPPER SURFACE FOR CONVERTIBLE LAYERS
           IF ( ICONV(k).EQ.0 ) CYCLE
           CALL SSWI2_UPZ1(k,1)
         END DO
-C
-C---------EXECUTE TIP AND TOW MOVEMENT AND ANTILOCKING IF ISWI2ADOPT IS 1
-        IF (ISWI2ADOPT.NE.0 .AND. IFIXED.NE.1) THEN
-C
-C-----------HORIZONTAL MOVEMENT OF SURFACES WHEN A POSITIVE ALPHA IS SPECIFIED
-          IF (ITIPTOEOPT.NE.1) THEN
-            CALL SSWI2_HORZMOVE(Kkstp,Kkper)
-          END IF
-C
-C-----------ADJUST TIP AND TOE FOR CELLS WERE CURRENT CELL IS AT THE TOP OR BOTTOM
-C           AND THE ADJACENT CELL IS AT THE BOTTOM OR TOP, RESPECTIVELY.
-          IF (IANTILOCKOPT.NE.1) THEN
-            CALL SSWI2_ANTILOCK(Kkstp,Kkper)
-          ELSE
-            CALL SSWI2_ANTILOCKMIN(Kkstp,Kkper)
-          END IF
-        END IF
 C
 C----------COPY ZETA TO ZETAOLD AND ZETASWITS0
         DO k = 1, NLAY
@@ -2235,11 +2188,7 @@ C-----------VERTICAL MOVEMENT OF SURFACES WHEN A POSITIVE ALPHA IS SPECIFIED
           CALL SSWI2_VERTMOVE(Kkstp,Kkper)
 C
 C-----------HORIZONTAL MOVEMENT OF SURFACES WHEN A POSITIVE ALPHA IS SPECIFIED
-          IF (ISWI2ADOPT.NE.1) THEN
-            IF (ITIPTOEOPT.NE.1) THEN
-              CALL SSWI2_HORZMOVE(Kkstp,Kkper)
-            END IF
-          END IF
+          CALL SSWI2_HORZMOVE(Kkstp,Kkper)
 C
 C-----------CHECK WHETHER ANYWHERE THE THICKNESS GETS TOO THIN
           CALL SSWI2_ZETACLIP()
@@ -2249,13 +2198,7 @@ C-----------MODIFY ZETA ANYWHERE THE SURFACES ARE CROSSING
 C
 C-----------ADJUST TIP AND TOE FOR CELLS WERE CURRENT CELL IS AT THE TOP OR BOTTOM
 C           AND THE ADJACENT CELL IS AT THE BOTTOM OR TOP, RESPECTIVELY.
-          IF (ISWI2ADOPT.NE.1) THEN
-            IF (IANTILOCKOPT.NE.1) THEN
-              CALL SSWI2_ANTILOCK(Kkstp,Kkper)
-            ELSE
-              CALL SSWI2_ANTILOCKMIN(Kkstp,Kkper)
-            END IF
-          END IF
+          CALL SSWI2_ANTILOCKMIN(Kkstp,Kkper)
 C
         END IF MOVETIPTOE ! this loop done only when ALPHA > 0
 C
@@ -2800,177 +2743,6 @@ C---------RETURN
       END SUBROUTINE SSWI2_ZETACROSS
 C
 C
-      SUBROUTINE SSWI2_ANTILOCK(Kkstp,Kkper)
-C
-C     ******************************************************************
-C     PREVENT SURFACES FROM LOCKING
-C     ******************************************************************
-C
-C     SPECIFICATIONS:
-C     ------------------------------------------------------------------
-        USE GLOBAL,      ONLY:IOUT,NCOL,NROW,NLAY,IFREFM,
-     2                        LBOTM,BOTM,
-     3                        CR,CC,CV,HCOF,RHS,
-     4                        DELR,DELC,IBOUND,HNEW,HOLD,
-     5                        BUFF,ISSFLG,NSTP
-        USE GWFBASMODULE, ONLY: DELT,HDRY,TOTIM,IHDDFL,IBUDFL
-        USE GWFSWIMODULE
-        IMPLICIT NONE
-C       + + + DUMMY ARGUMENTS + + +
-        INTEGER, INTENT(IN) :: Kkstp
-        INTEGER, INTENT(IN) :: Kkper
-C       + + + LOCAL DEFINITIONS + + +
-        CHARACTER*24 :: ZETANAME
-        INTEGER :: i, j, k
-        INTEGER :: iz, iz2, iz3
-        INTEGER :: izrev
-        INTEGER :: icount
-        INTEGER :: iplz
-        REAL :: zt, zb, zetac, zdiff, zetaavg
-        DOUBLEPRECISION :: qztop, sszxa, dz
-        REAL :: t2
-        REAL :: s0, s1, s2, d0, d1, d2, dzeta1, dzeta2, b2, dzetamax
-        INTEGER :: kk1, kk2
-        DOUBLEPRECISION :: ht1, ht2
-        DOUBLEPRECISION :: bt1, bt2
-C     + + + FUNCTIONS + + +
-C     + + + CODE + + +
-C
-C----------ADJUST TIP AND TOE FOR CELLS WERE CURRENT CELL IS AT THE TOP OR BOTTOM
-C          AND THE ADJACENT CELL IS AT THE BOTTOM OR TOP, RESPECTIVELY.
-         ZTIPTOEAL: DO k = 1, NLAY
-            IZTIPTOEAL: DO iz = 2, NZONES
-              ITIPTOEAL: DO i = 1, NROW
-                JTIPTOEAL: DO j = 1, NCOL
-C-------------------SKIP INACTIVE CELLS
-                  IF ( IBOUND(J,I,K).EQ.0 ) CYCLE JTIPTOEAL
-C-------------------SET TEMPORARY ZETA VARIABLES
-                  zt    = ZETA(j,i,k,1)
-                  zb    = ZETA(j,i,k,NZONES+1)
-                  zetac = ZETA(j,i,k,iz)
-                  iplz  = IPLPOS(j,i,k,iz)
-C
-C-------------------ONLY EVALUATE TIP AND TOE MOVEMENT TO ADJACENT CELLS FOR CELLS WHERE
-C                   ZETA SURFACE IS AT THE TOP (ILPOS=1) OR BOTTOM (ILPOS=2) OF THE LAYER
-                  LEDGE: IF (iplz.NE.0 .AND. iplz.NE.3 ) THEN
-C--------------------ADJUST TIPS AND TOES FOR EACH COLUMN BUT THE FIRST AND LAST
-                    LCOLAL: IF ((j.NE.1).AND.(j.NE.NCOL)) THEN
-C----------------------LEFT FACE
-                      IF ( IBOUND(j-1,i,k).NE.0 ) THEN
-                        d1  = DELR(j)
-                        s1  = SSZ(j,i,k)
-                        d2  = DELR(j-1)
-                        s2  = SSZ(j-1,i,k)
-
-                        dzetamax = (TIPSLOPE+TOESLOPE)/2 * 0.5 *(d1+d2)
-                        dzeta1 =  ALPHA * dzetamax * (s2*d2) /
-     2                                      (s1*d1 + s2*d2)
-                        dzeta2 =  ALPHA * dzetamax * (s1*d1) /
-     2                                      (s1*d1 + s2*d2)
-
-                        IF (IPLPOS(j-1,i,k,iz).EQ.1 .AND. 
-     2                      iplz.EQ.2) THEN
-                          ZETA(j,i,k,iz)=zetac + dzeta1
-                          ZETA(j-1,i,k,iz)= ZETA(j-1,i,k,iz) - dzeta2
-
-                        ELSEIF (IPLPOS(j-1,i,k,iz).EQ.2. AND.
-     2                          iplz.EQ.1) THEN
-                          ZETA(j,i,k,iz)=zetac - dzeta1
-                          ZETA(j-1,i,k,iz)= ZETA(j-1,i,k,iz) + dzeta2
-                        END IF
-                      END IF
-C----------------------RIGHT FACE
-                      IF ( IBOUND(j+1,i,k).NE.0 ) THEN
-                        d1 = DELR(j)
-                        s1 = SSZ(j,i,k)
-                        d2 = DELR(j+1)
-                        s2 = SSZ(j+1,i,k)
-                        dzetamax = (TIPSLOPE+TOESLOPE)/2 * 0.5 *(d1+d2)
-                        dzeta1 =  ALPHA * dzetamax * (s2*d2) /
-     2                                      (s1*d1 + s2*d2)
-                        dzeta2 =  ALPHA * dzetamax * (s1*d1) /
-     2                                      (s1*d1 + s2*d2)
-
-                        IF (IPLPOS(j+1,i,k,iz).EQ.1 .AND. 
-     2                      iplz.EQ.2) THEN
-                          ZETA(j,i,k,iz)=zetac + dzeta1
-                          ZETA(j+1,i,k,iz)= ZETA(j+1,i,k,iz) - dzeta2
-                        ELSEIF (IPLPOS(j+1,i,k,iz).EQ.2 .AND.
-     2                          iplz.EQ.1) THEN
-                          ZETA(j,i,k,iz)=zetac - dzeta1
-                          ZETA(j+1,i,k,iz)= ZETA(j+1,i,k,iz) + dzeta2
-                        END IF
-                      END IF
-                    END IF LCOLAL
-C
-C---------------------ADJUST TIPS AND TOES FOR EACH ROW BUT THE FIRST AND LAST
-                    LROWAL: IF ((i.GT.1).AND.(i.LT.NROW)) THEN
-C-----------------------BACK FACE
-                      IF ( IBOUND(j,i-1,k).NE.0 ) THEN
-                        d1 = DELC(i)
-                        s1 = SSZ(j,i,k)
-                        d2 = DELC(i-1)
-                        s2 = SSZ(j,i-1,k)
-                        dzetamax = (TIPSLOPE+TOESLOPE)/2 * 0.5 *(d1+d2)
-                        dzeta1 =  ALPHA * dzetamax * (s2*d2) /
-     2                                      (s1*d1 + s2*d2)
-                        dzeta2 =  ALPHA * dzetamax * (s1*d1) /
-     2                                      (s1*d1 + s2*d2)
-                        IF (IPLPOS(j,i-1,k,iz).EQ.1 .AND. 
-     2                      iplz.EQ.2) THEN
-                          ZETA(j,i,k,iz)=zetac + dzeta1
-                          ZETA(j,i-1,k,iz)= ZETA(j,i-1,k,iz) - dzeta2
-                        ELSEIF (IPLPOS(j,i-1,k,iz).EQ.2 .AND.
-     2                          iplz.EQ.1) THEN
-                          ZETA(j,i,k,iz)=zetac - dzeta1
-                          ZETA(j,i-1,k,iz)= ZETA(j,i-1,k,iz) + dzeta2
-                        END IF
-                      END IF
-C-----------------------FRONT FACE
-                      IF ( IBOUND(j,i+1,k).NE.0 ) THEN
-                        d1 = DELC(i)
-                        s1 = SSZ(j,i,k)
-                        d2 = DELC(i+1)
-                        s2 = SSZ(j,i+1,k)
-                        dzetamax = (TIPSLOPE+TOESLOPE)/2 * 0.5 *(d1+d2)
-                        dzeta1 =  ALPHA * dzetamax * (s2*d2) /
-     2                                      (s1*d1 + s2*d2)
-                        dzeta2 =  ALPHA * dzetamax * (s1*d1) /
-     2                                      (s1*d1 + s2*d2)
-
-                        IF (IPLPOS(j,i+1,k,iz).EQ.1 .AND. 
-     2                      iplz.EQ.2) THEN
-                          ZETA(j,i,k,iz)=zetac + dzeta1
-                          ZETA(j,i+1,k,iz)= ZETA(j,i+1,k,iz) - dzeta2
-                        ELSEIF (IPLPOS(j,i+1,k,iz).EQ.2 .AND.
-     2                          iplz.EQ.1) THEN
-                          ZETA(j,i,k,iz)=zetac - dzeta1
-                          ZETA(j,i+1,k,iz)= ZETA(j,i+1,k,iz) + dzeta2
-                        END IF
-                      END IF
-                    END IF LROWAL
-                  END IF LEDGE
-                END DO JTIPTOEAL
-              END DO ITIPTOEAL
-            END DO IZTIPTOEAL
-          END DO ZTIPTOEAL
-
-C-----------WRITE ZETA TO UNFORMATTED FILE
-          IF ( IHDDFL.GT.0 .AND. ISWIZT.LT.0 ) THEN
-            DO iz = 2, NZONES
-              WRITE(ZETANAME,2223) iz-1
-              CALL UBUDSV(kkstp,Kkper,ZETANAME,
-     &                    ABS(ISWIZT),ZETA(1:NCOL,1:NROW,1:NLAY,iz),
-     &                    NCOL,NROW,NLAY,IOUT)
-            END DO
-          END IF
-2223  FORMAT('TPTOANTILOCKZ ',I2)
-C
-C---------RETURN
-        RETURN
-      END SUBROUTINE SSWI2_ANTILOCK
-C
-C
       SUBROUTINE SSWI2_ANTILOCKMIN(Kkstp,Kkper)
 C
 C     ******************************************************************
@@ -3193,10 +2965,6 @@ C       + + + CODE + + +
 
         DEALLOCATE(GWFSWIDAT(Igrid)%IFIXED)
         
-        DEALLOCATE(GWFSWIDAT(Igrid)%IANTILOCKOPT)
-        DEALLOCATE(GWFSWIDAT(Igrid)%ISWI2ADOPT)
-        DEALLOCATE(GWFSWIDAT(Igrid)%ITIPTOEOPT)
-
         DEALLOCATE(GWFSWIDAT(Igrid)%NADPTFLG)
         DEALLOCATE(GWFSWIDAT(Igrid)%NADPTMX)
         DEALLOCATE(GWFSWIDAT(Igrid)%NADPTMN)
@@ -3295,10 +3063,6 @@ C       + + + CODE + + +
 
         IFIXED=>GWFSWIDAT(Igrid)%IFIXED
         
-        IANTILOCKOPT=>GWFSWIDAT(Igrid)%IANTILOCKOPT
-        ISWI2ADOPT=>GWFSWIDAT(Igrid)%ISWI2ADOPT
-        ITIPTOEOPT=>GWFSWIDAT(Igrid)%ITIPTOEOPT
-
         NADPTFLG=>GWFSWIDAT(Igrid)%NADPTFLG
         NADPTMX=>GWFSWIDAT(Igrid)%NADPTMX
         NADPTMN=>GWFSWIDAT(Igrid)%NADPTMN
@@ -3399,10 +3163,6 @@ C       + + + CODE + + +
 
         GWFSWIDAT(Igrid)%IFIXED=>IFIXED
         
-        GWFSWIDAT(Igrid)%IANTILOCKOPT=>IANTILOCKOPT
-        GWFSWIDAT(Igrid)%ISWI2ADOPT=>ISWI2ADOPT
-        GWFSWIDAT(Igrid)%ITIPTOEOPT=>ITIPTOEOPT
-
         GWFSWIDAT(Igrid)%NADPTFLG=>NADPTFLG
         GWFSWIDAT(Igrid)%NADPTMX=>NADPTMX
         GWFSWIDAT(Igrid)%NADPTMN=>NADPTMN

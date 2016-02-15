@@ -1,9 +1,0 @@
-# MODFLOW-2005 Discretization File
- 1  20 17 01  1  2
- 0
-INTERNAL       1.000 (FREE)                      0     DELTA-X or C
-50  50  50  50  50  50  50  50  50  50  50  50  50  50  50  50  10
-CONSTANT      50.000 (FREE)                      0     DELTA-Y or R
-OPEN/CLOSE tilted_elev.ref 1.00 (FREE)   -1            TOP of Model
-CONSTANT     -50.000 (FREE)                     -1     BOTTOM of Layer   1
-   10800.0  108  1.000000  TR 01

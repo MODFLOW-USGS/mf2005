@@ -1,0 +1,13 @@
+# Steady state 2D SWR - no QAQ
+# Was SWR012 Test Problem
+LIST           7 ss2D.lst
+BAS6           1 ss2D.bas
+DIS           29 ss2D.dis
+LPF           11 ss2D.lpf
+GHB           17 ss2D.ghb
+OC            22 ss2D.oc
+PCG           19 ss2D.pcg
+SWR           61 ss2D.swr
+DATA(BINARY) 101 ss2D.flow
+DATA(BINARY) 102 ss2D.stg
+DATA(BINARY) 103 ss2D.vel

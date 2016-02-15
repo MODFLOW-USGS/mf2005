@@ -1,0 +1,14 @@
+# Savant, G., Berger, C., McAlpin, T., and Tate, J. (2011). 
+# "Efficient Implicit Finite-Element Hydrodynamic Model for Dam and Levee Breach." 
+# J. Hydraul. Eng., 10.1061/(ASCE)HY.1943-7900.0000372, 1005-1018.
+# Example 1 - Flow over a bump
+list          16 savant2011ex1.lst
+BAS6          15 savant2011ex1.ba6
+LPF           17 savant2011ex1.lpf
+PCG           13 savant2011ex1.pcg
+OC            14 savant2011ex1.oc  
+SWR           11 savant2011ex1.swr
+DIS           10 savant2011ex1.dis
+DATA(BINARY) 101 savant2011ex1.flow replace
+DATA(BINARY) 102 savant2011ex1.stg replace
+DATA(BINARY) 103 savant2011ex1.qaq

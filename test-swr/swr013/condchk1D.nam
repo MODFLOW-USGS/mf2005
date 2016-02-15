@@ -1,0 +1,16 @@
+# One dimensional constant stage SWR - to check conductance calculations
+# added as part of mf2005 autotest version 1.12
+LIST           7 condchk1D.lst
+BAS6           1 condchk1D.bas
+DIS           29 condchk1D.dis
+LPF           11 condchk1D.lpf
+CHD           12 condchk1D.chd
+OC            22 condchk1D.oc
+PCG           19 condchk1D.pcg
+SWR           61 condchk1D.swr
+DATA         201 condchk1D_stage.ref
+DATA(BINARY) 101 condchk1D.flow replace
+DATA(BINARY) 102 condchk1D.stg replace
+DATA(BINARY) 103 condchk1D.vel replace
+DATA(BINARY) 104 condchk1D.qaq replace
+DATA(BINARY) 105 condchk1D.hds replace

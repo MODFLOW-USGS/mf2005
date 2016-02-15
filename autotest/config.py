@@ -2,10 +2,10 @@ import os
 
 # Autotest information
 testdir = 'temp'
-retain = True
+retain = False
 target_dict = {}
 
-exclude = ('swr001', 'swr002', 'swr003', 'swr005', 'swr006/', 'swr007') #None #('MNW2-Fig28',) #, 'swi2ex4sww') #None
+exclude = None #('swr001', 'swr002', 'swr003', 'swr006/') #None #('MNW2-Fig28',) #, 'swi2ex4sww') #None
 
 # Development version information
 exdir = 'test-run'

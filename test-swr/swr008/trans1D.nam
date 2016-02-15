@@ -1,0 +1,12 @@
+# One dimensional transient SWR - no QAQ
+# originally was SWR example problem 12
+LIST           7 trans1D.lst
+BAS6           1 trans1D.bas
+DIS           29 trans1D.dis
+LPF           11 trans1D.lpf
+OC            22 trans1D.oc
+PCG           19 trans1D.pcg
+SWR           61 trans1D.swr
+DATA(BINARY) 101 trans1D.flow
+DATA(BINARY) 102 trans1D.stg
+DATA(BINARY) 103 trans1D.vel

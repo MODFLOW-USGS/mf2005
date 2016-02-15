@@ -1,0 +1,8 @@
+LIST           7 WTDecay.lst
+BAS6           1 WTDecay.bas
+DIS           29 WTDecay.dis
+LPF           11 WTDecay.lpf
+OC            22 WTDecay.oc
+PCG           19 WTDecay.pcg
+SWR           61 WTDecay.swr
+DATA(BINARY) 102 WTDecay.stg replace

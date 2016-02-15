@@ -1,0 +1,10 @@
+# MODFLOW2000 Discretization File
+ 1  01  05 02  1  2
+ 0
+ CONSTANT      1.000 (10E12.4)                   0     DELTA-X or C
+ CONSTANT      1.000 (10E12.4)                   0     DELTA-Y or R
+ INTERNAL      1.000 (free)                     -1     TOP of Model
+  10. 10. 5. 0. 0.
+ CONSTANT     -5.000 (free)                     -1     BOTTOM of Layer   1
+  10.0 10  1.000000  SS
+  10.0 10  1.000000  SS

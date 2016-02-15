@@ -1,8 +1,0 @@
-# MODFLOW-2005 Discretization File
- 1  65 15 01  1  2
- 0
-OPEN/CLOSE ref/delc.ref  1.00  (FREE)           -1     DELTA-X or C
-CONSTANT    609.6056 (FREE)                      0     DELTA-Y or R
-OPEN/CLOSE ref/top.ref  1.00  (FREE)            -1     TOP of MODEL
-CONSTANT       0.000 (FREE)                     -1     BOTTOM of Layer   1
-   86400.00 288  1.000000  TR

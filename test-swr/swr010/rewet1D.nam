@@ -1,0 +1,16 @@
+# 1D SWR with qaq causing rewetting
+# Was swr014 test example
+LIST           7 rewet1D.lst
+BAS6           1 rewet1D.bas
+DIS           29 rewet1D.dis
+LPF           11 rewet1D.lpf
+OC            22 rewet1D.oc
+PCG           19 rewet1D.pcg
+SWR           61 rewet1D.swr
+DRN           62 rewet1D.drn
+DATA         201 rewet1D_inflow.ref
+DATA         202 rewet1D_dt.ref
+DATA(BINARY) 101 rewet1D.flow
+DATA(BINARY) 102 rewet1D.stg
+DATA(BINARY) 103 rewet1D.qaq
+DATA(BINARY) 111 rewet1D.hds

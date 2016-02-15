@@ -1,0 +1,1342 @@
+                                  MODFLOW-2005     
+      U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
+                            VERSION 1.12.00 x/x/2015
+
+ LIST FILE: condchk1D.lst
+                         UNIT    7
+
+ OPENING condchk1D.bas
+ FILE TYPE:BAS6   UNIT    1   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING condchk1D.dis
+ FILE TYPE:DIS   UNIT   29   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING condchk1D.lpf
+ FILE TYPE:LPF   UNIT   11   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING condchk1D.chd
+ FILE TYPE:CHD   UNIT   12   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING condchk1D.oc
+ FILE TYPE:OC   UNIT   22   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING condchk1D.pcg
+ FILE TYPE:PCG   UNIT   19   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING condchk1D.swr
+ FILE TYPE:SWR   UNIT   61   STATUS:OLD    
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING condchk1D_stage.ref
+ FILE TYPE:DATA   UNIT  201   STATUS:UNKNOWN
+ FORMAT:FORMATTED              ACCESS:SEQUENTIAL          
+
+ OPENING condchk1D.flow
+ FILE TYPE:DATA(BINARY)   UNIT  101   STATUS:REPLACE
+ FORMAT:UNFORMATTED            ACCESS:STREAM              
+
+ OPENING condchk1D.stg
+ FILE TYPE:DATA(BINARY)   UNIT  102   STATUS:REPLACE
+ FORMAT:UNFORMATTED            ACCESS:STREAM              
+
+ OPENING condchk1D.vel
+ FILE TYPE:DATA(BINARY)   UNIT  103   STATUS:REPLACE
+ FORMAT:UNFORMATTED            ACCESS:STREAM              
+
+ OPENING condchk1D.qaq
+ FILE TYPE:DATA(BINARY)   UNIT  104   STATUS:REPLACE
+ FORMAT:UNFORMATTED            ACCESS:STREAM              
+
+ OPENING condchk1D.hds
+ FILE TYPE:DATA(BINARY)   UNIT  105   STATUS:REPLACE
+ FORMAT:UNFORMATTED            ACCESS:STREAM              
+
+ BAS -- BASIC PACKAGE, VERSION 7, 5/2/2005 INPUT READ FROM UNIT    1
+
+ MODFLOW was compiled using mixed precision
+ Precision of REAL variables:           6
+ Precision of DOUBLE PRECISION variables:          15
+
+ DISCRETIZATION INPUT DATA READ FROM UNIT   29
+ # MODFLOW2000 Discretization File
+    1 LAYERS         1 ROWS         5 COLUMNS
+    2 STRESS PERIOD(S) IN SIMULATION
+ MODEL TIME UNIT IS SECONDS
+ MODEL LENGTH UNIT IS METERS
+  Confining bed flag for each layer:
+   0
+
+                     DELR =   1.00000    
+
+                     DELC =   1.00000    
+
+
+
+           TOP ELEVATION OF LAYER 1
+ READING ON UNIT   29 WITH FORMAT: (FREE)              
+
+   MODEL LAYER BOTTOM EL. =  -5.00000     FOR LAYER   1
+
+
+ STRESS PERIOD     LENGTH       TIME STEPS     MULTIPLIER FOR DELT    SS FLAG
+ ----------------------------------------------------------------------------
+        1         10.00000         10                    1.000         SS
+        2         10.00000         10                    1.000         SS
+
+ STEADY-STATE SIMULATION
+
+
+
+
+ # MODFLOW2005 Basic Package                                                     
+ #MODFLOW Data Set Created by Groundwater Vistas                                 
+ #
+
+           BOUNDARY ARRAY =              1 FOR LAYER   1
+
+ AQUIFER HEAD WILL BE SET TO   999.00     AT ALL NO-FLOW NODES (IBOUND=0).
+
+             INITIAL HEAD =   4.50000     FOR LAYER   1
+
+ OUTPUT CONTROL IS SPECIFIED ONLY AT TIME STEPS FOR WHICH OUTPUT IS DESIRED
+ HEAD PRINT FORMAT CODE IS   0    DRAWDOWN PRINT FORMAT CODE IS   0
+ HEADS WILL BE SAVED ON UNIT  105    DRAWDOWNS WILL BE SAVED ON UNIT    0
+
+ LPF -- LAYER-PROPERTY FLOW PACKAGE, VERSION 7, 5/2/2005
+         INPUT READ FROM UNIT   11
+ # MODFLOW2000 Layer Property Flow (LPF) Package
+ HEAD AT CELLS THAT CONVERT TO DRY= -1.00000E+30
+ No named parameters
+
+   LAYER FLAGS:
+ LAYER       LAYTYP        LAYAVG         CHANI        LAYVKA        LAYWET
+ ---------------------------------------------------------------------------
+    1             1             0     1.000E+00             0             0
+
+   INTERPRETATION OF LAYER FLAGS:
+                        INTERBLOCK     HORIZONTAL    DATA IN
+         LAYER TYPE   TRANSMISSIVITY   ANISOTROPY   ARRAY VKA   WETTABILITY
+ LAYER      (LAYTYP)      (LAYAVG)       (CHANI)      (LAYVKA)      (LAYWET)
+ ---------------------------------------------------------------------------
+    1   CONVERTIBLE      HARMONIC     1.000E+00    VERTICAL K  NON-WETTABLE
+
+ WETTING CAPABILITY IS NOT ACTIVE IN ANY LAYER
+
+    HYD. COND. ALONG ROWS =   5.00000     FOR LAYER   1
+
+      VERTICAL HYD. COND. =   5.00000     FOR LAYER   1
+
+ CHD -- TIME-VARIANT SPECIFIED-HEAD OPTION, VERSION 7, 5/2/2005
+ INPUT READ FROM UNIT   12
+ No named parameters
+ MAXIMUM OF      2 TIME-VARIANT SPECIFIED-HEAD CELLS AT ONE TIME
+
+
+     0 TIME-VARIANT SPECIFIED-HEAD PARAMETERS
+
+ PCG -- CONJUGATE-GRADIENT SOLUTION PACKAGE, VERSION 7, 5/2/2005
+ MAXIMUM OF    100 CALLS OF SOLUTION ROUTINE
+ MAXIMUM OF     25 INTERNAL ITERATIONS PER CALL TO SOLUTION ROUTINE
+ MATRIX PRECONDITIONING TYPE :    1
+ IHCOFADD option -- When an active cell is surrounded by dry cells, convert
+ the cell to dry only if storage and head-dependent boundary flow are 0.
+
+
+
+                                    SOLUTION BY THE CONJUGATE-GRADIENT METHOD
+                                   -------------------------------------------
+                    MAXIMUM NUMBER OF CALLS TO PCG ROUTINE =      100
+                        MAXIMUM ITERATIONS PER CALL TO PCG =       25
+                               MATRIX PRECONDITIONING TYPE =        1
+        RELAXATION FACTOR (ONLY USED WITH PRECOND. TYPE 1) =    0.10000E+01
+ PARAMETER OF POLYNOMIAL PRECOND. = 2 (2) OR IS CALCULATED :        2
+                         HEAD CHANGE CRITERION FOR CLOSURE =    0.10000E-02
+                     RESIDUAL CHANGE CRITERION FOR CLOSURE =    0.10000E+01
+            PCG HEAD AND RESIDUAL CHANGE PRINTOUT INTERVAL =        5
+     PRINTING FROM SOLVER IS LIMITED(1) OR SUPPRESSED (>1) =        0
+                            STEADY-STATE DAMPING PARAMETER =    0.10000E+01
+                               TRANSIENT DAMPING PARAMETER =    0.10000E+01
+
+ SWR -- SURFACE-WATER ROUTING PACKAGE,
+ $Id: gwf2swr7.f 1.04 2016-01-28 15:00:00Z jdhughes $            
+ INPUT READ FROM UNIT   61
+
+ ...READING SWR1 PROCESS DATASET 1A
+ SWR1 OPTIONS SPECIFIED IN DATASET 1B
+
+ ...READING SWR1 PROCESS DATASET 1B
+
+
+ SUMMARY OF SWR1 OPTIONS USED IN SIMULATION
+ OPTION OPTION KEYWORD                       FILE UNIT
+ ------ ----------------------------------- ----------
+      1 PRINT_SWR_TO_SCREEN                       NONE
+      7 USE_TABFILES                              NONE
+      8 USE_NONCONVERGENCE_CONTINUE               NONE
+ -----------------------------------------------------
+
+ ...READING SWR1 PROCESS DATASET 2
+
+ ...READING SWR1 PROCESS DATASET 3
+
+ NUMBER OF REACHES                         =    5
+ SURFACE WATER ONLY SIMULATION (>0=TRUE)   =    0
+ LENGTH CONVERSION FACTOR                  =   1.000000    
+ TIME CONVERSION FACTOR                    =   1.000000    
+ MINIMUM GRADIENT FOR FLOW                 =  0.1000000E-11
+ MAXIMUM DEPTH FOR SCALING REACH OUTFLOW   =  0.1000000E-01
+ MINIMUM DEPTH FOR REACH OUTFLOW           =  0.1000000E-02
+ DIFFUSIVE-WAVE APPROX. SPATIAL WEIGHTING  = CENTRAL             
+ DEPTH SCALING                             = SIGMOID             
+ TWO-DIMENSIONAL COORD.-INVARIANT APPROACH = EXPLICIT            
+ MINIMUM ROUTING TIME STEP LENGTH          =   1.000000    
+ MAXIMUM ROUTING TIME STEP LENGTH          =   1.000000    
+ INITIAL ROUTING TIME STEP LENGTH          =   1.000000    
+ OUTPUT PRINT INCREMENT                    =   1.000000    
+ ADAPTIVE TIME STEP INCREMENT (RTMULT)     =   1.000000    
+ ADAPTIVE TIME STEP INCREMENT FREQUENCY    =    1
+ MAXIMUM RAINFALL      PER ROUTING STEP    =   0.000000    
+ MAXIMUM STAGE  CHANGE PER ROUTING STEP    =   0.000000    
+ MAXIMUM INFLOW CHANGE PER ROUTING STEP    =   0.000000    
+
+ CBC OUTPUT UNIT (ISWRCBC)                 =    0
+ GROUP FLOW TERMS OUTPUT UNIT (ISWRPRGF)   = -101
+ REACH STAGE OUTPUT UNIT (ISWRPSTG)        = -102
+ REACH AQ-RCH FLOW OUTPUT UNIT (ISWRPQAQ)  = -104
+ REACH LATERAL FLOW OUTPUT UNIT (ISWRPQM)  = -103
+ STRUCTURE FLOW OUTPUT UNIT (ISWRPSTR)     =    0
+ SUMMARY VELOCITY AND FROUDE INFORMATION   =    T
+
+
+               --- SWR SOLVER PARAMETERS ---
+ SOLVER = LU DECOMPOSITION USING CROUT’S ALGORITHM
+ PRECONDITIONER                            = NONE                
+ JACOBIAN SCALING                          = NO SCALING          
+ MAXIMUM NUMBER OF OUTER ITERATIONS        =   51
+ MAXIMUM NUMBER OF INNER ITERATIONS        =    1
+ NON-CONVERGENCE CONT.OF SWR AND MODFLOW   =    T
+ MAXIMUM STAGE    TOLERANCE (TOLS)         =  0.1000000E-08
+ MAXIMUM ROOT     TOLERANCE (TOLR)         =  0.1000000E-02
+ INEXACT NEWTON APPROACH (INEXCTNWT)       =    F
+ MAXIMUM AQ-RCH FLOW TOLERANCE (TOLA)      =  0.0000000E+00
+ STEADY-STATE DAMPENING PARAMETER (DAMPSS) =  0.1000000E+01
+ TRANSIENT DAMPENING PARAMETER (DAMPTR)    =  0.1000000E+01
+ PSEUDO-TRANSIENT CONTINUATION APPROACH    =    F
+ SOLVER OUTPUT FREQUENCY (IPRSWR)          =  999
+ CONVERGENCE PRINTING FLAG (MUTSWR)        =    3
+   0 - MAXIMUM RESIDUAL EACH SWR TIMESTEP
+   1 - TOTAL NUMBER OF ITERATIONS EACH SWR TIMESTEP
+   2 - NO PRINTING
+   3 - PRINTING IF CONVERGENCE FAILS
+ BACKTRACKING ALLOWED                      =    T
+ MAXIMUM BACKTRACKING ITERATIONS (IBT)     =   10
+ BACKTRACKING OUTPUT FREQUENCY  (IBTPRT)   =    1
+
+ ...READING SWR1 PROCESS DATASET 4A
+
+ ...READING SWR1 PROCESS DATASET 4B
+
+ -----------------------------------------------------------
+ FULL REACH CONNECTIVITY FOR EACH REACH
+
+ -----------------------------------------------------------
+ REACH  =     1
+               -----------------CONNECTIONS-----------------
+                            1
+ -----------------------------------------------------------
+ REACHES           1 TO     2
+ -----------------------------------------------------------
+
+ -----------------------------------------------------------
+ REACH  =     2
+               -----------------CONNECTIONS-----------------
+                            1              2
+ -----------------------------------------------------------
+ REACHES           2 TO     1     2 TO     3
+ -----------------------------------------------------------
+
+ -----------------------------------------------------------
+ REACH  =     3
+               -----------------CONNECTIONS-----------------
+                            1              2
+ -----------------------------------------------------------
+ REACHES           3 TO     2     3 TO     4
+ -----------------------------------------------------------
+
+ -----------------------------------------------------------
+ REACH  =     4
+               -----------------CONNECTIONS-----------------
+                            1              2
+ -----------------------------------------------------------
+ REACHES           4 TO     3     4 TO     5
+ -----------------------------------------------------------
+
+ -----------------------------------------------------------
+ REACH  =     5
+               -----------------CONNECTIONS-----------------
+                            1
+ -----------------------------------------------------------
+ REACHES           5 TO     4
+ -----------------------------------------------------------
+
+
+ TIME-INVARIANT SURFACE-WATER ROUTING REACH DATA
+  REACH IROUTETYPE SOLUTION METHOD      IRGNUM    IRG    LAY    ROW    COL       DLEN
+ --------------------------------------------------------------------------------------------------
+      1          3 DIFFUSIVE-WAVE            1      1      1      1      1   1.00    
+      2          3 DIFFUSIVE-WAVE            2      2      1      1      2   1.00    
+      3          3 DIFFUSIVE-WAVE            3      3      1      1      3   1.00    
+      4          3 DIFFUSIVE-WAVE            4      4      1      1      4   1.00    
+      5          3 DIFFUSIVE-WAVE            5      5      1      1      5   1.00    
+
+
+ SWR REACH GROUPS: REACHES IN REACH GROUP
+ ---------------------------------------------------------------------
+ REACH GROUP =     1 IRGNUM =     1    REACHES     1
+ REACH GROUP =     2 IRGNUM =     2    REACHES     2
+ REACH GROUP =     3 IRGNUM =     3    REACHES     3
+ REACH GROUP =     4 IRGNUM =     4    REACHES     4
+ REACH GROUP =     5 IRGNUM =     5    REACHES     5
+
+ ...READING SWR1 PROCESS DATASET 4C
+
+ ...READING SWR1 PROCESS DATASET 4D
+
+
+ SWR TABULAR DATA:
+ TYPE                  FILE UNIT INTERPOLATION        REACHES
+ ----------------------------------------------------------------------------------
+ STAGE                       201 INTERPOLATE              1     2     3     4     5
+1
+                            STRESS PERIOD NO.    1, LENGTH =   10.00000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =    10
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   1.000000    
+
+ CHD NO.   LAYER   ROW   COL    START HEAD        END HEAD         
+ ------------------------------------------------------------------
+      1      1      1      1       11.00           6.000    
+      2      1      1      5       6.000          -3.000    
+
+
+      2 TIME-VARIANT SPECIFIED-HEAD CELLS
+
+
+ STEADY-STATE STRESS PERIOD
+
+ ...READING SWR1 PROCESS DATASET 5
+
+ ...READING SWR1 PROCESS DATASET 6
+
+
+  SUMMARY OF SWR REACH BOUNDARY CONDITIONS
+        IRG   INACTIVE   CONSTANT     ACTIVE
+ ---------- ---------- ---------- ----------
+          1          0          1          0
+          2          0          1          0
+          3          0          1          0
+          4          0          1          0
+          5          0          1          0
+
+
+                         CONSTANT STAGE/INACTIVE REACH GROUPS
+ ------------------------------------------------------------------------------------------
+ REACH GROUP =     1 IS DEFINED AS A CONSTANT STAGE ELEMENT
+ REACH GROUP =     2 IS DEFINED AS A CONSTANT STAGE ELEMENT
+ REACH GROUP =     3 IS DEFINED AS A CONSTANT STAGE ELEMENT
+ REACH GROUP =     4 IS DEFINED AS A CONSTANT STAGE ELEMENT
+ REACH GROUP =     5 IS DEFINED AS A CONSTANT STAGE ELEMENT
+
+ SURFACE-WATER ROUTING BOUNDARY DATA 
+      REACH    ISWRBND BND TYPE       
+ ------------------------------------
+          1         -1 CONSTANT STAGE 
+          2         -1 CONSTANT STAGE 
+          3         -1 CONSTANT STAGE 
+          4         -1 CONSTANT STAGE 
+          5         -1 CONSTANT STAGE 
+
+ ...READING SWR1 PROCESS DATASET 10
+
+ ...READING SWR1 PROCESS DATASET 11
+
+
+ SURFACE-WATER ROUTING GENERIC GEOMETRY DATA FOR STRESS PERIOD         1
+
+   GEO ITEM    IGEONUM   IGEOTYPE    IGCNDOP    NGEOPTS   GMANNING     GWIDTH     GBELEV    GSSLOPE   CONDUCT.   LEAKANCE     GCNDLN    GETEXTD
+ ----------------------------------------------------------------------------------------------------------------------------------------------
+          1          1          1          1          1  0.500E-01   1.00       0.00                             1.00                          
+
+
+ REACH RATING CURVE DATA FOR STRESS PERIOD
+ ------------------------------------------------------------------------------------------
+
+ REACH   =     1
+ LAYSTR  =     1
+ LAYEND  =     1
+          N   ELEVATION [L]  XSECTAREA [L2]     VOLUME [L3] WET. PERIM. [L]   TOP WIDTH [L] SURF. AREA [L2]
+ ---------- --------------- --------------- --------------- --------------- --------------- ---------------
+          1    0.000000        0.000000        0.000000        0.000000        0.000000        0.000000    
+          2   0.1000000E-05   0.1000000E-05   0.1000000E-05    1.000002        1.000000        1.000000    
+          3    1.000001        1.000001        1.000001        3.000002        1.000000        1.000000    
+          4    2.000001        2.000001        2.000001        5.000002        1.000000        1.000000    
+          5    3.000001        3.000001        3.000001        7.000003        1.000000        1.000000    
+          6    4.000001        4.000001        4.000001        9.000003        1.000000        1.000000    
+          7    5.000001        5.000001        5.000001        11.00000        1.000000        1.000000    
+          8    6.000002        6.000002        6.000002        13.00000        1.000000        1.000000    
+          9    7.000002        7.000002        7.000002        15.00000        1.000000        1.000000    
+         10    8.000002        8.000002        8.000002        17.00000        1.000000        1.000000    
+         11    9.000002        9.000002        9.000002        19.00000        1.000000        1.000000    
+         12    10.00000        10.00000        10.00000        21.00000        1.000000        1.000000    
+         13    10.00000        10.00000        10.00000        21.00000        1.000000        1.000000    
+         14    20.00000        20.00000        20.00000        21.00000        1.000000        1.000000    
+
+ REACH   =     2
+ LAYSTR  =     1
+ LAYEND  =     1
+          N   ELEVATION [L]  XSECTAREA [L2]     VOLUME [L3] WET. PERIM. [L]   TOP WIDTH [L] SURF. AREA [L2]
+ ---------- --------------- --------------- --------------- --------------- --------------- ---------------
+          1    0.000000        0.000000        0.000000        0.000000        0.000000        0.000000    
+          2   0.1000000E-05   0.1000000E-05   0.1000000E-05    1.000002        1.000000        1.000000    
+          3    1.000001        1.000001        1.000001        3.000002        1.000000        1.000000    
+          4    2.000001        2.000001        2.000001        5.000002        1.000000        1.000000    
+          5    3.000001        3.000001        3.000001        7.000003        1.000000        1.000000    
+          6    4.000001        4.000001        4.000001        9.000003        1.000000        1.000000    
+          7    5.000001        5.000001        5.000001        11.00000        1.000000        1.000000    
+          8    6.000002        6.000002        6.000002        13.00000        1.000000        1.000000    
+          9    7.000002        7.000002        7.000002        15.00000        1.000000        1.000000    
+         10    8.000002        8.000002        8.000002        17.00000        1.000000        1.000000    
+         11    9.000002        9.000002        9.000002        19.00000        1.000000        1.000000    
+         12    10.00000        10.00000        10.00000        21.00000        1.000000        1.000000    
+         13    10.00000        10.00000        10.00000        21.00000        1.000000        1.000000    
+         14    20.00000        20.00000        20.00000        21.00000        1.000000        1.000000    
+
+ REACH   =     3
+ LAYSTR  =     1
+ LAYEND  =     1
+          N   ELEVATION [L]  XSECTAREA [L2]     VOLUME [L3] WET. PERIM. [L]   TOP WIDTH [L] SURF. AREA [L2]
+ ---------- --------------- --------------- --------------- --------------- --------------- ---------------
+          1    0.000000        0.000000        0.000000        0.000000        0.000000        0.000000    
+          2   0.1000000E-05   0.1000000E-05   0.1000000E-05    1.000002        1.000000        1.000000    
+          3   0.5000011       0.5000011       0.5000011        2.000002        1.000000        1.000000    
+          4    1.000001        1.000001        1.000001        3.000002        1.000000        1.000000    
+          5    1.500001        1.500001        1.500001        4.000003        1.000000        1.000000    
+          6    2.000001        2.000001        2.000001        5.000003        1.000000        1.000000    
+          7    2.500002        2.500002        2.500002        6.000003        1.000000        1.000000    
+          8    3.000002        3.000002        3.000002        7.000003        1.000000        1.000000    
+          9    3.500002        3.500002        3.500002        8.000003        1.000000        1.000000    
+         10    4.000002        4.000002        4.000002        9.000004        1.000000        1.000000    
+         11    4.500002        4.500002        4.500002        10.00000        1.000000        1.000000    
+         12    5.000000        5.000000        5.000000        11.00000        1.000000        1.000000    
+         13    5.000001        5.000001        5.000001        11.00000        1.000000        1.000000    
+         14    15.00000        15.00000        15.00000        11.00000        1.000000        1.000000    
+
+ REACH   =     4
+ LAYSTR  =     1
+ LAYEND  =     1
+          N   ELEVATION [L]  XSECTAREA [L2]     VOLUME [L3] WET. PERIM. [L]   TOP WIDTH [L] SURF. AREA [L2]
+ ---------- --------------- --------------- --------------- --------------- --------------- ---------------
+          1    0.000000        0.000000        0.000000        0.000000        0.000000        0.000000    
+          2   0.1000000E-05   0.1000000E-05   0.1000000E-05    1.000000        1.000000        1.000000    
+          3    10.00000        10.00000        10.00000        1.000000        1.000000        1.000000    
+
+ REACH   =     5
+ LAYSTR  =     1
+ LAYEND  =     1
+          N   ELEVATION [L]  XSECTAREA [L2]     VOLUME [L3] WET. PERIM. [L]   TOP WIDTH [L] SURF. AREA [L2]
+ ---------- --------------- --------------- --------------- --------------- --------------- ---------------
+          1    0.000000        0.000000        0.000000        0.000000        0.000000        0.000000    
+          2   0.1000000E-05   0.1000000E-05   0.1000000E-05    1.000000        1.000000        1.000000    
+          3    10.00000        10.00000        10.00000        1.000000        1.000000        1.000000    
+
+ ...READING SWR1 PROCESS DATASET 14B
+
+            2D STAGE DATA =   5.00000    
+
+
+ STAGE DATA FOR STRESS PERIOD          1
+ REACH      STAGE     STATUS
+ ---------------------------
+     1   5.00            RAW
+     2   5.00            RAW
+     3   5.00            RAW
+     4   5.00            RAW
+     5   5.00            RAW
+
+
+ REACH OFFSETS FOR STRESS PERIOD
+          1          2          3          4          5
+ -------------------------------------------------------------------------------------------------------------
+     0.0000     0.0000     0.0000     0.0000     0.0000
+
+
+ DOWNSTREAM REACH FOR EACH REACH GROUP (RCHGRP) FOR STRESS PERIOD
+ -----------------------------------------------------------------------------------
+ RG0001 =    1 RG0002 =    2 RG0003 =    3 RG0004 =    4 RG0005 =    5
+
+
+ NEW RATING CURVE FOR REACH GROUPS FOR STRESS PERIOD
+ ------------------------------------------------------------------------------------------
+
+ REACH GROUP =     1 GROUP =     1
+
+          N   ELEVATION [L]       DEPTH [L]     VOLUME [L3]
+ ---------- --------------- --------------- ---------------
+          1    0.000000        0.000000        0.000000    
+          2   0.1000000E-05   0.1000000E-05   0.1000000E-05
+          3    1.000001        1.000001        1.000001    
+          4    2.000001        2.000001        2.000001    
+          5    3.000001        3.000001        3.000001    
+          6    4.000001        4.000001        4.000001    
+          7    5.000001        5.000001        5.000001    
+          8    6.000002        6.000002        6.000002    
+          9    7.000002        7.000002        7.000002    
+         10    8.000002        8.000002        8.000002    
+         11    9.000002        9.000002        9.000002    
+         12    10.00000        10.00000        10.00000    
+         13    10.00000        10.00000        10.00000    
+         14    20.00000        20.00000        20.00000    
+
+ REACH GROUP =     2 GROUP =     2
+
+          N   ELEVATION [L]       DEPTH [L]     VOLUME [L3]
+ ---------- --------------- --------------- ---------------
+          1    0.000000        0.000000        0.000000    
+          2   0.1000000E-05   0.1000000E-05   0.1000000E-05
+          3    1.000001        1.000001        1.000001    
+          4    2.000001        2.000001        2.000001    
+          5    3.000001        3.000001        3.000001    
+          6    4.000001        4.000001        4.000001    
+          7    5.000001        5.000001        5.000001    
+          8    6.000002        6.000002        6.000002    
+          9    7.000002        7.000002        7.000002    
+         10    8.000002        8.000002        8.000002    
+         11    9.000002        9.000002        9.000002    
+         12    10.00000        10.00000        10.00000    
+         13    10.00000        10.00000        10.00000    
+         14    20.00000        20.00000        20.00000    
+
+ REACH GROUP =     3 GROUP =     3
+
+          N   ELEVATION [L]       DEPTH [L]     VOLUME [L3]
+ ---------- --------------- --------------- ---------------
+          1    0.000000        0.000000        0.000000    
+          2   0.1000000E-05   0.1000000E-05   0.1000000E-05
+          3   0.5000011       0.5000011       0.5000011    
+          4    1.000001        1.000001        1.000001    
+          5    1.500001        1.500001        1.500001    
+          6    2.000001        2.000001        2.000001    
+          7    2.500002        2.500002        2.500002    
+          8    3.000002        3.000002        3.000002    
+          9    3.500002        3.500002        3.500002    
+         10    4.000002        4.000002        4.000002    
+         11    4.500002        4.500002        4.500002    
+         12    5.000000        5.000000        5.000000    
+         13    5.000001        5.000001        5.000001    
+         14    15.00000        15.00000        15.00000    
+
+ REACH GROUP =     4 GROUP =     4
+
+          N   ELEVATION [L]       DEPTH [L]     VOLUME [L3]
+ ---------- --------------- --------------- ---------------
+          1    0.000000        0.000000        0.000000    
+          2   0.1000000E-05   0.1000000E-05   0.1000000E-05
+          3    10.00000        10.00000        10.00000    
+
+ REACH GROUP =     5 GROUP =     5
+
+          N   ELEVATION [L]       DEPTH [L]     VOLUME [L3]
+ ---------- --------------- --------------- ---------------
+          1    0.000000        0.000000        0.000000    
+          2   0.1000000E-05   0.1000000E-05   0.1000000E-05
+          3    10.00000        10.00000        10.00000    
+
+ -----------------------------------------------------------
+ NUMBER OF REACH GROUPS                  =     5
+ LU DECOMPOSITION STORAGE APPROACH:
+   FULL JACOBIAN STORAGE (NSOLRG X NSOLRG)           
+
+ SOLVING FOR HEAD 
+
+
+     4 CALLS TO PCG ROUTINE FOR TIME STEP   1 IN STRESS PERIOD    1
+     7 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    1   TIME STEP    1
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    1   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      1.0000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         1 TIME STEP         1
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    1, STRESS PERIOD    1
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   2 IN STRESS PERIOD    1
+     5 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    1   TIME STEP    2
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    1   TIME STEP     2
+ --------------- --------------- --------------- --------------- ---------------
+      2.0000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         1 TIME STEP         2
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    2, STRESS PERIOD    1
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   3 IN STRESS PERIOD    1
+     5 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    1   TIME STEP    3
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    1   TIME STEP     3
+ --------------- --------------- --------------- --------------- ---------------
+      3.0000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         1 TIME STEP         3
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    3, STRESS PERIOD    1
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   4 IN STRESS PERIOD    1
+     5 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    1   TIME STEP    4
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    1   TIME STEP     4
+ --------------- --------------- --------------- --------------- ---------------
+      4.0000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         1 TIME STEP         4
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    4, STRESS PERIOD    1
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   5 IN STRESS PERIOD    1
+     5 TOTAL ITERATIONS
+
+ MAXIMUM HEAD CHANGE FOR EACH ITERATION (1 INDICATES THE FIRST INNER ITERATION):
+
+    HEAD CHANGE    HEAD CHANGE    HEAD CHANGE    HEAD CHANGE    HEAD CHANGE 
+   LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL
+ ---------------------------------------------------------------------------
+  1 -0.6542      0  0.2424E-07  1 -0.1200E-01  0 -0.1647E-09  1  0.1219E-03
+   (  1,  1,  4)  (  1,  1,  4)  (  1,  1,  3)  (  1,  1,  3)  (  1,  1,  3)
+
+ MAXIMUM RESIDUAL FOR EACH ITERATION (1 INDICATES THE FIRST INNER ITERATION):
+
+    RESIDUAL       RESIDUAL       RESIDUAL       RESIDUAL       RESIDUAL    
+   LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL
+ ---------------------------------------------------------------------------
+  1  0.2038E-05  0 -0.2401E-14  1  0.1211E-07  0  0.2170E-16  1  0.1929E-09
+   (  1,  1,  2)  (  1,  1,  3)  (  1,  1,  2)  (  1,  1,  4)  (  1,  1,  2)
+
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD    1   TIME STEP    5
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    1   TIME STEP     5
+ --------------- --------------- --------------- --------------- ---------------
+      5.0000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         1 TIME STEP         5
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    5, STRESS PERIOD    1
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   6 IN STRESS PERIOD    1
+     5 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    1   TIME STEP    6
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    1   TIME STEP     6
+ --------------- --------------- --------------- --------------- ---------------
+      6.0000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         1 TIME STEP         6
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    6, STRESS PERIOD    1
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   7 IN STRESS PERIOD    1
+     5 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    1   TIME STEP    7
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    1   TIME STEP     7
+ --------------- --------------- --------------- --------------- ---------------
+      7.0000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         1 TIME STEP         7
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    7, STRESS PERIOD    1
+
+ SOLVING FOR HEAD 
+     4 CALLS TO PCG ROUTINE FOR TIME STEP   8 IN STRESS PERIOD    1
+     7 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    1   TIME STEP    8
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    1   TIME STEP     8
+ --------------- --------------- --------------- --------------- ---------------
+      8.0000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         1 TIME STEP         8
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    8, STRESS PERIOD    1
+
+ SOLVING FOR HEAD 
+     4 CALLS TO PCG ROUTINE FOR TIME STEP   9 IN STRESS PERIOD    1
+     7 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    1   TIME STEP    9
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    1   TIME STEP     9
+ --------------- --------------- --------------- --------------- ---------------
+      9.0000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         1 TIME STEP         9
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    9, STRESS PERIOD    1
+
+ SOLVING FOR HEAD 
+     4 CALLS TO PCG ROUTINE FOR TIME STEP  10 IN STRESS PERIOD    1
+     7 TOTAL ITERATIONS
+
+ MAXIMUM HEAD CHANGE FOR EACH ITERATION (1 INDICATES THE FIRST INNER ITERATION):
+
+    HEAD CHANGE    HEAD CHANGE    HEAD CHANGE    HEAD CHANGE    HEAD CHANGE 
+   LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL
+ ---------------------------------------------------------------------------
+  1 -0.3683      0 -0.8949E-08  1 -0.3159E-01  0  0.3816E-09  1 -0.1963E-02
+   (  1,  1,  2)  (  1,  1,  4)  (  1,  1,  4)  (  1,  1,  4)  (  1,  1,  4)
+  0 -0.1733E-10  1 -0.3199E-04
+   (  1,  1,  4)  (  1,  1,  4)
+
+ MAXIMUM RESIDUAL FOR EACH ITERATION (1 INDICATES THE FIRST INNER ITERATION):
+
+    RESIDUAL       RESIDUAL       RESIDUAL       RESIDUAL       RESIDUAL    
+   LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL
+ ---------------------------------------------------------------------------
+  1  0.3142E-06  0 -0.4301E-14  1  0.2686E-07  0  0.4368E-15  1  0.1319E-08
+   (  1,  1,  3)  (  1,  1,  3)  (  1,  1,  3)  (  1,  1,  2)  (  1,  1,  2)
+  0 -0.1602E-16  1  0.2261E-10
+   (  1,  1,  3)  (  1,  1,  2)
+
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD    1   TIME STEP   10
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    1   TIME STEP    10
+ --------------- --------------- --------------- --------------- ---------------
+      10.000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP    10 IN STRESS PERIOD    1
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =        1146.6014        REACH-AQ FLOW  =          33.7732
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =          46.8443        CONSTANT FLOW  =          11.1813
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+               TOTAL IN =        1193.4457              TOTAL IN =          44.9545
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =          46.8443        REACH-AQ FLOW  =          11.1813
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =        1146.6014        CONSTANT FLOW  =          33.7732
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+              TOTAL OUT =        1193.4457             TOTAL OUT =          44.9545
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+                   DISCREPANCY BETWEEN MODFLOW AND SWR1 AQUIFER-REACH
+                               TERMS FOR THE ENTIRE MODEL               
+  -----------------------------------------------------------------------------------
+       CUMULATIVE VOLUMES       L**3        RATES FOR THIS TIME STEP       L**3/T
+       ------------------                   ------------------------
+                MODFLOW =        -434.7613                 MODFLOW =          -0.5923
+                   SWR1 =        -434.7573                    SWR1 =          -0.5919
+    PERCENT DISCREPANCY =          -0.00       PERCENT DISCREPANCY =          -0.01
+  SWR1 CONSTANT MODFLOW =        -665.0000   SWR1 CONSTANT MODFLOW =         -22.0000
+  SWR1 INACTIVE MODFLOW =           0.0000   SWR1 INACTIVE MODFLOW =           0.0000
+  -----------------------------------------------------------------------------------
+    PERCENT DISCREPANCY = 100 x ((SWRIN-MFIN) - (SWROUT-MFOUT)) / (MFIN+MFOUT) / 2
+
+
+
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         1 TIME STEP        10
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP   10, STRESS PERIOD    1
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP   10, STRESS PERIOD   1
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =        1002.8404         CONSTANT HEAD =          65.0161
+         SWR LEAKAGE =          19.2445           SWR LEAKAGE =           7.1812
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =        1022.0848              TOTAL IN =          72.1973
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =         568.0773         CONSTANT HEAD =          64.4238
+         SWR LEAKAGE =         454.0058           SWR LEAKAGE =           7.7735
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =        1022.0830             TOTAL OUT =          72.1973
+
+            IN - OUT =       1.8311E-03              IN - OUT =      -3.8147E-05
+
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =          -0.00
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP   10 IN STRESS PERIOD    1
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  1.0000     1.66667E-02 2.77778E-04 1.15741E-05 3.16881E-08
+ STRESS PERIOD TIME  10.000     0.16667     2.77778E-03 1.15741E-04 3.16881E-07
+         TOTAL TIME  10.000     0.16667     2.77778E-03 1.15741E-04 3.16881E-07
+1
+1
+                            STRESS PERIOD NO.    2, LENGTH =   10.00000    
+                            -----------------------------------------------
+
+                              NUMBER OF TIME STEPS =    10
+
+                               MULTIPLIER FOR DELT =     1.000
+
+                            INITIAL TIME STEP SIZE =   1.000000    
+
+ CHD NO.   LAYER   ROW   COL    START HEAD        END HEAD         
+ ------------------------------------------------------------------
+      1      1      1      1       6.000           11.00    
+      2      1      1      5      -3.000           6.000    
+
+
+      2 TIME-VARIANT SPECIFIED-HEAD CELLS
+
+
+ STEADY-STATE STRESS PERIOD
+
+ ...READING SWR1 PROCESS DATASET 5
+
+
+ REUSING SURFACE-WATER ROUTING REACHES FROM LAST STRESS PERIOD
+
+ SOLVING FOR HEAD 
+
+
+     4 CALLS TO PCG ROUTINE FOR TIME STEP   1 IN STRESS PERIOD    2
+     7 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    2   TIME STEP    1
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    2   TIME STEP     1
+ --------------- --------------- --------------- --------------- ---------------
+      11.000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         2 TIME STEP         1
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    1, STRESS PERIOD    2
+
+ SOLVING FOR HEAD 
+     4 CALLS TO PCG ROUTINE FOR TIME STEP   2 IN STRESS PERIOD    2
+     7 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    2   TIME STEP    2
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    2   TIME STEP     2
+ --------------- --------------- --------------- --------------- ---------------
+      12.000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         2 TIME STEP         2
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    2, STRESS PERIOD    2
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   3 IN STRESS PERIOD    2
+     5 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    2   TIME STEP    3
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    2   TIME STEP     3
+ --------------- --------------- --------------- --------------- ---------------
+      13.000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         2 TIME STEP         3
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    3, STRESS PERIOD    2
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   4 IN STRESS PERIOD    2
+     5 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    2   TIME STEP    4
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    2   TIME STEP     4
+ --------------- --------------- --------------- --------------- ---------------
+      14.000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         2 TIME STEP         4
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    4, STRESS PERIOD    2
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   5 IN STRESS PERIOD    2
+     5 TOTAL ITERATIONS
+
+ MAXIMUM HEAD CHANGE FOR EACH ITERATION (1 INDICATES THE FIRST INNER ITERATION):
+
+    HEAD CHANGE    HEAD CHANGE    HEAD CHANGE    HEAD CHANGE    HEAD CHANGE 
+   LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL
+ ---------------------------------------------------------------------------
+  1  0.6223      0  0.7497E-08  1 -0.1595E-01  0  0.5357E-10  1 -0.3843E-03
+   (  1,  1,  4)  (  1,  1,  3)  (  1,  1,  2)  (  1,  1,  4)  (  1,  1,  3)
+
+ MAXIMUM RESIDUAL FOR EACH ITERATION (1 INDICATES THE FIRST INNER ITERATION):
+
+    RESIDUAL       RESIDUAL       RESIDUAL       RESIDUAL       RESIDUAL    
+   LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL
+ ---------------------------------------------------------------------------
+  1 -0.7002E-06  0  0.1493E-14  1  0.4391E-08  0  0.8255E-17  1  0.8360E-09
+   (  1,  1,  3)  (  1,  1,  2)  (  1,  1,  3)  (  1,  1,  3)  (  1,  1,  2)
+
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD    2   TIME STEP    5
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    2   TIME STEP     5
+ --------------- --------------- --------------- --------------- ---------------
+      15.000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         2 TIME STEP         5
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    5, STRESS PERIOD    2
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   6 IN STRESS PERIOD    2
+     5 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    2   TIME STEP    6
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    2   TIME STEP     6
+ --------------- --------------- --------------- --------------- ---------------
+      16.000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         2 TIME STEP         6
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    6, STRESS PERIOD    2
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   7 IN STRESS PERIOD    2
+     5 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    2   TIME STEP    7
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    2   TIME STEP     7
+ --------------- --------------- --------------- --------------- ---------------
+      17.000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         2 TIME STEP         7
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    7, STRESS PERIOD    2
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   8 IN STRESS PERIOD    2
+     5 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    2   TIME STEP    8
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    2   TIME STEP     8
+ --------------- --------------- --------------- --------------- ---------------
+      18.000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         2 TIME STEP         8
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    8, STRESS PERIOD    2
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP   9 IN STRESS PERIOD    2
+     5 TOTAL ITERATIONS
+
+ OUTPUT CONTROL FOR STRESS PERIOD    2   TIME STEP    9
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    2   TIME STEP     9
+ --------------- --------------- --------------- --------------- ---------------
+      19.000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         2 TIME STEP         9
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP    9, STRESS PERIOD    2
+
+ SOLVING FOR HEAD 
+     3 CALLS TO PCG ROUTINE FOR TIME STEP  10 IN STRESS PERIOD    2
+     5 TOTAL ITERATIONS
+
+ MAXIMUM HEAD CHANGE FOR EACH ITERATION (1 INDICATES THE FIRST INNER ITERATION):
+
+    HEAD CHANGE    HEAD CHANGE    HEAD CHANGE    HEAD CHANGE    HEAD CHANGE 
+   LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL
+ ---------------------------------------------------------------------------
+  1  0.6076      0 -0.1337E-07  1 -0.1919E-01  0 -0.1164E-09  1  0.9361E-03
+   (  1,  1,  4)  (  1,  1,  3)  (  1,  1,  2)  (  1,  1,  3)  (  1,  1,  2)
+
+ MAXIMUM RESIDUAL FOR EACH ITERATION (1 INDICATES THE FIRST INNER ITERATION):
+
+    RESIDUAL       RESIDUAL       RESIDUAL       RESIDUAL       RESIDUAL    
+   LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL  LAYER,ROW,COL
+ ---------------------------------------------------------------------------
+  1  0.1338E-05  0 -0.3218E-14  1  0.7952E-08  0  0.8282E-17  1 -0.1253E-08
+   (  1,  1,  3)  (  1,  1,  2)  (  1,  1,  3)  (  1,  1,  4)  (  1,  1,  3)
+
+
+
+ OUTPUT CONTROL FOR STRESS PERIOD    2   TIME STEP   10
+    SAVE HEAD FOR ALL LAYERS
+
+ -------------------------------------------------------------------------------
+                             SWR1 OUTPUT PRINT TIMES
+                        STRESS PERIOD    2   TIME STEP    10
+ --------------- --------------- --------------- --------------- ---------------
+      20.000                                                                    
+ -------------------------------------------------------------------------------
+
+
+                    VOLUMETRIC SURFACE WATER BUDGET FOR ENTIRE MODEL
+                    AT END OF TIME STEP    10 IN STRESS PERIOD    2
+  -----------------------------------------------------------------------------------
+
+        CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+        ------------------                 ------------------------
+
+              IN:                                      IN:
+              ---                                      ---
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =        2922.9790        REACH-AQ FLOW  =         324.5544
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =          72.0793        CONSTANT FLOW  =           0.0000
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+               TOTAL IN =        2995.0583              TOTAL IN =         324.5544
+
+             OUT:                                     OUT:
+             ----                                     ----
+          LATERAL FLOW  =           0.0000         LATERAL FLOW  =           0.0000
+         UNSAT. RUNOFF  =           0.0000        UNSAT. RUNOFF  =           0.0000
+              RAINFALL  =           0.0000             RAINFALL  =           0.0000
+           EVAPORATION  =           0.0000          EVAPORATION  =           0.0000
+         REACH-AQ FLOW  =          72.0793        REACH-AQ FLOW  =           0.0000
+         EXTERNAL FLOW  =           0.0000        EXTERNAL FLOW  =           0.0000
+         BOUNDARY FLOW  =           0.0000        BOUNDARY FLOW  =           0.0000
+         CONSTANT FLOW  =        2922.9790        CONSTANT FLOW  =         324.5544
+               STORAGE  =           0.0000              STORAGE  =           0.0000
+
+              TOTAL OUT =        2995.0583             TOTAL OUT =         324.5544
+
+               IN - OUT =           0.0000              IN - OUT =           0.0000
+
+    PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
+
+
+                   DISCREPANCY BETWEEN MODFLOW AND SWR1 AQUIFER-REACH
+                               TERMS FOR THE ENTIRE MODEL               
+  -----------------------------------------------------------------------------------
+       CUMULATIVE VOLUMES       L**3        RATES FOR THIS TIME STEP       L**3/T
+       ------------------                   ------------------------
+                MODFLOW =       -1190.7560                 MODFLOW =        -153.5836
+                   SWR1 =       -1190.6996                    SWR1 =        -153.5544
+    PERCENT DISCREPANCY =          -0.01       PERCENT DISCREPANCY =          -0.04
+  SWR1 CONSTANT MODFLOW =       -1660.2001   SWR1 CONSTANT MODFLOW =        -171.0000
+  SWR1 INACTIVE MODFLOW =           0.0000   SWR1 INACTIVE MODFLOW =           0.0000
+  -----------------------------------------------------------------------------------
+    PERCENT DISCREPANCY = 100 x ((SWRIN-MFIN) - (SWROUT-MFOUT)) / (MFIN+MFOUT) / 2
+
+
+
+
+
+                             FROUDE NUMBER SUMMARY
+               FOR STRESS PERIOD         2 TIME STEP        10
+   SWR STEP     MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+ ---------- ---------- ---------- ---------- ---------- ---------- ----------
+          1   0.00              0   0.00              0   0.00              0
+
+
+                  FROUDE NUMBER SUMMARY FOR ENTIRE SIMULATION
+                MAX FR    FR RGRP  MAX DFRDX DFRDX RGRP  MAX DFRDT DFRDT RGRP
+            ---------- ---------- ---------- ---------- ---------- ----------
+              0.00              0   0.00              0   0.00              0
+
+ HEAD WILL BE SAVED ON UNIT  105 AT END OF TIME STEP   10, STRESS PERIOD    2
+1
+  VOLUMETRIC BUDGET FOR ENTIRE MODEL AT END OF TIME STEP   10, STRESS PERIOD   2
+  ------------------------------------------------------------------------------
+
+     CUMULATIVE VOLUMES      L**3       RATES FOR THIS TIME STEP      L**3/T
+     ------------------                 ------------------------
+
+           IN:                                      IN:
+           ---                                      ---
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =        2237.6377         CONSTANT HEAD =         171.6634
+         SWR LEAKAGE =          27.0795           SWR LEAKAGE =           0.0000
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+            TOTAL IN =        2264.7170              TOTAL IN =         171.6634
+
+          OUT:                                     OUT:
+          ----                                     ----
+             STORAGE =           0.0000               STORAGE =           0.0000
+       CONSTANT HEAD =        1046.9055         CONSTANT HEAD =          18.0903
+         SWR LEAKAGE =        1217.8354           SWR LEAKAGE =         153.5836
+            SWR GWET =           0.0000              SWR GWET =           0.0000
+
+           TOTAL OUT =        2264.7410             TOTAL OUT =         171.6739
+
+            IN - OUT =      -2.3926E-02              IN - OUT =      -1.0468E-02
+
+ PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.01
+
+
+
+
+
+
+         TIME SUMMARY AT END OF TIME STEP   10 IN STRESS PERIOD    2
+                    SECONDS     MINUTES      HOURS       DAYS        YEARS
+                    -----------------------------------------------------------
+   TIME STEP LENGTH  1.0000     1.66667E-02 2.77778E-04 1.15741E-05 3.16881E-08
+ STRESS PERIOD TIME  10.000     0.16667     2.77778E-03 1.15741E-04 3.16881E-07
+         TOTAL TIME  20.000     0.33333     5.55556E-03 2.31481E-04 6.33762E-07
+1
+
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2016/02/15 11:21:39
+ Elapsed run time:  0.007 Seconds
+
+
+
+ SUMMARY OF SWR1 PROCESS EXECUTION TIME
+ TOTAL SWR1 EXECUTION TIME:    0.3906250E-02 SECONDS
