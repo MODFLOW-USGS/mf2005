@@ -1276,8 +1276,10 @@ C-----------CALCULATE QREXTRA and QFEXTRA and QLEXTRA
                   END IF
                 END IF
 C           ADD QREXTRA, QFEXTRA and QLEXTRA TO QREXTRACUM, QFEXTRA and QLEXTRA
-                QLEXTRACUM(j,i,k) = QLEXTRACUM(j,i,k) +
-     2                              QLEXTRA(j,i,k) * switfact
+                IF (k.GT.1) THEN
+                  QLEXTRACUM(j,i,k-1) = QLEXTRACUM(j,i,k-1) +
+     2                                  QLEXTRA(j,i,k-1) * switfact
+                END IF
                 QFEXTRACUM(j,i,k) = QFEXTRACUM(j,i,k) +
      2                              QFEXTRA(j,i,k) * switfact
                 QREXTRACUM(j,i,k) = QREXTRACUM(j,i,k) +
@@ -1550,12 +1552,16 @@ C-------INITIALIZE CELL-BY-CELL FLOW TERM FLAG (IBD) AND
 C
 C-------IF CELL-BY-CELL TERMS WILL BE SAVED AS A 3-D ARRAY, THEN CALL
 C       UTILITY MODULE UBUDSV TO SAVE THEM.
-      IF ( ibd.EQ.1 ) CALL UBUDSV(Kkstp,Kkper,textflf(1),ISWICB,
-     2                            QLEXTRACUM,NCOL,NROW,NLAY,IOUT)
-      IF ( ibd.EQ.2 ) CALL UBDSV1(Kkstp,Kkper,textflf(1),ISWICB,
-     2                            QLEXTRACUM,NCOL,NROW,NLAY,IOUT,
+C
+C---------STORE CONSTANT HEAD CORRECTION FLUXES in BUFF
+      CALL SSWI2_BDCH(0)
+      IF ( ibd.EQ.1 ) CALL UBUDSV(Kkstp,Kkper,textch(1),ISWICB,BUFF,
+     2                            NCOL,NROW,NLAY,IOUT)
+      IF ( ibd.EQ.2 ) CALL UBDSV1(Kkstp,Kkper,textch(1),ISWICB,
+     2                            BUFF,NCOL,NROW,NLAY,IOUT,
      3                            DELT,PERTIM,TOTIM,IBOUND)
-
+C
+C---------STORE RIGHT, FRONT AND LOWER FACE CORRECTION FLUXES
       IF ( ibd.EQ.1 ) CALL UBUDSV(Kkstp,Kkper,textfrf(1),ISWICB,
      2                            QREXTRACUM,NCOL,NROW,NLAY,IOUT)
       IF ( ibd.EQ.2 ) CALL UBDSV1(Kkstp,Kkper,textfrf(1),ISWICB,
@@ -1567,13 +1573,11 @@ C       UTILITY MODULE UBUDSV TO SAVE THEM.
       IF ( ibd.EQ.2 ) CALL UBDSV1(Kkstp,Kkper,textfff(1),ISWICB,
      2                            QFEXTRACUM,NCOL,NROW,NLAY,IOUT,
      3                            DELT,PERTIM,TOTIM,IBOUND)
-C
-C---------STORE CONSTANT HEAD CORRECTION FLUXES in BUFF
-      CALL SSWI2_BDCH(0)
-      IF ( ibd.EQ.1 ) CALL UBUDSV(Kkstp,Kkper,textch(1),ISWICB,BUFF,
-     2                            NCOL,NROW,NLAY,IOUT)
-      IF ( ibd.EQ.2 ) CALL UBDSV1(Kkstp,Kkper,textch(1),ISWICB,
-     2                            BUFF,NCOL,NROW,NLAY,IOUT,
+
+      IF ( ibd.EQ.1 ) CALL UBUDSV(Kkstp,Kkper,textflf(1),ISWICB,
+     2                            QLEXTRACUM,NCOL,NROW,NLAY,IOUT)
+      IF ( ibd.EQ.2 ) CALL UBDSV1(Kkstp,Kkper,textflf(1),ISWICB,
+     2                            QLEXTRACUM,NCOL,NROW,NLAY,IOUT,
      3                            DELT,PERTIM,TOTIM,IBOUND)
 
 C
