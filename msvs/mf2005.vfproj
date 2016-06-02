@@ -4,7 +4,7 @@
 		<Platform Name="Win32"/>
 		<Platform Name="x64"/></Platforms>
 	<Configurations>
-		<Configuration Name="Debug|Win32" IntermediateDirectory="$(ProjectName)\$(ConfigurationName)">
+		<Configuration Name="Debug|Win32" OutputDirectory="$(PlatformName)\$(ConfigurationName)" IntermediateDirectory="$(PlatformName)\$(ConfigurationName)" TargetName="$(ProjectName)d">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" WarnInterfaces="true" Traceback="true" BoundsCheck="true" StackFrameCheck="true" RuntimeLibrary="rtMultiThreadedDebug"/>
 				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalYes" SuppressStartupBanner="true" IgnoreDefaultLibraryNames="MSVCRTD" GenerateDebugInformation="true" SubSystem="subSystemConsole"/>
 				<Tool Name="VFResourceCompilerTool"/>
@@ -51,7 +51,6 @@
 		<File RelativePath="..\src\de47.f"/>
 		<File RelativePath="..\src\gmg7.f"/>
 		<File RelativePath="..\src\gmg7_c_interface.f90"/>
-		<File RelativePath="..\src\gwf2swr7util.f"/>
 		<File RelativePath="..\src\gwf2bas7.f"/>
 		<File RelativePath="..\src\gwf2bcf7.f"/>
 		<File RelativePath="..\src\gwf2chd7.f"/>
@@ -79,6 +78,7 @@
 		<File RelativePath="..\src\gwf2sub7.f"/>
 		<File RelativePath="..\src\gwf2swi27.f"/>
 		<File RelativePath="..\src\gwf2swr7.f"/>
+		<File RelativePath="..\src\gwf2swr7util.f"/>
 		<File RelativePath="..\src\gwf2swt7.f"/>
 		<File RelativePath="..\src\gwf2uzf1.f"/>
 		<File RelativePath="..\src\gwf2wel7.f"/>
