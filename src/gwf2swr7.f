@@ -103,7 +103,7 @@ C-----------------------------------------------------------------------------
 C      
       MODULE GWFSWRMODULE
         CHARACTER(LEN=64),PARAMETER :: VERSION_SWR =
-     +'$Id: gwf2swr7.f 1.04 2016-01-28 15:00:00Z jdhughes $'
+     +'$Id: gwf2swr7.f 1.04 2016-06-16 15:00:00Z jdhughes $'
 C
 C---------INVARIANT PARAMETERS
         INTEGER, PARAMETER          :: IUZFOFFS     = 100000
@@ -14329,6 +14329,8 @@ C     + + + CODE + + +
         dlj   = DZERO
         bj    = DZERO
         aj    = DZERO
+        p     = DZERO
+        r     = DZERO
         IF (REACH(I)%IGEOTYPE.EQ.5) THEN
           IF (Irowi.NE.Irowj) dli = DELC(Irowi) * DONEHALF
           IF (Jcoli.NE.Jcolj) dli = DELR(Jcoli) * DONEHALF
