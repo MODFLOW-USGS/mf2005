@@ -240,6 +240,7 @@ C       + + + LOCAL DEFINITIONS + + +
         INTEGER :: iz, kk
         INTEGER :: itmem
         INTEGER :: ic
+        INTEGER :: iusezone
         REAL :: r
         REAL :: d
         REAL :: bbot, ttop, z
@@ -699,7 +700,11 @@ C
 C-----------CHECK FOR INVALID ZONE NUMBERS
           DO i = 1, NROW
             DO j = 1, NCOL
-              IF ( ABS(IZONENR(j,i,k)).GT.NZONES ) THEN
+              iusezone = ABS(IZONENR(j,i,k))
+              if (iusezone > 100) then
+                iusezone = 100 - iusezone
+              end if
+              IF ( iusezone.GT.NZONES ) THEN
                 ierr = ierr + 1
                 IF ( ierr.EQ.1 ) WRITE(IOUT,'(//)')
                 WRITE(IOUT,2270) IZONENR(j,i,k),k,i,j 
@@ -1454,6 +1459,7 @@ C       + + + LOCAL DEFINITIONS + + +
         DOUBLEPRECISION :: qbnd, qch, qstor, qcstor, qint, qtt, qmix
         REAL :: t0, b0
         REAL :: bt, ht
+        doubleprecision :: thick, thickb
         DOUBLEPRECISION :: db, dh
         REAL :: z
         REAL :: zero, rate, rin, rout
@@ -1743,6 +1749,9 @@ C                 DETERMINE ZONE NUMBER FOR BOUNDARY CONDITION
                 IF ( (iusezone.LT.0) .AND. (q.GT.zero) ) THEN
                   iusezone = 1
                 ENDIF
+                IF ( (IZONENR(j,i,k) > 100) ) then
+                  iusezone = iusezone - 100
+                end if
 C-----------------FIND HIGHEST ACTIVE ZONE IF THICKNESS IS ZERO
                 t0 = ZETAOLD(j,i,k,ABS(iusezone))
                 b0 = ZETAOLD(j,i,k,ABS(iusezone)+1)
@@ -1756,6 +1765,18 @@ C-----------------FIND HIGHEST ACTIVE ZONE IF THICKNESS IS ZERO
                     END IF
                   END DO
                 END IF
+                IF ( IZONENR(j,i,k) > 100 ) then
+                  if (qbnd < 0. .or. qch < 0.) then
+                    thick = ZETAOLD(j,i,k,1) - ZETAOLD(j,i,k,NZONES+1)
+                    thickb = ZETAOLD(j,i,k,iz) - ZETAOLD(j,i,k,iz+1)
+                    if (thickb <  SWISMALL) then
+                      thickb = 0.d0
+                    end if
+                    qbnd = qbnd * thickb / thick
+                    qch = qch * thickb / thick
+                    iusezone = iz
+                  end if
+                end if
 
                 IF ( iz.EQ.ABS(iusezone) ) THEN
 C-----------------ADJUST qbnd USING qint TO REMOVE TOTAL ZONE CHANGE FROM
@@ -3478,6 +3499,7 @@ C       + + + LOCAL DEFINITIONS + + +
         REAL :: nuontop, nubelbot
         REAL :: rclose
         DOUBLEPRECISION :: dt, ht
+        real :: thick, thickb, fact
 C
 C-------OUTPUT FORMAT STATEMENTS
  2000  FORMAT(1X,/1X,A,'   PERIOD ',I4,'   STEP ',I3)
@@ -3522,12 +3544,24 @@ C               SET ZONE NUMBER FOR BOUNDARY CONDITIONS
               IF ( (IZONENR(j,i,k).LT.0) .AND. (q.GT.0) ) THEN
                 iusezone = 1
               ENDIF
+              thick = 0.0
+              IF ( (IZONENR(j,i,k) > 100) ) then
+                if (q.GT.0) THEN 
+                  thick = ZETA(j,i,k,1) - ZETA(j,i,k,NZONES+1)
+                end if
+                iusezone = iusezone - 100
+              end if
               IZBRHS: DO iz=1,NZONES
 C-----------------INITIALIZE BRHS
                 BRHS(j,i,iz)=0.
                 IF (IPLPOS(j,i,k,iz).EQ.0) THEN
                   IF ((iz.LE.ABS(iusezone)).AND.(q.NE.0)) THEN
-                    BRHS(j,i,iz)=BRHS(j,i,iz) + q
+                    fact = 1.
+                    if (thick > 0.) then
+                      thickb = ZETA(j,i,k,iz) - ZETA(j,i,k,NZONES+1)
+                      fact = thickb / thick
+                    end if
+                    BRHS(j,i,iz)=BRHS(j,i,iz) + q * fact
                   ENDIF
                 ELSE
                   BRHS(j,i,iz) = 0.0
