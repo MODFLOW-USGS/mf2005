@@ -11,8 +11,30 @@ For information and references related to these packages, see mf2005.txt
 NOTE: Any use of trade, product or firm names is for descriptive purposes 
       only and does not imply endorsement by the U.S. Government.
 
+o Version 1.12.0 01/06/2017
+    GWF2SWR -- This is the Surface Water Routing (SWR) Process, which has
+       been added.
+    GWF2SWI27 -- Added FIXEDZETA option, which fixes the zeta surfaces
+       during the simulation and does not allow them to move.  Added
+       statements that allow SWI code to be incorporated into 
+       MODFLOW-NWT.  These statements are commented out.  Fixed a bug
+       that prevented the SWI budget terms from being written when the
+       COMPACT BUDGET was used.
+    GWF2DRT7 -- When a return cell went dry, the program failed to write
+       a budget record for the COMPACT BUDGET option.  This resulted in
+       an incorrect number of records.  Program was modified so that a
+       zero value is written to the budget file for a return cell if it 
+       is inactive.
+    GMG -- The GMG solver was not designed to be compiled for 64-bit
+       computers.  The solver would work when compiled for 64-bit 
+       machines, but encountered errors for large problems.  The GMG
+       code was modified to work for large problems on 64-bit computers.
+    UTL7 -- Corrected a programming error for logical value comparison.
+       ULSTRD will now accept upper and lowercase (BINARY) for FMTIN.
+       
+
 o Version 1.11.0 08/08/2013
-    GEF2SWI27 -- This is the Seawater Intrusion (SWI2) Package, which has
+    GWF2SWI27 -- This is the Seawater Intrusion (SWI2) Package, which has
        been added.
     GWF2STR7 -- Added free format input option, which is used when the BAS
        Package FREE option is specified.

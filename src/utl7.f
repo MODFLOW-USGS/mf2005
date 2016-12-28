@@ -265,7 +265,7 @@ C          TEST IF OPEN\CLOSE FILE EXISTS
   112      FORMAT('Specified OPEN/CLOSE file ',(A),' does not exit')
            CALL USTOP('Specified OPEN/CLOSE file does not exit')
          END IF
-         CALL URWORD(LINE,LLOC,ISTART,ISTOP,0,N,R,IOUT,IN)
+         CALL URWORD(LINE,LLOC,ISTART,ISTOP,1,N,R,IOUT,IN)
          IF (LINE(ISTART:ISTOP).EQ.'(BINARY)') THEN
            IBINARY=1
            IF(IPRFLG.EQ.1)WRITE(IOUT,1115) IN,FNAME
