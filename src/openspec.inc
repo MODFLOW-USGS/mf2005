@@ -15,6 +15,13 @@ C
 C    Standard Fortran -- Use unless there is a reason to do otherwise.
       DATA ACCESS/'SEQUENTIAL'/
 C
+C    Fortran setting that causes code compiled by most compilers
+C    on personal computers to use unstructured unformatted
+C    files. This may make it possible for the unformatted files used
+C    by MODFLOW to be used with programs that are compiled by other
+C    compilers.
+C     DATA ACCESS/'STREAM'/
+C
 C
 C  FORM specifier --
 C
