@@ -452,6 +452,23 @@ c  Print according to flags
           QNDflag=INT(MNWILST(4,iwobs))
           QBHflag=INT(MNWILST(5,iwobs))
           QCONCflag=INT(MNWILST(6,iwobs))
+c--LFK(Nov.2016)--make sure QNDflag and QBHflag = 0 when NNODES=1 
+c         (as described on p. 53 of model documentation).
+          IF(NNODES.EQ.1) THEN
+             IF(QNDflag.GT.0) then
+               QNDflag=0
+               MNWILST(4,iwobs)=0
+               write(iout,30) WELLID(iwobs)
+   30 FORMAT('**note** NNODES=1 IN WELL: ',A20,'; QNDflag reset to 0.')    
+             END IF  
+              IF(QBHflag.GT.0) then
+               QBHflag=0
+               MNWILST(5,iwobs)=0
+               write(iout,32) WELLID(iwobs)
+   32 FORMAT('**note** NNODES=1 IN WELL: ',A20,'; QBHflag reset to 0.')    
+             END IF  
+C            
+          END IF
 c
           if(QBHflag.gt.0)  
      &      call GWF2MNW27BH(iw,IGRID)

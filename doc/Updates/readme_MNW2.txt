@@ -1,4 +1,4 @@
-Changes to the MNW2 Package for MODFLOW-2005 version 1.12   (May-Dec. 2015)
+Changes to the MNW2 Package for MODFLOW-2005 version 1.12   (May 2015-Nov. 2016)
 
 A bug was fixed that affected the calculation of intraborehole flow (initiated 
 when PUMPLOC is not = 0) for output purposes only and only for certain conditions. 
@@ -32,6 +32,14 @@ a very small effect on results in most cases.
 Write statements were modified to help assure that elevations of well screens 
 (open intervals) were printed correctly. Penetration fractions values will be 
 printed as "N/A" for cases where partial penetration calculations are not made.
+
+As described on p. 53 of the MNW2 documentation report (specifically, the last 
+sentence describing both "QNDflag" and "QBHflag"), additional data will not be 
+written if the well contains only one node. That is, both of these flags should 
+be equal to 0 if the MNW well only includes a single node. If not, code added to 
+the MNWI routines will detect this inconsistency and reset these flags to zero 
+and also write an information message in the main output file when this triggering 
+condition is found.
 
 Several coding changes were made based on suggestions from Scott Boyce (CA WSC) 
 and are labeled with his initials (seb).
