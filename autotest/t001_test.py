@@ -1,9 +1,8 @@
 from __future__ import print_function
 import os
-import shutil
 import flopy
 import pymake
-from pymake.autotest import get_namefiles, compare_budget, compare_heads
+from pymake.autotest import get_namefiles
 import config
 
 
@@ -43,12 +42,15 @@ def run_mf2005(namefile, regression=True):
                                             silent=True)
 
         if success_reg:
-            outfile1 = os.path.join(os.path.split(os.path.join(testpth, nam))[0], 'bud.cmp')
-            outfile2 = os.path.join(os.path.split(os.path.join(testpth, nam))[0], 'hds.cmp')
+            outfile1 = os.path.join(
+                os.path.split(os.path.join(testpth, nam))[0], 'bud.cmp')
+            outfile2 = os.path.join(
+                os.path.split(os.path.join(testpth, nam))[0], 'hds.cmp')
             success_reg = pymake.compare(os.path.join(testpth, nam),
                                          os.path.join(testpth_reg, nam),
                                          precision='single',
-                                         max_cumpd=0.01, max_incpd=0.01, htol=0.001,
+                                         max_cumpd=0.01, max_incpd=0.01,
+                                         htol=0.001,
                                          outfile1=outfile1, outfile2=outfile2)
 
     # Clean things up

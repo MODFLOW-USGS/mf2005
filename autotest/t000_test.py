@@ -10,7 +10,7 @@ def test_compile_dev():
 
     # Compile
     target = config.target
-    pymake.main(config.srcdir, target, 'gfortran', 'gcc', makeclean=True,
+    pymake.main(config.srcdir, target, config.fc, config.cc, makeclean=True,
                 expedite=False, dryrun=False, double=False, debug=False,
                 include_subdirs=False)
 
@@ -38,7 +38,7 @@ def test_compile_ref():
     pymake.download_and_unzip(url, pth=config.testdir)
 
     # compile
-    pymake.main(srcdir, target, 'gfortran', 'gcc', makeclean=True,
+    pymake.main(srcdir, target, config.fc, config.cc, makeclean=True,
                 expedite=False, dryrun=False, double=False, debug=False,
                 include_subdirs=False)
 

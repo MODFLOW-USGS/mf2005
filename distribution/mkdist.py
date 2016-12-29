@@ -1,5 +1,5 @@
 """
-Python code to create a MODFLOW-USG distribution
+Python code to create a MODFLOW-2005 distribution
 
 """
 import os

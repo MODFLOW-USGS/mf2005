@@ -12,8 +12,8 @@ NOTE: Any use of trade, product or firm names is for descriptive purposes
       only and does not imply endorsement by the U.S. Government.
 
 o Version 1.12.0 01/06/2017
-    GWF2SWR -- This is the Surface Water Routing (SWR) Process, which has
-       been added.
+    GWF2SWR -- This is the Surface Water Routing (SWR) Process, which 
+       has been added.
     GWF2SWI27 -- Added FIXEDZETA option, which fixes the zeta surfaces
        during the simulation and does not allow them to move.  Added
        statements that allow SWI code to be incorporated into 

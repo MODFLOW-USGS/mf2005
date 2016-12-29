@@ -1,23 +1,9 @@
 from __future__ import print_function
 import os
-import shutil
 import flopy
 import pymake
-from pymake.autotest import get_namefiles, compare_budget
+from pymake.autotest import get_namefiles
 import config
-
-
-def compare(namefile1, namefile2):
-    """
-    Compare the results from two simulations
-    """
-
-    # Compare budgets from the list files in namefile1 and namefile2
-    outfile = os.path.join(os.path.split(namefile1)[0], 'bud.cmp')
-    success = compare_budget(namefile1, namefile2, max_cumpd=0.01,
-                             max_incpd=0.1,
-                             outfile=outfile)
-    return success
 
 
 def run_mf2005(namefile, comparison=True):
@@ -41,6 +27,9 @@ def run_mf2005(namefile, comparison=True):
     exe_name = os.path.abspath(config.target)
     success, buff = flopy.run_model(exe_name, nam, model_ws=testpth,
                                     silent=True)
+
+    # If it is a comparison, then look for files in the comparison
+    # folder (.cmp)
     success_cmp = True
     if comparison:
         action = pymake.setup_comparison(namefile, testpth)
@@ -62,6 +51,7 @@ def run_mf2005(namefile, comparison=True):
                 success_cmp, buff = flopy.run_model(exe_name, nam,
                                                     model_ws=testpth_cmp,
                                                     silent=True)
+
             if success_cmp:
                 outfile1 = os.path.join(
                         os.path.split(os.path.join(testpth, nam))[0],
