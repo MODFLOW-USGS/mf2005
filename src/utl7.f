@@ -321,7 +321,16 @@ C4A-----READ THE LIST -- BINARY OR ASCII
         READ(IN) ((RLIST(JJ,II),JJ=1,NREAD2),II=LSTBEG,N)
       ELSE
 C
+C5------CHECK FOR AUXILIARY VARIABLE "AUXSFAC" AND STORE LOCATION 
 C5------READ AN ASCII LIST
+        JAUX = 0
+        DO 230 JJ=1,NAUX
+          IF(CAUX(JJ) .EQ. "AUXSFAC") THEN
+            JAUX=JJ+NREAD1
+            EXIT
+          END IF
+230     CONTINUE
+C          
         DO 240 II=LSTBEG,N
 C
 C5A-----Read a line into the buffer.  (The first line has already been
@@ -363,18 +372,19 @@ C6----SCALE THE DATA AND CHECK
       I=RLIST(2,II)
       J=RLIST(3,II)
 C
-C6A------Scale fields ISCLOC1-ISCLOC2 by SFAC
+C6A------Scale fields ISCLOC1-ISCLOC2 by SFAC and AUXSFAC (if present)
       DO 204 ILOC=ISCLOC1,ISCLOC2
         RLIST(ILOC,II)=RLIST(ILOC,II)*SFAC
+        IF (JAUX .NE. 0) RLIST(ILOC,II)=RLIST(ILOC,II)*RLIST(JAUX,II)
 204   CONTINUE
 C
-C6B-----Write the values that were read if IPRFLG is 1.
+C6C-----Write the values that were read if IPRFLG is 1.
       NN=II-LSTBEG+1
       IF(IPRFLG.EQ.1)
-     1    WRITE(IOUT,205) NN,K,I,J,(RLIST(JJ,II),JJ=4,NREAD2)
-205       FORMAT(1X,I6,I7,I7,I7,26G16.4)
+     1    WRITE(IOUT,206) NN,K,I,J,(RLIST(JJ,II),JJ=4,NREAD2)
+206       FORMAT(1X,I6,I7,I7,I7,26G16.4)
 C
-C6C-----Check for illegal grid location
+C6D-----Check for illegal grid location
       IF(K.LT.1 .OR. K.GT.NLAY) THEN
          WRITE(IOUT,*) ' Layer number in list is outside of the grid'
          CALL USTOP(' ')
