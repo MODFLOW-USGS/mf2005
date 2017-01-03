@@ -2013,16 +2013,19 @@ C           IS DEPENDENT ON VALUE OF THET1.
              CONDUC=CNDFCT(L) 
              FLOBOT = 0.0D0
              FLOBO3 = 0.0D0
-             FLOTOUZF = 0.0D0 
+             FLOTOUZF = 0.0D0
+             RATE = 0.0
              IL1 = IL
-             DO WHILE (IL1 .LE. NLAY)
-               IF( IBOUND(IC,IR,IL1).GT.0 ) THEN 
-                 EXIT
-               ELSE
-                 IL1 = IL1 + 1
-               END IF
-             END DO
-             IF ( IL1.GT.NLAY ) IL1 = NLAY 
+             IF ( ITYPE.EQ.0 ) THEN       !RGN 2-18-2014 added this if check
+               DO WHILE (IL1 .LE. NLAY)
+                 IF( IBOUND(IC,IR,IL1).GT.0 ) THEN
+                   EXIT
+                 ELSE
+                   IL1 = IL1 + 1
+                 END IF
+               END DO
+               IF ( IL1.GT.NLAY ) IL1 = NLAY
+             END IF
              IF( IBOUND(IC,IR,IL1).LE.0 ) THEN
  !  Commented next line out 12/27/10
  !              IF ( CONDUC.GT.CLOSEZERO )WRITE(IOUT,506) L,IC,IR,IL
