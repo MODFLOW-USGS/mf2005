@@ -6008,30 +6008,7 @@ C
         DEALLOCATE(MNWNOD)
         DEALLOCATE(MNWINT)
         DEALLOCATE(CapTable)
-C
-c-lfk
         DEALLOCATE(LIMQ)
-C
-C NULLIFY THE LOCAL POINTERS
-c        IF(IGRID.EQ.1)THEN
-c          NMNW2       =>NULL()                       !seb ADDED TO FOLLOW STATEMENTS: GWFMNWDAT(IGRID)%
-c          MNWMAX      =>NULL()
-c          NMNWVL      =>NULL()
-c          IWL2CB      =>NULL()
-c          MNWPRNT     =>NULL()
-c          NODTOT      =>NULL()
-c          INTTOT      =>NULL()
-c          NTOTNOD     =>NULL()
-c          SMALL       =>NULL()
-c          WELLID      =>NULL()
-c          MNWAUX      =>NULL()
-c          MNW2        =>NULL()
-c          MNWNOD      =>NULL()
-c          MNWINT      =>NULL()
-c          CapTable    =>NULL()
-c          LIMQ        =>NULL()                        ! lfk
-C                     
-c      END IF
       RETURN
       END
       SUBROUTINE SGWF2MNW2PNT(IGRID)
@@ -6053,8 +6030,7 @@ C
         MNWNOD=>GWFMNWDAT(IGRID)%MNWNOD
         MNWINT=>GWFMNWDAT(IGRID)%MNWINT
         CapTable=>GWFMNWDAT(IGRID)%CapTable
-        LIMQ=>GWFMNWDAT(IGRID)%LIMQ                                     !seb MISSING POINTER REFERENCE
-
+        LIMQ=>GWFMNWDAT(IGRID)%LIMQ
 C
       RETURN
       END
@@ -6077,7 +6053,7 @@ C
         GWFMNWDAT(IGRID)%MNWNOD=>MNWNOD
         GWFMNWDAT(IGRID)%MNWINT=>MNWINT
         GWFMNWDAT(IGRID)%CapTable=>CapTable
-        GWFMNWDAT(IGRID)%LIMQ=>LIMQ                                     !seb MISSING POINTER REFERENCE
+        GWFMNWDAT(IGRID)%LIMQ=>LIMQ
 C
       RETURN
       END
