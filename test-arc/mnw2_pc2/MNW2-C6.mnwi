@@ -1,0 +1,7 @@
+ 88 81 82           ; 1. Wel1flag, QSUMflag, BYNDflag
+ 1                 ; 2. MNWOBS
+ Well-A 45 1 1     ; 3. WELLID, Unit no., QNDflag, QBHflag
+ Well-B 46 1 1     ; 3. WELLID, Unit no., QNDflag, QBHflag
+ Well-C 47 1 1     ; 3. WELLID, Unit no., QNDflag, QBHflag
+ Well-D 48 1 1     ; 3. WELLID, Unit no., QNDflag, QBHflag
+ Well-E 49 1 1     ; 3. WELLID, Unit no., QNDflag, QBHflag

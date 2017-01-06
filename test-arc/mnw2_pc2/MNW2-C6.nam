@@ -1,0 +1,23 @@
+# MNW2 Sample Problem for Documentation
+#   Pumping with constraints
+LIST   14 MNW2-C6.lst
+DIS    15 MNW2-C6.dis
+BAS6   18 MNW2-C6.bas
+OC     19 MNW2-C6.oc
+LPF    20 MNW2-C6.lpf
+RCH    21 MNW2-C6.rch
+PCG    22 MNW2-C6.pcg
+MNW2   23 MNW2-C6_capacity.mnw2
+MNWI   79 MNW2-C6.mnwi
+WEL    80 MNW2-C6.wel
+DATA   88 MNW2-C6.mnwi.out
+DATA(BINARY) 90 MNW2-C6.mnw2.bin
+DATA(BINARY)  2 MNW2-C6.cbc
+DATA   81 MNW2-C6.qsu.out
+DATA   82 MNW2-C6.byn.out
+DATA   45 MNW2-C6.wlA.out
+DATA   46 MNW2-C6.wlB.out
+DATA   47 MNW2-C6.wlC.out
+DATA   48 MNW2-C6.wlD.out
+DATA   49 MNW2-C6.wlE.out
+DATA(BINARY)  33 MNW2-C6.hds replace
