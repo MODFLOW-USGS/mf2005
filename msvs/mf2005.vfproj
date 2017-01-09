@@ -83,10 +83,11 @@
 		<File RelativePath="..\src\gwf2swt7.f"/>
 		<File RelativePath="..\src\gwf2uzf1.f"/>
 		<File RelativePath="..\src\gwf2wel7.f"/>
+		<File RelativePath="..\src\gwflakmodule.f"/>
 		<File RelativePath="..\src\gwfsfrmodule.f"/>
 		<File RelativePath="..\src\gwfuzfmodule.f"/>
 		<File RelativePath="..\src\hufutl7.f"/>
-		<File RelativePath="..\src\lmt7.f"/>
+		<File RelativePath="..\src\lmt8.f"/>
 		<File RelativePath="..\src\mf2005.f"/>
 		<File RelativePath="..\src\mhc7.f"/>
 		<File RelativePath="..\src\obs2bas7.f"/>

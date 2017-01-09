@@ -17,142 +17,6 @@ C     Modifications made February and March 21, 2004; DEP
 C     Last change:  MLM & LFK  10 Oct 2003;  LFK 21 Jan 2004
 C     Previous change:  ERB  13 Sep 2002    9:22 am
 C
-      MODULE GWFLAKMODULE
-C------OLD USGS VERSION 7.1; JUNE 2006 GWFLAKMODULE; 
-C------UPDATED FOR MF-2005, 1.9 RELEASE, FEBRUARY 6, 2012  
-        CHARACTER(LEN=64),PARAMETER ::Version_lak =
-     +'$Id: gwf2lak7_NWT.f 2370 2012-04-05 17:35:48Z rniswon $'
-        INTEGER,SAVE,POINTER   ::NLAKES,NLAKESAR,ILKCB,NSSITR,LAKUNIT
-        INTEGER,SAVE,POINTER   ::MXLKND,LKNODE,ICMX,NCLS,LWRT,NDV,NTRB,
-     +                           IRDTAB
-        REAL,   SAVE,POINTER   ::THETA,SSCNCR,SURFDEPTH
-Cdep    Added SURFDEPTH  3/3/2009
-Crgn    Added budget variables for GSFLOW CSV file
-        REAL,   SAVE,POINTER   ::TOTGWIN_LAK,TOTGWOT_LAK,TOTDELSTOR_LAK
-        REAL,   SAVE,POINTER   ::TOTSTOR_LAK,TOTEVAP_LAK,TOTPPT_LAK
-        REAL,   SAVE,POINTER   ::TOTRUNF_LAK,TOTWTHDRW_LAK,TOTSURFIN_LAK
-        REAL,   SAVE,POINTER   ::TOTSURFOT_LAK
-        INTEGER,SAVE, DIMENSION(:),  POINTER ::ICS, NCNCVR, LIMERR, 
-     +                                         LAKTAB
-        INTEGER,SAVE, DIMENSION(:,:),POINTER ::ILAKE,ITRB,IDIV,ISUB,IRK
-        INTEGER,SAVE, DIMENSION(:,:,:),POINTER ::LKARR1
-        REAL,   SAVE, DIMENSION(:),  POINTER ::STAGES
-        DOUBLE PRECISION,SAVE,DIMENSION(:), POINTER ::STGNEW,STGOLD,
-     +                                        STGITER,VOLOLDD,STGOLD2
-        REAL,   SAVE, DIMENSION(:),  POINTER ::VOL,FLOB,DSRFOT
-        DOUBLE PRECISION,   SAVE, DIMENSION(:),  POINTER ::PRCPLK,EVAPLK
-        REAL,   SAVE, DIMENSION(:),  POINTER ::BEDLAK
-        REAL,   SAVE, DIMENSION(:),  POINTER ::WTHDRW,RNF,CUMRNF
-        REAL,   SAVE, DIMENSION(:),  POINTER ::CUMPPT,CUMEVP,CUMGWI
-        REAL,   SAVE, DIMENSION(:),  POINTER ::CUMUZF
-        REAL,   SAVE, DIMENSION(:),  POINTER ::CUMGWO,CUMSWI,CUMSWO
-        REAL,   SAVE, DIMENSION(:),  POINTER ::CUMWDR,CUMFLX,CNDFCT
-        REAL,   SAVE, DIMENSION(:),  POINTER ::VOLINIT
-        REAL,   SAVE, DIMENSION(:),  POINTER ::BOTTMS,BGAREA,SSMN,SSMX
-Cdep    Added cumulative and time step error budget arrays
-        REAL,   SAVE, DIMENSION(:),  POINTER ::CUMVOL,CMLAKERR,CUMLKOUT
-        REAL,   SAVE, DIMENSION(:),  POINTER ::CUMLKIN,TSLAKERR,DELVOL
-crgn        REAL,   SAVE, DIMENSION(:),  POINTER ::EVAP,PRECIP,SEEP,SEEP3
-        DOUBLE PRECISION,   SAVE, DIMENSION(:),  POINTER ::EVAP,PRECIP
-        DOUBLE PRECISION,   SAVE, DIMENSION(:),  POINTER ::EVAP3,PRECIP3
-        DOUBLE PRECISION,   SAVE, DIMENSION(:),  POINTER ::FLWITER
-        DOUBLE PRECISION,   SAVE, DIMENSION(:),  POINTER ::FLWITER3
-        DOUBLE PRECISION,   SAVE, DIMENSION(:),  POINTER ::SEEP,SEEP3
-        DOUBLE PRECISION,   SAVE, DIMENSION(:),  POINTER ::SEEPUZ
-        DOUBLE PRECISION,   SAVE, DIMENSION(:),  POINTER ::WITHDRW
-        DOUBLE PRECISION,   SAVE, DIMENSION(:),  POINTER ::SURFA
-        REAL,   SAVE, DIMENSION(:),  POINTER ::SURFOT,SURFIN
-        REAL,   SAVE, DIMENSION(:),  POINTER ::SUMCNN,SUMCHN
-        REAL,   SAVE, DIMENSION(:,:),POINTER ::CLAKE,CRNF,SILLVT
-        REAL,   SAVE, DIMENSION(:,:),POINTER ::CAUG,CPPT,CLAKINIT
-        REAL,   SAVE, DIMENSION(:,:,:),POINTER ::BDLKN1
-Cdep  Added arrays for tracking lake budgets for dry lakes
-        REAL,   SAVE, DIMENSION(:),  POINTER ::EVAPO,FLWIN
-        REAL,   SAVE, DIMENSION(:),  POINTER ::GWRATELIM
-Cdep    Allocate arrays to add runoff from UZF Package
-        REAL,   SAVE, DIMENSION(:),  POINTER ::OVRLNDRNF,CUMLNDRNF
-Cdep    Allocate arrays for lake depth, area,and volume relations
-        DOUBLE PRECISION,   SAVE, DIMENSION(:,:),  POINTER ::DEPTHTABLE
-        DOUBLE PRECISION,   SAVE, DIMENSION(:,:),  POINTER ::AREATABLE
-        DOUBLE PRECISION,   SAVE, DIMENSION(:,:),  POINTER ::VOLUMETABLE
-Cdep    Allocate space for three dummy arrays used in GAGE Package
-C         when Solute Transport is active
-        REAL,   SAVE, DIMENSION(:,:),POINTER ::XLAKES,XLAKINIT,XLKOLD
-Crsr    Allocate arrays in BD subroutine
-        INTEGER,SAVE, DIMENSION(:),  POINTER ::LDRY,NCNT,NCNST,KSUB
-        INTEGER,SAVE, DIMENSION(:),  POINTER ::MSUB1
-        INTEGER,SAVE, DIMENSION(:,:),POINTER ::MSUB
-        REAL,   SAVE, DIMENSION(:),  POINTER ::FLXINL,VOLOLD,GWIN,GWOUT
-        REAL,   SAVE, DIMENSION(:),  POINTER ::DELH,TDELH,SVT,STGADJ
-        REAL,   SAVE, DIMENSION(:,:),POINTER ::LAKSEEP
-      TYPE GWFLAKTYPE
-        INTEGER,      POINTER   ::NLAKES,NLAKESAR,ILKCB,NSSITR,LAKUNIT
-        INTEGER,      POINTER   ::MXLKND,LKNODE,ICMX,NCLS,LWRT,NDV,NTRB,
-     +                            IRDTAB
-Cdep    Added SURFDEPTH 3/3/2009
-        REAL,         POINTER   ::THETA,SSCNCR,SURFDEPTH
-Crgn    Added budget variables for GSFLOW CSV file
-        REAL,         POINTER   ::TOTGWIN_LAK,TOTGWOT_LAK,TOTDELSTOR_LAK
-        REAL,         POINTER   ::TOTSTOR_LAK,TOTEVAP_LAK,TOTPPT_LAK
-        REAL,         POINTER   ::TOTRUNF_LAK,TOTWTHDRW_LAK
-        REAL,         POINTER   ::TOTSURFOT_LAK,TOTSURFIN_LAK
-        INTEGER,      DIMENSION(:),  POINTER ::ICS, NCNCVR, LIMERR, 
-     +                                         LAKTAB
-        INTEGER,      DIMENSION(:,:),POINTER ::ILAKE,ITRB,IDIV,ISUB,IRK
-        INTEGER,      DIMENSION(:,:,:),POINTER ::LKARR1
-        REAL,         DIMENSION(:),  POINTER ::STAGES
-        DOUBLE PRECISION,DIMENSION(:),POINTER ::STGNEW,STGOLD,STGITER,
-     +                                        STGOLD2
-        DOUBLE PRECISION,DIMENSION(:),POINTER :: VOLOLDD
-        REAL,         DIMENSION(:),  POINTER ::VOL,FLOB, DSRFOT
-        DOUBLE PRECISION,DIMENSION(:),  POINTER ::PRCPLK,EVAPLK
-        REAL,         DIMENSION(:),  POINTER ::BEDLAK
-        REAL,         DIMENSION(:),  POINTER ::WTHDRW,RNF,CUMRNF
-        REAL,         DIMENSION(:),  POINTER ::CUMPPT,CUMEVP,CUMGWI
-        REAL,         DIMENSION(:),  POINTER ::CUMUZF
-        REAL,         DIMENSION(:),  POINTER ::CUMGWO,CUMSWI,CUMSWO
-        REAL,         DIMENSION(:),  POINTER ::CUMWDR,CUMFLX,CNDFCT
-        REAL,         DIMENSION(:),  POINTER ::VOLINIT
-        REAL,         DIMENSION(:),  POINTER ::BOTTMS,BGAREA,SSMN,SSMX
-Cdep    Added cumulative and time step error budget arrays
-        REAL,         DIMENSION(:),  POINTER ::CUMVOL,CMLAKERR,CUMLKOUT
-        REAL,         DIMENSION(:),  POINTER ::TSLAKERR,DELVOL,CUMLKIN 
-Crgn        REAL,         DIMENSION(:),  POINTER ::EVAP,PRECIP,SEEP,SEEP3
-        DOUBLE PRECISION,DIMENSION(:),  POINTER :: EVAP,PRECIP
-        DOUBLE PRECISION,DIMENSION(:),  POINTER :: EVAP3,PRECIP3
-        DOUBLE PRECISION,DIMENSION(:),  POINTER :: FLWITER
-        DOUBLE PRECISION,DIMENSION(:),  POINTER :: FLWITER3
-        DOUBLE PRECISION,DIMENSION(:),  POINTER :: SEEP,SEEP3
-        DOUBLE PRECISION,DIMENSION(:),  POINTER :: SEEPUZ
-        DOUBLE PRECISION,DIMENSION(:),  POINTER :: WITHDRW  
-        DOUBLE PRECISION,DIMENSION(:),  POINTER :: SURFA
-        REAL,         DIMENSION(:),  POINTER ::SURFIN,SURFOT
-        REAL,         DIMENSION(:),  POINTER ::SUMCNN,SUMCHN
-        REAL,         DIMENSION(:,:),POINTER ::CLAKE,CRNF,SILLVT
-        REAL,         DIMENSION(:,:),POINTER ::CAUG,CPPT,CLAKINIT
-        REAL,         DIMENSION(:,:,:),POINTER ::BDLKN1
-Cdep  Added arrays for tracking lake budgets for dry lakes
-        REAL,         DIMENSION(:),  POINTER ::EVAPO,FLWIN
-        REAL,         DIMENSION(:),  POINTER ::GWRATELIM
-Cdep    Allocate arrays to add runoff from UZF Package
-        REAL,         DIMENSION(:),  POINTER ::OVRLNDRNF,CUMLNDRNF
-Cdep    Allocate arrays for lake depth, area, and volume relations
-        DOUBLE PRECISION,         DIMENSION(:,:),POINTER ::DEPTHTABLE
-        DOUBLE PRECISION,         DIMENSION(:,:),POINTER ::AREATABLE
-        DOUBLE PRECISION,         DIMENSION(:,:),POINTER ::VOLUMETABLE
-Cdep    Allocate space for three dummy arrays used in GAGE Package
-C         when Solute Transport is active
-        REAL,         DIMENSION(:,:),POINTER ::XLAKES,XLAKINIT,XLKOLD
-Crsr    Allocate arrays in BD subroutine
-        INTEGER,      DIMENSION(:),  POINTER ::LDRY,NCNT,NCNST,KSUB
-        INTEGER,      DIMENSION(:),  POINTER ::MSUB1
-        INTEGER,      DIMENSION(:,:),POINTER ::MSUB
-        REAL,         DIMENSION(:),  POINTER ::FLXINL,VOLOLD,GWIN,GWOUT
-        REAL,         DIMENSION(:),  POINTER ::DELH,TDELH,SVT,STGADJ
-        REAL,         DIMENSION(:,:),POINTER ::LAKSEEP
-      END TYPE
-      TYPE(GWFLAKTYPE), SAVE:: GWFLAKDAT(10)
-      END MODULE GWFLAKMODULE
 C
       SUBROUTINE GWF2LAK7AR(IN,IUNITSFR,IUNITGWT,IUNITUZF,NSOL,IGRID)
 C
@@ -165,7 +29,7 @@ C     ******************************************************************
 C
       USE GWFLAKMODULE
       USE GLOBAL,       ONLY: IOUT, NCOL, NROW, NLAY, IFREFM, ITRSS,
-     +                        NODES
+     +                        NODES, IUNIT       !EDM
       USE GWFSFRMODULE, ONLY: NSS
 C
 C      ******************************************************************
@@ -179,7 +43,20 @@ C      SPECIFICATIONS:
 C      ------------------------------------------------------------------
 Crsr  Allocate lake variables used by SFR even if lakes not active so that
 C       argument lists are defined     
-      ALLOCATE (NLAKES, NLAKESAR,THETA,LAKUNIT)
+      ALLOCATE (NLAKES, NLAKESAR,THETA,LAKUNIT,NSFRLAK,NLKFLWTYP)       !EDM
+      ALLOCATE(LKFLOWTYPE(6)) ! POSITION 1: STORAGE; 2: DELVOL; 3: PRECIP; 4: EVAP; 5: RUNOFF; 6: WITHDRAWL
+C
+C--REINITIALIZE LKFLOWTYPE WITH EACH STRESS PERIOD
+      NLKFLWTYP=0
+      IF(IUNIT(49).NE.0) THEN
+        LKFLOWTYPE(1)='NA'
+        LKFLOWTYPE(2)='NA'
+        LKFLOWTYPE(3)='NA'
+        LKFLOWTYPE(4)='NA'
+        LKFLOWTYPE(5)='NA'
+        LKFLOWTYPE(6)='NA'
+      ENDIF
+C
       NLAKES = 0
       LAKUNIT = IN
       NLAKESAR = 1
@@ -279,6 +156,7 @@ C
 C  SET NLAKES ARRAY VARIABLE TO NLAKES IF NLAKES GREATER THAN 0.
       IF (NLAKES.GT.0) NLAKESAR = NLAKES
       ALLOCATE (VOL(NLAKESAR), STGOLD(NLAKESAR), STGNEW(NLAKESAR))
+      ALLOCATE (RUNF(NLAKESAR), RUNOFF(NLAKESAR))
       ALLOCATE(STGOLD2(NLAKESAR))
       ALLOCATE (VOLOLDD(NLAKESAR))
 !     ALLOCATE (VOLOLDD(NLAKESAR), VOLOLD(NLAKES), VOLINIT(NLAKES))
@@ -290,6 +168,8 @@ C  SET NLAKES ARRAY VARIABLE TO NLAKES IF NLAKES GREATER THAN 0.
       STGITER = 0.0D0
       VOLOLDD = 0.0D0
       LAKSEEP = 0.0
+      RUNF = 0.0D0
+      RUNOFF = 0.0D0
 Cdep initialized VOLOLD and VOLINIT  6/4/2009 (VOLOLD is single precision)
 !     VOLOLD = 0.0
 !     VOLINIT = 0.0
@@ -354,7 +234,7 @@ Cdep added format statement when starting with transient simulation
   10  FORMAT(//1X,'LAKE PACKAGE HAS BEEN MODIFIED TO ITERATIVELY ',
      1 'SOLVE FOR LAKE STAGE DURING TRANSIENT STRESS PERIODS:',/1X,
      2 'MAXIMUM NUMBER OF ITERATIONS (NSSITR) = ',I5,/1X,
-     3 'CLOSURE CRITERIA FOR LAKE STAGE (SSCNCR) = ',1PE12.6,/1X,
+     3 'CLOSURE CRITERIA FOR LAKE STAGE (SSCNCR) = ',1PE13.6,/1X, !gsf
      4 'DEFAULT VALUES FOR TRANSIENT ONLY SIMULATIONS ARE: ',
      5 'NSSITR = 100 AND SSCNCR = 0.0001',/1X,'VALUES OTHER THAN ',
      6 'DEFAULT CAN BE READ BY SPECIFYING A THETA LESS THAN ZERO ',
@@ -371,7 +251,7 @@ Cdep added format statement for steady state only simulations.
      3 '1.0 FOR ALL STEADY STATE STRESS PERIODS.',/1X,
      4 'MAXIMUM NUMBER OF STEADY-STATE ITERATIONS (NSSITR) = ',I5,/1X,
      5 'CLOSURE CRITERIA FOR STEADY-STATE LAKE STAGE (SSCNCR) = ',
-     6  1PE12.6,//)
+     6  1PE13.6,//) !gsf
 Cdep revised print statement to note that time weighting of theta can
 Cdep  vary only between 0.5 and 1 for transient simulations
 Cdep   22 FORMAT(/1X,'THETA = ',F10.2,'  METHOD FOR UPDATING LAKE STAGES IN
@@ -462,7 +342,7 @@ Cdep   ALLOCATE SPACE FOR CONNECTION WITH STREAMS
         NSSAR = NSS
       END IF
 Cdep   ALLOCATE SPACE FOR FLOB ARRAY WHEN TRANSPORT ACTIVE.   
-      IF (IUNITGWT.LE.0) THEN
+      IF (IUNITGWT.LE.0.AND.IUNIT(49).LE.0) THEN
         MXLKAR = 1
       ELSE
         MXLKAR = MXLKND
@@ -487,6 +367,9 @@ Cdep    ALLOCATE SPACE FOR OVERLAND FLOW WHEN UNSATURATED FLOW ACTIVE.
 Cdep    ALLOCATE SPACE FOR DEPTHTABLE, AREATABLE, AND VOLUMETABLE
       ALLOCATE (DEPTHTABLE(151,NLAKES), AREATABLE(151,NLAKES))
       ALLOCATE (VOLUMETABLE(151,NLAKES))
+C Tributary inflow to lakes for LMT
+      ALLOCATE (LAKSFR(NSSAR),ILKSEG(NSSAR),ILKRCH(NSSAR),SWLAK(NSSAR),
+     &          DELVOLLAK(NSSAR))
       ITRB = 0
       IDIV = 0
       FLOB = 0.0
@@ -522,7 +405,10 @@ C     SPECIFICATIONS:
 C     ------------------------------------------------------------------
       USE GWFLAKMODULE
       USE GLOBAL,       ONLY: IOUT, NCOL, NROW, NLAY, IFREFM, IBOUND,
-     +                        LBOTM, BOTM, DELR, DELC, ISSFLG
+     +                        LBOTM, BOTM, DELR, DELC, ISSFLG,IUNIT
+C
+      IMPLICIT NONE
+C
 C     USE GWFSFRMODULE, ONLY: NSS
 C     ------------------------------------------------------------------
 C     FUNCTIONS
@@ -530,6 +416,12 @@ C     ------------------------------------------------------------------
       DOUBLE PRECISION VOLTERP
       EXTERNAL VOLTERP
 C     ------------------------------------------------------------------
+      INTEGER IGRID,ISS,LM,IUNITGWT,IN,ISOL,L1,I,J,K,KK,LK,ITMP,ITMP1,
+     &        INC,NSOL,N,I2,K1,K2,K3,K4,I1,IC,IS,JK,NSLMS,
+     &        IUNITSFR,LAKEFLG,LAKE,NTYP,J2,KKPER,IOUTS,IUNITNUM,L,
+     &        IL,IR,ITYPE,IUNITBCF,IUNITLPF,IUNITHUF,IUNITUPW,
+     &        IUNITUZF,IC1,II,IFACE,LID,M
+      REAL BOTIJ,TBNC,TBELV,TOPMST,GTSDPH,EVOL,BOTLK
       CHARACTER*24 ANAME(2)
 !     CHARACTER*30 LFRMAT
 !dep  added STGINIT as double precision
@@ -633,11 +525,11 @@ C
       IF ( KKPER==1 .AND. IRDTAB.GT.0 ) THEN
         DO L1=1,NLAKES
           WRITE(IOUT,1399) L1
-          iunit = LAKTAB(L1)
+          iunitnum = LAKTAB(L1)
  1399 FORMAT(//1X,'STAGE/VOLUME RELATION FOR LAKE',I3//6X,'STAGE',
      1        8X,'VOLUME',8X,'AREA'/)
           DO  INC=1,151
-          READ(iunit,*) DEPTHTABLE(INC,L1), VOLUMETABLE(INC,L1),
+          READ(iunitnum,*) DEPTHTABLE(INC,L1), VOLUMETABLE(INC,L1),
      +                    AREATABLE(INC,L1)
           WRITE(IOUT,1315) DEPTHTABLE(INC,L1), VOLUMETABLE(INC,L1),
      +                    AREATABLE(INC,L1)
@@ -975,10 +867,10 @@ Cdep   WRITE(IOUT,1315) TBELV, EVOL
                   DEPTHTABLE(INC,L1)=TBELV
                 END IF
               ELSE
-                IF (TBELV-BOTIJ.GT.0.0) THEN
+                IF (TBELV-BOTIJ.GT.1.0E-03) THEN
                   AREATABLE(INC,L1)=AREATABLE(INC,L1)+DELC(J)*DELR(I)
                   DEPTHTABLE(INC,L1)=TBELV
-                  IF(ABS(TBELV-BOTIJ).GT.1.0E-04) THEN
+                  IF(ABS(TBELV-BOTIJ).GT.1.0E-03) THEN
                     VOLUMETABLE(INC,L1)=VOLUMETABLE(INC,L1)+
      +                                (DELC(J)*DELR(I))*TBNC
                   END IF
@@ -1073,46 +965,69 @@ C
      2     3X,'WITHDRAW',3X,'BOTTOM',5X,'AREA',5X,/70('-'))
       IF (IUNITGWT.GT.0) WRITE (IOUTS,8)
  8    FORMAT (//1X,'LAKE',4X,'SOLUTE',6X,'CPPT',6X,'CRNF',6X,'CAUG'/)
+C
       DO 300 LM=1,NLAKES
-      IF(IFREFM.EQ.0) THEN
-        IF(ISS.NE.0.AND.KKPER.GT.1) READ(IN,'(6F10.4)') PRCPLK(LM),
-     1   EVAPLK(LM),RNF(LM),WTHDRW(LM),SSMN(LM),SSMX(LM)
-        IF(ISS.EQ.0.OR.KKPER.EQ.1) READ(IN,'(6F10.4)') PRCPLK(LM),
-     1   EVAPLK(LM),RNF(LM),WTHDRW(LM)
-      ELSE
-        IF(ISS.NE.0.AND.KKPER.GT.1) READ(IN,*) PRCPLK(LM),EVAPLK(LM),
-     1   RNF(LM),WTHDRW(LM),SSMN(LM),SSMX(LM)
-        IF(ISS.EQ.0.OR.KKPER.EQ.1) READ(IN,*) PRCPLK(LM),EVAPLK(LM),
-     1   RNF(LM),WTHDRW(LM)
-      END IF
-      IF(ISS.NE.0.AND.KKPER.GT.1) WRITE(IOUT,9) LM,PRCPLK(LM),EVAPLK(LM)
-     1 ,RNF(LM),WTHDRW(LM),BOTTMS(LM),BGAREA(LM),SSMN(LM),SSMX(LM)
-9     FORMAT(1X,I3,4X,1P,3E10.3,1X,5E10.3)
-      IF(ISS.EQ.0.OR.KKPER.EQ.1) WRITE(IOUT,9) LM,PRCPLK(LM),EVAPLK(LM),
-     1 RNF(LM),WTHDRW(LM),BOTTMS(LM),BGAREA(LM)
-      IF(IUNITGWT.LE.0) GO TO 300
-      DO 850 ISOL=1,NSOL
         IF(IFREFM.EQ.0) THEN
-          IF(WTHDRW(LM).LT.0.0) THEN
-            READ(IN,'(3F10.4)')CPPT(LM,ISOL),CRNF(LM,ISOL),CAUG(LM,ISOL)
-          ELSE
-            READ(IN,'(2F10.4)')CPPT(LM,ISOL),CRNF(LM,ISOL)
-          END IF
+          IF(ISS.NE.0.AND.KKPER.GT.1) READ(IN,'(6F10.4)') PRCPLK(LM),
+     1     EVAPLK(LM),RNF(LM),WTHDRW(LM),SSMN(LM),SSMX(LM)
+          IF(ISS.EQ.0.OR.KKPER.EQ.1) READ(IN,'(6F10.4)') PRCPLK(LM),
+     1     EVAPLK(LM),RNF(LM),WTHDRW(LM)
         ELSE
-          IF(WTHDRW(LM).LT.0.0) THEN
-            READ(IN,*) CPPT(LM,ISOL),CRNF(LM,ISOL),CAUG(LM,ISOL)
-          ELSE
-            READ(IN,*) CPPT(LM,ISOL),CRNF(LM,ISOL)
-          END IF
+          IF(ISS.NE.0.AND.KKPER.GT.1) READ(IN,*) PRCPLK(LM),EVAPLK(LM),
+     1     RNF(LM),WTHDRW(LM),SSMN(LM),SSMX(LM)
+          IF(ISS.EQ.0.OR.KKPER.EQ.1) READ(IN,*) PRCPLK(LM),EVAPLK(LM),
+     1     RNF(LM),WTHDRW(LM)
         END IF
-        IF(WTHDRW(LM).LT.0.0)WRITE(IOUTS,840) LM,ISOL,
-     +       CPPT(LM,ISOL),CRNF(LM,ISOL),CAUG(LM,ISOL)       
-        IF(WTHDRW(LM).GE.0.0)
-     1  WRITE(IOUTS,841) LM,ISOL,CPPT(LM,ISOL),CRNF(LM,ISOL)
-  840   FORMAT(1X,I3,6X,I3,4X,1P,3E10.2)
-  841 FORMAT(1X,I3,6X,I3,4X,1P,2E10.2)
-  850 CONTINUE
-C      WRITE (IOUTS,'(/)')
+C
+C--EDM: SET FOLLOWING VALUES FOR LMT
+        IF(IUNIT(49).NE.0) THEN
+          IF(PRCPLK(LM).NE.0.AND.LKFLOWTYPE(3).EQ.'NA') THEN
+            LKFLOWTYPE(3)='PRECIP'
+            NLKFLWTYP = NLKFLWTYP + 1
+          ENDIF
+          IF(EVAPLK(LM).NE.0.AND.LKFLOWTYPE(4).EQ.'NA') THEN 
+            LKFLOWTYPE(4)='EVAP'
+            NLKFLWTYP = NLKFLWTYP + 1
+          ENDIF
+          IF(RNF(LM).NE.0.AND.LKFLOWTYPE(5).EQ.'NA') THEN
+            LKFLOWTYPE(5)='RUNOFF'
+            NLKFLWTYP = NLKFLWTYP + 1
+          ENDIF
+          IF(WTHDRW(LM).NE.0.AND.LKFLOWTYPE(6).EQ.'NA') THEN
+            LKFLOWTYPE(6)='WITHDRAW'
+            NLKFLWTYP = NLKFLWTYP + 1
+          ENDIF
+        ENDIF
+C
+        IF(ISS.NE.0.AND.KKPER.GT.1)WRITE(IOUT,9)LM,PRCPLK(LM),EVAPLK(LM)
+     1   ,RNF(LM),WTHDRW(LM),BOTTMS(LM),BGAREA(LM),SSMN(LM),SSMX(LM)
+9       FORMAT(1X,I3,4X,1P,3E10.3,1X,5E10.3)
+        IF(ISS.EQ.0.OR.KKPER.EQ.1)WRITE(IOUT,9)LM,PRCPLK(LM),EVAPLK(LM),
+     1   RNF(LM),WTHDRW(LM),BOTTMS(LM),BGAREA(LM)
+        IF(IUNITGWT.LE.0) GO TO 300
+        DO 850 ISOL=1,NSOL
+          IF(IFREFM.EQ.0) THEN
+            IF(WTHDRW(LM).LT.0.0) THEN
+              READ(IN,'(3F10.4)')CPPT(LM,ISOL),CRNF(LM,ISOL),
+     +                          CAUG(LM,ISOL)
+            ELSE
+              READ(IN,'(2F10.4)')CPPT(LM,ISOL),CRNF(LM,ISOL)
+            END IF
+          ELSE
+            IF(WTHDRW(LM).LT.0.0) THEN
+              READ(IN,*) CPPT(LM,ISOL),CRNF(LM,ISOL),CAUG(LM,ISOL)
+            ELSE
+              READ(IN,*) CPPT(LM,ISOL),CRNF(LM,ISOL)
+            END IF
+          END IF
+          IF(WTHDRW(LM).LT.0.0)WRITE(IOUTS,840) LM,ISOL,
+     +         CPPT(LM,ISOL),CRNF(LM,ISOL),CAUG(LM,ISOL)       
+          IF(WTHDRW(LM).GE.0.0)
+     1    WRITE(IOUTS,841) LM,ISOL,CPPT(LM,ISOL),CRNF(LM,ISOL)
+  840     FORMAT(1X,I3,6X,I3,4X,1P,3E10.2)
+  841   FORMAT(1X,I3,6X,I3,4X,1P,2E10.2)
+  850   CONTINUE
+C        WRITE (IOUTS,'(/)')
   300 CONTINUE
       WRITE (IOUT,'(/)')
 C
@@ -1345,7 +1260,7 @@ C     -----------------------------------------------------------------
       INTEGER, INTENT(IN) :: KKITER, KKPER, IUNITSFR, IUNITUZF, IGRID, 
      1                       KKSTP    
 Cdep  added runoff and flobo3
-      REAL :: RUNOFF
+!      REAL :: RUNOFF
 Cdep  added unsaturated flow beneath lakes flag as a local variable
       INTEGER ISS, LK, ITRIB, INODE, LAKE, MTER, IICNVG, L1, MAXITER
       INTEGER NCNV, LL, II, L, IC, IR, IL, ITYPE
@@ -1354,13 +1269,15 @@ Cdep  added SURFDPTH, CONDMX,BOTLKUP,BOTLKDN  3/3/2009
       DOUBLE PRECISION BOTLK,BOTCL,CONDUC,H,FLOBOT,STGON,
      1                 FLOBO3,THET1,CLOSEZERO,
      2                 SURFDPTH,CONDMX,BOTLKUP,BOTLKDN, FLOTOUZF,
-     3                 VOL2,RAMPGW,RAMPSTGO,RAMPSTGN,
-     4                 RAMPSTGON,HTEMP,WITHDRW3     
+     3                 VOL2,WITHDRW3
+!!     3                 VOL2,RAMPGW,RAMPSTGO,RAMPSTGN,
+!!     4                 RAMPSTGON,HTEMP,WITHDRW3  
 Cdep  added double precision variables
       DOUBLE PRECISION RESID1, RESID2, DERIV, DSTAGE, DLSTG, Botlake, 
      1                 Splakout, dy, SRFPT, HD
-      DOUBLE PRECISION RUNF, AREA, RAIN, EV, THCK, SSMN1, SSMX1,
+      DOUBLE PRECISION AREA, RAIN, EV, THCK, SSMN1, SSMX1,
      1                 OUTFLOW, DSTG, VOLNEW1, VOLNEW2, STAGE2
+!      DOUBLE PRECISION RUNF
 !      PARAMETER(CLOSEZERO = 1.0E-07)
 C     ------------------------------------------------------------------
 C------SET POINTERS FOR THE CURRENT GRID.
@@ -1407,17 +1324,21 @@ C2A --- SUM UP INFLOWS FROM INFLOWING STREAM REACHES.
 C
 C2B --- SUM UP OVERLAND RUNOFF INTO LAKE.
       DO LAKE = 1,NLAKES
-        IF(RNF(LAKE).GE.0.0) RUNF = RNF(LAKE)
-        IF(RNF(LAKE).LT.0.0) RUNF =-RNF(LAKE)*PRCPLK(LAKE)*BGAREA(LAKE)
+C EDM - Add indices to RUNF and RUNOFF because these terms need to be 
+C       saved for each lake in the simulation for writing to the FTL file by LMT
+          
+        IF(RNF(LAKE).GE.0.0) RUNF(LAKE) = RNF(LAKE)
+        IF(RNF(LAKE).LT.0.0) RUNF(LAKE) =-RNF(LAKE)*PRCPLK(LAKE)
+     1                                    *BGAREA(LAKE)
         IF (IUNITUZF.GT.0) THEN
-          RUNOFF = OVRLNDRNF(LAKE)
+          RUNOFF(LAKE) = OVRLNDRNF(LAKE)
         ELSE
-          RUNOFF = 0.0
+          RUNOFF(LAKE) = 0.0
         END IF
 C
 C2C --- SUM OF BOTH STREAMFLOW IN AND OVERLAND RUNOFF.
 C         (INCLUDES LAKE VOLUME).
-        FLWIN(LAKE) = SURFIN(LAKE)+RUNF+RUNOFF+
+        FLWIN(LAKE) = SURFIN(LAKE)+RUNF(LAKE)+RUNOFF(LAKE)+
      +                VOLTERP(STGOLD(LAKE),LAKE)/DELT
       END DO
 C
@@ -1682,18 +1603,20 @@ C15-----SUM UP OUTFLOWS FROM OUTFLOWING STREAM REACHES.
             IF ( THET1.GT.CLOSEZERO ) THEN
               IF ( NCNV == 1 ) THEN
 ! Calc overland flow again.
-                IF(RNF(LAKE).GE.0.0) RUNF = RNF(LAKE)
-                IF(RNF(LAKE).LT.0.0) RUNF =-RNF(LAKE)*
+C EDM - Add indices to RUNF and RUNOFF because these terms need to be 
+C       saved for each lake in the simulation for writing to the FTL file by LMT
+                IF(RNF(LAKE).GE.0.0) RUNF(LAKE) = RNF(LAKE)
+                IF(RNF(LAKE).LT.0.0) RUNF(LAKE) =-RNF(LAKE)*
      +                               PRCPLK(LAKE)*BGAREA(LAKE)
                 IF (IUNITUZF.GT.0) THEN
-                  RUNOFF = OVRLNDRNF(LAKE)
+                  RUNOFF(LAKE) = OVRLNDRNF(LAKE)
                 ELSE
-                  RUNOFF = 0.0
+                  RUNOFF(LAKE) = 0.0
                 END IF
 C
 C2C --- SUM OF BOTH STREAMFLOW IN AND OVERLAND RUNOFF.
 C         (INCLUDES LAKE VOLUME).
-        FLWIN(LAKE) = SURFIN(LAKE)+RUNF+RUNOFF+
+        FLWIN(LAKE) = SURFIN(LAKE)+RUNF(LAKE)+RUNOFF(LAKE)+
      +                VOLTERP(STGOLD(LAKE),LAKE)/DELT
 C
 C16-----COMPUTE NEW LAKE STAGE USING NEWTON METHOD AND THET1>0.
@@ -1701,25 +1624,27 @@ C
 C16B----COMPUTE RESIDUALS FOR TRANSIENT SIMULATIONS.
                 IF(ISS.EQ.0) THEN
                   VOLNEW1 = VOLTERP(STGNEW(LAKE),LAKE)
-                  RESID1 = (PRECIP(LAKE)-EVAP(LAKE)+RUNF+RUNOFF-
-     1                WITHDRW(LAKE)+SURFIN(LAKE)-SURFOT(LAKE)+
-     2                SEEP(LAKE))-(VOLNEW1-VOLOLDD(LAKE))/DELT
+                  RESID1 = (PRECIP(LAKE)-EVAP(LAKE)+RUNF(LAKE)+
+     1                RUNOFF(LAKE)-WITHDRW(LAKE)+SURFIN(LAKE)-
+     2                SURFOT(LAKE)+SEEP(LAKE))-
+     3                (VOLNEW1-VOLOLDD(LAKE))/DELT
                   OUTFLOW = SURFOT(LAKE)+ DSRFOT(LAKE)*DLSTG
                   IF(OUTFLOW.LT.0.0)SURFOT(LAKE)=0.0
                   STAGE2 = STGNEW(LAKE)+DLSTG
                   VOLNEW2 = VOLTERP(STAGE2,LAKE)
-                  RESID2 = (PRECIP3(LAKE)-EVAP3(LAKE)+RUNF+RUNOFF-
-     1                WITHDRW3+SURFIN(LAKE)-OUTFLOW+
+                  RESID2 = (PRECIP3(LAKE)-EVAP3(LAKE)+RUNF(LAKE)+
+     1                RUNOFF(LAKE)-WITHDRW3+SURFIN(LAKE)-OUTFLOW+
      2                SEEP3(LAKE))-(VOLNEW2-VOLOLDD(LAKE))/DELT
 C
 C16C----COMPUTE RESIDUALS FOR STEADY STATE SIMULATIONS.
                 ELSE
-                  RESID1 = (PRECIP(LAKE)-EVAP(LAKE)+RUNF+RUNOFF-
-     1                WITHDRW(LAKE)+SURFIN(LAKE)-SURFOT(LAKE)+
-     2                SEEP(LAKE))
+                  RESID1 = (PRECIP(LAKE)-EVAP(LAKE)+RUNF(LAKE)+
+     1                RUNOFF(LAKE)-WITHDRW(LAKE)+SURFIN(LAKE)-
+     2                SURFOT(LAKE)+SEEP(LAKE))
                   OUTFLOW = SURFOT(LAKE)+ DSRFOT(LAKE)*DLSTG
-                  RESID2 = (PRECIP3(LAKE)-EVAP3(LAKE)+RUNF+RUNOFF-
-     1                WITHDRW3+SURFIN(LAKE)-OUTFLOW+SEEP3(LAKE))
+                  RESID2 = (PRECIP3(LAKE)-EVAP3(LAKE)+RUNF(LAKE)+
+     1                RUNOFF(LAKE)-WITHDRW3+SURFIN(LAKE)-
+     2                OUTFLOW+SEEP3(LAKE))
                 END IF
 C
 C16D----DETERMINE DERIVATIVE AND COMPUTE NEW LAKE STAGE.
@@ -1737,11 +1662,11 @@ C16E----LINEAR CASE. SIMPLY CALCULATE STAGE BASED ON VOLUME.
                   NCNCVR(LAKE) = 1
                 END IF
  !     IF (lake==3)then
- !     write(iout,222)PRECIP(LAKE),EVAP(LAKE),RUNF,RUNOFF,
+ !     write(iout,222)PRECIP(LAKE),EVAP(LAKE),RUNF(LAKE),RUNOFF(LAKE),
  !    1                WITHDRW(LAKE),SURFIN(LAKE),SURFOT(LAKE),
  !    2                SEEP(LAKE),VOLNEW1,VOLOLDD(LAKE),STGNEW(LAKE),
  !    3                resid1,SURFA(LAKE),deriv,dstg
- !     write(iout,222)PRECIP3(LAKE),EVAP3(LAKE),RUNF,RUNOFF,
+ !     write(iout,222)PRECIP3(LAKE),EVAP3(LAKE),RUNF(LAKE),RUNOFF(LAKE),
  !    1                WITHDRW3,SURFIN(LAKE),OUTFLOW,
  !    2                SEEP3(LAKE),VOLNEW2,VOLOLDD(LAKE),STGNEW(LAKE),
  !    3                resid2,SRFPT,deriv,dstg
@@ -1756,16 +1681,18 @@ C17-----COMPUTE NEW LAKE STAGE EXPLICITLY WITH THET1=0.
             ELSE
               IF(ISS.EQ.0) THEN
 C
-C17B----COMPUTE LAKE VOLUME FOR TRANSIENT SIMULATIONS.
-                VOL2 = DELT*(PRECIP(LAKE)-EVAP(LAKE)+RUNF+RUNOFF-
-     1                WITHDRW(LAKE)+SURFIN(LAKE)-SURFOT(LAKE)+
-     2                SEEP(LAKE))+ VOLOLDD(LAKE)
+C17B----COMPUTE LAKE VOLUME FOR TRANSIENT SIMULATIONS.     
+C EDM - Add indices to RUNF and RUNOFF because these terms need to be 
+C       saved for each lake in the simulation for writing to the FTL file by LMT
+                VOL2 = DELT*(PRECIP(LAKE)-EVAP(LAKE)+RUNF(LAKE)+
+     1                RUNOFF(LAKE)-WITHDRW(LAKE)+SURFIN(LAKE)-
+     2                SURFOT(LAKE)+SEEP(LAKE))+ VOLOLDD(LAKE)
 C
 C17C----COMPUTE LAKE VOLUME FOR STEADY STATE SIMULATIONS.
               ELSE
-                VOL2 = (PRECIP(LAKE)-EVAP(LAKE)+RUNF+RUNOFF-
-     1                WITHDRW(LAKE)+SURFIN(LAKE)-SURFOT(LAKE)+
-     2                SEEP(LAKE))
+                VOL2 = (PRECIP(LAKE)-EVAP(LAKE)+RUNF(LAKE)+
+     1                RUNOFF(LAKE)-WITHDRW(LAKE)+SURFIN(LAKE)-
+     2                SURFOT(LAKE)+SEEP(LAKE))
               END IF
 C
 C17D----NEW LAKE STAGE COMPUTED FROM LAKE VOLUME.
@@ -1789,10 +1716,10 @@ C
 C19------FORMAT STATEMENTS
 Cdep  101   FORMAT(4I5,3E20.10)    !format used for debugging
 Cdep  202  FORMAT(i5,8(1X,E20.10)) !format used for debugging
-  506           FORMAT(1X,'ERROR - NO AQUIFER UNDER LAKE CELL ',4I5)
- 1004  FORMAT(1X,'ITERATION ',I4,2X,'LAKE ',I4,2X,'NEW STAGE ',1PE14.8,
+  506  FORMAT(1X,'ERROR - NO AQUIFER UNDER LAKE CELL ',4I5)
+ 1004  FORMAT(1X,'ITERATION ',I4,2X,'LAKE ',I4,2X,'NEW STAGE ',1PE15.8, !gsf
      1  '  DID NOT CONVERGE-- PREVIOUS INTERNAL ITERATION STAGE  ',
-     2  1PE14.8,/)
+     2  1PE15.8,/) !gsf
       END SUBROUTINE GWF2LAK7FM
 C
       SUBROUTINE GWF2LAK7BD(KSTP,KPER,IUNITGWT,IUNITGAGE,IUNITSFR,
@@ -1810,7 +1737,7 @@ C     ------------------------------------------------------------------
       USE GWFLAKMODULE
       USE GLOBAL,       ONLY: NCOL, NROW, NLAY, NODES, IBOUND, IOUT,
      +                        ISSFLG, DELR, DELC, LBOTM, BOTM, HNEW,
-     +                        BUFF
+     +                        BUFF,IUNIT
      
       USE GWFBASMODULE, ONLY: MSUM, ICBCFL, IAUXSV, DELT, PERTIM, TOTIM,
      +                        HNOFLO, VBVL, VBNM
@@ -1837,8 +1764,8 @@ C     -----------------------------------------------------------------
       DOUBLE PRECISION THET1,SURFDPTH,CONDMX,BOTLKUP,BOTLKDN,VOL2
       DOUBLE PRECISION FLOTOUZF,SILLELEV,ADJSTAGE, voltest, areatest
       DOUBLE PRECISION RAMPGW,RAMPSTGO,RAMPSTGN,RAMPSTGON,HTEMP
-      DOUBLE PRECISION CLOSEZERO, FLOBO2, FLOBO3, RUNOFF, DLSTG
-      DOUBLE PRECISION RUNF, RUNFD, AREA, RAIN
+      DOUBLE PRECISION CLOSEZERO, FLOBO2, FLOBO3, DLSTG
+      DOUBLE PRECISION RUNFD, AREA, RAIN
       REAL zero, FACE, R, WDRAW, OLDSTAGE, AVHD, TOTARE, SUM
       REAL STGTST, SVT1, TVOLM, STO, FLSUM, TV, PPTIN, EOUT
       REAL SEEPUZF, QIN, QOUT, QSIN, QSOUT, DENOM
@@ -1871,6 +1798,7 @@ C1------SET IBD=1 IF BUDGET TERMS SHOULD BE SAVED ON DISK.
       RATIN = 0.
       RATOUT =0.
       LAKSEEP = 0.0
+      DLSTG = 0.00001D0
 C1A-----Set Lake budget terms for GSFLOW to zero.
       TOTGWIN_LAK = 0.0
       TOTGWOT_LAK = 0.0
@@ -1928,12 +1856,25 @@ Cdep      for gage package
 100     CONTINUE
 C2A------SUM UP INFLOWS FROM INFLOWING STREAM REACHES.
 Cdep   removed delta from computation of SURFIN
+C - EDM Initialize variables needed for LMT
+      NSFRLAK = 0
+      ILKSEG = 0
+      ILKRCH = 0
+      LAKSFR = 0
+      SWLAK = 0.
       IF (IUNITSFR.GT.0) THEN
         DO 200 LK=1,NLAKES
            DO 200 ITRIB=1,NTRB
               INODE=ITRB(LK,ITRIB)
               IF (INODE.LE.0) GO TO 200
               SURFIN(LK)=SURFIN(LK)+STRIN(INODE)
+C--EDM - SET UP VARIABLES NEEDED BY LMT
+              IF (IUNIT(49).NE.0) THEN
+                NSFRLAK = NSFRLAK + 1
+                ILKSEG(NSFRLAK) = INODE
+                LAKSFR(NSFRLAK) = LK
+                SWLAK(NSFRLAK) = -STRIN(INODE)
+              ENDIF
 200     CONTINUE
       END IF
 C
@@ -1955,15 +1896,15 @@ C2C------INITIALIZE SUMMATION PARAMETERS.
             GWIN(LAKE)=ZERO
             GWOUT(LAKE)=ZERO
             WITHDRW(LAKE) = WTHDRW(LAKE)
-            IF(RNF(LAKE).GE.0.0) RUNF = RNF(LAKE)
-            IF(RNF(LAKE).LT.0.0) RUNF =-RNF(LAKE)*PRCPLK(LAKE)*
+            IF(RNF(LAKE).GE.0.0) RUNF(LAKE) = RNF(LAKE)
+            IF(RNF(LAKE).LT.0.0) RUNF(LAKE) =-RNF(LAKE)*PRCPLK(LAKE)*
      +                                  BGAREA(LAKE)
             IF (IUNITUZF.GT.0) THEN
-              RUNOFF = OVRLNDRNF(LAKE)
+              RUNOFF(LAKE) = OVRLNDRNF(LAKE)
             ELSE
-              RUNOFF = 0.0
+              RUNOFF(LAKE) = 0.0
             END IF
-            FLWIN(LAKE) = SURFIN(LAKE)+RUNF+RUNOFF+
+            FLWIN(LAKE) = SURFIN(LAKE)+RUNF(LAKE)+RUNOFF(LAKE)+
      +                    VOLTERP(STGOLD(LAKE),LAKE)/DELT
             IF ( ISS==1 ) THEN
               FLWIN(LAKE) = 1.0E10 
@@ -2013,18 +1954,18 @@ C           IS DEPENDENT ON VALUE OF THET1.
              CONDUC=CNDFCT(L) 
              FLOBOT = 0.0D0
              FLOBO3 = 0.0D0
-             FLOTOUZF = 0.0D0
+             FLOTOUZF = 0.0D0 
              RATE = 0.0
              IL1 = IL
              IF ( ITYPE.EQ.0 ) THEN       !RGN 2-18-2014 added this if check
-               DO WHILE (IL1 .LE. NLAY)
-                 IF( IBOUND(IC,IR,IL1).GT.0 ) THEN
+               DO WHILE (IL1 .LE. NLAY)               
+                 IF( IBOUND(IC,IR,IL1).GT.0 ) THEN 
                    EXIT
                  ELSE
                    IL1 = IL1 + 1
                  END IF
                END DO
-               IF ( IL1.GT.NLAY ) IL1 = NLAY
+               IF ( IL1.GT.NLAY ) IL1 = NLAY 
              END IF
              IF( IBOUND(IC,IR,IL1).LE.0 ) THEN
  !  Commented next line out 12/27/10
@@ -2049,16 +1990,16 @@ C          SOLUTE TRANSPORT IS ACTIVE.
 ! Save seepage to UZF for writing Lake-to-UZF in GAG Package.
                  SEEPUZ(LAKE)=SEEPUZ(LAKE)+FLOTOUZF 
                  RATE=FLOBOT    
-                 IF (IUNITGWT.GT.0) FLOB(L)=FLOBOT          
+                 IF (IUNITGWT.GT.0.OR.IUNIT(49).GT.0) FLOB(L)=FLOBOT !EDM
                  IF (ILKCB.LT.0.AND.ICBCFL.NE.0) WRITE(IOUT,880)
      1            TEXT,KPER,KSTP,L,IL,IR,IC,RATE
-880        FORMAT(1X,A,'   PERIOD',I3,'   STEP',I3,'   NODE',I4,
+880        FORMAT(1X,A,'   PERIOD',I3,'   STEP',I6,'   NODE',I4, !gsf
      1            '   LAYER',I3,'   ROW',I4,'   COL',I4,'   RATE',
      2            G15.7)
 C
 C10------ADD RATE TO BUFFER.
                  BUFF(IC,IR,IL1)=BUFF(IC,IR,IL1)+RATE
-                 LAKSEEP(IC,IR) = LAKSEEP(IC,IR)+RATE
+                 LAKSEEP(IC,IR) = LAKSEEP(IC,IR)+ RATE + FLOTOUZF  !10/4/2014
 C
 C10B-----CHECK IF RATE IS DISCHARGING FROM AQUIFER (NEGATIVE RATE).
 Cdep            IF (RATE) 885,899,890
@@ -2071,7 +2012,7 @@ Cdep 885         RATOUT=RATOUT-RATE
 Cdep         GO TO 899
 C
 C10D------CHECK IF RATE IS RECHARGING AQUIFER (POSITIVE RATE).
-                 ELSE IF (RATE.GT.0.0D0) THEN
+                 ELSE IF (RATE+FLOTOUZF.GT.0.0D0) THEN  !11/3/2014 added flotouzf
 C
 C10E------ADD RATE TO RATIN.
 Cdep 890         RATIN=RATIN+RATE
@@ -2079,15 +2020,15 @@ Cdep 890         RATIN=RATIN+RATE
                    GWOUT(LAKE)=GWOUT(LAKE)+RATE
                  END IF
 C11-------IF SAVING COMPACT BUDGET, WRITE FLOW FOR ONE LAKE FACE.
-899              IF(IBD.EQ.2) THEN
-                   FACE(1)=ILAKE(5,L)
-                   R=RATE
-                   CALL UBDSVB(ILKCB,NCOL,NROW,IC,IR,IL1,R,FACE(1),1,
-     1                 NAUX,1,IBOUND,NLAY)
-                 END IF
                END IF
              END IF
-           END DO
+899          IF(IBD.EQ.2.and.II.EQ.2) THEN
+               FACE(1)=ILAKE(5,L)
+               R=RATE
+               CALL UBDSVB(ILKCB,NCOL,NROW,IC,IR,IL1,R,FACE(1),1,
+     1                     NAUX,1,IBOUND,NLAY)
+                 END IF    
+             END DO
          END DO
 C
 C12------COMPUTE EVAPORATION AND PRECIPITATION USING STGOLD AND 
@@ -2137,17 +2078,18 @@ C
 C17-----COMPUTE RUNOFF INTO LAKE FROM LAKE PACKAGE AND FROM UZF.
 Cdep   Changed WTHDRW(LAKE) TO WITHDRW(LAKE)
           WDRAW=WITHDRW(LAKE)
-       IF(RNF(LAKE).GE.ZERO) RUNF = RNF(LAKE)
-       IF(RNF(LAKE).LT.ZERO) RUNF =-RNF(LAKE)*PRCPLK(LAKE)*BGAREA(LAKE)
+       IF(RNF(LAKE).GE.ZERO) RUNF(LAKE) = RNF(LAKE)
+       IF(RNF(LAKE).LT.ZERO) RUNF(LAKE) =-RNF(LAKE)*PRCPLK(LAKE)
+     +                                   *BGAREA(LAKE)
 Cdep  Added runoff from Unsaturated Flow Package
        IF (IUNITUZF.GT.0) THEN
-         RUNOFF = OVRLNDRNF(LAKE)
+         RUNOFF(LAKE) = OVRLNDRNF(LAKE)
        ELSE
-         RUNOFF = 0.0
+         RUNOFF(LAKE) = 0.0
        END IF
 Cdep  Created RUNFD and added to STGNEW
-C-LFK         RUNFD = RUNF+ RUNOFF
-         RUNFD = RUNF + RUNOFF
+C-LFK         RUNFD = RUNF(LAKE)+ RUNOFF(LAKE)
+         RUNFD = RUNF(LAKE) + RUNOFF(LAKE)
 C
 C18------COMPUTE LAKE VOLUME FROM ALL INFLOWS AND OUTFLOWS FOR 
 C          TRANSIENT SIMULATION AND THEN COMPUTE STGNEW FROM
@@ -2156,8 +2098,8 @@ C          NEW VOLUME.
 !RGN   plus lake storage from previous time step  4/17/09
          IF(ISS.EQ.0)THEN
            VOL2 = VOLOLDD(LAKE)+(PRECIP(LAKE)-EVAP(LAKE)
-     +                -WDRAW+RUNFD+SURFIN(LAKE)-SURFOT(LAKE)+GWIN(LAKE)
-     +                -GWOUT(LAKE))*DELT
+     +                -WDRAW+RUNFD+SURFIN(LAKE)-SURFOT(LAKE)+GWIN(LAKE)    !10/4/2014 added SEEPUZ(LAKE)
+     +                -GWOUT(LAKE)-SEEPUZ(LAKE))*DELT
           IF(VOL2.LE.0.0) VOL2=0.0
           VOL(LAKE) = VOL2
           STGNEW(LAKE)= STGTERP(VOL2,LAKE)
@@ -2169,8 +2111,8 @@ C          STEADY STATE SIMULATION.
            IF(VOL2.LE.0.0D0) VOL2 = 0.0D0
            VOL(LAKE) = VOL2
          END IF
-C
 C18C-----STGON IS FRACTION OF STGOLD AND STGNEW AND SURFACE AREA
+C
 C          IS BASED ON STGOLD.
          STGON = (1.0D0-THET1)*STGOLD(LAKE) + THET1*STGNEW(LAKE)
          SURFA(LAKE)=FINTERP(STGNEW(LAKE),LAKE)
@@ -2180,7 +2122,7 @@ C19------COMPUTE LAKE BUDGET VOLUMES FOR GSFLOW CSV FILE.
 Cdep  EVAP, PRECIP,WDRW AND RUNFD are volumetric rates 4/19/2009
       TOTGWIN_LAK = TOTGWIN_LAK + GWIN(LAKE)*DELT
       TOTGWOT_LAK = TOTGWOT_LAK - GWOUT(LAKE)*DELT
-      TOTDELSTOR_LAK = TOTDELSTOR_LAK + vol2
+      TOTDELSTOR_LAK = TOTDELSTOR_LAK + VOL(LAKE) - VOLOLDD(LAKE)
       TOTSTOR_LAK = TOTSTOR_LAK + VOL(LAKE)
       TOTEVAP_LAK = TOTEVAP_LAK - EVAP(LAKE)*DELT
       TOTPPT_LAK = TOTPPT_LAK + PRECIP(LAKE)*DELT
@@ -2380,7 +2322,7 @@ C          AND CUMULATE TOTAL SURFACE AREA.
       IF(ICNT.LE.1) GO TO 1300
       IF(LWRT.GT.0.OR.ICBCFL.LE.0) GO TO 1251
       WRITE(IOUT,1250) KSTP, ICNT, TOTARE
- 1250 FORMAT(/1X,80('-')/1X,'TIME STEP ',I3,5X,'NUMBER OF CONNECTED LAKE
+ 1250 FORMAT(/1X,80('-')/1X,'TIME STEP',I6,5X,'NUMBER OF CONNECTED LAKE !gsf
      1S IS',I3,5X,'TOTAL AREA = ',D16.9/)
  1251 CONTINUE
 C
@@ -2632,7 +2574,7 @@ C          AND MAXIMUMS FOR STEADY STATE SIMULATIONS.
 C
 C26------WRITE BUDGET SUMMARIES.
             WRITE(IOUT,1025) KPER, KSTP, DELT, PERTIM, TOTIM
- 1025 FORMAT(/1X,'PERIOD ',I5,5X,'TIME STEP ',I5,5X,'TIME STEP LENGTH ',
+ 1025 FORMAT(/1X,'PERIOD ',I5,5X,'TIME STEP',I6,5X,'TIME STEP LENGTH ', !gsf
      1   1PE11.4/1X,'PERIOD TIME ',E11.4,5X,'TOTAL SIMULATION TIME ',
      2   E11.4)
             WRITE(IOUT,1040)
@@ -2658,13 +2600,14 @@ C27-----WRITE LAKE BUDGETS FOR A TIMES STEP (VOLUMES PER TIME STEP).
               PPTIN=PRECIP(NN)*DELT
               EOUT=EVAP(NN)*DELT
               SEEPUZF = SEEPUZ(NN)*DELT
-              IF(RNF(NN).GE.ZERO) RUNF = RNF(NN)
-              IF(RNF(NN).LT.ZERO) RUNF =-RNF(NN)*PRCPLK(NN)*BGAREA(NN)
-              RUNFD = RUNF*DELT
+              IF(RNF(NN).GE.ZERO) RUNF(NN) = RNF(NN)
+              IF(RNF(NN).LT.ZERO) RUNF(NN) =-RNF(NN)*PRCPLK(NN)
+     1                                         *BGAREA(NN)
+              RUNFD = RUNF(NN)*DELT
               IF (IUNITUZF.GT.0) THEN
-                RUNOFF = OVRLNDRNF(NN)*DELT
+                RUNOFF(NN) = OVRLNDRNF(NN)*DELT
               ELSE
-                RUNOFF = 0.0
+                RUNOFF(NN) = 0.0
               END IF
 C
               CUMPPT(NN)=CUMPPT(NN)+PPTIN
@@ -2672,15 +2615,31 @@ C
               CUMRNF(NN)=CUMRNF(NN)+RUNFD
               CUMUZF(NN)=CUMUZF(NN)+SEEPUZF
               IF (IUNITUZF.GT.0) THEN
-                CUMLNDRNF(NN) = CUMLNDRNF(NN) + RUNOFF
+                CUMLNDRNF(NN) = CUMLNDRNF(NN) + RUNOFF(NN)
               END IF
 C-lfk
               IF(ISS.NE.0) THEN
-                 DELVOL(NN)=0.0
-                    VOLINIT(NN)=VOL(NN)
-                 ELSE
-                   DELVOL(NN)=VOL(NN)-VOLOLD(NN)
-                 END IF          
+                DELVOL(NN)=0.0
+                VOLINIT(NN)=VOL(NN)
+              ELSE
+                DELVOL(NN)=VOL(NN)-VOLOLD(NN)
+              END IF
+C
+              DELVOLLAK(NN)=DELVOL(NN)/DELT
+C-EDM
+              IF(IUNIT(49).NE.0 ) THEN
+                IF ( LKFLOWTYPE(1).EQ.'NA' ) THEN
+                  LKFLOWTYPE(1)='VOLUME'
+                  NLKFLWTYP = NLKFLWTYP + 1
+                END IF
+              ENDIF
+              IF(IUNIT(49).NE.0 ) THEN
+                IF ( LKFLOWTYPE(2).EQ.'NA' ) THEN
+                  LKFLOWTYPE(2)='DELVOL'
+                  NLKFLWTYP = NLKFLWTYP + 1
+                END IF
+              ENDIF
+C
               IF(LWRT.GT.0.OR.ICBCFL.LE.0) GO TO 1100
               IF(IUNITUZF.EQ.0) THEN
                 IF(ISS.NE.0) THEN
@@ -2693,10 +2652,12 @@ C-lfk
               ELSE
                 IF(ISS.NE.0) THEN
                   WRITE(IOUT,3049) NN,STGNEW(NN),VOL(NN),
-     +                             PPTIN,EOUT,RUNFD,RUNOFF,RUNFD+RUNOFF
+     +                             PPTIN,EOUT,RUNFD,RUNOFF(NN),RUNFD+
+     +                             RUNOFF(NN)
                 ELSE
                   WRITE(IOUT,3050) NN,STGNEW(NN),VOL(NN),DELVOL(NN),
-     +                             PPTIN,EOUT,RUNFD,RUNOFF,RUNFD+RUNOFF
+     +                             PPTIN,EOUT,RUNFD,RUNOFF(NN),RUNFD+
+     +                             RUNOFF(NN)
                 END IF
               END IF
  1100       CONTINUE
@@ -2723,13 +2684,14 @@ C28-----DETERMINE LAKE BUDGET ERROR FOR A TIME STEP.
               PPTIN=PRECIP(NN)*DELT
               EOUT=EVAP(NN)*DELT
               SEEPUZF = SEEPUZ(NN)*DELT
-              IF(RNF(NN).GE.ZERO) RUNF = RNF(NN)
-              IF(RNF(NN).LT.ZERO) RUNF =-RNF(NN)*PRCPLK(NN)*BGAREA(NN)
-              RUNFD = RUNF*DELT
+              IF(RNF(NN).GE.ZERO) RUNF(NN) = RNF(NN)
+              IF(RNF(NN).LT.ZERO) RUNF(NN) =-RNF(NN)*PRCPLK(NN)
+     1                                         *BGAREA(NN)
+              RUNFD = RUNF(NN)*DELT
               IF (IUNITUZF.GT.0) THEN
-                RUNOFF = OVRLNDRNF(NN)*DELT
+                RUNOFF(NN) = OVRLNDRNF(NN)*DELT
               ELSE
-                RUNOFF = 0.0
+                RUNOFF(NN) = 0.0
               END IF
               QIN=GWIN(NN)*DELT
               QOUT=GWOUT(NN)*DELT
@@ -2743,7 +2705,7 @@ C
 C-LFK
               WDRAW=WITHDRW(NN)*DELT
 C-LFK      Calculate accuracy of lake budget FOR TIME STEP
-              CUMLKIN(NN)=PPTIN+RUNFD+RUNOFF+QIN+QSIN
+              CUMLKIN(NN)=PPTIN+RUNFD+RUNOFF(NN)+QIN+QSIN
               CUMLKOUT(NN)=EOUT+WDRAW+QOUT+QSOUT+SEEPUZF
               IF (CUMLKIN(NN).GT.CUMLKOUT(NN)) THEN
                    DENOM=CUMLKIN(NN)
@@ -3103,7 +3065,8 @@ C     ------------------------------------------------------------------
 C     SPECIFICATIONS:
 C     ------------------------------------------------------------------
       USE GWFLAKMODULE, ONLY: LKNODE, BEDLAK, LKARR1, ILAKE, CNDFCT
-      USE GLOBAL,       ONLY: NLAY, IOUT, DELR, DELC, LAYHDT,NCOL,NROW
+      USE GLOBAL,       ONLY: NLAY, IOUT, DELR, DELC, LAYHDT
+!!      USE GLOBAL,       ONLY: NLAY, IOUT, DELR, DELC, LAYHDT,NCOL,NROW
       USE GWFBCFMODULE, ONLY: IWDFLG, HY, CVWD, TRPY
 C
       WRITE(IOUT,108)
@@ -3310,7 +3273,8 @@ C
       RETURN
       END
 C
-       SUBROUTINE SGWF2LAK7HUF7RPS()
+C
+      SUBROUTINE SGWF2LAK7HUF7RPS()
 C
 C     ******************************************************************
 C     COMPUTE VERTICAL CONDUCTANCES AND HORIZONTAL CONDUCTANCES PER UNIT
@@ -3321,10 +3285,10 @@ C     ------------------------------------------------------------------
 C     SPECIFICATIONS:
 C     ------------------------------------------------------------------
       USE GWFLAKMODULE, ONLY: LKNODE, BEDLAK, LKARR1, ILAKE, CNDFCT
-      USE GLOBAL,       ONLY: NLAY, IOUT, LBOTM, DELR, DELC, BOTM
+      USE GLOBAL,       ONLY: NLAY, IOUT, DELR, DELC
+!!      USE GLOBAL,       ONLY: NLAY, IOUT, LBOTM, DELR, DELC, BOTM
 c-lfk      USE GWFLPFMODULE, ONLY: VKA, HK
-      USE GWFHUFMODULE, ONLY: VKAH,HK,HKCC
-!gsf  USE GWFHUFMODULE, ONLY: HKCC
+      USE GWFHUFMODULE, ONLY: VKAH !!,HK,HKCC
 C
       WRITE(IOUT,108)
   108 FORMAT(//9X,'C',15X,'INTERFACE CONDUCTANCES BETWEEN LAKE AND ',
@@ -3544,7 +3508,8 @@ C     used in solving lake stage in the FORMULATE SUBROUTINE (LAK7FM).
 C     FUNCTION LINEARLY INTERPOLATES BETWEEN TWO VALUES
 C          OF LAKE VOLUME TO CACULATE LAKE STAGE.
       USE GWFLAKMODULE, ONLY: VOLUMETABLE, DEPTHTABLE,AREATABLE
-      DOUBLE PRECISION VOLUME, STAGE
+      DOUBLE PRECISION VOLUME
+!!      DOUBLE PRECISION VOLUME, STAGE
       TOLF2=1.0E-7
       IF (VOLUME.GT.VOLUMETABLE(151,LN))THEN
         STGTERP =  DEPTHTABLE(151,LN)+(VOLUME-VOLUMETABLE(151,LN))/
@@ -3685,7 +3650,8 @@ C     CALCULATE SEEPAGE BETWEEN LAKE AND GW CELLS
 C     ******************************************************************
 C
       USE GWFLAKMODULE
-      USE GLOBAL,       ONLY: IBOUND, IOUT, LBOTM, BOTM, NLAY,LAYHDT
+      USE GLOBAL,       ONLY: IBOUND, LBOTM, BOTM, LAYHDT
+!!      USE GLOBAL,       ONLY: IBOUND, IOUT, LBOTM, BOTM, NLAY,LAYHDT
       USE GWFUZFMODULE, ONLY: IUZFBND,FINF,VKS
       IMPLICIT NONE
 C     ------------------------------------------------------------------
@@ -3699,10 +3665,12 @@ C     ARGUMENTS
      1                 SURFDPTH,AREA,BOTLK,BOTCL,HH 
       INTEGER ISS, LAKE, II, IC, IR, IL, ITYPE, IUNITUZF, L1  
 C     -----------------------------------------------------------------    
-      INTEGER ICHECK, LI, INOFLO
+      INTEGER INOFLO
+!!      INTEGER ICHECK, LI, INOFLO
       DOUBLE PRECISION FLOBO1,FLOBO2,CONDMX,BOTLKUP,
      1                 BOTLKDN,FLOTOUZF,RAMPGW,RAMPSTGO,RAMPSTGN,
-     2                 RAMPSTGON,HTEMP,HD,THCK,RAMPUP
+     2                 HTEMP,HD,THCK,RAMPUP
+!!     2                 RAMPSTGON,HTEMP,HD,THCK,RAMPUP
 C
 C5C-----INITIALIZE GROUNDWATER SEEPAGE VARIABLES AND CONDUCTANCE FACTOR.
       FLOBO1 = 0.0D0
@@ -3761,7 +3729,7 @@ C        USE UPSTREAM WEIGHTING
           END IF 
           IF ( IUNITUZF.GT.0 ) THEN
             IF ( IUZFBND(IC,IR).GT.0 )THEN
-              IF (HH-BOTLK.LT.-0.5*SURFDPTH) THEN
+              IF (H-BOTLK.LT.-0.5*SURFDPTH) THEN           !11/3/14 changed to H for UZF
                 IF ( VKS(IC,IR)*AREA-FLOBO1.LT.CLOSEZERO )
      +                          THEN
                   FLOBO1 = VKS(IC,IR)*AREA
@@ -3787,7 +3755,7 @@ C        USE UPSTREAM WEIGHTING
           END IF
           IF ( IUNITUZF.GT.0 ) THEN
             IF ( IUZFBND(IC,IR).GT.0 )THEN
-              IF ( HH-BOTLK.LT.-0.5*SURFDPTH ) THEN
+              IF ( H-BOTLK.LT.-0.5*SURFDPTH ) THEN
                 IF ( VKS(IC,IR)*AREA-FLOBO2.LT.CLOSEZERO )
      +                           THEN
                   FLOBO2 = VKS(IC,IR)*AREA
@@ -3804,14 +3772,18 @@ C          FLOB02 AND FLOBO3 AS A FRACTION OF FLOBO1 AND FLOBO3.
 !          CONDUC = THET1*RAMPSTGN + (1.0D0-THET1)*RAMPSTGO
           IF ( IUNITUZF.GT.0 ) THEN
             IF ( IUZFBND(IC,IR).GT.0 )THEN
-              IF ( HH-BOTLK.LT.-0.5*SURFDPTH ) THEN
+              IF ( H-BOTLK.LT.-0.5*SURFDPTH ) THEN  !11/3/14 changed to H for UZF, was HH
                 IF ( FLOBOT/AREA.GT.VKS(IC,IR) ) THEN
                   FLOBOT = VKS(IC,IR)*AREA
                   FLOBO3 = FLOTOUZF
                 END IF
                 FLOTOUZF = FLOBOT 
                 FLOBOT = 0.0D0
-                CONDUC = FLOTOUZF/(STGNEW(LAKE)-BOTLK)
+                IF ( abs((STGNEW(LAKE)-BOTLK)) > closezero ) THEN
+                  CONDUC = FLOTOUZF/(STGNEW(LAKE)-BOTLK)
+                ELSE
+                  CONDUC = 0.0
+                END IF
                 FINF(IC,IR)=FLOTOUZF/AREA
               END IF
             END IF
@@ -4052,12 +4024,18 @@ Cdep  Added arrays that calculate lake budgets 6/9/2009
       DEALLOCATE (GWFLAKDAT(IGRID)%CUMLKIN)
       DEALLOCATE (GWFLAKDAT(IGRID)%CUMLKOUT)
       DEALLOCATE (GWFLAKDAT(IGRID)%LAKSEEP)
+      DEALLOCATE (GWFLAKDAT(IGRID)%RUNF)      !EDM
+      DEALLOCATE (GWFLAKDAT(IGRID)%RUNOFF)    !EDM
+      DEALLOCATE (GWFLAKDAT(IGRID)%LKFLOWTYPE)
+      DEALLOCATE (GWFLAKDAT(IGRID)%NLKFLWTYP)
       END SUBROUTINE GWF2LAK7DA
 
       SUBROUTINE SGWF2LAK7PNT(IGRID)
 C  Set pointers to LAK data for grid      
       USE GWFLAKMODULE
 C
+      LKFLOWTYPE=>GWFLAKDAT(IGRID)%LKFLOWTYPE
+      NLKFLWTYP=>GWFLAKDAT(IGRID)%NLKFLWTYP
       NLAKES=>GWFLAKDAT(IGRID)%NLAKES
       NLAKESAR=>GWFLAKDAT(IGRID)%NLAKESAR
       ILKCB=>GWFLAKDAT(IGRID)%ILKCB
@@ -4183,6 +4161,8 @@ Cdep  Allocate lake budget error arrays 6/9/2009
       CUMLKOUT=>GWFLAKDAT(IGRID)%CUMLKOUT
       CUMLKIN=>GWFLAKDAT(IGRID)%CUMLKIN
       LAKSEEP=>GWFLAKDAT(IGRID)%LAKSEEP
+      RUNF=>GWFLAKDAT(IGRID)%RUNF        !EDM
+      RUNOFF=>GWFLAKDAT(IGRID)%RUNOFF    !EDM
       END SUBROUTINE SGWF2LAK7PNT
 
       SUBROUTINE SGWF2LAK7PSV1(IGRID)
@@ -4204,6 +4184,8 @@ C
 C  Save LAK data for a grid
       USE GWFLAKMODULE
 C
+      GWFLAKDAT(IGRID)%LKFLOWTYPE=>LKFLOWTYPE
+      GWFLAKDAT(IGRID)%NLKFLWTYP=>NLKFLWTYP
       GWFLAKDAT(IGRID)%ILKCB=>ILKCB
       GWFLAKDAT(IGRID)%NSSITR=>NSSITR
       GWFLAKDAT(IGRID)%MXLKND=>MXLKND
@@ -4321,4 +4303,6 @@ crgn Allocate budget arrays for GSFLOW CSV file
       GWFLAKDAT(IGRID)%TOTSURFOT_LAK=>TOTSURFOT_LAK 
       GWFLAKDAT(IGRID)%VOLOLDD=>VOLOLDD  
       GWFLAKDAT(IGRID)%LAKSEEP=>LAKSEEP
+      GWFLAKDAT(IGRID)%RUNF=>RUNF        !EDM
+      GWFLAKDAT(IGRID)%RUNOFF=>RUNOFF    !EDM
       END SUBROUTINE SGWF2LAK7PSV
