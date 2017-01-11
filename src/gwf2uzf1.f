@@ -137,6 +137,7 @@ C     ------------------------------------------------------------------
      +        nlth, nrck, nrnc, nrth, i, icheck, kkrch, k, NPP, MXVL,
      +        llocsave, icheck2
       REAL r, sy, fkmin, fkmax, range, finc, thick, smooth
+      INTEGER intchk, Iostat
       CHARACTER(LEN=200) line
       CHARACTER(LEN=24) aname(9)
       character(len=16)  :: text        = 'UZF'
@@ -188,23 +189,18 @@ C1------IDENTIFY PACKAGE AND INITIALIZE.
  9001 FORMAT (1X, /' UZF1 -- UNSATURATED FLOW PACKAGE, VERSION 1.4', 
      +        ', 02/06/2012', /, 9X, 'INPUT READ FROM UNIT', I3)
 !
+C
+C2A------CHECK FOR KEYWORDS.  IF NO VALID KEYWORDS FOUND
+C        THEN VERIFY THAT FIRST VALUE IS INTEGER AND PROCEED.
       CALL URDCOM(In, IOUT, line)
-! Check for alternate input.
       CALL UPARLSTAL(IN,IOUT,LINE,NPP,MXVL)
-      lloc = 1
-      CALL URWORD(LINE,LLOC,ISTART,ISTOP,1,I,R,IOUT,IN)
-      keyvalue = LINE(ISTART:ISTOP)
-      call upcase(keyvalue)
-      IF(keyvalue.EQ.'OPTIONS') THEN
-              write(iout,'(/1x,a)') 'PROCESSING '//
-     +              trim(adjustl(text)) //' OPTIONS'
-        do
-        CALL URDCOM(In, IOUT, line)
-        lloc = 1
+      DO
+        LLOC=1
         CALL URWORD(LINE,LLOC,ISTART,ISTOP,1,I,R,IOUT,IN)
-        keyvalue = LINE(ISTART:ISTOP)
-        call upcase(keyvalue)
-        select case (keyvalue)
+        select case (LINE(ISTART:ISTOP))
+          case('OPTIONS')
+            write(iout,'(/1x,a)') 'PROCESSING '//
+     +            trim(adjustl(text)) //' OPTIONS'
           case('SPECIFYTHTR')
             ITHTRFLG = 1
             WRITE(iout,*)
@@ -260,7 +256,7 @@ C1------IDENTIFY PACKAGE AND INITIALIZE.
      +                         'USING LAND SURFACE K'
               WRITE(iout,*)
               found = .true.
-        case ('NETFLUX')
+          case ('NETFLUX')
             CALL URWORD(LINE,LLOC,ISTART,ISTOP,2,UNITRECH,R,IOUT,IN)
             IF(UNITRECH.LT.0) UNITRECH=0
             CALL URWORD(LINE,LLOC,ISTART,ISTOP,2,UNITDIS,R,IOUT,IN)
@@ -271,18 +267,30 @@ C1------IDENTIFY PACKAGE AND INITIALIZE.
      +                 'FILES WITH UNIT NUMBERS ',I10,I10, 
      +                 ', RESPECTIVELY')
 
-        case ('END')
-          CALL URDCOM(In, IOUT, line)
-          exit
-        case default
-    ! -- No options found
-        found = .false.
-        CALL URDCOM(In, IOUT, line)
-        exit
+          case ('END')
+            write(iout,'(/1x,a)') 'END PROCESSING '//
+     +            trim(adjustl(text)) //' OPTIONS'
+            CALL URDCOM(In, IOUT, line)
+            exit
+          case default
+            read(line(istart:istop),*,IOSTAT=Iostat) intchk
+            if( Iostat .ne. 0 ) then
+              ! Not an integer.  Likely misspelled or unsupported 
+              ! so terminate here.
+              WRITE(IOUT,*) 'Invalid '//trim(adjustl(text))
+     +                   //' Option: '//LINE(ISTART:ISTOP)
+              CALL USTOP('Invalid '//trim(adjustl(text))
+     +                   //' Option: '//LINE(ISTART:ISTOP))
+            else
+              ! Integer found.  This is likely NUZTOP, so exit.
+              write(iout,'(/1x,a)') 'END PROCESSING '//
+     +          trim(adjustl(text)) //' OPTIONS'
+              exit
+            endif
         end select
-      end do
-      end if
- !
+        CALL URDCOM(In, IOUT, line)
+      ENDDO
+!
       if ( Ireadsurfk == 0 .and. Isurfkreject == 1) then
           WRITE(iout,*)
           WRITE(IOUT,'(A)')'WARNING REJECTSURFK SPECIFIED BUT ',

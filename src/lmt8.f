@@ -12,8 +12,7 @@ C Revision History:
 C     Version 7.0: 06-23-2016 cz
 C     Version 7.0: 08-15-2009 swm: added LMTMODULE to support LGR
 C     Version 7.0: 02-12-2010 swm: rolled in include file
-C     Version 8.0: 07-05-2016: added support for pending release of 
-C     MT3D-USGS
+C     Version 8.0: 07-05-2016: added support for MT3D-USGS
 C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 C
 C
@@ -641,7 +640,6 @@ C
       USE LMTMODULE,ONLY:ISSMT3D,IUMT3D,ILMTFMT,ILAKUZFCONNECT,
      &                   ISFRUZFCONNECT,ISFRLAKCONNECT,NPCKGTXT,
      &                   IUZFFLOWS,ISFRFLOWS,ILAKFLOWS
-
 C--SWM: SWAP POINTERS FOR LMT DATA TO CURRENT GRID
         CALL SLMT8PNT(IGRID)
 C
@@ -660,7 +658,7 @@ C--COLLECT AND SAVE ALL RELEVANT FLOW MODEL INFORMATION
      &   CALL LMT8HUF7(ILMTFMT,ISSMT3D,IUMT3D,
      &                 KKSTP,KKPER,IUNIT(47),IGRID)
         IF(IUNIT(2) .GT.0) 
-     &   CALL LMT8WEL7(IUNIT(62),ILMTFMT,IUMT3D,KKSTP,KKPER,IGRID)
+     &   CALL LMT8WEL7(ILMTFMT,IUMT3D,KKSTP,KKPER,IGRID)
         IF(IUNIT(3) .GT.0) 
      &   CALL LMT8DRN7(ILMTFMT,IUMT3D,KKSTP,KKPER,IGRID)
         IF(IUNIT(8) .GT.0) 
@@ -1860,7 +1858,7 @@ C--RETURN
       END
 C
 C
-      SUBROUTINE LMT8WEL7(IUNITUPW,ILMTFMT,IUMT3D,KSTP,KPER,IGRID)
+      SUBROUTINE LMT8WEL7(ILMTFMT,IUMT3D,KSTP,KPER,IGRID)
 C *********************************************************************
 C SAVE WELL CELL LOCATIONS AND VOLUMETRIC FLOW RATES FOR USE BY MT3D.
 C *********************************************************************
