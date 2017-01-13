@@ -9,10 +9,12 @@ def test_compile_dev():
     # Compile development version of MODFLOW-2005 from source.
 
     # Compile
+    fflags = None
+    #fflags = 'ffpe-trap=invalid,zero,overflow'
     target = config.target
     pymake.main(config.srcdir, target, config.fc, config.cc, makeclean=True,
                 expedite=False, dryrun=False, double=False, debug=False,
-                include_subdirs=False)
+                include_subdirs=False, fflags=fflags)
 
     # Ensure target has been built
     assert os.path.isfile(target) is True
