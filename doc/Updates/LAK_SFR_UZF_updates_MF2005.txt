@@ -1,3 +1,176 @@
+Changes to SFR2, LAK7, and UZF Packages for MODFLOW-2005, version 1.12.00
+
+Changes to SFR2, UZF1, and LAK7 for MODFLOW version 1.12.00 is based 
+on MODFLOW-NWT version 1.1.2. Changes made to MODFLOW-NWT are described 
+in the release notes; users are encouraged to review those release notes 
+in addition to the notes provided below. 
+
+This release provides support for the new transport model called 
+MT3D-USGS. Changes to MODFLOW to support MT3D-USGS were made to the 
+source file lmt8.f. These changes include writing output for the 
+UZF, SFR2, and LAK7 Packages that is required for simulating transport 
+in the unsaturated zone, streams, and lakes. Refer to the MT3D-USGS 
+documentation report for details (Bedekar, V., Morway, E.D., 
+Langevin, C.D., Tonkin, M.T., 2015, MT3D-USGS version 1: a U.S. 
+Geological Survey release of MT3DMS updated with new and expanded 
+transport capabilities for MODFLOW: U.S. Geological Survey Techniques 
+and Methods 6-A53, variously paginated).
+
+SFR2: 
+(1) The input format for specifying character-variable options has 
+changed. Rather than specifying character-variable options in a 
+single line in a particular order, each character-variable option 
+is specified on a separate line in any order. If additional input 
+is required along with the character-variable option, then this value 
+is specified on the same line as the character-variable option 
+separated by one or more spaces. For the new input format, options should
+be proceeded with the "OPTIONS" specification and followed by the "END"
+specification. Characters can be specified as upper or lower case. 
+Previous input formats for SFR2 are supported.  See 
+Updated_SFR2_input_instructions_MF2005.pdf input file details.
+
+(2) Other changes: Some variables in the SFR2 Package were 
+initialized; some variables were changed to arrays for use in 
+MT3D-USGS; and an access violation was fixed.  A bug was fixed to 
+avoid a memory-allocation error that occurred when using the tabfile 
+option for models with more tabfiles than stream segments. Also, an 
+uninitialized variable was initialized.
+
+UZF2:
+(1) Some variables in the UZF Package for calculating runoff were 
+initialized; a minor bug was corrected that relates to simulating 
+unsaturated-zone flow beneath lakes; and a floating-point exception 
+was fixed.
+
+(2) A new function was added for simulating groundwater 
+evapotranspiration (ET). This function simulates a constant ET rate 
+over the extinction depth rather than linearly reducing ET as 
+groundwater head decreases. The ET is smoothly reduced to zero using 
+the same polynomial function used to reduce pumping in drying cells 
+(Niswonger and others, 2011). ET is smoothly reduced as groundwater 
+head drops to the extinction depth. The smoothing interval is 
+specified as a factor of the extinction depth.
+
+(3) New Options were added to UZF1 to allow the hydraulic conductivity 
+used to calculate rejected infiltration and surface leakage to be 
+different than the vertical hydraulic conductivity of the unsaturated 
+zone (VKS). 
+
+(4) The input format for specifying character-variable options has 
+changed. Rather than specifying character-variable options in a single 
+line in a particular order, each character-variable option is specified 
+on a separate line in any order. If additional input is required along 
+with the character-variable option, then this value is specified on the 
+same line as the character-variable option separated by one or more 
+spaces.  For this new input format, options should be proceeded with 
+the "OPTIONS" specification and followed by the "END" specification. 
+Letters can be specified as upper or lower case. Previous input 
+formats for UZF1 are supported.
+
+Optional character variables for UZF1 in any order:
+
+[OPTIONS]
+[SPECIFYTHTR] 
+[SPECIFYTHTI] 
+[NOSURFLEAK] 
+[SPECIFYSURFK] 
+[REJECTSURFK] 
+[SEEPSURFK] 
+[ETSQUARE smoothfact]
+[NETFLUX unitrech unitdis]  
+[END]
+
+Definitions of new variables:
+
+SPECIFYSURFK -- An optional character variable. When SPECIFYSURFK 
+is specified, the variable SURFK is specified in Data Set 4b.
+
+REJECTSURFK -- An optional character variable. When REJECTSURFK is 
+specified, variable SURFK instead of VKS is used to calculate rejected 
+infiltration. REJECTSURFK is included only if SPECIFYSURFK is included.
+              
+SEEPSURFK -- An optional character variable. When SEEPSURFK is specified, 
+variable SURFK instead of VKS is used to calculate surface leakage. 
+SEEPSURFK is included only if SPECIFYSURFK is included.
+
+ETSQUARE -- An optional character variable. When ETSQUARE is specified, 
+groundwater ET is simulated using a constant potential ET rate, and is 
+smoothed over a specified smoothing interval. This option is 
+recommended only when using the NWT solver.
+
+smoothfact --  An optional real variable specified if ETSQUARE is 
+specified. For example, if the interval factor (smoothfact) is specified 
+as smoothfact =0.1 (recommended value), then the smoothing interval will 
+be calculated as: SMOOTHINT = 0.1*EXTDP and  is applied over the range 
+for groundwater head (h): 
+
+  h < CELTOP-EXTDP,     ET is zero;
+  CELTOP-EXTDP < h < CELTOP-EXTDP+SMOOTHINT,     ET is smoothed; and
+  CELTOP-EXTDP+SMOOTHINT < h,      ET is equal to potential ET.
+               
+NETFLUX -- An optional character variable. When NETFLUX is specified, 
+the sum of recharge (units of cubic length per time) and the sum of 
+discharge (units of cubic length per time) is written to separate 
+unformatted files using module UBDSV3. Unitrech and Unitdis are the 
+unit numbers to which these values are written when SAVE BUDGET is 
+specified in Output Control. Values written to Unitrech are the sum 
+of recharge values for the UZF, SFR2, and LAK Packages, and values 
+written to Unitdis are the sum of discharge values for the UZF, SFR2, 
+and LAK Packages. Values are averaged over the period between output 
+times.
+
+Data Set 4B:
+
+[SURFK (NCOL, NROW)] -- U2DREL
+
+SURFK -- An optional array of positive real values used to define 
+the hydraulic conductivity (units of length per time). SURFK is 
+used for calculating the rejected infiltration and/or surface 
+leakage. If SURFK is set greater than VKS, then it is set equal 
+to VKS.
+
+
+(5) Bug fixes 
+
+First corrected in MODFLOW-NWT version 1.0.9 07/01/2014
+A bug was fixed to correct the applied infiltration 
+rate as printed to the UZF1 gage output file summed over the entire 
+model. Previous versions did not include applied infiltration rates 
+in excess of VKS. This bug did not affect calculations or solutions 
+made by UZF, rather only the values for applied infiltration written 
+to UZF1 gage output summed over the entire model were affected.
+
+First corrected in MODFLOW-NWT version 1.0.8 09/24/2013
+A bug was fixed to allow the vertical hydraulic conductivity to be 
+read when IUZFOPT=-1; that is, when unsaturated-zone storage is 
+ignored and infiltrated water is added directly to the water table. 
+
+The maximum root depth was reduced from extending through 99% of 
+the cell thickness to 90% of the cell thickness. This improves 
+convergence for models where the root depth extends to the bottom 
+of the cell.
+
+Initialization was added for a few variables and checks were added 
+for divide by zero.
+
+LAK:
+(1) Some variables were changed to arrays in order to save data for 
+MT3D-USGS. A minor bug was corrected that relates to simulating 
+unsaturated-zone flow beneath lakes.
+
+(2) Bug fixes
+
+First corrected in MODFLOW-NWT version 1.0.9 07/01/2014
+Fixed compact budget for outputting lake seepage. A small change 
+was made that sets layer indices for calculating lakebed conductance.
+
+First corrected in MODFLOW-NWT version 1.0.8 09/24/2013
+A bug was fixed to correctly print lake seepage to unformatted 
+budget files. This bug affects models with lake cells that are 
+surrounded by inactive groundwater cells in the same lake.
+
+____________________________________________________________________________
+
 Changes to SFR2, LAK7, UZF, and GAG Packages for MODFLOW-2005, version 1.10.0
 
 SFR2:

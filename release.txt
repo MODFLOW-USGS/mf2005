@@ -11,9 +11,7 @@ For information and references related to these packages, see mf2005.txt
 NOTE: Any use of trade, product or firm names is for descriptive purposes 
       only and does not imply endorsement by the U.S. Government.
 
-o Version 1.12.0 01/06/2017
-    GWF2LAK -- Corrected a bug in which an incorrect cell number was
-       calculated and written for the COMPACT BUDGET option.
+o Version 1.12.0 01/20/2017
     GWF2SWR -- This is the Surface Water Routing (SWR) Process, which 
        has been added.
     GWF2SWI27 -- Added FIXEDZETA option, which fixes the zeta surfaces
@@ -22,11 +20,20 @@ o Version 1.12.0 01/06/2017
        MODFLOW-NWT.  These statements are commented out.  Fixed a bug
        that prevented the SWI budget terms from being written when the
        COMPACT BUDGET was used.
+    GWF2MNW27 -- a number of problems were fixed as described in
+       readme_MNW2.txt .
+    GWF2LAK -- Corrected a bug in which an incorrect cell number was
+       calculated and written for the COMPACT BUDGET option. Fixed array 
+       allocation error.
     GWF2DRT7 -- When a return cell went dry, the program failed to write
        a budget record for the COMPACT BUDGET option.  This resulted in
        an incorrect number of records.  Program was modified so that a
        zero value is written to the budget file for a return cell if it 
        is inactive.
+    GWF2SFR7, GWF2LAK7, GWF2UZF1 -- See file
+       LAK_SFR_UZF_updates_MF2005.txt for a description of changes.
+    LMT8 -- Upated the LMT package from 7 to 8.  LMT8 writes the flow
+       file required by MT3D-USGS.  
     GMG -- The GMG solver was not designed to be compiled for 64-bit
        computers.  The solver would work when compiled for 64-bit 
        machines, but encountered errors for large problems.  The GMG
@@ -40,7 +47,6 @@ o Version 1.12.0 01/06/2017
        AUXSFAC column.  If SFAC is also specified, then the conductance
        column will be multiplied by SFAC and the values in the AUXSFAC
        column.
-       
 
 o Version 1.11.0 08/08/2013
     GWF2SWI27 -- This is the Seawater Intrusion (SWI2) Package, which has
