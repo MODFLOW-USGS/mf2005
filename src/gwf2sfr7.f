@@ -233,7 +233,7 @@ C        THEN VERIFY THAT FIRST VALUE IS INTEGER AND PROCEED.
       END IF
 C
 C3------READ ISFROPT FLAGS WHEN NSTRM IS LESS THAN ZERO.
-      IF ( IRFG.GT.0 ) THEN
+      IF ( IRFG.GT.0 ) THEN   !RGN not needed now that keywords are used.
         IF ( NSFRPAR.GT.0 ) THEN
           WRITE(IOUT, 9002)
  9002  FORMAT (//, 'KEYWORD "REACHINPUT" IS SPECIFIED AND NSFRPAR IS ',
@@ -241,7 +241,7 @@ C3------READ ISFROPT FLAGS WHEN NSTRM IS LESS THAN ZERO.
      +  'SUPPORT PARAMETERS--PROGRAM STOPPING ',/)
           CALL USTOP(' ')
         END IF
-!        NSTRM = ABS(NSTRM)
+        NSTRM = ABS(NSTRM)
         CALL URWORD(line, lloc, istart, istop, 2, ISFROPT, r, IOUT, In)
 C
 C4------READ UNSATURATED FLOW VARIABLES WHEN ISFROPT GREATER THAN 1.
@@ -253,6 +253,7 @@ C4------READ UNSATURATED FLOW VARIABLES WHEN ISFROPT GREATER THAN 1.
           CALL URWORD(line, lloc, istart, istop, 2, NSFRSETS, r, IOUT, 
      +                In)
         END IF
+      END IF
 !4b-----Data read for transient routing.
         IF ( ITRFLG.EQ.1 ) THEN
           CALL URWORD(line, lloc, istart, istop, 2, IRTFLG, r, IOUT, In)
@@ -272,7 +273,6 @@ C4------READ UNSATURATED FLOW VARIABLES WHEN ISFROPT GREATER THAN 1.
             FLWTOL = 1.0e-6
           END IF
         END IF
-      END IF
       IF ( NSS.LT.0 ) NSS = 0
       IF ( NSFRPAR.LE.0 ) THEN
         NSFRPAR = 0
