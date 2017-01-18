@@ -3,15 +3,20 @@ Python code to create a MODFLOW-2005 distribution
 
 """
 import os
-import sys
+import subprocess
 import shutil
 import zipfile
+import shlex
 
 def zipdir(dirname, zipname):
     zipf = zipfile.ZipFile(zipname, 'w', zipfile.ZIP_DEFLATED)
     for root, dirs, files in os.walk(dirname):
         for file in files:
-            zipf.write(os.path.join(root, file))
+            if '.DS_Store' not in file:
+                fname = os.path.join(root, file)
+                arcname = fname.split(dirname, 1)[1]
+                print('adding to zip: ==> ', arcname)
+                zipf.write(fname, arcname=arcname)
     zipf.close()
     return
 
@@ -19,60 +24,60 @@ destpath = '.'
 version = 'MF2005.1_12'
 dest = os.path.join(destpath, version)
 
-print 2*'\n'
-print 'Creating MODFLOW-2005 distribution: {}'.format(version)
-print '\n'
+print(2*'\n')
+print('Creating MODFLOW-2005 distribution: {}'.format(version))
+print('\n')
 
 if os.path.exists(dest):
     # Raise Exception('Destination path exists.  Kill it first.')
-    print 'Clobbering destination directory: {}'.format(dest)
-    print '\n'
+    print('Clobbering destination directory: {}'.format(dest))
+    print('\n')
     shutil.rmtree(dest)
 
 
 # Create subdirectories
 binpath = os.path.join(dest, 'bin')
 docpath = os.path.join(dest, 'doc')
-msvspath = os.path.join(dest, 'msvs')
-# pymakepath = os.path.join(dest, 'pymake')
+msvspath = None # os.path.join(dest, 'msvs')
 sourcepath = os.path.join(dest, 'src')
 toutpath = os.path.join(dest, 'test-out')
 trunpath = os.path.join(dest, 'test-run')
 
-# leave out some folder because they will be created with copytree
-subdirs = [dest, binpath, msvspath, toutpath]
-print 'Creating directories'
+# leave out some folders because they will be created with copytree
+subdirs = [f for f in [dest, binpath, msvspath, toutpath] if f is not None]
+print('Creating directories')
 for sd in subdirs:
-    print ' {}'.format(sd)
+    print(' {}'.format(sd))
     os.mkdir(sd)
-print '\n'
+print('\n')
 
 
 # Copy the executables
-print 'Copying MODFLOW executables'
+print('Copying MODFLOW executables')
 bins = ['mf2005.exe', 'mf2005_x64.exe', 'mnw1to2.exe', 'hydfmt.exe']
 for b in bins:
     fname = os.path.join('..', 'bin', b)
     shutil.copy(fname, os.path.join(binpath, b))
-print '  {} ===> {}'.format(fname, os.path.join(binpath, b))
-print '\n'
+    print('  {} ===> {}'.format(fname, os.path.join(binpath, b)))
+print('\n')
 
 
-# Copy the documentation
-print 'Copying documentation'
-shutil.copytree('../doc', docpath, ignore=shutil.ignore_patterns('.DS_Store', 'tmp*'))
-print '\n'
+# Copy the documentation, but leave out the docx files
+print('Copying documentation')
+shutil.copytree('../doc', docpath,
+                ignore=shutil.ignore_patterns('.DS_Store', 'tmp*', '*.docx'))
+print('\n')
 
 # Copy release notes
 doclist = [os.path.join('..', 'Mf2005.txt'),
 		   os.path.join('..', 'problems.txt'),
 		   os.path.join('..', 'readme.txt'),
 		   os.path.join('..', 'release.txt')]
-print 'Copying release notes'
+print('Copying release notes')
 for d in doclist:
-	print '  {} ===> {}'.format(d, dest)	
-	shutil.copy(d, dest)
-print '\n'
+    print('  {} ===> {}'.format(d, dest))
+    shutil.copy(d, dest)
+print('\n')
 
 
 # Copy the test folder to the distribution folder
@@ -98,15 +103,20 @@ print('\n')
 #print('\n')
 
 
+# Prior to zipping, enforce windows line endings on all text files
+cmd = 'for /R %G in (*) do unix2dos "%G"'
+args = shlex.split(cmd)
+p = subprocess.Popen(cmd, cwd=dest, shell=True)
+print(p.communicate())
 
 # Zip the distribution
 zipname = version + '.zip'
 if os.path.exists(zipname):
-    print 'Removing existing file: {}'.format(zipname)
+    print('Removing existing file: {}'.format(zipname))
     os.remove(zipname)
-print 'Creating zipped file: {}'.format(zipname)
+print('Creating zipped file: {}'.format(zipname))
 zipdir(dest, zipname)
-print '\n'
+print('\n')
 
-print 'Done...'
-print '\n'
+print('Done...')
+print('\n')
