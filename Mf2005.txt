@@ -52,6 +52,12 @@ METHOD
 
 HISTORY
 
+      MODFLOW-2005 Version 1.12.00 01/20/2017 -- Added Surface Water
+         Routing (SWR) Package. Added FIXEDZETA option for the SWI2
+         Package.  Updated the LMT Package to save flows for the
+         MT3D-USGS program.  Fixed several problems in MNW2, SFR, LAK, 
+         and UZF. See release.txt for a full description of changes.
+
       MODFLOW-2005 Version 1.11.00 08/08/2013 -- Added Seawater Intrusion
          (SWI2) Package. Added free format input option to STR Package.
          The ULSTRD list reading utility subroutine was modified to allow
