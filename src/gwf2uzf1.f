@@ -209,6 +209,26 @@ C        THEN VERIFY THAT FIRST VALUE IS INTEGER AND PROCEED.
      +                'PERIOD'
             WRITE(iout,*)
             found = .true.
+!support old input style
+            do
+              CALL URWORD(LINE,LLOC,ISTART,ISTOP,1,I,R,IOUT,IN)
+              select case (LINE(ISTART:ISTOP))
+              case('SPECIFYTHTI')
+                ITHTIFLG = 1
+                WRITE(iout,*)
+              WRITE(IOUT,'(A)')' INITIAL WATER CONTENT (THTI) WILL BE ',
+     +                 'READ FOR THE FIRST SS OR TR STRESS PERIOD'
+                WRITE(iout,*)
+              case('NOSURFLEAK')
+               Iseepsupress = 1
+               WRITE(iout,*)
+              WRITE(IOUT,'(A)')' SURFACE LEAKAGE WILL NOT BE SIMULATED '
+               WRITE(iout,*)
+              case default
+                exit
+             end select
+            end do
+!support old input style
           case('SPECIFYTHTI')
             ITHTIFLG = 1
             WRITE(iout,*)
@@ -216,6 +236,20 @@ C        THEN VERIFY THAT FIRST VALUE IS INTEGER AND PROCEED.
      +                 'READ FOR THE FIRST SS OR TR STRESS PERIOD'
             WRITE(iout,*)
             found = .true.
+!support old input style
+            do
+              CALL URWORD(LINE,LLOC,ISTART,ISTOP,1,I,R,IOUT,IN)
+              select case (LINE(ISTART:ISTOP))
+              case('NOSURFLEAK')
+               Iseepsupress = 1
+               WRITE(iout,*)
+              WRITE(IOUT,'(A)')' SURFACE LEAKAGE WILL NOT BE SIMULATED '
+               WRITE(iout,*)
+              case default
+                exit
+             end select
+            end do
+!support old input style
           case('ETSQUARE')
             i=1
             CALL URWORD(line, lloc, istart, istop, 3, i, smooth, 

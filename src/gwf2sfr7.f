@@ -163,9 +163,28 @@ C        THEN VERIFY THAT FIRST VALUE IS INTEGER AND PROCEED.
           case('REACHINPUT')
             IRFG = 1
             WRITE(IOUT,32)
-   32 FORMAT(1X,I10,' Some stream information will be read by reach. ',
-     +                'This option replaces NSTRM<0')
             found = .true.
+!support old input style
+            do
+              CALL URWORD(LINE,LLOC,ISTART,ISTOP,1,I,R,IOUT,IN)
+              select case (LINE(ISTART:ISTOP))
+              case('TRANSROUTE')
+                  ITRFLG = 1
+                  WRITE(iout,*)
+                  WRITE(IOUT,'(A)')' TRANSIENT ROUTING IN STREAMS ',
+     +                            'IS ACTIVE'
+                  WRITE(iout,*)
+              case('TABFILES')
+                  CALL URWORD(LINE,LLOC,ISTART,ISTOP,2,NUMTAB,R,IOUT,IN)
+                  IF(NUMTAB.LT.0) NUMTAB=0
+                  CALL URWORD(LINE,LLOC,ISTART,ISTOP,2,MAXVAL,R,IOUT,IN)
+                  IF(MAXVAL.LT.0) MAXVAL=0
+                  WRITE(IOUT,31) NUMTAB,MAXVAL
+              case default
+                exit
+             end select
+           end do
+!support old input style
           case('TRANSROUTE')
             ITRFLG = 1
             WRITE(iout,*)
@@ -178,16 +197,11 @@ C        THEN VERIFY THAT FIRST VALUE IS INTEGER AND PROCEED.
             CALL URWORD(LINE,LLOC,ISTART,ISTOP,2,MAXVAL,R,IOUT,IN)
             IF(MAXVAL.LT.0) MAXVAL=0
             WRITE(IOUT,31) NUMTAB,MAXVAL
-   31    FORMAT(1X,I10,' Specified inflow files will be read ',
-     +                 'with a maximum of ',I10,' row entries per file')
             found = .true.
           case('LOSSFACTOR')
             WRITE(IOUT,*)
             CALL URWORD(line, lloc, istart, istop, 3, i, FACTOR,IOUT,In)
-            WRITE(IOUT,322) FACTOR
-  322    FORMAT('Stream loss will be calculated as a factor ',
-     +                 'of the streambed hydraulic conductivity. ',
-     +                 'Multiplication factor is equal to ',E20.10)
+            WRITE(IOUT,33) FACTOR
            found = .true.
           case ('END')
             write(iout,'(/1x,a)') 'END PROCESSING '//
@@ -212,6 +226,13 @@ C        THEN VERIFY THAT FIRST VALUE IS INTEGER AND PROCEED.
         end select
         CALL URDCOM(In, IOUT, line)
       ENDDO
+   32 FORMAT(1X,I10,' Some stream information will be read by reach. ',
+     +                'This option replaces NSTRM<0')
+   31 FORMAT(1X,I10,' Specified inflow files will be read ',
+     +                 'with a maximum of ',I10,' row entries per file')
+  33  FORMAT('Stream loss will be calculated as a factor ',
+     +                 'of the streambed hydraulic conductivity. ',
+     +                 'Multiplication factor is equal to ',E20.10)
 !
       lloc = 1
       CALL URWORD(line, lloc, istart, istop, 2, NSTRM, r, IOUT, In)
