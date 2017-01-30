@@ -21,7 +21,7 @@ o Version 1.12.0 01/27/2017
        that prevented the SWI budget terms from being written when the
        COMPACT BUDGET was used.
     GWF2MNW27 -- a number of problems were fixed as described in
-       readme_MNW2.txt .
+       readme_MNW2.txt.
     GWF2LAK -- Corrected a bug in which an incorrect cell number was
        calculated and written for the COMPACT BUDGET option. Fixed array 
        allocation error.
@@ -47,11 +47,11 @@ o Version 1.12.0 01/27/2017
        AUXSFAC column.  If SFAC is also specified, then the conductance
        column will be multiplied by SFAC and the values in the AUXSFAC
        column.
+    Minor spelling errors were corrected in many of the source files.  Many
+       of these errors have been present since the first release.
     MODFLOW-2005 runtime executables included in this distribution are 
        released for the 64-bit version of the Windows operating system.
-       A separate 32-bit runtime executable is also included for those 
-       working on 32-bit systems.
-       
+
 
 o Version 1.11.0 08/08/2013
     GWF2SWI27 -- This is the Seawater Intrusion (SWI2) Package, which has

@@ -188,10 +188,7 @@ The current form of unformatted file has been used in USGS MODFLOW
 executables starting with version 1.2 of MODFLOW-2000.
 
 The MODFLOW runfiles included with this distribution are compiled for
-64-bit versions of the Windows operating system.  A separate 32-bit
-MODFLOW executable is also included for those that may be working on
-older 32-bit computer systems.  The 32-bit MODFLOW version is called
-mf2005ia32.exe.
+64-bit versions of the Windows operating system.
 
 
 D. TESTING
