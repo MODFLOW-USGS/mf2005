@@ -954,7 +954,7 @@ C     + + + LOCAL TYPE FOR SWR1 OPTIONS
 C     + + + FUNCTIONS + + +
       DOUBLEPRECISION :: SSWR_R2D
 C     + + + DATA + + +
-      DATA csolver/'LU DECOMPOSITION USING CROUT'S ALGORITHM',
+      DATA csolver/"LU DECOMPOSITION USING CROUT'S ALGORITHM",
      2             'BICONJUGATE GRADIENT STABILIZED         ',
      3             'GENERALIZED MINIMAL RESIDUAL            '/
       DATA cmethod/'LEVEL-POOL ROUTING  ',
