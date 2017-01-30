@@ -554,7 +554,7 @@ C7------Write label for barrier values if IOUTU is positive.
    84        FORMAT(1X,56('-'))
            END IF
 C
-C8------Copy the values from the paramter location into the front part
+C8------Copy the values from the parameter location into the front part
 C8------of the list where the currently active list is kept.
           DO 90 I=1,NLST
             II=NHFB-NLST+I

@@ -102,21 +102,6 @@ from the control panel windows.  Initiate and use a new Windows Command
 window.
 
        HOW TO ADD TO THE PATH ENVIRONMENT VARIABLE
-                  WINDOWS XP SYSTEMS
-             
-From the Start menu, select Settings and then Control Panel.  Double click
-System and select the Advanced tab.  Click on Environment Variables.  If
-a PATH user variable already is defined, click on it in the User Variables
-pane, then click Edit.  In the Edit User Variable window, add
-";C:\WRDAPP\mf2005.1_12\bin" to the end of the Variable Value (ensure that
-the current contents of the User Value are not deleted) and click OK.  If
-a PATH user variable is not already defined in the User variables pane of
-the Environment Variables window, click New.  In the New User Variable
-window, define a new variable PATH as shown above.  Click OK.  Click OK
-in the Environment Variables window and again in the System Properties
-window.  Initiate and use a new Windows Command window.
-
-       HOW TO ADD TO THE PATH ENVIRONMENT VARIABLE
                  WINDOWS VISTA SYSTEMS
              
 From the Start menu, select Settings and then Control Panel.  Select
@@ -201,6 +186,12 @@ Older versions of MODFLOW executables provided by the U.S. Geological
 Survey (USGS) may produce unformatted files with a different structure.
 The current form of unformatted file has been used in USGS MODFLOW
 executables starting with version 1.2 of MODFLOW-2000.
+
+The MODFLOW runfiles included with this distribution are compiled for
+64-bit versions of the Windows operating system.  A separate 32-bit
+MODFLOW executable is also included for those that may be working on
+older 32-bit computer systems.  The 32-bit MODFLOW version is called
+mf2005ia32.exe.
 
 
 D. TESTING

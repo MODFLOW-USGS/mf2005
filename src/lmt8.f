@@ -445,7 +445,7 @@ C--ENSURE A UNIQUE UNIT NUMBER FOR LINK-MT3DMS OUTPUT FILE
           ENDIF
         ENDDO
       ENDIF  
- 1010 FORMAT(/1X,'ERROR IN LMT PACKAGE INPT DATA:'
+ 1010 FORMAT(/1X,'ERROR IN LMT PACKAGE INPUT DATA:'
      &       /1X,'UNIT NUMBER GIVEN FOR FLOW-TRANSPORT LINK FILE:', 
      &        I4,' ALREADY IN USE;' 
      &       /1X,'SPECIFY A UNIQUE UNIT NUMBER.')   
@@ -500,7 +500,7 @@ C--ERROR CHECKING BEFORE OUTPUT
         WRITE(*,1300)
         CALL USTOP(' ')
       ENDIF    
- 1300 FORMAT(/1X,'ERROR IN LMT PACKAGE INPT DATA:'
+ 1300 FORMAT(/1X,'ERROR IN LMT PACKAGE INPUT DATA:'
      &  /1X,'Both EVT and ETS Packages are used in flow simulation;'
      &  /1X,'Only one is allowed in the same transport simulation.')
 C
@@ -4177,7 +4177,7 @@ C                    NINFLOW = NINFLOW+1
                 END DO
                 !FLOWIN = FLOWIN + SEG(2,ISTSG)
 C                NINFLOW = NINFLOW + 1
-C--A STREAM SEGMENT THAT RECEIVES TRIBUTARY FLOW MAY ALSO HAVE SPCIFIED INFLOW AS WELL
+C--A STREAM SEGMENT THAT RECEIVES TRIBUTARY FLOW MAY ALSO HAVE SPECIFIED INFLOW AS WELL
                 IF(SEG(2,ISTSG).GT.CLOSEZERO) THEN
                   FLOWIN = SEG(2,ISTSG)      !Set flowin equal to specified inflow
                   NINFLOW = 1

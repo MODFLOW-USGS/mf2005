@@ -32,7 +32,7 @@ C     ******************************************************************
 ! local
       double precision etgw
 !
-! Between ET surface and extintion depth
+! Between ET surface and extinction depth
       IF ( hh.GT.(s-x) .AND. hh.LT.s ) THEN
         etgw = (c*(hh-(s-x))/x)
         IF ( etgw.GT.c ) THEN
@@ -47,7 +47,7 @@ C     ******************************************************************
       ELSE IF ( hh.GE.s ) THEN
         trhs = c
         etgw = c
-! Below extintion depth
+! Below extinction depth
        ELSE
          etgw = 0.0
        END IF
@@ -743,7 +743,7 @@ C17-----CHECK FOR ERRORS IN EPS, THTS, AND THTI ARRAYS.
               END IF
 !              IF ( AIR_ENTRY(ncck, nrck).GT.-CLOSEZERO ) THEN
 !                WRITE (IOUT, 9029) nrck, ncck, AIR_ENTRY(ncck, nrck)
-! 9029           FORMAT (1X/, 'AIR ENTERY PRESSURE FOR CELL AT ROW ', 
+! 9029           FORMAT (1X/, 'AIR ENTRY PRESSURE FOR CELL AT ROW ', 
 !     +              I5, ', COL. ', I5, ' IS GREATER THAN OR EQUAL TO ',
 !     +              'ZERO-- SETTING UNSATURATED FLOW IN CELL TO ', 
 !     +                  'INACTIVE', F12.3)
@@ -751,7 +751,7 @@ C17-----CHECK FOR ERRORS IN EPS, THTS, AND THTI ARRAYS.
 !              END IF
 !              IF ( H_ROOT(ncck, nrck).GT.-CLOSEZERO ) THEN
 !                WRITE (IOUT, 9030) nrck, ncck, H_ROOT(ncck, nrck)
-! 9030           FORMAT (1X/, 'AIR ENTERY PRESSURE FOR CELL AT ROW ', 
+! 9030           FORMAT (1X/, 'AIR ENTRY PRESSURE FOR CELL AT ROW ', 
 !     +              I5, ', COL. ', I5, ' IS GREATER THAN OR EQUAL TO ',
 !     +              'ZERO-- SETTING UNSATURATED FLOW IN CELL TO ', 
 !     +                  'INACTIVE', F12.3)
@@ -955,13 +955,13 @@ C
 C28-----FORMATS
  9024 FORMAT (1X,'"LOCATION OF SPECIFIED CELL FOR PRINTING VOLUMES ', 
      +        'IN UNSATURATED ZONE: GAGE ', I4, ' ROW, COLUMN ', I4, 
-     +        ',', I4, ' INITIAL LAYER ASSIGMENT ', I4,'"', /1X,
+     +        ',', I4, ' INITIAL LAYER ASSIGNMENT ', I4,'"', /1X,
      +        '"DATA:  LAYER             TIME        GW-HEAD   ', 
      +        'UZ-THICKNESS CUM.-APL.-INF.   CUM.-INFILT.     CUM.-', 
      +        'RECH.    TOTAL-STOR.   STOR.-CHANGE    SURF.-LEAK. "')
  9025 FORMAT (1X,'"LOCATION OF SPECIFIED CELL FOR PRINTING VOLUMES ', 
      +      'AND RATES IN UNSATURATED ZONE: GAGE ', I4, 
-     +      ' ROW, COLUMN ', I4, ',', I4, ' INITIAL LAYER ASSIGMENT ',
+     +      ' ROW, COLUMN ', I4, ',', I4, ' INITIAL LAYER ASSIGNMENT ',
      +      I4,'"', /1X, '"DATA:  LAYER             TIME        ',
      +      'GW-HEAD   UZ-THICKNESS CUM.-APL.-INF.   CUM.-INFILT.   ', 
      +      '  CUM.-RECH.    TOTAL-STOR.   STOR.-CHANGE    SURF.-LEAK.',
@@ -969,7 +969,7 @@ C28-----FORMATS
      +      'STOR.-RATE     SEEP.-RATE "', /)
  9026 FORMAT (1X,'"LOCATION OF SPECIFIED CELL FOR PRINTING VOLUMES ', 
      +        'IN UNSATURATED ZONE: GAGE ', I4, ' ROW, COLUMN ', I4, 
-     +        ',', I4, ' INITIAL LAYER ASSIGMENT ', I4,'"', /1X, 
+     +        ',', I4, ' INITIAL LAYER ASSIGNMENT ', I4,'"', /1X, 
      +        '"DATA:  LAYER             TIME        GW-HEAD   ',
      +        'UZ-THICKNESS          DEPTH    WATER-CONT. "', /)
  9027 FORMAT (1X,'"UNSATURATED MASS BALANCE COMPONENTS FOR ENTIRE ',  
@@ -978,7 +978,7 @@ C28-----FORMATS
      +        '           UZ-ET           GW-ET',
      +        '   UZSTOR-CHANGE        RECHARGE "',/)
 C
-C29-----PRINT WARINING WHEN UNITS ARE UNDEFINED IN MODFLOW.
+C29-----PRINT WARNING WHEN UNITS ARE UNDEFINED IN MODFLOW.
       IF ( ITMUNI.EQ.0 .OR. LENUNI .EQ. 0 ) THEN
         WRITE(IOUT,*)'****Units are undefined. This may cause ',
      +  'unfortunate results when using GSFLOW****'
@@ -1054,7 +1054,7 @@ C    ------------------------------------------------------------------
 C    ******************************************************************
       nlayp1 = NLAY + 1
 C
-C1------CHECK TO SEE IF UPPERMOST ACTIVE CELL IS CONVERTABLE AND
+C1------CHECK TO SEE IF UPPERMOST ACTIVE CELL IS CONVERTIBLE AND
 C       SET VKS EQUAL TO VKALPF FOR CORRESPONDING MODEL CELL.
       krck = 1
       DO nrck = 1, NROW
@@ -1447,7 +1447,7 @@ C17-----SET CELL TOP, LENGTH, WIDTH AND WATER TABLE ELEVATION.
                   END IF
 C
 C18-----SKIP IF CELL IS OUTSIDE ACTIVE BOUNDARY OR IS NOT WATER TABLE.
-! commented next line out to simulate unsat. flow over a portio of area.
+! commented next line out to simulate unsat. flow over a portion of area.
 !                  IF ( il.LT.1 ) IUZFBND(ic, ir) = 0
 C
 C19-----INITIALIZE UZTHST ARRAY TO RESIDUAL WATER CONTENT.
@@ -1508,8 +1508,8 @@ C23-----CALCULATE VOLUME OF WATER STORED IN UNSATURATED ZONE.
                         UZOLSFLX(ic, ir) = 0.0D0
                       END IF
 C
-C24-----IF NO UNSATURATED ZONE, SET ARRAY VALUES TO ZERO EXEPT WHEN
-C         STEADY STATE, THEN SET UZFLST ARRAY TO INFILRATION RATE.
+C24-----IF NO UNSATURATED ZONE, SET ARRAY VALUES TO ZERO EXCEPT WHEN
+C         STEADY STATE, THEN SET UZFLST ARRAY TO INFILTRATION RATE.
                     ELSE
                       IF ( iss.NE.0 ) THEN
                         UZFLST(1, l) = FINF(ic, ir)
@@ -1815,7 +1815,7 @@ C3------SEARCH FOR UPPERMOST ACTIVE CELL.
                 totfluxtot = 0.0d0
                 totetact = 0.0d0
 C
-C4------RESET ALL UNSATRATED ZONE CELLS TO PREVIOUS CONDITIONS.
+C4------RESET ALL UNSATURATED ZONE CELLS TO PREVIOUS CONDITIONS.
                 iset = 1
                 numwaves = NWAVST(ic, ir)
                 IF ( htest2.GE.0.0D0 ) THEN
@@ -2026,7 +2026,7 @@ C        VALUE IS SPECIFIED FOR A LAKE.
 !C3A----IF PRMS SETS ACCEPTS SEEPOUT THEN RETURN
 !      IF ( IGSFLOW.NE.0 )RETURN
 C
-C4------LOOP THROUGH IRUNBND ARRAY AND ADD SEEPOUT PLUS EXCESSPP TO
+C4------LOOP THROUGH IRUNBND ARRAY AND ADD SEEPOUT PLUS EXCESPP TO
 C         CORRECT STREAM SEGMENT OR LAKE.
       DO ir = 1, NROW
         DO ic = 1, NCOL
@@ -2709,7 +2709,7 @@ C20-----MULTIPLE TRAIL WAVES BELOW AND ABOVE WATER TABLE.
                             END IF
 C
 C21-----ONLY ONE LEAD TRAIL AND ONE TRAIL WAVE BELOW WATER TABLE
-C         AND THERE ARE MUTIPLE TRAIL WAVES IN SET ABOVE WATER TABLE.
+C         AND THERE ARE MULTIPLE TRAIL WAVES IN SET ABOVE WATER TABLE.
                           ELSE IF ( ITRLSTH(j).GT.1 ) THEN
                             DO k = iset + 1, iset + ITRLSTH(j) - 1
                               LTRLST(k, l) = 1
@@ -3367,7 +3367,7 @@ C41-----SAVE SURFACE LEAKAGE TO UNFORMATTED FILE.
      +                               PERTIM, TOTIM, IBOUND)
       END IF
 C
-C40-----UPDATE RATES AND BUFFERS FOR REJECTED INFILTRATON RATES.
+C40-----UPDATE RATES AND BUFFERS FOR REJECTED INFILTRATION RATES.
       IF ( ibd.GT.0 .OR. ibduzf.GT.0 .AND. IETBUD.EQ.0 ) THEN
           CALL INITARRAY(TOTCELLS,0.0,BUFF(:,:,1))
           DO ir = 1, NROW
@@ -3385,7 +3385,7 @@ C40-----UPDATE RATES AND BUFFERS FOR REJECTED INFILTRATON RATES.
             END DO
           END DO
       END IF
-C41-----SAVE REJECTED INFILTRATON RATES TO UNFORMATTED FILE.
+C41-----SAVE REJECTED INFILTRATION RATES TO UNFORMATTED FILE.
       IF ( IETBUD.EQ.0 ) THEN
         IF ( ibd.GT.0 ) CALL UBUDSV(Kkstp, Kkper, textrej, IUZFCB1, 
      +                            BUFF, NCOL, NROW, NLAY, IOUT)
@@ -3412,7 +3412,7 @@ C40-----UPDATE RATES AND BUFFERS FOR STORAGE CHANGES.
             END DO
         END IF
       END IF
-C41-----SAVE REJECTED INFILTRATON RATES TO UNFORMATTED FILE.
+C41-----SAVE REJECTED INFILTRATION RATES TO UNFORMATTED FILE.
         IF ( ibd.GT.0 ) CALL UBUDSV(Kkstp, Kkper, uzsttext, IUZFCB1, 
      +                            BUFF, NCOL, NROW, NLAY, IOUT)
         IF ( ibduzf.GT.0 ) CALL UBDSV3(Kkstp, Kkper, uzsttext,  
@@ -5147,7 +5147,7 @@ C--------SUBROUTINE CELL_AVERAGE
      +                         Celldelst, Nuzc, Nuzr, Il, Celtop, H, 
      +                         Iret, Finfact, Thr, land, iss )
 C     ******************************************************************
-C     AVEARGE WATER CONTENT AND FLUX FOR MT3DMS
+C     AVERAGE WATER CONTENT AND FLUX FOR MT3DMS
 C     ******************************************************************
       USE GLOBAL,       ONLY: BOTM, IOUT, NLAY
       USE GWFBASMODULE, ONLY: DELT

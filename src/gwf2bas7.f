@@ -2040,7 +2040,7 @@ C6D-----Define array using array reader.
              CALL U2DREL(RMLT(:,:,M),ANAME,NROW,NCOL,0,INMULT,IOUT)
           ELSE
 C
-C6E-----Define array as aritmetic combination of other multiplier arrays.
+C6E-----Define array as arithmetic combination of other multiplier arrays.
 C6E-----Start by initializing the array to 0.
              WRITE(IOUT,30) MLTNAM(M)
    30        FORMAT(1X,/1X,'Calculated multiplier array: ',A)

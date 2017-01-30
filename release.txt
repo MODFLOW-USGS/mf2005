@@ -11,7 +11,7 @@ For information and references related to these packages, see mf2005.txt
 NOTE: Any use of trade, product or firm names is for descriptive purposes 
       only and does not imply endorsement by the U.S. Government.
 
-o Version 1.12.0 01/20/2017
+o Version 1.12.0 01/27/2017
     GWF2SWR -- This is the Surface Water Routing (SWR) Process, which 
        has been added.
     GWF2SWI27 -- Added FIXEDZETA option, which fixes the zeta surfaces
@@ -32,7 +32,7 @@ o Version 1.12.0 01/20/2017
        is inactive.
     GWF2SFR7, GWF2LAK7, GWF2UZF1 -- See file
        LAK_SFR_UZF_updates_MF2005.txt for a description of changes.
-    LMT8 -- Upated the LMT package from 7 to 8.  LMT8 writes the flow
+    LMT8 -- Updated the LMT package from 7 to 8.  LMT8 writes the flow
        file required by MT3D-USGS.  
     GMG -- The GMG solver was not designed to be compiled for 64-bit
        computers.  The solver would work when compiled for 64-bit 
@@ -47,6 +47,11 @@ o Version 1.12.0 01/20/2017
        AUXSFAC column.  If SFAC is also specified, then the conductance
        column will be multiplied by SFAC and the values in the AUXSFAC
        column.
+    MODFLOW-2005 runtime executables included in this distribution are 
+       released for the 64-bit version of the Windows operating system.
+       A separate 32-bit runtime executable is also included for those 
+       working on 32-bit systems.
+       
 
 o Version 1.11.0 08/08/2013
     GWF2SWI27 -- This is the Seawater Intrusion (SWI2) Package, which has
@@ -158,7 +163,7 @@ o Version 1.9.0 03/30/2012
        conditions.
     SIP7 -- Modified SIP to avoid failure in the unusual situation that head
        change is 0 at all cells for an iteration.
-    PCG7 -- Fixed a memory access error when the polnomial preconditioner
+    PCG7 -- Fixed a memory access error when the polynomial preconditioner
        is used. Added IHCOFADD option. When an active cell is surrounded
        by dry cells, the cell normally converts to dry.  The new option
        causes the cell to convert to dry only if storage and head-dependent
@@ -377,7 +382,7 @@ o Version 1.3
        and now all of the values at later times will be dry.
 
 o Version 1.2.01  10/24/2006
-   GWF2SFR7 -- A bug was discovered in SFR7 when NSTRM is postive or when
+   GWF2SFR7 -- A bug was discovered in SFR7 when NSTRM is positive or when
        NSTRM is negative and ISFROPT is 0. The error  occurs because record
        6 is not read after the first stress period. This causes the read
        sequence following stress period 2 to be incorrect. Many different

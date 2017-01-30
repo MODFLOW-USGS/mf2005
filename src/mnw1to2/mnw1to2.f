@@ -193,7 +193,7 @@ c   Test for a specified PREFIX NAME  for time series output from MNW7OT
         BACKSPACE (In)
       ENDIF
 c
-c     Test for creation of a WEL1 package and auxillary output files
+c     Test for creation of a WEL1 package and auxiliary output files
 c
       iok = 1
       DO WHILE ( iok.EQ.1 )
@@ -853,7 +853,7 @@ c
       tx2 = Txt
       CALL UPCASE(tx2)
 c
-c    Test for switching control to an auxillary input file
+c    Test for switching control to an auxiliary input file
 c
       ki = INDEX(Txt, ':')
       IF ( INDEX(tx2, 'REDIRECT').GT.0 .AND. ki.GT.0 ) THEN
@@ -866,7 +866,7 @@ c
         GOTO 5
       ENDIF
 c
-c    Test for returning io control from auxillary input to master input file
+c    Test for returning io control from auxiliary input to master input file
 c
       IF ( INDEX(tx2, 'RETURN').GT.0 .AND.
      +     INDEX(tx2, 'CONTROL').GT.0 ) GOTO 10
@@ -880,10 +880,10 @@ c
       IF ( INDEX(tx2, '<STOP>').GT.0 ) Ierr = 2
       RETURN
 c
-c    Report error in opening auxillary input file and stop
+c    Report error in opening auxiliary input file and stop
 c
    20 WRITE (*, 25) afile
-   25 FORMAT (/, '  ERROR opening auxillary input file', //,
+   25 FORMAT (/, '  ERROR opening auxiliary input file', //,
      + '   The file:  ', a40, ' does not exist', /)
 c
       STOP

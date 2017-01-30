@@ -492,7 +492,7 @@ C20-----SET ALL FLAGS FOR OUTPUT CONTROL TO "FALSE".
   385 CONTINUE
   390 CONTINUE
 C the following initialization of the NTSSUM array was removed from the
-C block IF construct immediatly below and placed here so that it would
+C block IF construct immediately below and placed here so that it would
 C be executed even if ISUBOC is not greater than zero.
 C Stan Leake, July 14, 2010
        NTSSUM(1)=0

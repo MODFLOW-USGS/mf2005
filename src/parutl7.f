@@ -91,7 +91,7 @@ C2B-----a blank entry for the new parameter.  Too many parameters
    11 FORMAT(1X,'The number of parameters has exceeded the maximum')
       CALL USTOP(' ')
 C
-C3------Parameter is a new parameter or it was prefined in the
+C3------Parameter is a new parameter or it was predefined in the
 C3------Parameter Value file.  Get the number of clusters.
   100 PARTYP(NP)=PTYP
       CALL URWORD(LINE,LLOC,ISTART,ISTOP,2,NCLU,R,IOUT,IN)
@@ -281,7 +281,7 @@ C     ------------------------------------------------------------------
       CHARACTER*24 ANAME
 C     ------------------------------------------------------------------
 C
-C1------Set initialization flag to cause USUB2D to initialze ZZ to 0.
+C1------Set initialization flag to cause USUB2D to initialize ZZ to 0.
 C1------Write a header above the list of parameters that define ZZ.
       INIT=1
       WRITE(IOUT,11) ANAME
@@ -329,7 +329,7 @@ C     ------------------------------------------------------------------
       CHARACTER*10 CTMP1,CTMP2,CTMP3,CTMP4
 C     ------------------------------------------------------------------
 C
-C1------Set initialization flag to cause USUB2D to initialze ZZ to 0.
+C1------Set initialization flag to cause USUB2D to initialize ZZ to 0.
       INIT=1
 C
 C2------Read each parameter name.
@@ -417,7 +417,7 @@ C7------Check to see if this parameter is already active.
         ENDIF
 C
 C8------Activate the parameter and substitute.  Reset INIT so that
-C8------any further calls to USUB2D will not reinitilize ZZ.
+C8------any further calls to USUB2D will not reinitialize ZZ.
         IACTIVE(IP)=NI
         II=IP
         CALL USUB2D(ZZ,NCOL,NROW,II,ILAY,INIT,NSUB)
@@ -864,7 +864,7 @@ C
 C7------Write label for list values if IOUTU is positive.
           IF (IOUTU.GT.0) CALL ULSTLB(IOUT,LABEL,CAUX,NCAUX,NAUX)
 C
-C8------Copy the values from the paramter location into the front part
+C8------Copy the values from the parameter location into the front part
 C8------of the list where the currently active list is kept.
           DO 90 I=1,NLST
             II=NTOT-NLST+I

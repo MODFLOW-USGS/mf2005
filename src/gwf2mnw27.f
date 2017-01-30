@@ -215,9 +215,9 @@ c        26   = Last Q that was looked up in table for next iteration
 c        27   = CapFlag2: If =1 then Q has been constrained, required for AD routine
 c        28   = HWTOL: Minimum absolute value of change in the computed water level in the well allowed between successive iterations
 c        29   = TEMP Storage for MISC values
-c        30   = USED TO STORE Qpot (Potial Pumping Rate) WHICH IS TRANSFERED TO MNW2(18,:)
+c        30   = USED TO STORE Qpot (Potential Pumping Rate) WHICH IS TRANSFERED TO MNW2(18,:)
 c        31   = CONC IN WELL
-c        31+  = USED FOR STORAGE OF AUXILARY VARIABLES
+c        31+  = USED FOR STORAGE OF AUXILIARY VARIABLES
 c------------------------------------------------------------------
 c
 c  If past first stress period, skip reading data sets1+2
@@ -3761,7 +3761,7 @@ c--LFK--Dec 2012   IF Vert.Segment, Length & Cond. = 1/2 of calc. value.
             SKIN=0.0
           END IF
 c
-c       For the "NONE" option, multiply the Kh by 1000 to equivalate Hnew and hwell
+c       For the "NONE" option, multiply the Kh by 1000 to equivalent Hnew and hwell
         if(LOSSTYPE.EQ.0) then
 c seb
           IF(thck.LE.0D0)THEN
@@ -4281,7 +4281,7 @@ c get qnet
 c   Set flux at top of first node equal to Qnet (if pump at top)
 c     or set to zero if pump is somewhere else
 c
-c   Set flux inbetween node 1 and node 2 (saved at top of node 2) equal to flux at 
+c   Set flux in between node 1 and node 2 (saved at top of node 2) equal to flux at 
 c     that node and Qnet (if pump at top)
 c     or just to flow if pump is somewhere else
         if(nodepump.eq.firstnode) then
@@ -4445,7 +4445,7 @@ C
            z1=MNWNOD(26,INODE)
            z2=MNWNOD(26,INODE+1)
          end if
-c     caculate distance between nodes
+c     calculate distance between nodes
       betweennodes=SQRT(((x1-x2)**2)+((y1-y2)**2)+((z1-z2)**2))
 c
 c
@@ -4469,7 +4469,7 @@ c   if this is a vertical segment, define lengths with elevations, skip other ca
           MNWNOD(24,INODE)=z1-bot1  
         endif       
         MNWNOD(23,INODE+1)=top2-z2         
-c  if blank spaces inbetween, save that length
+c  if blank spaces in between, save that length
         if(bot1.ne.top2) MNWNOD(25,INODE)=bot1-top2
         ivert2(INODE)=1
         ivert1(INODE+1)=1
@@ -4680,7 +4680,7 @@ c       if exit point is on boundary with second cell, done with both segments
           else
             lzf=0.d0
           end if
-c   if idone still=0, then there are blank spaces inbetween nodes.  Calculate
+c   if idone still=0, then there are blank spaces in between nodes.  Calculate
 c   length of that segment by getting intersection out of last node
           if(idone.eq.0) then
             is_intersection=0
@@ -4732,7 +4732,7 @@ c       if z2face intersection point lies within cell, this is exit point
             else
              lzf=0.d0
             end if
-c  now that we have both node exit intersection points, blank distance is betweem
+c  now that we have both node exit intersection points, blank distance is between
 c  them.  Save in MNWNOD(25) of the first node between them            
 c-LFK Dec 2012: correct calc. of length of blank casing
 c           lbf=SQRT(((xi-xi2)**2)+((yi-yi2)**2)+((zi-zi2)**2))     
@@ -5136,7 +5136,7 @@ c    this makes conductance very small
       if( rw.lt.verysmall .or. Txx.lt.verysmall .or. Tyy.lt.verysmall ) 
      &  then
         cel2wel2SEG = ( Txx * Tyy )** 0.5D0
-c       For the "NONE" option, multiply the Kh by 1000 to equivalate Hnew and hwell
+c       For the "NONE" option, multiply the Kh by 1000 to equivalent Hnew and hwell
       else if(LOSSTYPE.EQ.0) then
         cel2wel2SEG=1.0D3*((Kx*Ky)**0.5D0)   
       else 
@@ -5504,7 +5504,7 @@ C
 C7--SET KK=1 (NECESSARY FOR SUBROUTINE LTST2):
       KK=1
 C
-C7a-CACULATE DIMENSIONLESS VARIABLES TO PASS TO LAPLACE TRANSFORM
+C7a-CALCULATE DIMENSIONLESS VARIABLES TO PASS TO LAPLACE TRANSFORM
 C    SOLUTION SUBROUTINES 
 C
        IOWS=2

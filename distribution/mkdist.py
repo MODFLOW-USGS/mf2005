@@ -54,7 +54,8 @@ print('\n')
 
 # Copy the executables
 print('Copying MODFLOW executables')
-bins = ['mf2005.exe', 'mf2005_x64.exe', 'mnw1to2.exe', 'hydfmt.exe']
+bins = ['mf2005.exe', 'mf2005dbl.exe', 'mf2005ia32.exe', 'mnw1to2.exe',
+        'hydfmt.exe']
 for b in bins:
     fname = os.path.join('..', 'bin', b)
     shutil.copy(fname, os.path.join(binpath, b))

@@ -1,4 +1,4 @@
-C  The hydrograph lables are established by the SE subroutines the
+C  The hydrograph labels are established by the SE subroutines the
 C  first time they are called.  SE is called the first time by the
 C  AR subroutine for the BAS, IBS, and SUB Packages.  SE is called
 C  the first time by the RP subroutine for the STR and SFR Packages.
@@ -6,7 +6,7 @@ C  Subsequent calls to SE subroutines in the Main must be made in
 C  the same order as the initial calls.  A HYDMOD package that
 C  has an RP subroutine will always have the initial SE call after
 C  the initial SE calls for all of the packages that have the
-C  inital SE call in the AR subroutine.
+C  initial SE call in the AR subroutine.
       MODULE HYDBASMODULE
         INTEGER,    SAVE,       POINTER                ::NHYDTOT
         REAL,       SAVE,       POINTER,DIMENSION(:,:) ::HYDVAL
@@ -126,7 +126,7 @@ C4------HYDROGRAPH FILE AND NUMERIC FLAG FOR DRY/INACTIVE CELLS
       LLOC=1
 C  Number of hydrographs (NHYDM) specified by the user is ignored --
 C    the program initially counts the number of hydrographs (NTOT).
-C    Note that there may be less than NHTOT hydrograps because some
+C    Note that there may be less than NHTOT hydrographs because some
 C    may be eliminated due to invalid values.
       CALL URWORD(LINE,LLOC,ISTART,ISTOP,2,NHYDM,R,IOUT,IN)
       CALL URWORD(LINE,LLOC,ISTART,ISTOP,2,IHYDMUN,R,IOUT,IN)
@@ -231,7 +231,7 @@ C  Not head or drawdown, so error.
          GO TO 20
       ENDIF
 C
-C  Find the grid coodrdinates for the cell.
+C  Find the grid coordinates for the cell.
       CALL SGWF2HYD7GRDLOC(XL,YL,NR1,NC1,NR2,NC2,X1,X2,Y1,Y2)
 C
 C  Check if interpolating between nodes.

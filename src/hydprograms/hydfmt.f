@@ -404,7 +404,7 @@ CC
 C-----
 C----- VERSION 0100 29JULY1998 MODTIME
 C     ***********************************************************************
-C     CONVERT ELAPSED MODEL TIME TO DECIMAL OR CLAENDAR DATES FOR HYDROGRAPHS
+C     CONVERT ELAPSED MODEL TIME TO DECIMAL OR CALENDAR DATES FOR HYDROGRAPHS
 C     ***********************************************************************
 C
 C     SPECIFICATIONS:

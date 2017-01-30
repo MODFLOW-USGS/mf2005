@@ -117,7 +117,7 @@ C3------RETURN.
       END
       SUBROUTINE GWF2CHD7RP(IN,IGRID)
 C     ******************************************************************
-C     READ STRES PERIOD DATA FOR CHD
+C     READ STRESS PERIOD DATA FOR CHD
 C     ******************************************************************
 C
 C     SPECIFICATIONS:

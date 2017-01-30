@@ -1,7 +1,7 @@
 C
 C
 C     ******************************************************************
-C     CHECK FOR STEAMBED BELOW CELL BOTTOM. RECORD REACHES FOR PRINTING
+C     CHECK FOR STREAMBED BELOW CELL BOTTOM. RECORD REACHES FOR PRINTING
 C     ******************************************************************
       MODULE ICHKSTRBOT_MODULE
       USE GWFSFRMODULE,ONLY:ISTRM,STRM,NSTRM
@@ -178,7 +178,7 @@ C        THEN VERIFY THAT FIRST VALUE IS INTEGER AND PROCEED.
             CALL URWORD(LINE,LLOC,ISTART,ISTOP,2,MAXVAL,R,IOUT,IN)
             IF(MAXVAL.LT.0) MAXVAL=0
             WRITE(IOUT,31) NUMTAB,MAXVAL
-   31    FORMAT(1X,I10,' Specifed inflow files will be read ',
+   31    FORMAT(1X,I10,' Specified inflow files will be read ',
      +                 'with a maximum of ',I10,' row entries per file')
             found = .true.
           case('LOSSFACTOR')
@@ -397,7 +397,7 @@ C6------PRINT INFORMATION THAT WAS READ.
      +        'WILL BE SAVED ON UNIT', I5)
  9007 FORMAT (' STREAM OUTPUT WILL BE WRITTEN TO FILE ON UNIT', I5)
  9035 FORMAT (//, ' TRANSIENT STREAMFLOW ROUTING IS ACTIVE', //,
-     +        ' NUMBER OFF SUB TIME STEPS IS ', I5, //,
+     +        ' NUMBER OF SUB TIME STEPS IS ', I5, //,
      +        ' WEIGHTING FACTOR FOR CHANNEL STORAGE IS ', E12.4, //,
      +        ' STREAMFLOW TOLERANCE IS ', E12.4,
      +        ///)
@@ -1252,7 +1252,7 @@ C9------READ DATA ACCORDING TO VARIABLE ISFROPT.
 C
 C10-----PLACE STREAM SEGMENT IDENTITY NUMBERS IN ISEG ARRAY.
 C         5 ASSIGNED TO SEGMENTS NOT RECEIVING TRIBUTARY FLOW.
-C         6 ASSINGED TO SEGMENTS THAT DIVERT FLOW.
+C         6 ASSIGNED TO SEGMENTS THAT DIVERT FLOW.
 C         7 ASSIGNED TO SEGMENTS RECEIVING TRIBUTARY FLOW.
         k5 = 0
         k6 = 0
@@ -2728,7 +2728,7 @@ C         GREATER THAN 1.
                 dlet2 = (etstr*(widthc-widthd))/(depthc-depthd)
                 dlwp1 = (wetperma-wetpermb)/(deptha-depthb)
                 dlwp2 = (wetpermc-wetpermd)/(depthc-depthd)
-Cdep revised pp1,pp2,et1,and et2, wrong placment of parenthesis.
+Cdep revised pp1,pp2,et1,and et2, wrong placement of parenthesis.
                 pp1 = precip*(width1)+dlpp1*dlh
                 pp2 = precip*(width2)+dlpp2*dlh
                 et1 = etstr*(width1)+dlet1*dlh
@@ -2754,7 +2754,7 @@ C47-----CALCULATE FLOBOT1 AND FLOBOT2 WHEN ICALC GREATER THAN 1.
 C
 C48-----DETERMINE IF LEAKAGE LIMITED BY FLOW IN CHANNEL.
                 IF ( width1.GT.NEARZERO ) THEN
-Cdep revised flwpet1, wrong placment of parenthesis.
+Cdep revised flwpet1, wrong placement of parenthesis.
                   flwpet1 = precip*width1+(dlpp1*dlh)
      +                      - etstr*width1+(dlet1*dlh)
                 ELSE
@@ -4146,7 +4146,7 @@ C         IF REQUESTED (ISTCB2>0).
               ibstlb = 1
             END IF
 C
-C42-----PRINT STREAMLFOWS AND RATES FOR EACH REACH TO MAIN LIST
+C42-----PRINT STREAMFLOWS AND RATES FOR EACH REACH TO MAIN LIST
 C         WHEN UNSATURATED FLOW IS ACTIVE.
           ELSE
             IF (ibd.LT.0 .AND. IPTFLG.LE.0 .AND. imassroute.EQ.1) THEN
@@ -4161,7 +4161,7 @@ C         WHEN UNSATURATED FLOW IS ACTIVE.
             END IF
 C
 C43-----PRINT STREAMFLOWS AND RATES FOR EACH REACH TO STREAM LIST
-C         WHEN UNSATRATED FLOW IS ACTIVE.
+C         WHEN UNSATURATED FLOW IS ACTIVE.
             IF ( ibdst.LT.0 .AND. IPTFLG.LE.0 .AND.
      +           imassroute.EQ.1 ) THEN
               IF ( ISTCB2.EQ.IOUT ) THEN
@@ -4376,7 +4376,7 @@ C2------DETERMINE SEGMENTS THAT GET THEIR INFLOWS FROM A LAKE.
           strbdtop = SEG(8, istsg)
 C
 Cdep    Added tables for computing lake outflow in Lake Package
-C3------CALCUATE TABLES FOR LAKE STAGE AND CHANGE IN LAKE OUTFLOW.
+C3------CALCULATE TABLES FOR LAKE STAGE AND CHANGE IN LAKE OUTFLOW.
           DO lk = 1, 200
             IF ( lk.EQ.1 )THEN
               DLKSTAGE(1, istsg) = strbdtop
@@ -4468,7 +4468,7 @@ C         AVAILABLE STREAMFLOW.
         prcnt = Dvrsn
         Dvrsn = Upflw*prcnt
 C
-C4------IF IPRIOR IS -3 THEN FLOW DIVERTED ONLY WHEN STREAMLFOW
+C4------IF IPRIOR IS -3 THEN FLOW DIVERTED ONLY WHEN STREAMFLOW
 C         EXCEEDS SPECIFIED FLOW (FLOOD CONTROL DIVERSION).
       ELSE IF ( Iprior.EQ.-3 ) THEN
         IF ( Upflw.GT.Dvrsn ) THEN
@@ -6551,7 +6551,7 @@ C9------MULTIPLE TRAIL WAVES BELOW AND ABOVE WATER TABLE.
                     END IF
 C
 C10-----ONLY ONE LEAD TRAIL AND ONE TRAIL WAVE BELOW WATER TABLE
-C         AND THERE ARE MUTIPLE TRAIL WAVES IN SET ABOVE WATER TABLE.
+C         AND THERE ARE MULTIPLE TRAIL WAVES IN SET ABOVE WATER TABLE.
                   ELSE IF ( ITRLSTH(j).GT.1 ) THEN
                     DO k = iset + 1, iset + ITRLSTH(j) - 1
                       Ltrlst(k) = 1
@@ -7870,11 +7870,11 @@ C7------MOVE DOWN THE CHANNEL BANK OR UP OTHER SIDE.
               END IF
             END IF
 
-C8------CALCULATE WETTED PARIMETER.
+C8------CALCULATE WETTED PERIMETER.
             xx = ABS(xmid-XSEC(mark(ll), Istsg))
             yy = ABS(ffmax-ffmin)
             wetted = wetted + SQRT((xx**2)+(yy**2))
-C9------BREAK AREA UP INTO TRAPAZOIDS.
+C9------BREAK AREA UP INTO TRAPEZOIDS.
             DO ii = 1, 50
               y1 = slope*xmid + b
               y2 = slope*(xmid+xinc) + b
@@ -8190,7 +8190,7 @@ C     ------------------------------------------------------------------
 C
       REAL FUNCTION FLOWTERP (TIME,INUM)
 C     FUNCTION LINEARLY INTERPOLATES BETWEEN TWO VALUES
-C     OF TIME TO CACULATE SPECIFIED INFLOW TO SEGMENTS.
+C     OF TIME TO CALCULATE SPECIFIED INFLOW TO SEGMENTS.
       USE GWFSFRMODULE, ONLY: TABFLOW, TABTIME, ISFRLIST,
      +                        CLOSEZERO
 !!      USE GWFSFRMODULE, ONLY: TABFLOW, TABTIME, NUMTAB, ISFRLIST,

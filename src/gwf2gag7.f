@@ -654,7 +654,7 @@ Cdep 4/20/2009 added Lake seepage to unsaturated flow
      2                       SEEP,FLXINL,VOLOLD,CLKOLD,CLAKINIT,NSOL)
 C     ******************************************************************
 C     WRITE TIME SERIES OUTPUT FOR EACH LAKE GAGE
-C     EACH TIME SERIES IS WRITTEN TO A SEPERATE FILE
+C     EACH TIME SERIES IS WRITTEN TO A SEPARATE FILE
 Cdep  FIXED MISS MATCH OF ARRAYS PASSED FROM GWF2LAK3BD   12/06/2005
 C     ******************************************************************
       USE GWFGAGMODULE
@@ -855,7 +855,7 @@ C SUBROUTINE SGWF2GAG7SO
      1                       NSOL)
 C     ******************************************************************
 C     WRITE TIME SERIES OUTPUT FOR EACH STREAM GAGE
-C     EACH TIME SERIES IS WRITTEN TO A SEPERATE FILE
+C     EACH TIME SERIES IS WRITTEN TO A SEPARATE FILE
 C     ******************************************************************
       USE GWFGAGMODULE
       USE GWFSFRMODULE, ONLY:NSTRM,NUMAVE,IDIVAR,STRM,ISEG,SEG,SGOTFLW,

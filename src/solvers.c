@@ -261,7 +261,7 @@ int PCG_eval(r_vector* x_ptr, r_vector* b_ptr, void* A_ptr)
  *
  *  An MG_matrix contains mg_vector's, pointers to MG_GEN_operator's,
  *  and iteration parameters.  The MG_GEN_operators are defined
- *  outside the contex of the generic MG operator and depend on the
+ *  outside the context of the generic MG operator and depend on the
  *  multigrid method being used shuch as cell-centered finite-difference.
  *
  *  The generic MG structures allow for recursive definitions
@@ -372,8 +372,8 @@ void MG_GEN_free(MG_GEN_operator* MG_GEN_ptr)
  * The multilevel solution and rhs vectors not allocated on finest level.
  * The multilevel residual vector not allocated on coarsest level.
  *
- * A multilevel workvector is allocated if ow is zero.  The workvector
- * is used in the smoothing proceedure to store the preconditioned
+ * A multilevel work vector is allocated if ow is zero.  The work vector
+ * is used in the smoothing procedure to store the preconditioned
  * residual.  The smoother may be able to overwrite the residual with the
  * preconditioned residual in which case ow can be set to non-zero
  * and the multilevel work vector is not allocated.
@@ -445,7 +445,7 @@ void MG_free(void* A_ptr)
 }
 
 /* Assign pointers to multilevel generic operators
- * assembled outside contex of MG operator.
+ * assembled outside context of MG operator.
  */
 int MG_assemble(GEN_operator* GEN_ptr,
                 MG_GEN_operator* A_ptr,

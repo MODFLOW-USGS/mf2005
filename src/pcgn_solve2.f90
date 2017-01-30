@@ -348,7 +348,7 @@ module MiUDU
   ! ... 
   ! ... non-zero errors:
   ! ...  error>0: nodal location of zero pivot returned.
-  ! ...  error<0: negative of nodal location of negative piviot returned.
+  ! ...  error<0: negative of nodal location of negative pivot returned.
   ! ... 
   ! ... R.L. Naff 
   ! ... version 1.0, 11/2007
@@ -543,7 +543,7 @@ contains
     ! ...
     ! ....................................................................
     ! ...
-    ! ... columns begin with first entry above diagional
+    ! ... columns begin with first entry above diagonal
     ! ...
     rhs(1)=rhs(1)/diag(1)
     ! ... 
@@ -905,7 +905,7 @@ contains
     ! ...
     ! ....................................................................
     ! ...
-    ! ... columns begin with first entry above diagional
+    ! ... columns begin with first entry above diagonal
     ! ...
     rhs(1)=rhs(1)/diag(1)
     ! ... 
@@ -1174,9 +1174,9 @@ module PCG_SOLVE
   ! ... compressed diagonal storage arrays:
   ! ... 
   ! ... dd: diagonal column of A.
-  ! ... dx: first off-diagonal column of a corresponing to x connection.
-  ! ... dy: second off-diagonal column of a corresponing to y connection.
-  ! ... dz: third off-diagonal column of a corresponing to z connection.
+  ! ... dx: first off-diagonal column of a corresponding to x connection.
+  ! ... dy: second off-diagonal column of a corresponding to y connection.
+  ! ... dz: third off-diagonal column of a corresponding to z connection.
   ! ... 
   ! ... nx, ny, nz: x, y and z cell dimensions of grid
   ! ...
@@ -1190,7 +1190,7 @@ module PCG_SOLVE
   ! ... dy: nx*ny*nz if ny>1; otherwise 1
   ! ... dz: nx*ny*nz if nz>1; otherwise 1
   ! ...
-  ! ... Preconditioner is modified incomplete cholesky for 5 or 7 point 
+  ! ... Preconditioner is modified incomplete Cholesky for 5 or 7 point 
   ! ... stencil.
   ! ...
   ! ... R.L. Naff 
@@ -1215,7 +1215,7 @@ contains
 
   subroutine CG_iter(precond_fn, convg_fn, X, res, max_iter, eps_i, &
        eps_o, p_unit)
-    ! ... preconditioned conjugate gradient algorith based on 
+    ! ... preconditioned conjugate gradient algorithm based on 
     ! ... Golub and Van Loan, 1983.
     ! ... 
     ! ... precond_fn: specify preconditioning function upon call.
@@ -1225,7 +1225,7 @@ contains
     ! ... res: initial residual; res=rhs-A*X_o, X_o: initial guess.
     ! ... max_iter (in): maximum allowed iterations.
     ! ... max_iter (out): iterations to convergence.
-    ! ... eps_i (in): specifed convergence criterion, CG algorithm.
+    ! ... eps_i (in): specified convergence criterion, CG algorithm.
     ! ... eps_i (out): final L2 norm on leaving conjugate gradient loop.
     ! ... eps_o(in): flag to activate adaptive relative convergence and 
     ! ...            threshold for activation.
@@ -1319,7 +1319,7 @@ contains
 
   subroutine CG_iter_xt(precond_fn, convg_fn, X, res, max_iter, eps_i, &
        eps_o, p_unit)
-    ! ... preconditioned conjugate gradient algorith based on 
+    ! ... preconditioned conjugate gradient algorithm based on 
     ! ... Golub and Van Loan, 1983.
     ! ... Extended version in which solution is updated one additional time.
     ! ... 
@@ -1330,7 +1330,7 @@ contains
     ! ... res: initial residual; res=rhs-A*X_o, X_o: initial guess.
     ! ... max_iter (in): maximum allowed iterations.
     ! ... max_iter (out): iterations to convergence.
-    ! ... eps_i (in): specifed convergence criterion, CG algorithm.
+    ! ... eps_i (in): specified convergence criterion, CG algorithm.
     ! ... eps_i (out): final L2 norm on leaving conjugate gradient loop.
     ! ... eps_o: entry L2 norm 
     ! ... p_unit>0: print convergence progress to fine associated with p_unit.
@@ -1510,7 +1510,7 @@ module PCG_MAIN
   ! ... 
   ! ... Calls subroutines in module pcg_solve
   ! ... 
-  ! ... Preconditioner is modified incomplete cholesky for 5 or 7 point 
+  ! ... Preconditioner is modified incomplete Cholesky for 5 or 7 point 
   ! ... stencil.
   ! ... 
   ! ... solve Ax=b
@@ -1522,9 +1522,9 @@ module PCG_MAIN
   ! ... Compressed diagonal storage arrays:
   ! ... 
   ! ... dd: diagonal column of A.
-  ! ... dx: first off-diagonal column of a corresponing to x connection.
-  ! ... dy: second off-diagonal column of a corresponing to y connection.
-  ! ... dz: third off-diagonal column of a corresponing to z connection.
+  ! ... dx: first off-diagonal column of a corresponding to x connection.
+  ! ... dy: second off-diagonal column of a corresponding to y connection.
+  ! ... dz: third off-diagonal column of a corresponding to z connection.
   ! ... 
   ! ... nx, ny, nz: x, y and z cell dimensions of grid
   ! ...
@@ -1580,9 +1580,9 @@ contains
     ! ... n_x, n_y, n_z: x, y and z cell dimensions of grid
     ! ... 
     ! ... d_d: diagonal column of A.
-    ! ... d_x: first off-diagonal column of a corresponing to x connection.
-    ! ... d_y: second off-diagonal column of a corresponing to y connection.
-    ! ... d_z: third off-diagonal column of a corresponing to z connection.
+    ! ... d_x: first off-diagonal column of a corresponding to x connection.
+    ! ... d_y: second off-diagonal column of a corresponding to y connection.
+    ! ... d_z: third off-diagonal column of a corresponding to z connection.
     ! ... 
     ! ... relax: relaxation parameter (0.0<=relax<=1.0); optional.
     ! ... omega=relax
@@ -1932,7 +1932,7 @@ contains
 505 format(1x,'ARRAY DIAG CONTAINS A NEGATIVE ELEMENT AT NODE',/, &
          1x,'mesh location: j=',i4,', i=',i4,', k=',i4,/, &
          1x,'***EXECUTION TERMINATED***')
-510 format (2x,i6,' iterations required ',g12.5,' sec exection time',/, &
+510 format (2x,i6,' iterations required ',g12.5,' sec execution time',/, &
          2x,'cumulative time in solver:',g12.5,' sec')
 515 format(1x,'Allocation error in subroutine PCG')
 520 format(1x,'Dimension mismatch in subroutine PCG')

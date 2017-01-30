@@ -64,7 +64,7 @@ typedef struct MF2KGMG_operator
  *
  *  Data defined in the GMG FORTRAN interface program includes:
  *
- *    DRCLOSE -- Residaul convergence criterion
+ *    DRCLOSE -- Residual convergence criterion
  *    IITER   -- Max PCG iterations
  *    IOUTGMG -- Print flag
  *    IOUT    -- Fortran unit number
@@ -76,7 +76,7 @@ typedef struct MF2KGMG_operator
  *  Data returned to the GMG FORTRAN interface program includes:
  *
  *    GMGID -- Pointer to instance of GMG
- *    ISIZ  -- Size in MB of data allocted by GMG
+ *    ISIZ  -- Size in MB of data allocated by GMG
  *    IERR  -- Value less than 0 indicates error
  *    ITER  -- PCG iterations
  *    BIGR0 -- l2-norm of initial residual

@@ -35,7 +35,7 @@
  *
  *  Data defined in the GMG FORTRAN interface program includes:
  *
- *    DRCLOSE -- Residaul convergence criterion
+ *    DRCLOSE -- Residual convergence criterion
  *    IITER   -- Max PCG iterations
  *    IOUTGMG -- Print flag
  *    IOUT    -- Fortran unit number
@@ -47,7 +47,7 @@
  *  Data returned to the GMG FORTRAN interface program includes:
  *
  *    GMGID -- Address of current instance of GMG
- *    ISIZ  -- Size in MB of data allocted by GMG
+ *    ISIZ  -- Size in MB of data allocated by GMG
  *    IERR  -- Value less than 0 indicates error
  *    ITER  -- PCG iterations
  *    BIGR0 -- l2-norm of initial residual
@@ -159,7 +159,7 @@ void MF2KGMG_ALLOCATE(MF2KGMG_operator** GMGID, int* NCOL, int* NROW, int* NLAY,
 
 /*
  *  MF2KGMG_FREE: Deallocates  vectors and operators for cell-centered
- *  finite-diference problem.
+ *  finite-difference problem.
  */
 void MF2KGMG_FREE(MF2KGMG_operator** GMGID)
 {
@@ -170,7 +170,7 @@ void MF2KGMG_FREE(MF2KGMG_operator** GMGID)
   r_free(&GMG_ptr->r);
   r_free(&GMG_ptr->z);
 
-  /* Dealocate CCFD outside normal contex */
+  /* Deallocate CCFD outside normal contex */
   free(GMG_ptr->CCFD_ptr->DD);
   free(GMG_ptr->CCFD_ptr);
 
@@ -326,7 +326,7 @@ void MF2KGMG_BIGR(MF2KGMG_operator** GMGID, double* BIGR, int* IBIGR,
 
 /*
  * Calculate max of head change and return location of max head change.
- * Absalute value of BIGH is max-norm of head change.
+ * Absolute value of BIGH is max-norm of head change.
  */
 void MF2KGMG_BIGH(MF2KGMG_operator** GMGID, double* BIGH, int* IBIGH,
                   int* JBIGH, int* KBIGH)

@@ -4,10 +4,10 @@
         DOUBLE PRECISION,SAVE :: THETAB, FLUXB, FLUXHLD2
         REAL,PARAMETER :: CLOSEZERO=1.0E-15
         INTEGER, SAVE :: Nfoldflbt, NUMTAB, MAXVAL
-        INTEGER,SAVE,                 POINTER:: IDVFLG   !diverison recharge is active flag
+        INTEGER,SAVE,                 POINTER:: IDVFLG   !diversion recharge is active flag
         INTEGER,SAVE,                 POINTER:: NFLOWTYPE
         CHARACTER*16, SAVE, DIMENSION(:), POINTER :: FLOWTYPE
-        INTEGER,SAVE,  DIMENSION(:),  POINTER:: DVRCH   !(diverted recharge flag; then reharge cell count)
+        INTEGER,SAVE,  DIMENSION(:),  POINTER:: DVRCH   !(diverted recharge flag; then recharge cell count)
         INTEGER,SAVE,  DIMENSION(:,:,:),POINTER:: DVRCELL !(store cells to apply diverted recharge)
         REAL,   SAVE,  DIMENSION(:,:),POINTER:: RECHSAVE  !(store original recharge values)
         REAL,   SAVE,  DIMENSION(:,:),POINTER:: DVRPERC  !(Percentage of diversion applied to each cell)
@@ -34,9 +34,9 @@
         REAL,   SAVE,  DIMENSION(:,:),POINTER:: QSTAGE, XSEC
         REAL,   SAVE,  DIMENSION(:,:),POINTER:: AVDPT, AVWAT, WAT1
         REAL,   SAVE,  DIMENSION(:,:),POINTER:: CONCQ, CONCRUN, CONCPPT
-        REAL,   SAVE,  DIMENSION(:,:),POINTER:: TABFLOW, TABTIME   !Reading Spedified inflow
+        REAL,   SAVE,  DIMENSION(:,:),POINTER:: TABFLOW, TABTIME   !Reading Specified inflow
         REAL,   SAVE,  DIMENSION(:,:),POINTER:: FNETSEEP           !writing net seepage in UZF
-        INTEGER,SAVE,  DIMENSION(:,:),POINTER:: ISFRLIST           !Reading Spedified inflow
+        INTEGER,SAVE,  DIMENSION(:,:),POINTER:: ISFRLIST           !Reading Specified inflow
         INTEGER,SAVE,                 POINTER:: NINTOT,ITRFLG      !for LMT, total # of possible inflows edm 7/30/13
 C        INTEGER,SAVE,                 POINTER:: NFLOWTYPE          !edm
         DOUBLE PRECISION,SAVE,DIMENSION(:),  POINTER:: THTS,THTR,EPS
@@ -54,7 +54,7 @@ C        INTEGER,SAVE,                 POINTER:: NFLOWTYPE          !edm
         DOUBLE PRECISION,SAVE,DIMENSION(:,:),POINTER:: QSTRM, SLKOTFLW
         DOUBLE PRECISION,SAVE,DIMENSION(:,:),POINTER:: DLKOTFLW,DLKSTAGE
       TYPE GWFSFRTYPE
-        INTEGER,                      POINTER:: IDVFLG   !diverison recharge is active flag
+        INTEGER,                      POINTER:: IDVFLG   !diversion recharge is active flag
         INTEGER,                      POINTER:: NFLOWTYPE
         CHARACTER*16,  DIMENSION(:),  POINTER:: FLOWTYPE
         INTEGER,       DIMENSION(:),  POINTER:: DVRCH      !Diversions to recharge
@@ -84,7 +84,7 @@ C        INTEGER,SAVE,                 POINTER:: NFLOWTYPE          !edm
         REAL,          DIMENSION(:,:),POINTER:: QSTAGE, XSEC
         REAL,          DIMENSION(:,:),POINTER:: AVDPT, AVWAT, WAT1
         REAL,          DIMENSION(:,:),POINTER:: CONCQ, CONCRUN, CONCPPT
-        REAL,          DIMENSION(:,:),POINTER:: TABFLOW, TABTIME  ! Reading SPecified inflow
+        REAL,          DIMENSION(:,:),POINTER:: TABFLOW, TABTIME  ! Reading Specified inflow
         REAL,          DIMENSION(:,:),POINTER:: FNETSEEP          !writing net seepage in UZF
         INTEGER,       DIMENSION(:,:),POINTER:: ISFRLIST
         INTEGER,                      POINTER:: NINTOT            !for LMT, total # of possible inflows edm 7/30/13

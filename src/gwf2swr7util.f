@@ -1108,7 +1108,7 @@ C           ILU0 AND MILU0
                 CALL USTOP('MATRIX IS SEVERELY NON-DIAGONALLY DOMINANT')
               END IF
             END DO LUPC
-C           ILU WITH DUAL TRUCATION STRATEGY AND LEVEL FILL
+C           ILU WITH DUAL TRUNCATION STRATEGY AND LEVEL FILL
           CASE (4)
             ierr = 0
             CALL ilut(NR,A,JA,IA,NLEVELS,DROPTOL,
@@ -2094,7 +2094,7 @@ c
 c----------------------------------------------------------------------* 
 c---- Dual drop strategy works as follows.                             *
 c                                                                      *
-c     1) Theresholding in L and U as set by droptol. Any element whose *
+c     1) Thresholding in L and U as set by droptol. Any element whose  *
 c        magnitude is less than some tolerance (relative to the abs    *
 c        value of diagonal element in u) is dropped.                   *
 c                                                                      *
@@ -2490,7 +2490,7 @@ C      MAINTAINED BY JOHN BURKARDT AT FLORIDA STATE UNIVERSITY
 
 !*****************************************************************************80
 !
-!! GENRCM finds the reverse Cuthill-Mckee ordering for a general graph.
+!! GENRCM finds the reverse Cuthill-McKee ordering for a general graph.
 !
 !  Discussion:
 !

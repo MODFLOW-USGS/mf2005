@@ -11,7 +11,7 @@ C   IBQ<0.  Note that this was a problem only if negative IBQ values
 C   were specified.  That is, the code has always worked correctly for
 C   IBQ=0 and IBQ>0.
 C   September, 2003 -- added the following:
-C    1. Print a warning message that the IBS1 Package has been supseseded
+C    1. Print a warning message that the IBS1 Package has been superseded
 C       by the SUB Package.
 C    2. If the SUB Package and the IBS package are used simultaneously,
 C       stop the simulation.
@@ -154,7 +154,7 @@ C11-----MULTIPLY STORAGE BY AREA TO GET STORAGE CAPACITY.
       SCV(IC,IR,KQ)=SCV(IC,IR,KQ)*AREA
 C
 C12-----MAKE SURE THAT PRECONSOLIDATION HEAD VALUES
-C12-----ARE CONSISTANT WITH STARTING HEADS.
+C12-----ARE CONSISTENT WITH STARTING HEADS.
       IF(HC(IC,IR,KQ).GT.HNEW(IC,IR,K)) HC(IC,IR,KQ)=HNEW(IC,IR,K)
   170 CONTINUE
   180 CONTINUE
@@ -188,7 +188,7 @@ C14-----RETURN
 C
 C-----Based on VERSION 15SEPT2000 GWF1IBS6ST
 C     ******************************************************************
-C     CHECK THAT NO STREE PERIOD IS STEADY STATE EXCEPT THE FIRST, AND
+C     CHECK THAT NO STRESS PERIOD IS STEADY STATE EXCEPT THE FIRST, AND
 C     SET HC EQUAL TO THE STEADY-STATE HEAD IF STEADY-STATE HEAD IS
 C     LOWER THAN HC.
 C     ******************************************************************
@@ -211,7 +211,7 @@ C1------STOP if steady state after 1st stress period.
       END IF
 C
 C4------MAKE SURE THAT PRECONSOLIDATION HEAD VALUES
-C4------ARE CONSISTANT WITH STEADY-STATE HEADS.
+C4------ARE CONSISTENT WITH STEADY-STATE HEADS.
       IF(KPER.EQ.2 .AND. ISSFLG(1).NE.0) THEN
         KQ=0
         DO 80 K=1,NLAY

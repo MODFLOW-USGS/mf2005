@@ -11,14 +11,14 @@
  *
  *  The negative of the conductance associated with each face 
  *  results in the off-diagonal terms.  There are column conductances (CC),
- *  row conductances (CR), and verticle conductances (CV).
+ *  row conductances (CR), and vertical conductances (CV).
  *
  *  The sum of the conductances plus an HCOF 
  *  make the diagonal.  
  *  
  *  The resulting matrix is symmetric semidefinite.  Specified
  *  heads are described by the IBOUND array resulting in a
- *  possitive definite system of equation.  If IBOUND[i]<=0,
+ *  positive definite system of equation.  If IBOUND[i]<=0,
  *  then cell i is treated as a specified head.
  *
  *  The off-diagonals and diagonal are stored as vectors
@@ -32,7 +32,7 @@
  *  Allocation methods return bytes allocated if successful; otherwise
  *  a negative value is returned.
  *
- *  Evaluation methods all return an integer value (usualy 0)
+ *  Evaluation methods all return an integer value (usually 0)
  *  to be compatible with generic operator definition.
  *
  *  Many methods have a double precision version (DCCFD) or
@@ -1078,7 +1078,7 @@ int DCCFD_ILU_eval(r_vector* p2_ptr, r_vector* p1_ptr,
 }
 
 
-/* Symetric Gauss-Seidel (SSGS):
+/* Symmetric Gauss-Seidel (SSGS):
  *
  * Equivalent to ILU0-D evaluation method.
  *
@@ -1318,13 +1318,13 @@ int DCCFD_SGS_eval(r_vector* p2_ptr, r_vector* p1_ptr,
  * Multilevel CCFD matrix, Smoother, and prolongation/restriction pair.
  *
  * CCFD matrices are allocated on each level except the finest level.
- * The multilevel CCFD matrix on the finiest level points to (aliases)
+ * The multilevel CCFD matrix on the finest level points to (aliases)
  * a external CCFD matrix.  
  *
- * Restriction is natural imbedding and prolongation is transpose
+ * Restriction is natural embedding and prolongation is transpose
  * of restriction.  
  *
- * Smoother is either ILU or symetric gauss-seidel (SGS).  
+ * Smoother is either ILU or symmetric gauss-seidel (SGS).  
  *
  * The coarse-grid solver is ILU which is exact for 1-D.
  *
@@ -1624,7 +1624,7 @@ int CCFD_MG_eval(r_vector* r2_ptr, r_vector* r1_ptr, void* A_ptr)
 }
 
 /*
- *  CCFD prolongation is natrual imbeding.  Three-dimensional
+ *  CCFD prolongation is natrual embedding.  Three-dimensional
  *  prolongation is implemented as a series of two-dimensional 
  *  prolongations that in turn are implemented as a series of
  *  one-dimensional prolongations.
