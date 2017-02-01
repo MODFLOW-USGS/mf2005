@@ -170,7 +170,7 @@ typedef struct MG_operator
 
 int MG_allocate(GEN_operator* MG_ptr, int ow, MG_r_data* mgrdp);
 
-void MG_free(void* MG_free);
+void MG_free(void* A_ptr);
 
 int MG_assemble(GEN_operator* MG_GEN_ptr,
                 MG_GEN_operator* A_ptr,
