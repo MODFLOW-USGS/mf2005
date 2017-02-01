@@ -53,8 +53,8 @@ C
 C2------IDENTIFY PACKAGE AND INITIALIZE NMNW2.
       WRITE(IOUT,1)IN
 C---LFK--modify dates & version
-    1 format(/,1x,'MNW2 -- MULTI-NODE WELL 2 PACKAGE, VERSION 7.3,',
-     +' 11/18/2015.',/,4X,'INPUT READ FROM UNIT ',i3)
+    1 format(/,1x,'MNW2 -- MULTI-NODE WELL 2 PACKAGE, VERSION 7.4,',
+     +' 1/5/2017.',/,4X,'INPUT READ FROM UNIT ',i3)
       NMNW2=0
       ntotnod=0
 c-lfk-Dec 2012
