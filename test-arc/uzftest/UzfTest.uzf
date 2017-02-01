@@ -1,0 +1,65 @@
+# UZF: Unsaturated-Zone Flow package file created on 1/23/2017 by ModelMuse version 3.8.1.25.
+SPECIFYTHTI NOSURFLEAK # Data set 1a
+     1     1     1     1     0     9    15    20     0  1.000000000000E+000  # Data Set 1b: NUZTOP IUZFOPT IRUNFLG IETFLG IUZFCB1 IUZFCB2 NTRAIL2 NSETS2 NUZGAG SURFDEP
+CONSTANT        0 # Data Set 2: IUZFBND
+INTERNAL 1 (FREE)        5 # Data Set 3: IRUNBND
+     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     2
+     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     2     2
+     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     2     2     2
+     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     2     2     2     2
+     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     2     2     2     2     2
+     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     2     2     2     2     2     2
+     1     1     1     1     1     1     1     1     1     1
+     1     1     1     2     2     2     2     2     2     2
+     1     1     1     1     1     1     1     1     1     1
+     2     1     2     2     2     2     2     2     2     2
+     1     1     1     1     1     1     1     1     1     1
+     2     2     2     2     2     2     2     2     2     2
+     1     1     1     1     1     1     1     1     1     2
+     2     2     2     2     2     2     2     2     2     2
+     1     1     1     1     1     1     1     1     2     2
+     2     2     2     2     2     2     2     2     2     2
+     1     1     1     1     1     1     1     2     2     2
+     2     2     2     2     2     2     2     2     2     2
+     1     1     1     1     1     1     2     2     2     2
+     2     2     2     2     2     2     2     2     2     2
+     1     1     1     1     1     2     2     2     2     2
+     2     2     2     2     2     2     2     2     2     2
+     1     1     1     1     2     2     2     2     2     2
+     2     2     2     2     2     2     2     2     2     2
+     1     1     1     2     2     2     2     2     2     2
+     2     2     2     2     2     2     2     2     2     2
+     1     1     2     2     2     2     2     2     2     2
+     2     2     2     2     2     2     2     2     2     2
+     1     2     2     2     2     2     2     2     2     2
+     2     2     2     2     2     2     2     2     2     2
+CONSTANT     1.000000000000E+000  # Data Set 4: VKS
+CONSTANT     3.500000000000E+000  # Data Set 5: EPS
+CONSTANT     3.000000000000E-001  # Data Set 6a: THTS
+CONSTANT     3.000000000000E-001  # Data Set 7: THTI
+     0 # Data Set 9, Stress Period      1: NUZF1
+CONSTANT     0.000000000000E+000  # # Data Set 10: FINF
+     0 # Data Set 11, Stress Period      1: NUZF2
+CONSTANT     0.000000000000E+000  # # Data Set 12: PET
+     0 # Data Set 13, Stress Period      1: NUZF3
+CONSTANT     1.000000000000E+000  # # Data Set 14: EXTDP
+     0 # Data Set 5, Stress Period      1: NUZF4
+CONSTANT     2.000000000000E-001  # # Data Set 16: EXTWC
+     0 # Data Set 9, Stress Period      2: NUZF1
+CONSTANT     0.000000000000E+000  # # Data Set 10: FINF
+     0 # Data Set 11, Stress Period      2: NUZF2
+CONSTANT     0.000000000000E+000  # # Data Set 12: PET
+     0 # Data Set 13, Stress Period      2: NUZF3
+CONSTANT     1.000000000000E+000  # # Data Set 14: EXTDP
+     0 # Data Set 5, Stress Period      2: NUZF4
+CONSTANT     2.000000000000E-001  # # Data Set 16: EXTWC

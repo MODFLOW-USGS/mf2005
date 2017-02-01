@@ -1,0 +1,12 @@
+# Name File for MODFLOW created on 1/23/2017 by ModelMuse Version 3.8.1.25
+LIST             11 sfrtest4.lst REPLACE
+DATA(BINARY)      9 sfrtest4.cbc REPLACE
+DIS              12 sfrtest4.dis OLD
+BAS6             13 sfrtest4.bas OLD
+OC               39 sfrtest4.oc OLD
+DATA             37 sfrtest4.fhd REPLACE
+DATA             38 sfrtest4.fdn REPLACE
+PCG              18 sfrtest4.pcg OLD
+LPF              14 sfrtest4.lpf OLD
+CHD              17 sfrtest4.chd OLD
+SFR              29 sfrtest4.sfr OLD
