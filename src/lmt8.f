@@ -154,6 +154,9 @@ C--CHECK for OPTIONS/PACKAGES USED IN CURRENT SIMULATION
         ELSEIF(CUNIT(IU).EQ.'UZF ') THEN
           MTUZF=IUNIT(IU)
           IF(MTUZF.GT.0) NPCKGTXT = NPCKGTXT + 1
+        ELSEIF(CUNIT(IU).EQ.'SWR ') THEN
+          MTSWR=IUNIT(IU)
+          IF(MTSWR.GT.0) NPCKGTXT = NPCKGTXT + 1
         ENDIF
       ENDDO            
 !swm: SET MTMNW IF EITHER MNW1 OR MNW2 IS ACTIVE
@@ -505,7 +508,7 @@ C--ERROR CHECKING BEFORE OUTPUT
      &  /1X,'Only one is allowed in the same transport simulation.')
 C
 C--WRITE A HEADER TO MODFLOW-MT3DMS LINK FILE
-      IF(MTSFR.NE.0.OR.MTLAK.NE.0.OR.MTUZF.NE.0) THEN
+      IF(MTSFR.NE.0.OR.MTLAK.NE.0.OR.MTUZF.NE.0.OR.MTSWR.NE.0) THEN
         HDRTXT='MTGS1.00.00'
         IF(OUTPUT_FILE_HEADER.EQ.'EXTENDED') THEN        
           IF(ILMTFMT.EQ.0) THEN
@@ -683,6 +686,8 @@ C--COLLECT AND SAVE ALL RELEVANT FLOW MODEL INFORMATION
      &   CALL LMT8MNW17(ILMTFMT,IUMT3D,KKSTP,KKPER,IGRID)
         IF(IUNIT(50).GT.0) 
      &   CALL LMT8MNW27(ILMTFMT,IUMT3D,KKSTP,KKPER,IGRID)
+        IF(IUNIT(64).GT.0)
+     &   CALL LMT8SWR7(ILMTFMT,IUMT3D,KKSTP,KKPER,IGRID)
 C--UNSATURATED-ZONE FLOWS
         IF(IUNIT(55).GT.0.AND.IUZFFLOWS.EQ.0) THEN
          !Write only the flows that interact with the saturated zone.
@@ -2899,7 +2904,7 @@ C--RETURN
       END
 C
 C
-      SUBROUTINE LMT7SWR7(ILMTFMT,IUMT3D,KSTP,KPER,IGRID)
+      SUBROUTINE LMT8SWR7(ILMTFMT,IUMT3D,KSTP,KPER,IGRID)
 C ******************************************************************
 C SAVE SWR (SURFACE WATER ROUTING) CELL LOCATIONS AND 
 C VOLUMETRIC FLOW RATES FOR USE BY MT3D.
@@ -3049,6 +3054,8 @@ C--MANIPULATE IUZFRCH
       IF(NUZTOP.EQ.1.OR.NUZTOP.EQ.2) THEN ! No need to loop through layers with these options
         DO I=1,NROW
           DO J=1,NCOL
+            K=1
+            IF(NUZTOP.EQ.2) K=IUZFBND(J,I)
             IF(IBOUND(J,I,K).GT.0) THEN
               IF(NUZTOP.EQ.1) THEN ! Recharge to and discharge from only the top layer
                 IUZFRCH(J,I)=1
@@ -3064,9 +3071,9 @@ C--MANIPULATE IUZFRCH
           DO J=1,NCOL
             DO K=1,NLAY  
               IF(IBOUND(J,I,K).GT.0) THEN
-                IF(J.EQ.169) THEN
-                  CONTINUE
-                ENDIF
+                !IF(J.EQ.169) THEN
+                !  CONTINUE
+                !ENDIF
                 IF(HNEW(J,I,K).GT.BOTM(J,I,0)) THEN ! water table above land surface
                   IUZFRCH(J,I)=1
                   EXIT
