@@ -113,7 +113,7 @@ C     ------------------------------------------------------------------
 C1------IDENTIFY PACKAGE AND INITIALIZE NSTRM.
       WRITE (IOUT, 9001) In
  9001 FORMAT (1X, /, ' SFR7 -- STREAMFLOW ROUTING PACKAGE, '
-     +        ,'VERSION 1.0.7, 2013-01-15', /, 9X, 
+     +        ,'VERSION 1.0.8, 2017-02-01', /, 9X, 
      +         'INPUT READ FROM UNIT', I4)
 C
 C2------READ COMMENT RECORDS, NSTRM, NSS, NSFRPAR, NPARSEG, CONST,
