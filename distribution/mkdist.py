@@ -8,15 +8,16 @@ import shutil
 import zipfile
 import shlex
 
+
 def zipdir(dirname, zipname):
+    print('zipping directory: {}'.format(dirname))
     zipf = zipfile.ZipFile(zipname, 'w', zipfile.ZIP_DEFLATED)
     for root, dirs, files in os.walk(dirname):
         for file in files:
             if '.DS_Store' not in file:
                 fname = os.path.join(root, file)
-                arcname = fname.split(dirname, 1)[1]
-                print('adding to zip: ==> ', arcname)
-                zipf.write(fname, arcname=arcname)
+                print('adding to zip: ==> ', fname)
+                zipf.write(fname, arcname=fname)
     zipf.close()
     return
 
@@ -29,10 +30,12 @@ print('Creating MODFLOW-2005 distribution: {}'.format(version))
 print('\n')
 
 if os.path.exists(dest):
-    # Raise Exception('Destination path exists.  Kill it first.')
     print('Clobbering destination directory: {}'.format(dest))
     print('\n')
-    shutil.rmtree(dest)
+    try:
+        shutil.rmtree(dest)
+    except:
+        os.system('rmdir /S /Q "{}"'.format(dest))
 
 
 # Create subdirectories
@@ -44,7 +47,7 @@ toutpath = os.path.join(dest, 'test-out')
 trunpath = os.path.join(dest, 'test-run')
 
 # leave out some folders because they will be created with copytree
-subdirs = [f for f in [dest, binpath, msvspath, toutpath] if f is not None]
+subdirs = [f for f in [dest, binpath, msvspath] if f is not None]
 print('Creating directories')
 for sd in subdirs:
     print(' {}'.format(sd))
@@ -54,7 +57,7 @@ print('\n')
 
 # Copy the executables
 print('Copying MODFLOW executables')
-bins = ['mf2005.exe', 'mf2005dbl.exe', 'mnw1to2.exe', 'hydfmt.exe']
+bins = ['mf2005.exe', 'mf2005dbl.exe', 'hydfmt.exe']
 for b in bins:
     fname = os.path.join('..', 'bin', b)
     shutil.copy(fname, os.path.join(binpath, b))
@@ -81,9 +84,16 @@ print('\n')
 
 
 # Copy the test folder to the distribution folder
-print('Copying test folder')
+print('Copying test-run folder')
 shutil.copytree('../test-run', trunpath, ignore=shutil.ignore_patterns('.DS_Store', 'tmp*'))
 print('  {} ===> {}'.format('../test-run', trunpath))
+print('\n')
+
+
+# Copy the test folder to the distribution folder
+print('Copying test-out folder')
+shutil.copytree('../test-out', toutpath, ignore=shutil.ignore_patterns('.DS_Store', 'tmp*'))
+print('  {} ===> {}'.format('../test-out', toutpath))
 print('\n')
 
 
@@ -115,7 +125,7 @@ if os.path.exists(zipname):
     print('Removing existing file: {}'.format(zipname))
     os.remove(zipname)
 print('Creating zipped file: {}'.format(zipname))
-zipdir(dest, zipname)
+zipdir(version, zipname)
 print('\n')
 
 print('Done...')
