@@ -157,6 +157,12 @@ C--CHECK for OPTIONS/PACKAGES USED IN CURRENT SIMULATION
         ELSEIF(CUNIT(IU).EQ.'SWR ') THEN
           MTSWR=IUNIT(IU)
           IF(MTSWR.GT.0) NPCKGTXT = NPCKGTXT + 1
+        ELSEIF(CUNIT(IU).EQ.'SWI2') THEN
+          MTSWI=IUNIT(IU)
+          IF(MTSWI.GT.0) THEN
+            WRITE(IOUT,*) ' Error. SWI2 cannot be used with LMT.'
+            CALL USTOP(' ')
+          ENDIF
         ENDIF
       ENDDO            
 !swm: SET MTMNW IF EITHER MNW1 OR MNW2 IS ACTIVE
