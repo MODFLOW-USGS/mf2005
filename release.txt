@@ -48,11 +48,12 @@ o Version 1.12.0 02/03/2017
        column will be multiplied by SFAC and the values in the AUXSFAC
        column.
     Removed the mnw1to2 source and run files.
-    Minor spelling errors were corrected in many of the source files.  Many
-       of these errors have been present since the first release.
+    Minor spelling errors were corrected in many of the source files.
+       Most of the errors are within code comments, but some pertain to
+       text strings written to the listing file.  Many of these errors
+       have been present since the first release.
     MODFLOW-2005 runtime executables included in this distribution are 
        released for the 64-bit version of the Windows operating system.
-
 
 o Version 1.11.0 08/08/2013
     GWF2SWI27 -- This is the Seawater Intrusion (SWI2) Package, which has
