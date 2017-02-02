@@ -56,7 +56,6 @@ structure is incorporated in the zip file:
        |Updates       ; Revisions and enhancements to MODFLOW-2005
     |--src            ; MODFLOW-2005 source code for use on any computer
        |hydprograms   ; Source for hydrograph post processing program
-       |mnw1to2       ; Source for program to convert MNW1 data files to MNW2
     |--test-run       ; Input data to run verification tests
     |--test-out       ; Output files from running the tests
 

@@ -11,7 +11,7 @@ For information and references related to these packages, see mf2005.txt
 NOTE: Any use of trade, product or firm names is for descriptive purposes 
       only and does not imply endorsement by the U.S. Government.
 
-o Version 1.12.0 01/27/2017
+o Version 1.12.0 02/03/2017
     GWF2SWR -- This is the Surface Water Routing (SWR) Process, which 
        has been added.
     GWF2SWI27 -- Added FIXEDZETA option, which fixes the zeta surfaces
@@ -47,6 +47,7 @@ o Version 1.12.0 01/27/2017
        AUXSFAC column.  If SFAC is also specified, then the conductance
        column will be multiplied by SFAC and the values in the AUXSFAC
        column.
+    Removed the mnw1to2 source and run files.
     Minor spelling errors were corrected in many of the source files.  Many
        of these errors have been present since the first release.
     MODFLOW-2005 runtime executables included in this distribution are 

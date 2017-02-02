@@ -52,11 +52,12 @@ METHOD
 
 HISTORY
 
-      MODFLOW-2005 Version 1.12.00 01/27/2017 -- Added Surface Water
+      MODFLOW-2005 Version 1.12.00 02/03/2017 -- Added Surface Water
          Routing (SWR) Package. Added FIXEDZETA option for the SWI2
          Package.  Updated the LMT Package to save flows for the
          MT3D-USGS program.  Fixed several problems in MNW2, SFR, LAK, 
-         UZF, and GMG. See release.txt for a full description of changes.
+         UZF, and GMG. Corrected spelling errors in source code for
+         many packages.  See release.txt for a full description of changes.
 
       MODFLOW-2005 Version 1.11.00 08/08/2013 -- Added Seawater Intrusion
          (SWI2) Package. Added free format input option to STR Package.
@@ -194,12 +195,14 @@ FUNTIONALITY
          PCGN -- Preconditioned Conjugate Gradient solver with
                  improved nonlinear control
          SWI2 -- Seawater Intrusion Package
+         SWR -- Surface Water Routing Process
 
 Unlike MODFLOW-2000, MODFLOW-2005 does not support a parameter-estimation
 process. Users of MODFLOW-2005 are encouraged to take advantage of
-'clip-on' parameter-estimation programs such as UCODE_2005. UCODE_2005 and
+'clip-on' parameter-estimation programs such as PEST++. PEST++ and
 supporting documentation are available at:
-         http://typhoon.mines.edu/freeware/ucode/
+         http://wi.water.usgs.gov/models/pestplusplus/
+
 
 DOCUMENTATION
 
@@ -364,6 +367,14 @@ Improved Nonlinear Control: U.S. Geological Survey Open-File Report
 Bakker, M., Schaars, F., Hughes, J.D., Langevin, C.D., Dausman, A.M., 2013, 
 Documentation of the seawater intrusion (SWI2) package for MODFLOW: 
 U.S. Geological Survey Techniques and Methods, book 6, chap. A46, 47 p.
+
+   The SWR Package is documented in:
+Hughes, J.D., Langevin, C.D., Chartier, K.L., and White, J.T., 2012,
+Documentation of the Surface-Water Routing (SWR1) Process for modeling
+surface-water flow with the U.S. Geological Survey Modular Ground-Water
+Model (MODFLOW-2005): U.S. Geological Survey Techniques and Methods, book 6,
+chap. A40 (Version 1.0), 113 p.
+Available online at http://pubs.usgs.gov/tm/6a40/
 
 
 CONTACTS
