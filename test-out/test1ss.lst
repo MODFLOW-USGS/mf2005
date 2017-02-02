@@ -1,6 +1,6 @@
                                   MODFLOW-2005     
       U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
-                            VERSION 1.11.00 8/8/2013
+                            VERSION 1.12.00 2/3/2017
 
  LIST FILE: test1ss.lst
                          UNIT    9
@@ -151,10 +151,10 @@
 
             1           2           3           4           5           6           7           8           9          10
  ........................................................................................................................
-   1   1000.0      1000.0       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000    
-   2   1000.0       900.0       900.0       0.000       0.000      1000.0      1000.0      1000.0       0.000       0.000    
+   1    1000.       1000.       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000    
+   2    1000.       900.0       900.0       0.000       0.000       1000.       1000.       1000.       0.000       0.000    
    3    0.000       850.0       670.0       680.0       680.0       770.0       770.0       890.0       0.000       0.000    
-   4    950.0       850.0       650.0       650.0       650.0       680.0       740.0       850.0      1000.0       0.000    
+   4    950.0       850.0       650.0       650.0       650.0       680.0       740.0       850.0       1000.       0.000    
    5    950.0       800.0       650.0       600.0       600.0       600.0       650.0       720.0       850.0       950.0    
    6    950.0       800.0       650.0       600.0       550.0       600.0       650.0       720.0       850.0       970.0    
    7    950.0       800.0       650.0       600.0       550.0       600.0       650.0       720.0       950.0       0.000    
@@ -278,7 +278,7 @@
   14    0.000      4.0000E-04  4.0000E-04  4.0000E-04  4.0000E-04  4.0000E-04  4.0000E-04  4.0000E-04  2.0000E-03   0.000    
   15    0.000       0.000      4.0000E-04  4.0000E-04  4.0000E-04  4.0000E-04   0.000       0.000       0.000       0.000    
 
-  HORIZ. TO VERTICAL ANI. =  1.000000     FOR LAYER   1
+  HORIZ. TO VERTICAL ANI. =   1.00000     FOR LAYER   1
 
  EVT -- EVAPOTRANSPIRATION PACKAGE, VERSION 7, 5/2/2005
          INPUT READ FROM UNIT   18
@@ -305,14 +305,12 @@
 
      0 Recharge parameters
 
- SFR7 -- STREAMFLOW ROUTING PACKAGE, VERSION 1.0.7, 2013-01-15
+ SFR7 -- STREAMFLOW ROUTING PACKAGE, VERSION 1.0.8, 2017-02-01
          INPUT READ FROM UNIT  15
  #Test Problem 1 using SFR1
  No named parameters
- Segment information will not be 
- read by reach
- No named parameters
- No specifed inflow files
+
+ END PROCESSING SFR2 OPTIONS
 
 
  NUMBER OF STREAM REACHES IS   36
@@ -707,11 +705,11 @@
          TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    1
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
-   TIME STEP LENGTH  86400.      1440.0      24.000     1.00000     2.73785E-03
- STRESS PERIOD TIME  86400.      1440.0      24.000     1.00000     2.73785E-03
-         TOTAL TIME  86400.      1440.0      24.000     1.00000     2.73785E-03
+   TIME STEP LENGTH  86400.      1440.0      24.000      1.0000     2.73785E-03
+ STRESS PERIOD TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
+         TOTAL TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
 1
 
- Run end date and time (yyyy/mm/dd hh:mm:ss): 2013/07/31 13:33:56
- Elapsed run time:  0.067 Seconds
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2017/02/02 12:57:41
+ Elapsed run time:  0.093 Seconds
 

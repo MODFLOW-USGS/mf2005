@@ -1,6 +1,6 @@
                                   MODFLOW-2005     
       U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
-                            VERSION 1.11.00 8/8/2013
+                            VERSION 1.12.00 2/3/2017
 
  LIST FILE: restest.lst
                          UNIT    7
@@ -47,11 +47,11 @@
   Confining bed flag for each layer:
    0
 
-                     DELR =  100.0000    
+                     DELR =   100.000    
 
-                     DELC =  100.0000    
+                     DELC =   100.000    
 
- TOP ELEVATION OF LAYER 1 =  100.0000    
+ TOP ELEVATION OF LAYER 1 =   100.000    
 
    MODEL LAYER BOTTOM EL. =  -500.000     FOR LAYER   1
 
@@ -107,11 +107,11 @@
       --------------------------------------------
          1            0          0 -- HARMONIC    
 
- COLUMN TO ROW ANISOTROPY =  1.000000    
+ COLUMN TO ROW ANISOTROPY =   1.00000    
 
      PRIMARY STORAGE COEF =  0.200000     FOR LAYER   1
 
-     TRANSMIS. ALONG ROWS =  10000.00     FOR LAYER   1
+     TRANSMIS. ALONG ROWS =   10000.0     FOR LAYER   1
 
  GHB -- GENERAL-HEAD BOUNDARY PACKAGE, VERSION 7, 5/2/2005
          INPUT READ FROM UNIT   17
@@ -168,7 +168,7 @@ RES7 -- RESERVOIR PACKAGE, VERSION 7, 2/28/2006 INPUT READ FROM UNIT 27
   11    0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
   12    0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
 
-   RES. BED VERT HYD COND =  1.000000     FOR LAYER   1
+   RES. BED VERT HYD COND =   1.00000     FOR LAYER   1
 
   RESERVOIR BED THICKNESS =   2.00000     FOR LAYER   1
  STAGE-VOLUME TABLE FOR RESERVOIR 1
@@ -178,7 +178,7 @@ RES7 -- RESERVOIR PACKAGE, VERSION 7, 2/28/2006 INPUT READ FROM UNIT 27
    7.0000      0.12000E+06  0.12000E+06
    8.0000      0.31000E+06  0.19000E+06
    9.0000      0.57000E+06  0.26000E+06
-  10.0000      0.90000E+06  0.33000E+06
+   10.000      0.90000E+06  0.33000E+06
    11.000      0.13700E+07  0.47000E+06
    12.000      0.18400E+07  0.47000E+06
    13.000      0.23100E+07  0.47000E+06
@@ -200,7 +200,7 @@ RES7 -- RESERVOIR PACKAGE, VERSION 7, 2/28/2006 INPUT READ FROM UNIT 27
           SOLUTION BY THE STRONGLY IMPLICIT PROCEDURE
           -------------------------------------------
  MAXIMUM ITERATIONS ALLOWED FOR CLOSURE =       50
-                 ACCELERATION PARAMETER =    1.00000    
+                 ACCELERATION PARAMETER =     1.0000    
       HEAD CHANGE CRITERION FOR CLOSURE =    0.10000E-02
       SIP HEAD CHANGE PRINTOUT INTERVAL =      999
 
@@ -215,38 +215,38 @@ RES7 -- RESERVOIR PACKAGE, VERSION 7, 2/28/2006 INPUT READ FROM UNIT 27
 
                                MULTIPLIER FOR DELT =     1.000
 
-                            INITIAL TIME STEP SIZE =  1.0000000    
+                            INITIAL TIME STEP SIZE =   1.000000    
 
  BOUND. NO. LAYER   ROW   COL     STAGE      CONDUCTANCE         
  ----------------------------------------------------------------
-      1      1      1      1       0.000          1000.0    
-      2      1      2      1       0.000          1000.0    
-      3      1      3      1       0.000          1000.0    
-      4      1      4      1       0.000          1000.0    
-      5      1      5      1       0.000          1000.0    
-      6      1      6      1       0.000          1000.0    
-      7      1      7      1       0.000          1000.0    
-      8      1      8      1       0.000          1000.0    
-      9      1      9      1       0.000          1000.0    
-     10      1     10      1       0.000          1000.0    
-     11      1     11      1       0.000          1000.0    
-     12      1     12      1       0.000          1000.0    
-     13      1      1     12       0.000          1000.0    
-     14      1      2     12       0.000          1000.0    
-     15      1      3     12       0.000          1000.0    
-     16      1      4     12       0.000          1000.0    
-     17      1      5     12       0.000          1000.0    
-     18      1      6     12       0.000          1000.0    
-     19      1      7     12       0.000          1000.0    
-     20      1      8     12       0.000          1000.0    
-     21      1      9     12       0.000          1000.0    
-     22      1     10     12       0.000          1000.0    
-     23      1     11     12       0.000          1000.0    
-     24      1     12     12       0.000          1000.0    
+      1      1      1      1       0.000           1000.    
+      2      1      2      1       0.000           1000.    
+      3      1      3      1       0.000           1000.    
+      4      1      4      1       0.000           1000.    
+      5      1      5      1       0.000           1000.    
+      6      1      6      1       0.000           1000.    
+      7      1      7      1       0.000           1000.    
+      8      1      8      1       0.000           1000.    
+      9      1      9      1       0.000           1000.    
+     10      1     10      1       0.000           1000.    
+     11      1     11      1       0.000           1000.    
+     12      1     12      1       0.000           1000.    
+     13      1      1     12       0.000           1000.    
+     14      1      2     12       0.000           1000.    
+     15      1      3     12       0.000           1000.    
+     16      1      4     12       0.000           1000.    
+     17      1      5     12       0.000           1000.    
+     18      1      6     12       0.000           1000.    
+     19      1      7     12       0.000           1000.    
+     20      1      8     12       0.000           1000.    
+     21      1      9     12       0.000           1000.    
+     22      1     10     12       0.000           1000.    
+     23      1     11     12       0.000           1000.    
+     24      1     12     12       0.000           1000.    
 
      24 GHB CELLS
 
- RESERVOIR CONDITIONS FOR STRESS PERIOD   1, STEP   1 TIME  1.00000    
+ RESERVOIR CONDITIONS FOR STRESS PERIOD   1, STEP   1 TIME   1.0000    
   RESERVOIR   HEAD         AREA        VOLUME
   ----------------------------------------------
        1     8.0000     0.19000E+06 0.31000E+06
@@ -346,7 +346,7 @@ RES7 -- RESERVOIR PACKAGE, VERSION 7, 2/28/2006 INPUT READ FROM UNIT 27
          TIME SUMMARY AT END OF TIME STEP    2 IN STRESS PERIOD    1
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
-   TIME STEP LENGTH  86400.      1440.0      24.000     1.00000     2.73785E-03
+   TIME STEP LENGTH  86400.      1440.0      24.000      1.0000     2.73785E-03
  STRESS PERIOD TIME 1.72800E+05  2880.0      48.000      2.0000     5.47570E-03
          TOTAL TIME 1.72800E+05  2880.0      48.000      2.0000     5.47570E-03
 1
@@ -358,7 +358,7 @@ RES7 -- RESERVOIR PACKAGE, VERSION 7, 2/28/2006 INPUT READ FROM UNIT 27
 
                                MULTIPLIER FOR DELT =     1.000
 
-                            INITIAL TIME STEP SIZE =  1.0000000    
+                            INITIAL TIME STEP SIZE =   1.000000    
 
  REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
 
@@ -464,7 +464,7 @@ RES7 -- RESERVOIR PACKAGE, VERSION 7, 2/28/2006 INPUT READ FROM UNIT 27
          TIME SUMMARY AT END OF TIME STEP    2 IN STRESS PERIOD    2
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
-   TIME STEP LENGTH  86400.      1440.0      24.000     1.00000     2.73785E-03
+   TIME STEP LENGTH  86400.      1440.0      24.000      1.0000     2.73785E-03
  STRESS PERIOD TIME 1.72800E+05  2880.0      48.000      2.0000     5.47570E-03
          TOTAL TIME 3.45600E+05  5760.0      96.000      4.0000     1.09514E-02
 1
@@ -476,7 +476,7 @@ RES7 -- RESERVOIR PACKAGE, VERSION 7, 2/28/2006 INPUT READ FROM UNIT 27
 
                                MULTIPLIER FOR DELT =     1.000
 
-                            INITIAL TIME STEP SIZE =  1.0000000    
+                            INITIAL TIME STEP SIZE =   1.000000    
 
  REUSING NON-PARAMETER GHB CELLS FROM LAST STRESS PERIOD
 
@@ -503,7 +503,7 @@ RES7 -- RESERVOIR PACKAGE, VERSION 7, 2/28/2006 INPUT READ FROM UNIT 27
  RESERVOIR CONDITIONS FOR STRESS PERIOD   3, STEP   2 TIME   6.0000    
   RESERVOIR   HEAD         AREA        VOLUME
   ----------------------------------------------
-       1    10.0000     0.33000E+06 0.90000E+06
+       1     10.000     0.33000E+06 0.90000E+06
  
  SOLVING FOR HEAD 
      6 ITERATIONS FOR TIME STEP   2 IN STRESS PERIOD    3
@@ -602,9 +602,9 @@ RES7 -- RESERVOIR PACKAGE, VERSION 7, 2/28/2006 INPUT READ FROM UNIT 27
      HEAD DEP BOUNDS =     1098479.7500       HEAD DEP BOUNDS =      140112.0156
      RESERV. LEAKAGE =       35687.6602       RESERV. LEAKAGE =           0.0000
 
-           TOTAL OUT =     3759704.5000             TOTAL OUT =      140112.0156
+           TOTAL OUT =     3759704.7500             TOTAL OUT =      140112.0156
 
-            IN - OUT =         -31.7500              IN - OUT =          19.0938
+            IN - OUT =         -32.0000              IN - OUT =          19.0938
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =           0.01
 
@@ -616,11 +616,11 @@ RES7 -- RESERVOIR PACKAGE, VERSION 7, 2/28/2006 INPUT READ FROM UNIT 27
          TIME SUMMARY AT END OF TIME STEP    5 IN STRESS PERIOD    3
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
-   TIME STEP LENGTH  86400.      1440.0      24.000     1.00000     2.73785E-03
+   TIME STEP LENGTH  86400.      1440.0      24.000      1.0000     2.73785E-03
  STRESS PERIOD TIME 4.32000E+05  7200.0      120.00      5.0000     1.36893E-02
          TOTAL TIME 7.77600E+05  12960.      216.00      9.0000     2.46407E-02
 1
 
- Run end date and time (yyyy/mm/dd hh:mm:ss): 2013/07/31 13:33:56
- Elapsed run time:  0.024 Seconds
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2017/02/02 12:57:15
+ Elapsed run time:  0.015 Seconds
 

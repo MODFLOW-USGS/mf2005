@@ -1,6 +1,6 @@
                                   MODFLOW-2005     
       U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
-                            VERSION 1.11.00 8/8/2013
+                            VERSION 1.12.00 2/3/2017
 
  LIST FILE: etsdrt.lst
                          UNIT   12
@@ -60,11 +60,11 @@
   Confining bed flag for each layer:
    0
 
-                     DELR =  100.0000    
+                     DELR =   100.000    
 
-                     DELC =  100.0000    
+                     DELC =   100.000    
 
- TOP ELEVATION OF LAYER 1 =  100.0000    
+ TOP ELEVATION OF LAYER 1 =   100.000    
 
    MODEL LAYER BOTTOM EL. =   0.00000     FOR LAYER   1
 
@@ -194,7 +194,7 @@
 
  DRAIN NO.  LAYER   ROW   COL     DRAIN EL.  STRESS FACTOR         
  ------------------------------------------------------------------
-      1      1      5      8       60.00          1.0000    
+      1      1      5      8       60.00           1.000    
 
            ----DRAIN CELL----  --RECIPIENT CELL--   RETURN
  DRAIN NO.  LAYER   ROW   COL   LAYER   ROW   COL    PROP.
@@ -239,7 +239,7 @@
 
                  RECHARGE =  1.000000E-03
 
-        ET SURFACE (ETSS) =  100.0000    
+        ET SURFACE (ETSS) =   100.000    
 
 
 
@@ -254,7 +254,7 @@
 
  EXTINCT. DEP. PROPORTION =  0.500000    
 
-       ET RATE PROPORTION =  1.000000E-01
+       ET RATE PROPORTION =  0.100000    
 
  Parameter:  DRT-Cond
  DRAIN NO.  LAYER   ROW   COL     DRAIN EL.  CONDUCTANCE           
@@ -374,6 +374,6 @@
          TOTAL TIME  0.0000      0.0000      0.0000      0.0000      0.0000    
 1
 
- Run end date and time (yyyy/mm/dd hh:mm:ss): 2013/07/31 13:33:53
- Elapsed run time:  0.021 Seconds
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2017/02/02 12:53:08
+ Elapsed run time:  0.016 Seconds
 

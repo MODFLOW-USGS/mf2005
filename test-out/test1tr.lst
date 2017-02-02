@@ -1,6 +1,6 @@
                                   MODFLOW-2005     
       U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
-                            VERSION 1.11.00 8/8/2013
+                            VERSION 1.12.00 2/3/2017
 
  LIST FILE: test1tr.lst
                          UNIT    9
@@ -146,8 +146,8 @@
 
             1           2           3           4           5           6           7           8           9          10
  ........................................................................................................................
-   1   1000.0      1000.0       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000    
-   2   1000.0       900.0       900.0       0.000       0.000       950.0       950.0       950.0       0.000       0.000    
+   1    1000.       1000.       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000    
+   2    1000.       900.0       900.0       0.000       0.000       950.0       950.0       950.0       0.000       0.000    
    3    0.000       850.0       670.0       680.0       680.0       770.0       770.0       890.0       0.000       0.000    
    4    925.0       850.0       650.0       650.0       650.0       680.0       740.0       850.0       950.0       0.000    
    5    925.0       800.0       650.0       600.0       600.0       600.0       650.0       720.0       850.0       950.0    
@@ -221,7 +221,7 @@
   10    6999.       1031.       1032.       1033.       1034.       1035.       1036.       1038.       1039.       1042.    
   11    6999.       1021.       1023.       1027.       1029.       1030.       1032.       1034.       1036.       6999.    
   12    1001.       1009.       1014.       1020.       1023.       1026.       1029.       1030.       1034.       6999.    
-  13    994.5      1000.0       1007.       1013.       1019.       1024.       1029.       1034.       1036.       6999.    
+  13    994.5       1000.       1007.       1013.       1019.       1024.       1029.       1034.       1036.       6999.    
   14    6999.       1004.       1009.       1014.       1019.       1024.       1030.       1035.       1039.       6999.    
   15    6999.       6999.       1012.       1015.       1019.       1022.       6999.       6999.       6999.       6999.    
 
@@ -275,7 +275,7 @@
   14    0.000      4.0000E-04  4.0000E-04  4.0000E-04  4.0000E-04  4.0000E-04  4.0000E-04  4.0000E-04  2.0000E-03   0.000    
   15    0.000       0.000      4.0000E-04  4.0000E-04  4.0000E-04  4.0000E-04   0.000       0.000       0.000       0.000    
 
-  HORIZ. TO VERTICAL ANI. =  1.000000     FOR LAYER   1
+  HORIZ. TO VERTICAL ANI. =   1.00000     FOR LAYER   1
 
          SPECIFIC STORAGE =  1.000000E-06 FOR LAYER   1
 
@@ -287,20 +287,20 @@
             1           2           3           4           5           6           7           8           9          10
  ........................................................................................................................
    1   0.2000      0.2000       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000    
-   2   1.0000E-01  0.2000      0.2000       0.000       0.000      1.0000E-01  1.0000E-01  1.0000E-01   0.000       0.000    
-   3    0.000      1.0000E-01  0.2000      0.2000      1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01   0.000       0.000    
-   4   1.0000E-01  1.0000E-01  1.0000E-01  0.2000      0.2000      0.2000      1.0000E-01  1.0000E-01  1.0000E-01   0.000    
-   5   1.0000E-01  1.0000E-01  1.0000E-01  0.2000      0.2000      0.2000      0.2000      0.2000      0.2000      0.2000    
-   6   1.0000E-01  1.0000E-01  1.0000E-01  0.2000      0.2000      0.2000      0.2000      0.2000      1.0000E-01  1.0000E-01
-   7   1.0000E-01  1.0000E-01  1.0000E-01  0.2000      0.2000      0.2000      0.2000      0.2000      1.0000E-01   0.000    
-   8    0.000      1.0000E-01  1.0000E-01  0.2000      0.2000      0.2000      0.2000      1.0000E-01  1.0000E-01   0.000    
-   9    0.000      1.0000E-01  1.0000E-01  0.2000      0.2000      0.2000      0.2000      1.0000E-01  1.0000E-01   0.000    
-  10    0.000      1.0000E-01  1.0000E-01  0.2000      0.2000      0.2000      0.2000      1.0000E-01  1.0000E-01  1.0000E-01
-  11    0.000      1.0000E-01  1.0000E-01  0.2000      0.2000      0.2000      0.2000      1.0000E-01  1.0000E-01   0.000    
-  12   1.0000E-01  1.0000E-01  0.2000      0.2000      0.2000      0.2000      0.2000      1.0000E-01  1.0000E-01   0.000    
+   2   0.1000      0.2000      0.2000       0.000       0.000      0.1000      0.1000      0.1000       0.000       0.000    
+   3    0.000      0.1000      0.2000      0.2000      0.1000      0.1000      0.1000      0.1000       0.000       0.000    
+   4   0.1000      0.1000      0.1000      0.2000      0.2000      0.2000      0.1000      0.1000      0.1000       0.000    
+   5   0.1000      0.1000      0.1000      0.2000      0.2000      0.2000      0.2000      0.2000      0.2000      0.2000    
+   6   0.1000      0.1000      0.1000      0.2000      0.2000      0.2000      0.2000      0.2000      0.1000      0.1000    
+   7   0.1000      0.1000      0.1000      0.2000      0.2000      0.2000      0.2000      0.2000      0.1000       0.000    
+   8    0.000      0.1000      0.1000      0.2000      0.2000      0.2000      0.2000      0.1000      0.1000       0.000    
+   9    0.000      0.1000      0.1000      0.2000      0.2000      0.2000      0.2000      0.1000      0.1000       0.000    
+  10    0.000      0.1000      0.1000      0.2000      0.2000      0.2000      0.2000      0.1000      0.1000      0.1000    
+  11    0.000      0.1000      0.1000      0.2000      0.2000      0.2000      0.2000      0.1000      0.1000       0.000    
+  12   0.1000      0.1000      0.2000      0.2000      0.2000      0.2000      0.2000      0.1000      0.1000       0.000    
   13   0.2000      0.2000      0.2000      0.2000      0.2000      0.2000      0.2000      0.2000      0.2000       0.000    
-  14    0.000      1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01  0.2000       0.000    
-  15    0.000       0.000      1.0000E-01  1.0000E-01  1.0000E-01  1.0000E-01   0.000       0.000       0.000       0.000    
+  14    0.000      0.1000      0.1000      0.1000      0.1000      0.1000      0.1000      0.1000      0.2000       0.000    
+  15    0.000       0.000      0.1000      0.1000      0.1000      0.1000       0.000       0.000       0.000       0.000    
 
  WEL -- WELL PACKAGE, VERSION 7, 5/2/2005 INPUT READ FROM UNIT   16
  No named parameters
@@ -335,14 +335,12 @@
 
      0 Recharge parameters
 
- SFR7 -- STREAMFLOW ROUTING PACKAGE, VERSION 1.0.7, 2013-01-15
+ SFR7 -- STREAMFLOW ROUTING PACKAGE, VERSION 1.0.8, 2017-02-01
          INPUT READ FROM UNIT  15
  #Test Problem 1 using SFR1
  No named parameters
- Segment information will not be 
- read by reach
- No named parameters
- No specifed inflow files
+
+ END PROCESSING SFR2 OPTIONS
 
 
  NUMBER OF STREAM REACHES IS   36
@@ -454,16 +452,16 @@
 
  WELL NO.  LAYER   ROW   COL   STRESS RATE         
  --------------------------------------------------
-      1      1      6      4     -10.000    
-      2      1      6      5     -10.000    
-      3      1      7      4     -10.000    
-      4      1      7      5     -10.000    
-      5      1      8      4     -10.000    
-      6      1      8      5     -10.000    
-      7      1      9      4     -10.000    
-      8      1      9      5     -10.000    
-      9      1     10      4     -10.000    
-     10      1     10      5     -10.000    
+      1      1      6      4      -10.00    
+      2      1      6      5      -10.00    
+      3      1      7      4      -10.00    
+      4      1      7      5      -10.00    
+      5      1      8      4      -10.00    
+      6      1      8      5      -10.00    
+      7      1      9      4      -10.00    
+      8      1      9      5      -10.00    
+      9      1     10      4      -10.00    
+     10      1     10      5      -10.00    
 
      10 WELLS
 
@@ -631,16 +629,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP   1
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP  1, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP   1
@@ -745,7 +743,7 @@
 
            TOTAL OUT =   194319616.0000             TOTAL OUT =         143.3382
 
-            IN - OUT =      -21280.0000              IN - OUT =      -1.5686E-02
+            IN - OUT =      -21280.0000              IN - OUT =      -1.5701E-02
 
  PERCENT DISCREPANCY =          -0.01     PERCENT DISCREPANCY =          -0.01
 
@@ -830,16 +828,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP   5
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP  5, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP   5
@@ -942,9 +940,9 @@
             RECHARGE =           0.0000              RECHARGE =           0.0000
       STREAM LEAKAGE =    74022840.0000        STREAM LEAKAGE =           8.4067
 
-           TOTAL OUT =  1156363776.0000             TOTAL OUT =         136.6040
+           TOTAL OUT =  1156363648.0000             TOTAL OUT =         136.6040
 
-            IN - OUT =     -146432.0000              IN - OUT =      -2.0050E-02
+            IN - OUT =     -146304.0000              IN - OUT =      -2.0050E-02
 
  PERCENT DISCREPANCY =          -0.01     PERCENT DISCREPANCY =          -0.01
 
@@ -1045,16 +1043,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP  10
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP 10, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP  10
@@ -1145,7 +1143,7 @@
             RECHARGE =    38755632.0000              RECHARGE =           1.7937
       STREAM LEAKAGE =  1024299136.0000        STREAM LEAKAGE =          49.4452
 
-            TOTAL IN =  2907862272.0000              TOTAL IN =         128.8494
+            TOTAL IN =  2907862016.0000              TOTAL IN =         128.8494
 
           OUT:                                     OUT:
           ----                                     ----
@@ -1159,7 +1157,7 @@
 
            TOTAL OUT =  2908088320.0000             TOTAL OUT =         128.8527
 
-            IN - OUT =     -226048.0000              IN - OUT =      -3.2806E-03
+            IN - OUT =     -226304.0000              IN - OUT =      -3.2959E-03
 
  PERCENT DISCREPANCY =          -0.01     PERCENT DISCREPANCY =          -0.00
 
@@ -1228,16 +1226,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP  13
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP 13, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP  13
@@ -1328,7 +1326,7 @@
             RECHARGE =    59632800.0000              RECHARGE =           1.7937
       STREAM LEAKAGE =  1618490880.0000        STREAM LEAKAGE =          51.8198
 
-            TOTAL IN =  4378578944.0000              TOTAL IN =         125.2322
+            TOTAL IN =  4378578944.0000              TOTAL IN =         125.2321
 
           OUT:                                     OUT:
           ----                                     ----
@@ -1342,7 +1340,7 @@
 
            TOTAL OUT =  4378868736.0000             TOTAL OUT =         125.2384
 
-            IN - OUT =     -289792.0000              IN - OUT =      -6.2027E-03
+            IN - OUT =     -289792.0000              IN - OUT =      -6.2103E-03
 
  PERCENT DISCREPANCY =          -0.01     PERCENT DISCREPANCY =          -0.00
 
@@ -1395,16 +1393,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP  15
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP 15, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP  15
@@ -1610,16 +1608,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP  20
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP 20, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP  20
@@ -1722,9 +1720,9 @@
             RECHARGE =           0.0000              RECHARGE =           0.0000
       STREAM LEAKAGE =   326055744.0000        STREAM LEAKAGE =           1.6290
 
-           TOTAL OUT =  9782393856.0000             TOTAL OUT =         120.0852
+           TOTAL OUT =  9782394880.0000             TOTAL OUT =         120.0852
 
-            IN - OUT =     -480256.0000              IN - OUT =      -4.0512E-03
+            IN - OUT =     -481280.0000              IN - OUT =      -4.0512E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -1825,16 +1823,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP  25
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP 25, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP  25
@@ -1939,7 +1937,7 @@
 
            TOTAL OUT = 16385064960.0000             TOTAL OUT =         117.9824
 
-            IN - OUT =     -590848.0000              IN - OUT =      -2.4719E-03
+            IN - OUT =     -590848.0000              IN - OUT =      -2.4567E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -2040,16 +2038,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP  30
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP 30, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP  30
@@ -2152,9 +2150,9 @@
             RECHARGE =           0.0000              RECHARGE =           0.0000
       STREAM LEAKAGE =   430371168.0000        STREAM LEAKAGE =           0.4829
 
-           TOTAL OUT = 26882734080.0000             TOTAL OUT =         116.6390
+           TOTAL OUT = 26882732032.0000             TOTAL OUT =         116.6390
 
-            IN - OUT =     -759808.0000              IN - OUT =      -1.7014E-03
+            IN - OUT =     -757760.0000              IN - OUT =      -1.6937E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -2227,16 +2225,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP  33
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP 33, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP  33
@@ -2327,7 +2325,7 @@
             RECHARGE =   540457600.0000              RECHARGE =           1.7937
       STREAM LEAKAGE = 20531347456.0000        STREAM LEAKAGE =          81.7543
 
-            TOTAL IN = 35996520448.0000              TOTAL IN =         116.2971
+            TOTAL IN = 35996524544.0000              TOTAL IN =         116.2971
 
           OUT:                                     OUT:
           ----                                     ----
@@ -2341,7 +2339,7 @@
 
            TOTAL OUT = 35997433856.0000             TOTAL OUT =         116.2993
 
-            IN - OUT =     -913408.0000              IN - OUT =      -2.2202E-03
+            IN - OUT =     -909312.0000              IN - OUT =      -2.2125E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -2398,16 +2396,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP  35
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP 35, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP  35
@@ -2512,7 +2510,7 @@
 
            TOTAL OUT = 43675324416.0000             TOTAL OUT =         116.0644
 
-            IN - OUT =    -1077248.0000              IN - OUT =      -2.5940E-03
+            IN - OUT =    -1077248.0000              IN - OUT =      -2.5864E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -2623,16 +2621,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP  40
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP 40, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP  40
@@ -2735,9 +2733,9 @@
             RECHARGE =           0.0000              RECHARGE =           0.0000
       STREAM LEAKAGE =   577158208.0000        STREAM LEAKAGE =           0.3340
 
-           TOTAL OUT = 70584041472.0000             TOTAL OUT =         115.4864
+           TOTAL OUT = 70584033280.0000             TOTAL OUT =         115.4864
 
-            IN - OUT =    -1826816.0000              IN - OUT =      -3.8986E-03
+            IN - OUT =    -1818624.0000              IN - OUT =      -3.8986E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -2848,16 +2846,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP  45
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP 45, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP  45
@@ -2962,7 +2960,7 @@
 
            TOTAL OUT =113725554688.0000             TOTAL OUT =         115.0025
 
-            IN - OUT =    -2539520.0000              IN - OUT =      -1.1826E-03
+            IN - OUT =    -2539520.0000              IN - OUT =      -1.1673E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -3082,16 +3080,16 @@
     SAVE BUDGET
 
             WELLS   PERIOD    1   STEP  50
- WELL      1   LAYER   1   ROW     6   COL     4   RATE   -10.00000    
- WELL      2   LAYER   1   ROW     6   COL     5   RATE   -10.00000    
- WELL      3   LAYER   1   ROW     7   COL     4   RATE   -10.00000    
- WELL      4   LAYER   1   ROW     7   COL     5   RATE   -10.00000    
- WELL      5   LAYER   1   ROW     8   COL     4   RATE   -10.00000    
- WELL      6   LAYER   1   ROW     8   COL     5   RATE   -10.00000    
- WELL      7   LAYER   1   ROW     9   COL     4   RATE   -10.00000    
- WELL      8   LAYER   1   ROW     9   COL     5   RATE   -10.00000    
- WELL      9   LAYER   1   ROW    10   COL     4   RATE   -10.00000    
- WELL     10   LAYER   1   ROW    10   COL     5   RATE   -10.00000    
+ WELL      1   LAYER   1   ROW     6   COL     4   RATE    -10.0000    
+ WELL      2   LAYER   1   ROW     6   COL     5   RATE    -10.0000    
+ WELL      3   LAYER   1   ROW     7   COL     4   RATE    -10.0000    
+ WELL      4   LAYER   1   ROW     7   COL     5   RATE    -10.0000    
+ WELL      5   LAYER   1   ROW     8   COL     4   RATE    -10.0000    
+ WELL      6   LAYER   1   ROW     8   COL     5   RATE    -10.0000    
+ WELL      7   LAYER   1   ROW     9   COL     4   RATE    -10.0000    
+ WELL      8   LAYER   1   ROW     9   COL     5   RATE    -10.0000    
+ WELL      9   LAYER   1   ROW    10   COL     4   RATE    -10.0000    
+ WELL     10   LAYER   1   ROW    10   COL     5   RATE    -10.0000    
  UBUDSV SAVING "              ET" ON UNIT 59 AT TIME STEP 50, STRESS PERIOD    1
 
   HEAD DEP BOUNDS   PERIOD    1   STEP  50
@@ -3198,7 +3196,7 @@
 
            TOTAL OUT =182963306496.0000             TOTAL OUT =         114.6567
 
-            IN - OUT =    -3145728.0000              IN - OUT =      -1.2817E-03
+            IN - OUT =    -3145728.0000              IN - OUT =      -1.2665E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -3363,7 +3361,7 @@
 
            TOTAL OUT =183115939840.0000             TOTAL OUT =         112.5760
 
-            IN - OUT =    -3162112.0000              IN - OUT =      -2.8839E-03
+            IN - OUT =    -3162112.0000              IN - OUT =      -2.8763E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -3536,7 +3534,7 @@
             RECHARGE =  2845168384.0000              RECHARGE =           1.7937
       STREAM LEAKAGE =150466510848.0000        STREAM LEAKAGE =         107.8281
 
-            TOTAL IN =183883644928.0000              TOTAL IN =         110.7366
+            TOTAL IN =183883628544.0000              TOTAL IN =         110.7366
 
           OUT:                                     OUT:
           ----                                     ----
@@ -3550,7 +3548,7 @@
 
            TOTAL OUT =183886807040.0000             TOTAL OUT =         110.7379
 
-            IN - OUT =    -3162112.0000              IN - OUT =      -1.2894E-03
+            IN - OUT =    -3178496.0000              IN - OUT =      -1.2970E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -3739,7 +3737,7 @@
             RECHARGE =  2869078016.0000              RECHARGE =           1.7937
       STREAM LEAKAGE =151870980096.0000        STREAM LEAKAGE =         103.5333
 
-            TOTAL IN =185321947136.0000              TOTAL IN =         105.8838
+            TOTAL IN =185321930752.0000              TOTAL IN =         105.8838
 
           OUT:                                     OUT:
           ----                                     ----
@@ -3753,7 +3751,7 @@
 
            TOTAL OUT =185325060096.0000             TOTAL OUT =         105.8777
 
-            IN - OUT =    -3112960.0000              IN - OUT =       6.0883E-03
+            IN - OUT =    -3129344.0000              IN - OUT =       6.0883E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =           0.01
 
@@ -4077,9 +4075,9 @@
             RECHARGE =           0.0000              RECHARGE =           0.0000
       STREAM LEAKAGE =   841772672.0000        STREAM LEAKAGE =           0.3058
 
-           TOTAL OUT =187495563264.0000             TOTAL OUT =          98.1502
+           TOTAL OUT =187495579648.0000             TOTAL OUT =          98.1502
 
-            IN - OUT =    -2965504.0000              IN - OUT =       7.1030E-03
+            IN - OUT =    -2981888.0000              IN - OUT =       7.1030E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =           0.01
 
@@ -4861,7 +4859,7 @@
 
            TOTAL OUT =206619508736.0000             TOTAL OUT =          61.6349
 
-            IN - OUT =    -2441216.0000              IN - OUT =       1.8921E-03
+            IN - OUT =    -2441216.0000              IN - OUT =       1.8883E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =           0.00
 
@@ -5020,7 +5018,7 @@
 
            TOTAL OUT =210512887808.0000             TOTAL OUT =          58.0751
 
-            IN - OUT =    -2228224.0000              IN - OUT =       3.2463E-03
+            IN - OUT =    -2228224.0000              IN - OUT =       3.2425E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =           0.01
 
@@ -5233,7 +5231,7 @@
 
            TOTAL OUT =223014191104.0000             TOTAL OUT =          51.6327
 
-            IN - OUT =    -1523712.0000              IN - OUT =       1.5564E-03
+            IN - OUT =    -1523712.0000              IN - OUT =       1.5526E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =           0.00
 
@@ -5386,7 +5384,7 @@
 
            TOTAL OUT =229526290432.0000             TOTAL OUT =          50.1622
 
-            IN - OUT =    -1458176.0000              IN - OUT =       1.7548E-04
+            IN - OUT =    -1458176.0000              IN - OUT =       1.7929E-04
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =           0.00
 
@@ -5682,7 +5680,7 @@
             RECHARGE =  4755762688.0000              RECHARGE =           1.7937
       STREAM LEAKAGE =209871912960.0000        STREAM LEAKAGE =          43.5124
 
-            TOTAL IN =245440118784.0000              TOTAL IN =          45.5214
+            TOTAL IN =245440102400.0000              TOTAL IN =          45.5214
 
           OUT:                                     OUT:
           ----                                     ----
@@ -5696,7 +5694,7 @@
 
            TOTAL OUT =245441200128.0000             TOTAL OUT =          45.5205
 
-            IN - OUT =    -1081344.0000              IN - OUT =       9.1553E-04
+            IN - OUT =    -1097728.0000              IN - OUT =       9.1553E-04
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =           0.00
 
@@ -5833,9 +5831,9 @@
             RECHARGE =           0.0000              RECHARGE =           0.0000
       STREAM LEAKAGE =  7539683328.0000        STREAM LEAKAGE =           9.2860
 
-           TOTAL OUT =250380025856.0000             TOTAL OUT =          45.4366
+           TOTAL OUT =250380042240.0000             TOTAL OUT =          45.4366
 
-            IN - OUT =     -950272.0000              IN - OUT =       1.2779E-03
+            IN - OUT =     -966656.0000              IN - OUT =       1.2779E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =           0.00
 
@@ -5960,7 +5958,7 @@
             RECHARGE =  5165211648.0000              RECHARGE =           1.7937
       STREAM LEAKAGE =219780939776.0000        STREAM LEAKAGE =          43.3936
 
-            TOTAL IN =255807733760.0000              TOTAL IN =          45.4026
+            TOTAL IN =255807717376.0000              TOTAL IN =          45.4026
 
           OUT:                                     OUT:
           ----                                     ----
@@ -5974,7 +5972,7 @@
 
            TOTAL OUT =255808684032.0000             TOTAL OUT =          45.4026
 
-            IN - OUT =     -950272.0000              IN - OUT =       3.4332E-05
+            IN - OUT =     -966656.0000              IN - OUT =       3.0518E-05
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =           0.00
 
@@ -6097,7 +6095,7 @@
             RECHARGE =  5401132544.0000              RECHARGE =           1.7937
       STREAM LEAKAGE =225486520320.0000        STREAM LEAKAGE =          43.3806
 
-            TOTAL IN =261777539072.0000              TOTAL IN =          45.3896
+            TOTAL IN =261777522688.0000              TOTAL IN =          45.3896
 
           OUT:                                     OUT:
           ----                                     ----
@@ -6111,7 +6109,7 @@
 
            TOTAL OUT =261778243584.0000             TOTAL OUT =          45.3878
 
-            IN - OUT =     -704512.0000              IN - OUT =       1.8616E-03
+            IN - OUT =     -720896.0000              IN - OUT =       1.8616E-03
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =           0.00
 
@@ -6262,9 +6260,9 @@
                     -----------------------------------------------------------
    TIME STEP LENGTH 1.44676E+08 2.41127E+06  40188.      1674.5      4.5845    
  STRESS PERIOD TIME 1.57788E+09 2.62980E+07 4.38300E+05  18263.      50.000    
-         TOTAL TIME 3.15576E+09 5.25960E+07 8.76600E+05  36525.      100.00    
+         TOTAL TIME 3.15576E+09 5.25960E+07 8.76600E+05  36525.     100.000    
 1
 
- Run end date and time (yyyy/mm/dd hh:mm:ss): 2013/07/31 13:33:57
- Elapsed run time:  0.595 Seconds
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2017/02/02 12:57:42
+ Elapsed run time:  0.795 Seconds
 

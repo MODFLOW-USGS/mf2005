@@ -1,6 +1,6 @@
                                   MODFLOW-2005     
       U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
-                            VERSION 1.11.00 8/8/2013
+                            VERSION 1.12.00 2/3/2017
 
  LIST FILE: tr2k_s3.lst
                          UNIT    2
@@ -65,13 +65,13 @@
   Confining bed flag for each layer:
    0   0   0
 
-                     DELR =  1000.000    
+                     DELR =   1000.00    
 
                      DELC =   2000.00    
 
  TOP ELEVATION OF LAYER 1 =   0.00000    
 
-   MODEL LAYER BOTTOM EL. = -100.0000     FOR LAYER   1
+   MODEL LAYER BOTTOM EL. =  -100.000     FOR LAYER   1
 
    MODEL LAYER BOTTOM EL. =  -150.000     FOR LAYER   2
 
@@ -80,7 +80,7 @@
 
  STRESS PERIOD     LENGTH       TIME STEPS     MULTIPLIER FOR DELT    SS FLAG
  ----------------------------------------------------------------------------
-        1        1.0000000          1                    1.000         SS
+        1         1.000000          1                    1.000         SS
         2         365.3000          6                    1.300         TR
         3         365.3000          6                    1.300         TR
         4         365.3000          6                    1.300         TR
@@ -166,9 +166,9 @@
          2            0          0 -- HARMONIC    
          3            0          0 -- HARMONIC    
 
- COLUMN TO ROW ANISOTROPY =  1.000000    
+ COLUMN TO ROW ANISOTROPY =   1.00000    
 
-     PRIMARY STORAGE COEF =  1.000000E-01 FOR LAYER   1
+     PRIMARY STORAGE COEF =  0.100000     FOR LAYER   1
 
     HYD. COND. ALONG ROWS =   20.0000     FOR LAYER   1
 
@@ -183,22 +183,22 @@
 
             1           2           3           4           5           6           7           8           9          10
  ........................................................................................................................
-   1   1000.0      1000.0      1000.0      1000.0      1000.0      1000.0      1000.0      1000.0      1000.0      1000.0    
-   2   1000.0      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      1000.0    
-   3   1000.0      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      1000.0    
-   4   1000.0      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      1000.0    
-   5   1000.0      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      1000.0    
-   6   1000.0      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      1000.0    
-   7   1000.0      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      1000.0    
-   8   1000.0      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      1000.0    
-   9   1000.0      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      1000.0    
-  10   1000.0      1000.0      1000.0      1000.0      1000.0      1000.0      1000.0      1000.0      1000.0      1000.0    
+   1    1000.       1000.       1000.       1000.       1000.       1000.       1000.       1000.       1000.       1000.    
+   2    1000.      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000       1000.    
+   3    1000.      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000       1000.    
+   4    1000.      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000       1000.    
+   5    1000.      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000       1000.    
+   6    1000.      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000       1000.    
+   7    1000.      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000       1000.    
+   8    1000.      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000       1000.    
+   9    1000.      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000      0.5000       1000.    
+  10    1000.       1000.       1000.       1000.       1000.       1000.       1000.       1000.       1000.       1000.    
 
  VERT HYD COND /THICKNESS =  3.000000E-06 FOR LAYER   2
 
      PRIMARY STORAGE COEF =  2.620000E-04 FOR LAYER   3
 
-     TRANSMIS. ALONG ROWS =  1000.000     FOR LAYER   3
+     TRANSMIS. ALONG ROWS =   1000.00     FOR LAYER   3
 
  WEL -- WELL PACKAGE, VERSION 7, 5/2/2005 INPUT READ FROM UNIT   12
  No named parameters
@@ -395,20 +395,20 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
           SOLUTION BY THE STRONGLY IMPLICIT PROCEDURE
           -------------------------------------------
  MAXIMUM ITERATIONS ALLOWED FOR CLOSURE =      120
-                 ACCELERATION PARAMETER =    1.00000    
+                 ACCELERATION PARAMETER =     1.0000    
       HEAD CHANGE CRITERION FOR CLOSURE =    0.10000E-04
       SIP HEAD CHANGE PRINTOUT INTERVAL =        1
 
      CALCULATE ITERATION PARAMETERS FROM MODEL CALCULATED WSEED
 1
-                            STRESS PERIOD NO.    1, LENGTH =  1.0000000    
+                            STRESS PERIOD NO.    1, LENGTH =   1.000000    
                             -----------------------------------------------
 
                               NUMBER OF TIME STEPS =     1
 
                                MULTIPLIER FOR DELT =     1.000
 
-                            INITIAL TIME STEP SIZE =  1.0000000    
+                            INITIAL TIME STEP SIZE =   1.000000    
 
  WELL NO.  LAYER   ROW   COL   STRESS RATE         
  --------------------------------------------------
@@ -561,9 +561,9 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
          TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    1
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
-   TIME STEP LENGTH  86400.      1440.0      24.000     1.00000     2.73785E-03
- STRESS PERIOD TIME  86400.      1440.0      24.000     1.00000     2.73785E-03
-         TOTAL TIME  86400.      1440.0      24.000     1.00000     2.73785E-03
+   TIME STEP LENGTH  86400.      1440.0      24.000      1.0000     2.73785E-03
+ STRESS PERIOD TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
+         TOTAL TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
 1
 1
                             STRESS PERIOD NO.    2, LENGTH =   365.3000    
@@ -690,7 +690,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =      344509.6875      INST. IB STORAGE =       12030.0449
     DELAY IB STORAGE =      290021.4688      DELAY IB STORAGE =       10127.3535
 
-            TOTAL IN =     1747883.5000              TOTAL IN =       59987.3320
+            TOTAL IN =     1747883.7500              TOTAL IN =       59987.3281
 
           OUT:                                     OUT:
           ----                                     ----
@@ -702,7 +702,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =     1747892.0000             TOTAL OUT =       59987.6250
 
-            IN - OUT =          -8.5000              IN - OUT =          -0.2930
+            IN - OUT =          -8.2500              IN - OUT =          -0.2969
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -938,7 +938,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =     1291320.3750      INST. IB STORAGE =       11336.9053
     DELAY IB STORAGE =     1230217.3750      DELAY IB STORAGE =       10642.6543
 
-            TOTAL IN =     6877098.0000              TOTAL IN =       59867.7109
+            TOTAL IN =     6877098.5000              TOTAL IN =       59867.7109
 
           OUT:                                     OUT:
           ----                                     ----
@@ -950,7 +950,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =     6877100.0000             TOTAL OUT =       59867.6641
 
-            IN - OUT =          -2.0000              IN - OUT =       4.6875E-02
+            IN - OUT =          -1.5000              IN - OUT =       4.6875E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =           0.00
 
@@ -1062,7 +1062,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =     2108042.0000      INST. IB STORAGE =       12981.0488
     DELAY IB STORAGE =     1827204.5000      DELAY IB STORAGE =        9488.5684
 
-            TOTAL IN =    10635932.0000              TOTAL IN =       59743.2539
+            TOTAL IN =    10635932.0000              TOTAL IN =       59743.2578
 
           OUT:                                     OUT:
           ----                                     ----
@@ -1074,7 +1074,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =    10635932.0000             TOTAL OUT =       59743.2188
 
-            IN - OUT =           0.0000              IN - OUT =       3.5156E-02
+            IN - OUT =           0.0000              IN - OUT =       3.9062E-02
 
  PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.00
 
@@ -2547,7 +2547,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    16803872.0000      INST. IB STORAGE =        6417.8242
     DELAY IB STORAGE =    25424872.0000      DELAY IB STORAGE =       16453.6738
 
-            TOTAL IN =   107298224.0000              TOTAL IN =       57866.1211
+            TOTAL IN =   107298232.0000              TOTAL IN =       57866.1172
 
           OUT:                                     OUT:
           ----                                     ----
@@ -2559,7 +2559,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   107298240.0000             TOTAL OUT =       57866.2031
 
-            IN - OUT =         -16.0000              IN - OUT =      -8.2031E-02
+            IN - OUT =          -8.0000              IN - OUT =      -8.5938E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -2855,7 +2855,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    19069030.0000      INST. IB STORAGE =        6081.1187
     DELAY IB STORAGE =    31480730.0000      DELAY IB STORAGE =       16635.1035
 
-            TOTAL IN =   128375160.0000              TOTAL IN =       57586.7656
+            TOTAL IN =   128375168.0000              TOTAL IN =       57586.7656
 
           OUT:                                     OUT:
           ----                                     ----
@@ -2867,9 +2867,9 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   128375168.0000             TOTAL OUT =       57586.8203
 
-            IN - OUT =          -8.0000              IN - OUT =      -5.4688E-02
+            IN - OUT =           0.0000              IN - OUT =      -5.4688E-02
 
- PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =          -0.00
 
 
 
@@ -3163,7 +3163,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    21240386.0000      INST. IB STORAGE =        5867.6816
     DELAY IB STORAGE =    37575044.0000      DELAY IB STORAGE =       16699.2344
 
-            TOTAL IN =   149352992.0000              TOTAL IN =       57320.3125
+            TOTAL IN =   149352976.0000              TOTAL IN =       57320.3125
 
           OUT:                                     OUT:
           ----                                     ----
@@ -3175,9 +3175,9 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   149352992.0000             TOTAL OUT =       57320.3906
 
-            IN - OUT =           0.0000              IN - OUT =      -7.8125E-02
+            IN - OUT =         -16.0000              IN - OUT =      -7.8125E-02
 
- PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =          -0.00
+ PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
 
 
@@ -3471,7 +3471,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    23351994.0000      INST. IB STORAGE =        5728.4072
     DELAY IB STORAGE =    43675208.0000      DELAY IB STORAGE =       16692.5039
 
-            TOTAL IN =   170235728.0000              TOTAL IN =       57063.8398
+            TOTAL IN =   170235744.0000              TOTAL IN =       57063.8398
 
           OUT:                                     OUT:
           ----                                     ----
@@ -3483,9 +3483,9 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   170235744.0000             TOTAL OUT =       57063.9102
 
-            IN - OUT =         -16.0000              IN - OUT =      -7.0312E-02
+            IN - OUT =           0.0000              IN - OUT =      -7.0312E-02
 
- PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =          -0.00
 
 
 
@@ -3779,7 +3779,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    25423216.0000      INST. IB STORAGE =        5632.2871
     DELAY IB STORAGE =    49762780.0000      DELAY IB STORAGE =       16644.5254
 
-            TOTAL IN =   191026608.0000              TOTAL IN =       56815.4258
+            TOTAL IN =   191026592.0000              TOTAL IN =       56815.4219
 
           OUT:                                     OUT:
           ----                                     ----
@@ -3791,7 +3791,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   191026592.0000             TOTAL OUT =       56815.4922
 
-            IN - OUT =          16.0000              IN - OUT =      -6.6406E-02
+            IN - OUT =           0.0000              IN - OUT =      -7.0312E-02
 
  PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -4089,7 +4089,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    27465402.0000      INST. IB STORAGE =        5561.6934
     DELAY IB STORAGE =    55827064.0000      DELAY IB STORAGE =       16572.4609
 
-            TOTAL IN =   211728240.0000              TOTAL IN =       56573.8086
+            TOTAL IN =   211728256.0000              TOTAL IN =       56573.8047
 
           OUT:                                     OUT:
           ----                                     ----
@@ -4101,7 +4101,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   211728224.0000             TOTAL OUT =       56573.9023
 
-            IN - OUT =          16.0000              IN - OUT =      -9.3750E-02
+            IN - OUT =          32.0000              IN - OUT =      -9.7656E-02
 
  PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -5013,7 +5013,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    33473562.0000      INST. IB STORAGE =        5417.6289
     DELAY IB STORAGE =    73828256.0000      DELAY IB STORAGE =       16294.1543
 
-            TOTAL IN =   273319552.0000              TOTAL IN =       55882.6523
+            TOTAL IN =   273319552.0000              TOTAL IN =       55882.6562
 
           OUT:                                     OUT:
           ----                                     ----
@@ -5025,7 +5025,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   273319584.0000             TOTAL OUT =       55882.7422
 
-            IN - OUT =         -32.0000              IN - OUT =      -8.9844E-02
+            IN - OUT =         -32.0000              IN - OUT =      -8.5938E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -5321,7 +5321,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    35445020.0000      INST. IB STORAGE =        5379.4990
     DELAY IB STORAGE =    79757576.0000      DELAY IB STORAGE =       16192.9395
 
-            TOTAL IN =   293685056.0000              TOTAL IN =       55661.9219
+            TOTAL IN =   293685088.0000              TOTAL IN =       55661.9219
 
           OUT:                                     OUT:
           ----                                     ----
@@ -5333,9 +5333,9 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   293685088.0000             TOTAL OUT =       55662.0312
 
-            IN - OUT =         -32.0000              IN - OUT =          -0.1094
+            IN - OUT =           0.0000              IN - OUT =          -0.1094
 
- PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
+ PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =          -0.00
 
 
 
@@ -5629,7 +5629,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    37402628.0000      INST. IB STORAGE =        5342.1987
     DELAY IB STORAGE =    85649976.0000      DELAY IB STORAGE =       16091.5537
 
-            TOTAL IN =   313970912.0000              TOTAL IN =       55445.5820
+            TOTAL IN =   313970880.0000              TOTAL IN =       55445.5859
 
           OUT:                                     OUT:
           ----                                     ----
@@ -5641,7 +5641,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   313970944.0000             TOTAL OUT =       55445.6484
 
-            IN - OUT =         -32.0000              IN - OUT =      -6.6406E-02
+            IN - OUT =         -64.0000              IN - OUT =      -6.2500E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -6245,7 +6245,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    41278504.0000      INST. IB STORAGE =        5272.5044
     DELAY IB STORAGE =    97322816.0000      DELAY IB STORAGE =       15885.7871
 
-            TOTAL IN =   354309632.0000              TOTAL IN =       55024.9648
+            TOTAL IN =   354309600.0000              TOTAL IN =       55024.9688
 
           OUT:                                     OUT:
           ----                                     ----
@@ -6257,7 +6257,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   354309664.0000             TOTAL OUT =       55025.0234
 
-            IN - OUT =         -32.0000              IN - OUT =      -5.8594E-02
+            IN - OUT =         -64.0000              IN - OUT =      -5.4688E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -6861,7 +6861,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    45103244.0000      INST. IB STORAGE =        5203.3330
     DELAY IB STORAGE =   108846600.0000      DELAY IB STORAGE =       15682.1621
 
-            TOTAL IN =   394347136.0000              TOTAL IN =       54619.3281
+            TOTAL IN =   394347104.0000              TOTAL IN =       54619.3281
 
           OUT:                                     OUT:
           ----                                     ----
@@ -6873,7 +6873,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   394347200.0000             TOTAL OUT =       54619.4531
 
-            IN - OUT =         -64.0000              IN - OUT =          -0.1250
+            IN - OUT =         -96.0000              IN - OUT =          -0.1250
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -7169,7 +7169,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    46996792.0000      INST. IB STORAGE =        5168.8164
     DELAY IB STORAGE =   114552800.0000      DELAY IB STORAGE =       15581.1953
 
-            TOTAL IN =   414256288.0000              TOTAL IN =       54421.8711
+            TOTAL IN =   414256256.0000              TOTAL IN =       54421.8711
 
           OUT:                                     OUT:
           ----                                     ----
@@ -7181,7 +7181,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   414256352.0000             TOTAL OUT =       54421.9453
 
-            IN - OUT =         -64.0000              IN - OUT =      -7.4219E-02
+            IN - OUT =         -96.0000              IN - OUT =      -7.4219E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -7477,7 +7477,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    48877912.0000      INST. IB STORAGE =        5135.1533
     DELAY IB STORAGE =   120222088.0000      DELAY IB STORAGE =       15480.0654
 
-            TOTAL IN =   434094016.0000              TOTAL IN =       54227.7305
+            TOTAL IN =   434093984.0000              TOTAL IN =       54227.7305
 
           OUT:                                     OUT:
           ----                                     ----
@@ -7489,7 +7489,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   434094080.0000             TOTAL OUT =       54227.7930
 
-            IN - OUT =         -64.0000              IN - OUT =      -6.2500E-02
+            IN - OUT =         -96.0000              IN - OUT =      -6.2500E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -7785,7 +7785,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    50746944.0000      INST. IB STORAGE =        5103.4878
     DELAY IB STORAGE =   125854656.0000      DELAY IB STORAGE =       15379.1426
 
-            TOTAL IN =   453861504.0000              TOTAL IN =       54036.7812
+            TOTAL IN =   453861504.0000              TOTAL IN =       54036.7734
 
           OUT:                                     OUT:
           ----                                     ----
@@ -7797,7 +7797,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   453861632.0000             TOTAL OUT =       54036.8750
 
-            IN - OUT =        -128.0000              IN - OUT =      -9.3750E-02
+            IN - OUT =        -128.0000              IN - OUT =          -0.1016
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -8091,7 +8091,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    52604856.0000      INST. IB STORAGE =        5073.8657
     DELAY IB STORAGE =   131450304.0000      DELAY IB STORAGE =       15277.9746
 
-            TOTAL IN =   473560000.0000              TOTAL IN =       53849.0273
+            TOTAL IN =   473559968.0000              TOTAL IN =       53849.0312
 
           OUT:                                     OUT:
           ----                                     ----
@@ -8103,7 +8103,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   473560064.0000             TOTAL OUT =       53849.0781
 
-            IN - OUT =         -64.0000              IN - OUT =      -5.0781E-02
+            IN - OUT =         -96.0000              IN - OUT =      -4.6875E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -8397,7 +8397,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    54452428.0000      INST. IB STORAGE =        5046.0322
     DELAY IB STORAGE =   137008848.0000      DELAY IB STORAGE =       15176.2041
 
-            TOTAL IN =   493190528.0000              TOTAL IN =       53664.2422
+            TOTAL IN =   493190464.0000              TOTAL IN =       53664.2422
 
           OUT:                                     OUT:
           ----                                     ----
@@ -8409,7 +8409,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   493190592.0000             TOTAL OUT =       53664.3320
 
-            IN - OUT =         -64.0000              IN - OUT =      -8.9844E-02
+            IN - OUT =        -128.0000              IN - OUT =      -8.9844E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -8705,7 +8705,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    56289656.0000      INST. IB STORAGE =        5017.7334
     DELAY IB STORAGE =   142530416.0000      DELAY IB STORAGE =       15075.0156
 
-            TOTAL IN =   512754144.0000              TOTAL IN =       53482.4688
+            TOTAL IN =   512754176.0000              TOTAL IN =       53482.4688
 
           OUT:                                     OUT:
           ----                                     ----
@@ -8717,7 +8717,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   512754304.0000             TOTAL OUT =       53482.5625
 
-            IN - OUT =        -160.0000              IN - OUT =      -9.3750E-02
+            IN - OUT =        -128.0000              IN - OUT =      -9.3750E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -9011,7 +9011,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    58116916.0000      INST. IB STORAGE =        4991.5615
     DELAY IB STORAGE =   148015200.0000      DELAY IB STORAGE =       14974.5361
 
-            TOTAL IN =   532252064.0000              TOTAL IN =       53303.6484
+            TOTAL IN =   532252096.0000              TOTAL IN =       53303.6484
 
           OUT:                                     OUT:
           ----                                     ----
@@ -9023,7 +9023,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   532252224.0000             TOTAL OUT =       53303.6953
 
-            IN - OUT =        -160.0000              IN - OUT =      -4.6875E-02
+            IN - OUT =        -128.0000              IN - OUT =      -4.6875E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -9317,7 +9317,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    59935316.0000      INST. IB STORAGE =        4968.7930
     DELAY IB STORAGE =   153462992.0000      DELAY IB STORAGE =       14872.3525
 
-            TOTAL IN =   551685248.0000              TOTAL IN =       53127.6172
+            TOTAL IN =   551685312.0000              TOTAL IN =       53127.6172
 
           OUT:                                     OUT:
           ----                                     ----
@@ -9329,7 +9329,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   551685376.0000             TOTAL OUT =       53127.6836
 
-            IN - OUT =        -128.0000              IN - OUT =      -6.6406E-02
+            IN - OUT =         -64.0000              IN - OUT =      -6.6406E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -9931,7 +9931,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    63553296.0000      INST. IB STORAGE =        4944.3359
     DELAY IB STORAGE =   164245808.0000      DELAY IB STORAGE =       14664.4004
 
-            TOTAL IN =   590362432.0000              TOTAL IN =       52787.3594
+            TOTAL IN =   590362496.0000              TOTAL IN =       52787.3594
 
           OUT:                                     OUT:
           ----                                     ----
@@ -9943,7 +9943,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   590362624.0000             TOTAL OUT =       52787.4336
 
-            IN - OUT =        -192.0000              IN - OUT =      -7.4219E-02
+            IN - OUT =        -128.0000              IN - OUT =      -7.4219E-02
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -10237,7 +10237,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
     INST. IB STORAGE =    65361816.0000      INST. IB STORAGE =        4957.3745
     DELAY IB STORAGE =   169578176.0000      DELAY IB STORAGE =       14552.9678
 
-            TOTAL IN =   609609984.0000              TOTAL IN =       52625.4961
+            TOTAL IN =   609610048.0000              TOTAL IN =       52625.4961
 
           OUT:                                     OUT:
           ----                                     ----
@@ -10249,7 +10249,7 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
 
            TOTAL OUT =   609610240.0000             TOTAL OUT =       52625.6641
 
-            IN - OUT =        -256.0000              IN - OUT =          -0.1680
+            IN - OUT =        -192.0000              IN - OUT =          -0.1680
 
  PERCENT DISCREPANCY =          -0.00     PERCENT DISCREPANCY =          -0.00
 
@@ -10278,6 +10278,6 @@ SUB7 -- SUBSIDENCE PACKAGE, VERSION 7, 03/31/2006 INPUT READ FROM UNIT 19
   --------|--------------------------------------------------------|--------------------------------------------------------|
  TOTALS:    0.16958E+09   -0.16958E+09     16.000        0.94352E-05     14553.        -14553.        0.78125E-02    0.53683E-04
 
- Run end date and time (yyyy/mm/dd hh:mm:ss): 2013/07/31 13:35:32
- Elapsed run time:  4.669 Seconds
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2017/02/02 12:58:47
+ Elapsed run time:  1.778 Seconds
 

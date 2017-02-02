@@ -1,6 +1,6 @@
                                   MODFLOW-2005     
       U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
-                            VERSION 1.11.00 8/8/2013
+                            VERSION 1.12.00 2/3/2017
 
  LIST FILE: testsfr2_tab.lst
                          UNIT   12
@@ -123,8 +123,8 @@
         111.       111.       110.       110.       110.       110.       109.       109.       109.       109.       108.    
         108.       108.       108.       107.       107.       107.       107.       106.       106.       106.       106.    
         105.       105.       105.       105.       104.       104.       104.       104.       103.       103.       103.    
-        103.       102.       102.       102.       102.       101.       101.       101.       101.      100.0      100.0    
-       100.0    
+        103.       102.       102.       102.       102.       101.       101.       101.       101.       100.       100.    
+        100.    
    2    125.       124.       124.       124.       124.       123.       123.       123.       123.       122.       122.    
         122.       122.       121.       121.       121.       121.       120.       120.       120.       120.       119.    
         119.       119.       119.       118.       118.       118.       118.       117.       117.       117.       117.    
@@ -133,8 +133,8 @@
         111.       111.       110.       110.       110.       110.       109.       109.       109.       109.       108.    
         108.       108.       108.       107.       107.       107.       107.       106.       106.       106.       106.    
         105.       105.       105.       105.       104.       104.       104.       104.       103.       103.       103.    
-        103.       102.       102.       102.       102.       101.       101.       101.       101.      100.0      100.0    
-       100.0    
+        103.       102.       102.       102.       102.       101.       101.       101.       101.       100.       100.    
+        100.    
    3    125.       124.       124.       124.       124.       123.       123.       123.       123.       122.       122.    
         122.       122.       121.       121.       121.       121.       120.       120.       120.       120.       119.    
         119.       119.       119.       118.       118.       118.       118.       117.       117.       117.       117.    
@@ -143,8 +143,8 @@
         111.       111.       110.       110.       110.       110.       109.       109.       109.       109.       108.    
         108.       108.       108.       107.       107.       107.       107.       106.       106.       106.       106.    
         105.       105.       105.       105.       104.       104.       104.       104.       103.       103.       103.    
-        103.       102.       102.       102.       102.       101.       101.       101.       101.      100.0      100.0    
-       100.0    
+        103.       102.       102.       102.       102.       101.       101.       101.       101.       100.       100.    
+        100.    
    4    125.       124.       124.       124.       124.       123.       123.       123.       123.       122.       122.    
         122.       122.       121.       121.       121.       121.       120.       120.       120.       120.       119.    
         119.       119.       119.       118.       118.       118.       118.       117.       117.       117.       117.    
@@ -153,8 +153,8 @@
         111.       111.       110.       110.       110.       110.       109.       109.       109.       109.       108.    
         108.       108.       108.       107.       107.       107.       107.       106.       106.       106.       106.    
         105.       105.       105.       105.       104.       104.       104.       104.       103.       103.       103.    
-        103.       102.       102.       102.       102.       101.       101.       101.       101.      100.0      100.0    
-       100.0    
+        103.       102.       102.       102.       102.       101.       101.       101.       101.       100.       100.    
+        100.    
    5    125.       124.       124.       124.       124.       123.       123.       123.       123.       122.       122.    
         122.       122.       121.       121.       121.       121.       120.       120.       120.       120.       119.    
         119.       119.       119.       118.       118.       118.       118.       117.       117.       117.       117.    
@@ -163,8 +163,8 @@
         111.       111.       110.       110.       110.       110.       109.       109.       109.       109.       108.    
         108.       108.       108.       107.       107.       107.       107.       106.       106.       106.       106.    
         105.       105.       105.       105.       104.       104.       104.       104.       103.       103.       103.    
-        103.       102.       102.       102.       102.       101.       101.       101.       101.      100.0      100.0    
-       100.0    
+        103.       102.       102.       102.       102.       101.       101.       101.       101.       100.       100.    
+        100.    
    6    125.       124.       124.       124.       124.       123.       123.       123.       123.       122.       122.    
         122.       122.       121.       121.       121.       121.       120.       120.       120.       120.       119.    
         119.       119.       119.       118.       118.       118.       118.       117.       117.       117.       117.    
@@ -173,8 +173,8 @@
         111.       111.       110.       110.       110.       110.       109.       109.       109.       109.       108.    
         108.       108.       108.       107.       107.       107.       107.       106.       106.       106.       106.    
         105.       105.       105.       105.       104.       104.       104.       104.       103.       103.       103.    
-        103.       102.       102.       102.       102.       101.       101.       101.       101.      100.0      100.0    
-       100.0    
+        103.       102.       102.       102.       102.       101.       101.       101.       101.       100.       100.    
+        100.    
    7    125.       124.       124.       124.       124.       123.       123.       123.       123.       122.       122.    
         122.       122.       121.       121.       121.       121.       120.       120.       120.       120.       119.    
         119.       119.       119.       118.       118.       118.       118.       117.       117.       117.       117.    
@@ -183,8 +183,8 @@
         111.       111.       110.       110.       110.       110.       109.       109.       109.       109.       108.    
         108.       108.       108.       107.       107.       107.       107.       106.       106.       106.       106.    
         105.       105.       105.       105.       104.       104.       104.       104.       103.       103.       103.    
-        103.       102.       102.       102.       102.       101.       101.       101.       101.      100.0      100.0    
-       100.0    
+        103.       102.       102.       102.       102.       101.       101.       101.       101.       100.       100.    
+        100.    
 
    MODEL LAYER BOTTOM EL. =   0.00000     FOR LAYER   1
 
@@ -325,7 +325,7 @@
 
      0 GHB parameters
 
- SFR7 -- STREAMFLOW ROUTING PACKAGE, VERSION 1.0.7, 2013-01-15
+ SFR7 -- STREAMFLOW ROUTING PACKAGE, VERSION 1.0.8, 2017-02-01
          INPUT READ FROM UNIT  45
  # SFR2 Package input file for hypothetical test simulation
  # Test of SFR2 Package; revised October 1, 2011
@@ -333,8 +333,9 @@
  # Stress period inflow rates are now specified in testsfr2_tab.tab TRANSROUTE
  No named parameters
 
- No named parameters
-          1 Specifed inflow files will be read with a maximum of         50 row entries per file
+          1 Specified inflow files will be read with a maximum of         50 row entries per file
+
+ END PROCESSING SFR2 OPTIONS
 
 
  NUMBER OF STREAM REACHES IS  100
@@ -889,7 +890,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  10 STRESS PERIOD   1
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    10 STRESS PERIOD   1
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -1240,7 +1241,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD   1
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD   1
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -1632,7 +1633,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD   2
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD   2
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -1939,7 +1940,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD   3
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD   3
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -2246,7 +2247,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD   4
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD   4
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -2565,7 +2566,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD   5
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD   5
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -2957,7 +2958,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD   6
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD   6
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -3264,7 +3265,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD   7
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD   7
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -3571,7 +3572,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD   8
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD   8
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -3878,7 +3879,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD   9
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD   9
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -4197,7 +4198,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  10
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  10
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -4589,7 +4590,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  11
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  11
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -4896,7 +4897,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  12
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  12
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -5203,7 +5204,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  13
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  13
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -5510,7 +5511,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  14
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  14
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -5829,7 +5830,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  15
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  15
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -6221,7 +6222,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  16
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  16
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -6528,7 +6529,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  17
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  17
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -6835,7 +6836,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  18
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  18
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -7142,7 +7143,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  19
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  19
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -7461,7 +7462,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  20
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  20
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -7853,7 +7854,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  21
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  21
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -8160,7 +8161,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  22
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  22
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -8467,7 +8468,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  23
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  23
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -8774,7 +8775,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  24
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  24
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -9093,7 +9094,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  25
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  25
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -9485,7 +9486,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  26
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  26
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -9792,7 +9793,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  27
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  27
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -10099,7 +10100,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  28
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  28
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -10406,7 +10407,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  29
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  29
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -10725,7 +10726,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  30
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  30
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -11117,7 +11118,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  31
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  31
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -11424,7 +11425,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  32
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  32
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -11731,7 +11732,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  33
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  33
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -12038,7 +12039,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  34
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  34
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -12357,7 +12358,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  35
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  35
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -12749,7 +12750,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  36
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  36
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -13056,7 +13057,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  37
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  37
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -13363,7 +13364,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  38
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  38
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -13670,7 +13671,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  39
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  39
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -13989,7 +13990,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  40
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  40
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -14381,7 +14382,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  41
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  41
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -14688,7 +14689,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  42
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  42
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -14995,7 +14996,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  43
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  43
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -15302,7 +15303,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  44
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  44
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -15621,7 +15622,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  45
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  45
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -16013,7 +16014,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  46
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  46
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -16320,7 +16321,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  47
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  47
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -16627,7 +16628,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  48
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  48
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -16934,7 +16935,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  49
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  49
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -17253,7 +17254,7 @@ FROM FILE UNIT NUMBER     55
 
 
 1
-  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP  30 STRESS PERIOD  50
+  VOLUMETRIC BUDGET FOR UNSATURATED ZONE BENEATH STREAMS AT END OF TIME STEP    30 STRESS PERIOD  50
   ------------------------------------------------------------------------------------------------
 
     CUMULATIVE VOLUMES             L**3    RATES FOR THIS TIME STEP         L**3/T
@@ -17401,6 +17402,6 @@ FROM FILE UNIT NUMBER     55
          TOTAL TIME 1.29600E+08 2.16000E+06  36000.      1500.0      4.1068    
 1
 
- Run end date and time (yyyy/mm/dd hh:mm:ss): 2013/07/31 13:35:28
- Elapsed run time: 46.460 Seconds
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2017/02/02 12:58:45
+ Elapsed run time: 31.589 Seconds
 

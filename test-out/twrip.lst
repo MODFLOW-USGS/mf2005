@@ -1,6 +1,6 @@
                                   MODFLOW-2005     
       U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
-                            VERSION 1.11.00 8/8/2013
+                            VERSION 1.12.00 2/3/2017
 
  LIST FILE: twrip.lst
                          UNIT    2
@@ -218,7 +218,7 @@
                 LAYER:   3    MULTIPLIER ARRAY: NONE    ZONE ARRAY: ALL
 
  PARAMETER NAME:VKCB1        TYPE:VKCB   CLUSTERS:   1
- Parameter value from package file is:   1.00000    
+ Parameter value from package file is:    1.0000    
                 LAYER:   1    MULTIPLIER ARRAY: MULT1    ZONE ARRAY: ALL
 
  PARAMETER NAME:VKCB2        TYPE:VKCB   CLUSTERS:   1
@@ -233,7 +233,7 @@
 
     HYD. COND. ALONG ROWS =  1.000000E-03 FOR LAYER   1
 
-      VERTICAL HYD. COND. =  1.000000     FOR LAYER   1
+      VERTICAL HYD. COND. =   1.00000     FOR LAYER   1
 
  QUASI3D VERT. HYD. COND. FOR LAYER   1 WILL BE DEFINED BY PARAMETERS
  (PRINT FLAG=   0)
@@ -251,7 +251,7 @@
 
     HYD. COND. ALONG ROWS =  1.000000E-04 FOR LAYER   2
 
-      VERTICAL HYD. COND. =  1.000000     FOR LAYER   2
+      VERTICAL HYD. COND. =   1.00000     FOR LAYER   2
 
  QUASI3D VERT. HYD. COND. FOR LAYER   2 WILL BE DEFINED BY PARAMETERS
  (PRINT FLAG=   0)
@@ -269,7 +269,7 @@
 
     HYD. COND. ALONG ROWS =  2.000000E-04 FOR LAYER   3
 
-      VERTICAL HYD. COND. =  1.000000     FOR LAYER   3
+      VERTICAL HYD. COND. =   1.00000     FOR LAYER   3
 
  WEL -- WELL PACKAGE, VERSION 7, 5/2/2005 INPUT READ FROM UNIT   12
           1 Named Parameters             12 List entries
@@ -279,7 +279,7 @@
      1 Well parameters
 
  PARAMETER NAME:WELL1        TYPE:Q   
- Parameter value from package file is:   1.00000    
+ Parameter value from package file is:    1.0000    
    NUMBER OF ENTRIES:     12
 
  WELL NO.  LAYER   ROW   COL   STRESS FACTOR         
@@ -305,13 +305,13 @@
      1 Drain parameters
 
  PARAMETER NAME:DRN1         TYPE:DRN 
- Parameter value from package file is:   1.00000    
+ Parameter value from package file is:    1.0000    
    NUMBER OF ENTRIES:      2
 
  DRAIN NO.  LAYER   ROW   COL     DRAIN EL.  STRESS FACTOR         
  ------------------------------------------------------------------
-      1      1      8      2       0.000          1.0000    
-      2      1      8      3       0.000          1.0000    
+      1      1      8      2       0.000           1.000    
+      2      1      8      3       0.000           1.000    
 
  RCH -- RECHARGE PACKAGE, VERSION 7, 5/2/2005 INPUT READ FROM UNIT   18
      2 Named Parameters     
@@ -338,7 +338,7 @@
           SOLUTION BY THE STRONGLY IMPLICIT PROCEDURE
           -------------------------------------------
  MAXIMUM ITERATIONS ALLOWED FOR CLOSURE =       50
-                 ACCELERATION PARAMETER =    1.00000    
+                 ACCELERATION PARAMETER =     1.0000    
       HEAD CHANGE CRITERION FOR CLOSURE =    0.10000E-02
       SIP HEAD CHANGE PRINTOUT INTERVAL =        1
 
@@ -381,19 +381,19 @@
 
  DRAIN NO.  LAYER   ROW   COL     DRAIN EL.  CONDUCTANCE         
  ----------------------------------------------------------------
-      1      1      8      4      10.000          1.0000    
-      2      1      8      5       20.00          1.0000    
-      3      1      8      6       30.00          1.0000    
-      4      1      8      7       50.00          1.0000    
-      5      1      8      8       70.00          1.0000    
-      6      1      8      9       90.00          1.0000    
-      7      1      8     10      100.00          1.0000    
+      1      1      8      4       10.00           1.000    
+      2      1      8      5       20.00           1.000    
+      3      1      8      6       30.00           1.000    
+      4      1      8      7       50.00           1.000    
+      5      1      8      8       70.00           1.000    
+      6      1      8      9       90.00           1.000    
+      7      1      8     10       100.0           1.000    
 
  Parameter:  DRN1
  DRAIN NO.  LAYER   ROW   COL     DRAIN EL.  CONDUCTANCE         
  ----------------------------------------------------------------
-      8      1      8      2       0.000          1.0000    
-      9      1      8      3       0.000          1.0000    
+      8      1      8      2       0.000           1.000    
+      9      1      8      3       0.000           1.000    
 
       9 DRAINS
 
@@ -630,11 +630,11 @@
          TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    1
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
-   TIME STEP LENGTH  86400.      1440.0      24.000     1.00000     2.73785E-03
- STRESS PERIOD TIME  86400.      1440.0      24.000     1.00000     2.73785E-03
-         TOTAL TIME  86400.      1440.0      24.000     1.00000     2.73785E-03
+   TIME STEP LENGTH  86400.      1440.0      24.000      1.0000     2.73785E-03
+ STRESS PERIOD TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
+         TOTAL TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
 1
 
- Run end date and time (yyyy/mm/dd hh:mm:ss): 2013/07/31 13:35:33
- Elapsed run time:  0.064 Seconds
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2017/02/02 12:58:48
+ Elapsed run time:  0.016 Seconds
 

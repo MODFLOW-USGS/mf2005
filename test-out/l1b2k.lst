@@ -1,6 +1,6 @@
                                   MODFLOW-2005     
       U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
-                            VERSION 1.11.00 8/8/2013
+                            VERSION 1.12.00 2/3/2017
 
  LIST FILE: l1b2k.lst
                          UNIT    1
@@ -59,15 +59,15 @@
 
                                DELR
  READING ON UNIT   14 WITH FORMAT: (10F13.0)           
-   250.00      1000.00      1000.00      1000.00      1000.00      1000.00       500.00       500.00       500.00       500.00    
-   500.00      1000.00      1000.00      1000.00      1000.00      1000.00       250.00    
+   250.00       1000.0       1000.0       1000.0       1000.0       1000.0       500.00       500.00       500.00       500.00    
+   500.00       1000.0       1000.0       1000.0       1000.0       1000.0       250.00    
 
 
 
                                DELC
  READING ON UNIT   14 WITH FORMAT: (10F13.0)           
-   250.00      1000.00      1000.00      1000.00      1000.00      1000.00       500.00       500.00       500.00       500.00    
-   500.00      1000.00      1000.00      1000.00      1000.00      1000.00       250.00    
+   250.00       1000.0       1000.0       1000.0       1000.0       1000.0       500.00       500.00       500.00       500.00    
+   500.00       1000.0       1000.0       1000.0       1000.0       1000.0       250.00    
 
  TOP ELEVATION OF LAYER 1 =   500.000    
 
@@ -84,7 +84,7 @@
 
  STRESS PERIOD     LENGTH       TIME STEPS     MULTIPLIER FOR DELT    SS FLAG
  ----------------------------------------------------------------------------
-        1        1.0000000          1                    1.000         SS
+        1         1.000000          1                    1.000         SS
 
  STEADY-STATE SIMULATION
 
@@ -250,7 +250,7 @@
          4            3          0 -- HARMONIC    
          5            3          0 -- HARMONIC    
 
- COLUMN TO ROW ANISOTROPY =  1.000000    
+ COLUMN TO ROW ANISOTROPY =   1.00000    
 
     HYD. COND. ALONG ROWS =   30.0000     FOR LAYER   1
 
@@ -421,14 +421,14 @@
   0 AUXILIARY VARIABLES FOR SPECIFIED-HEAD CELLS WILL
   BE DEFINED BY FHB FOR USE BY OTHER PACKAGES.
  TIMES FOR SPECIFIED-FLOW AND HEAD VALUES WILL BE READ ON UNIT  21 AND
- MULTIPLIED BY  1.0000    .
+ MULTIPLIED BY   1.000    .
      1 TIMES FOR SPECIFYING FLOWS AND HEADS:
                        1
                  ------------
                     0.000    
 
- CELL INDICIES AND SPECIFIED-HEAD VALUES WILL BE READ ON UNIT  21. HEAD VALUES
- WILL BE MULTIPLIED BY  1.0000    .
+ CELL INDICES AND SPECIFIED-HEAD VALUES WILL BE READ ON UNIT  21. HEAD VALUES
+ WILL BE MULTIPLIED BY   1.000    .
  LAYER  ROW  COL IAUX             HEAD VALUES
  -------------------------------
     1    1    1   64   160.0    
@@ -764,7 +764,7 @@
  NEWTON ITERATION METHOD FOR COMPUTING LAKE STAGE DURING STEADY-STATE STRESS PERIODS HAS BEEN MODIFIED:
  SPECIFIED THETA OF  0.000 WILL BE AUTOMATICALLY CHANGED TO 1.0 FOR ALL STEADY STATE STRESS PERIODS.
  MAXIMUM NUMBER OF STEADY-STATE ITERATIONS (NSSITR) =    50
- CLOSURE CRITERIA FOR STEADY-STATE LAKE STAGE (SSCNCR) = 1.000000E-03
+ CLOSURE CRITERIA FOR STEADY-STATE LAKE STAGE (SSCNCR) =  1.000000E-03
 
 
 
@@ -776,20 +776,20 @@
           SOLUTION BY THE STRONGLY IMPLICIT PROCEDURE
           -------------------------------------------
  MAXIMUM ITERATIONS ALLOWED FOR CLOSURE =      500
-                 ACCELERATION PARAMETER =    1.00000    
+                 ACCELERATION PARAMETER =     1.0000    
       HEAD CHANGE CRITERION FOR CLOSURE =    0.10000E-03
       SIP HEAD CHANGE PRINTOUT INTERVAL =        1
 
      CALCULATE ITERATION PARAMETERS FROM MODEL CALCULATED WSEED
 1
-                            STRESS PERIOD NO.    1, LENGTH =  1.0000000    
+                            STRESS PERIOD NO.    1, LENGTH =   1.000000    
                             -----------------------------------------------
 
                               NUMBER OF TIME STEPS =     1
 
                                MULTIPLIER FOR DELT =     1.000
 
-                            INITIAL TIME STEP SIZE =  1.0000000    
+                            INITIAL TIME STEP SIZE =   1.000000    
 
 
 
@@ -898,15 +898,15 @@
 
 
 
-   LAKEBED LEAKANCE ARRAY =  1.000000E-01 FOR LAYER   1
+   LAKEBED LEAKANCE ARRAY =  0.100000     FOR LAYER   1
 
-   LAKEBED LEAKANCE ARRAY =  1.000000E-01 FOR LAYER   2
+   LAKEBED LEAKANCE ARRAY =  0.100000     FOR LAYER   2
 
-   LAKEBED LEAKANCE ARRAY =  1.000000E-01 FOR LAYER   3
+   LAKEBED LEAKANCE ARRAY =  0.100000     FOR LAYER   3
 
-   LAKEBED LEAKANCE ARRAY =  1.000000E-01 FOR LAYER   4
+   LAKEBED LEAKANCE ARRAY =  0.100000     FOR LAYER   4
 
-   LAKEBED LEAKANCE ARRAY =  1.000000E-01 FOR LAYER   5
+   LAKEBED LEAKANCE ARRAY =  0.100000     FOR LAYER   5
 
        LOCATIONS, LAKE #, INTERFACE TYPE FOR GRID CELLS ADJACENT TO LAKES:
      -----------------------------------------------------------------------
@@ -1562,11 +1562,11 @@
          TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    1
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
-   TIME STEP LENGTH  86400.      1440.0      24.000     1.00000     2.73785E-03
- STRESS PERIOD TIME  86400.      1440.0      24.000     1.00000     2.73785E-03
-         TOTAL TIME  86400.      1440.0      24.000     1.00000     2.73785E-03
+   TIME STEP LENGTH  86400.      1440.0      24.000      1.0000     2.73785E-03
+ STRESS PERIOD TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
+         TOTAL TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
 1
 
- Run end date and time (yyyy/mm/dd hh:mm:ss): 2013/07/31 13:33:54
- Elapsed run time:  0.171 Seconds
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2017/02/02 12:53:09
+ Elapsed run time:  0.109 Seconds
 

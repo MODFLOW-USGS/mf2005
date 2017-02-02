@@ -1,6 +1,6 @@
                                   MODFLOW-2005     
       U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
-                            VERSION 1.11.00 8/8/2013
+                            VERSION 1.12.00 2/3/2017
 
  LIST FILE: swtex4.lst
                          UNIT   92
@@ -79,7 +79,7 @@
 
    MODEL LAYER BOTTOM EL. =   50.0000     FOR LAYER   1
 
-   MODEL LAYER BOTTOM EL. = -100.0000     FOR LAYER   2
+   MODEL LAYER BOTTOM EL. =  -100.000     FOR LAYER   2
 
    MODEL LAYER BOTTOM EL. =  -150.000     FOR LAYER   3
 
@@ -88,7 +88,7 @@
 
  STRESS PERIOD     LENGTH       TIME STEPS     MULTIPLIER FOR DELT    SS FLAG
  ----------------------------------------------------------------------------
-        1        1.0000000          1                    1.000         SS
+        1         1.000000          1                    1.000         SS
         2         21915.00         60                    1.000         TR
         3         21915.00         60                    1.000         TR
 
@@ -215,13 +215,13 @@
 
  AQUIFER HEAD WILL BE SET TO   0.0000     AT ALL NO-FLOW NODES (IBOUND=0).
 
-             INITIAL HEAD =  100.0000     FOR LAYER   1
+             INITIAL HEAD =   100.000     FOR LAYER   1
 
-             INITIAL HEAD =  100.0000     FOR LAYER   2
+             INITIAL HEAD =   100.000     FOR LAYER   2
 
-             INITIAL HEAD =  100.0000     FOR LAYER   3
+             INITIAL HEAD =   100.000     FOR LAYER   3
 
-             INITIAL HEAD =  100.0000     FOR LAYER   4
+             INITIAL HEAD =   100.000     FOR LAYER   4
 
  OUTPUT CONTROL IS SPECIFIED ONLY AT TIME STEPS FOR WHICH OUTPUT IS DESIRED
  HEAD PRINT FORMAT CODE IS   5    DRAWDOWN PRINT FORMAT CODE IS   5
@@ -302,7 +302,7 @@
           SOLUTION BY THE STRONGLY IMPLICIT PROCEDURE
           -------------------------------------------
  MAXIMUM ITERATIONS ALLOWED FOR CLOSURE =      400
-                 ACCELERATION PARAMETER =    1.00000    
+                 ACCELERATION PARAMETER =     1.0000    
       HEAD CHANGE CRITERION FOR CLOSURE =    0.10000E-03
       SIP HEAD CHANGE PRINTOUT INTERVAL =        1
 
@@ -403,14 +403,14 @@ CHNGE IN GEOSTATIC STRS PRINT FORMAT IS NUMBER   4
        CENTER ELEVATION PRINT FORMAT IS NUMBER   3
            UNIT FOR SAVING CENTER ELEVATION IS  81
 1
-                            STRESS PERIOD NO.    1, LENGTH =  1.0000000    
+                            STRESS PERIOD NO.    1, LENGTH =   1.000000    
                             -----------------------------------------------
 
                               NUMBER OF TIME STEPS =     1
 
                                MULTIPLIER FOR DELT =     1.000
 
-                            INITIAL TIME STEP SIZE =  1.0000000    
+                            INITIAL TIME STEP SIZE =   1.000000    
 
  WELL NO.  LAYER   ROW   COL   STRESS RATE         IFACE           
  ------------------------------------------------------------------
@@ -751,9 +751,9 @@ CHNGE IN GEOSTATIC STRS PRINT FORMAT IS NUMBER   4
          TIME SUMMARY AT END OF TIME STEP    1 IN STRESS PERIOD    1
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
-   TIME STEP LENGTH  86400.      1440.0      24.000     1.00000     2.73785E-03
- STRESS PERIOD TIME  86400.      1440.0      24.000     1.00000     2.73785E-03
-         TOTAL TIME  86400.      1440.0      24.000     1.00000     2.73785E-03
+   TIME STEP LENGTH  86400.      1440.0      24.000      1.0000     2.73785E-03
+ STRESS PERIOD TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
+         TOTAL TIME  86400.      1440.0      24.000      1.0000     2.73785E-03
 1
 1
                             STRESS PERIOD NO.    2, LENGTH =   21915.00    
@@ -3213,7 +3213,7 @@ CHNGE IN GEOSTATIC STRS PRINT FORMAT IS NUMBER   4
          TIME SUMMARY AT END OF TIME STEP   60 IN STRESS PERIOD    2
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
-   TIME STEP LENGTH 3.15576E+07 5.25960E+05  8766.0      365.25     1.00000    
+   TIME STEP LENGTH 3.15576E+07 5.25960E+05  8766.0      365.25      1.0000    
  STRESS PERIOD TIME 1.89346E+09 3.15576E+07 5.25960E+05  21915.      60.000    
          TOTAL TIME 1.89354E+09 3.15590E+07 5.25984E+05  21916.      60.003    
 1
@@ -5694,9 +5694,9 @@ CHNGE IN GEOSTATIC STRS PRINT FORMAT IS NUMBER   4
                WELLS =  3155758592.0000                 WELLS =           0.0000
     INTERBED STORAGE =     3927205.5000      INTERBED STORAGE =          86.0347
 
-           TOTAL OUT =  5093275648.0000             TOTAL OUT =       40176.3477
+           TOTAL OUT =  5093275136.0000             TOTAL OUT =       40176.3477
 
-            IN - OUT =      123904.0000              IN - OUT =           2.5977
+            IN - OUT =      124416.0000              IN - OUT =           2.5977
 
  PERCENT DISCREPANCY =           0.00     PERCENT DISCREPANCY =           0.01
 
@@ -5708,7 +5708,7 @@ CHNGE IN GEOSTATIC STRS PRINT FORMAT IS NUMBER   4
          TIME SUMMARY AT END OF TIME STEP   60 IN STRESS PERIOD    3
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
-   TIME STEP LENGTH 3.15576E+07 5.25960E+05  8766.0      365.25     1.00000    
+   TIME STEP LENGTH 3.15576E+07 5.25960E+05  8766.0      365.25      1.0000    
  STRESS PERIOD TIME 1.89346E+09 3.15576E+07 5.25960E+05  21915.      60.000    
          TOTAL TIME 3.78700E+09 6.31166E+07 1.05194E+06  43831.      120.00    
 1
@@ -6468,6 +6468,6 @@ CHNGE IN GEOSTATIC STRS PRINT FORMAT IS NUMBER   4
   19   0.00  0.00  0.00  0.00  0.00  0.00  3.86  2.75  2.74  3.85  0.00  0.00  0.00  0.00  0.00
   20   0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00
 
- Run end date and time (yyyy/mm/dd hh:mm:ss): 2013/07/31 13:35:45
- Elapsed run time:  0.868 Seconds
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2017/02/02 12:57:40
+ Elapsed run time:  0.951 Seconds
 

@@ -1,6 +1,6 @@
                                   MODFLOW-2005     
       U.S. GEOLOGICAL SURVEY MODULAR FINITE-DIFFERENCE GROUND-WATER FLOW MODEL
-                            VERSION 1.11.00 8/8/2013
+                            VERSION 1.12.00 2/3/2017
 
  LIST FILE: ibs2k.lst
                          UNIT    1
@@ -43,9 +43,9 @@
   Confining bed flag for each layer:
    0   0
 
-                     DELR =  1000.000    
+                     DELR =   1000.00    
 
-                     DELC =  1000.000    
+                     DELC =   1000.00    
 
  TOP ELEVATION OF LAYER 1 =  -500.000    
 
@@ -56,9 +56,9 @@
 
  STRESS PERIOD     LENGTH       TIME STEPS     MULTIPLIER FOR DELT    SS FLAG
  ----------------------------------------------------------------------------
-        1        1000.0000         10                    1.500         TR
-        2        1000.0000         10                    1.500         TR
-        3        1000.0000         10                    1.500         TR
+        1         1000.000         10                    1.500         TR
+        2         1000.000         10                    1.500         TR
+        3         1000.000         10                    1.500         TR
 
  TRANSIENT SIMULATION
 
@@ -200,17 +200,17 @@
          1            0          0 -- HARMONIC    
          2            0          0 -- HARMONIC    
 
- COLUMN TO ROW ANISOTROPY =  1.000000    
+ COLUMN TO ROW ANISOTROPY =   1.00000    
 
      PRIMARY STORAGE COEF =  1.000000E-04 FOR LAYER   1
 
-     TRANSMIS. ALONG ROWS =  1000.000     FOR LAYER   1
+     TRANSMIS. ALONG ROWS =   1000.00     FOR LAYER   1
 
  VERT HYD COND /THICKNESS =  1.000000E-06 FOR LAYER   1
 
      PRIMARY STORAGE COEF =  1.000000E-04 FOR LAYER   2
 
-     TRANSMIS. ALONG ROWS =  1000.000     FOR LAYER   2
+     TRANSMIS. ALONG ROWS =   1000.00     FOR LAYER   2
 0IBS -- INTERBED STORAGE PACKAGE, VERSION 7, 12/27/2005 INPUT READ FROM UNIT 13
 0***NOTICE*** AS OF SEPTEMBER 2003, THE INTERBED STORAGE PACKAGE HAS 
 BEEN SUPERSEDED BY THE SUBSIDENCE AND AQUIFER-SYSTEM COMPACTION PACKAGE.
@@ -225,25 +225,25 @@ BEEN SUPERSEDED BY THE SUBSIDENCE AND AQUIFER-SYSTEM COMPACTION PACKAGE.
             1           2           3           4           5           6           7           8           9          10
            11          12
  ........................................................................................................................
-   1    5.000       6.000       7.000       8.000       9.000      10.000       11.00       12.00       13.00       14.00    
+   1    5.000       6.000       7.000       8.000       9.000       10.00       11.00       12.00       13.00       14.00    
         15.00       16.00    
-   2    5.000       6.000       7.000       8.000       9.000      10.000       11.00       12.00       13.00       14.00    
+   2    5.000       6.000       7.000       8.000       9.000       10.00       11.00       12.00       13.00       14.00    
         15.00       16.00    
-   3    5.000       6.000       7.000       8.000       9.000      10.000       11.00       12.00       13.00       14.00    
+   3    5.000       6.000       7.000       8.000       9.000       10.00       11.00       12.00       13.00       14.00    
         15.00       16.00    
-   4    5.000       6.000       7.000       8.000       9.000      10.000       11.00       12.00       13.00       14.00    
+   4    5.000       6.000       7.000       8.000       9.000       10.00       11.00       12.00       13.00       14.00    
         15.00       16.00    
-   5    5.000       6.000       7.000       8.000       9.000      10.000       11.00       12.00       13.00       14.00    
+   5    5.000       6.000       7.000       8.000       9.000       10.00       11.00       12.00       13.00       14.00    
         15.00       16.00    
-   6    5.000       6.000       7.000       8.000       9.000      10.000       11.00       12.00       13.00       14.00    
+   6    5.000       6.000       7.000       8.000       9.000       10.00       11.00       12.00       13.00       14.00    
         15.00       16.00    
-   7    5.000       6.000       7.000       8.000       9.000      10.000       11.00       12.00       13.00       14.00    
+   7    5.000       6.000       7.000       8.000       9.000       10.00       11.00       12.00       13.00       14.00    
         15.00       16.00    
-   8    5.000       6.000       7.000       8.000       9.000      10.000       11.00       12.00       13.00       14.00    
+   8    5.000       6.000       7.000       8.000       9.000       10.00       11.00       12.00       13.00       14.00    
         15.00       16.00    
-   9    5.000       6.000       7.000       8.000       9.000      10.000       11.00       12.00       13.00       14.00    
+   9    5.000       6.000       7.000       8.000       9.000       10.00       11.00       12.00       13.00       14.00    
         15.00       16.00    
-  10    5.000       6.000       7.000       8.000       9.000      10.000       11.00       12.00       13.00       14.00    
+  10    5.000       6.000       7.000       8.000       9.000       10.00       11.00       12.00       13.00       14.00    
         15.00       16.00    
 
  ELASTIC INTERBED STORAGE =  1.000000E-04 FOR LAYER   1
@@ -260,13 +260,13 @@ BEEN SUPERSEDED BY THE SUBSIDENCE AND AQUIFER-SYSTEM COMPACTION PACKAGE.
           SOLUTION BY THE STRONGLY IMPLICIT PROCEDURE
           -------------------------------------------
  MAXIMUM ITERATIONS ALLOWED FOR CLOSURE =       50
-                 ACCELERATION PARAMETER =    1.00000    
+                 ACCELERATION PARAMETER =     1.0000    
       HEAD CHANGE CRITERION FOR CLOSURE =    0.10000E-04
       SIP HEAD CHANGE PRINTOUT INTERVAL =        1
 
      CALCULATE ITERATION PARAMETERS FROM MODEL CALCULATED WSEED
 1
-                            STRESS PERIOD NO.    1, LENGTH =  1000.0000    
+                            STRESS PERIOD NO.    1, LENGTH =   1000.000    
                             -----------------------------------------------
 
                               NUMBER OF TIME STEPS =    10
@@ -539,8 +539,8 @@ BEEN SUPERSEDED BY THE SUBSIDENCE AND AQUIFER-SYSTEM COMPACTION PACKAGE.
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
    TIME STEP LENGTH 2.93082E+07 4.88471E+05  8141.2      339.22     0.92872    
- STRESS PERIOD TIME 8.64000E+07 1.44000E+06  24000.     1000.00      2.7379    
-         TOTAL TIME 8.64000E+07 1.44000E+06  24000.     1000.00      2.7379    
+ STRESS PERIOD TIME 8.64000E+07 1.44000E+06  24000.      1000.0      2.7379    
+         TOTAL TIME 8.64000E+07 1.44000E+06  24000.      1000.0      2.7379    
 1
 1
         SUBSIDENCE IN LAYER   1 AT END OF TIME STEP  10 IN STRESS PERIOD    1
@@ -570,7 +570,7 @@ BEEN SUPERSEDED BY THE SUBSIDENCE AND AQUIFER-SYSTEM COMPACTION PACKAGE.
   10    0.000      5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03
        5.5000E-03   0.000    
 1
-                            STRESS PERIOD NO.    2, LENGTH =  1000.0000    
+                            STRESS PERIOD NO.    2, LENGTH =   1000.000    
                             -----------------------------------------------
 
                               NUMBER OF TIME STEPS =    10
@@ -812,7 +812,7 @@ BEEN SUPERSEDED BY THE SUBSIDENCE AND AQUIFER-SYSTEM COMPACTION PACKAGE.
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
    TIME STEP LENGTH 2.93082E+07 4.88471E+05  8141.2      339.22     0.92872    
- STRESS PERIOD TIME 8.64000E+07 1.44000E+06  24000.     1000.00      2.7379    
+ STRESS PERIOD TIME 8.64000E+07 1.44000E+06  24000.      1000.0      2.7379    
          TOTAL TIME 1.72800E+08 2.88000E+06  48000.      2000.0      5.4757    
 1
 1
@@ -843,7 +843,7 @@ BEEN SUPERSEDED BY THE SUBSIDENCE AND AQUIFER-SYSTEM COMPACTION PACKAGE.
   10    0.000      5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03
        5.5000E-03   0.000    
 1
-                            STRESS PERIOD NO.    3, LENGTH =  1000.0000    
+                            STRESS PERIOD NO.    3, LENGTH =   1000.000    
                             -----------------------------------------------
 
                               NUMBER OF TIME STEPS =    10
@@ -1085,7 +1085,7 @@ BEEN SUPERSEDED BY THE SUBSIDENCE AND AQUIFER-SYSTEM COMPACTION PACKAGE.
                     SECONDS     MINUTES      HOURS       DAYS        YEARS
                     -----------------------------------------------------------
    TIME STEP LENGTH 2.93082E+07 4.88471E+05  8141.2      339.22     0.92872    
- STRESS PERIOD TIME 8.64000E+07 1.44000E+06  24000.     1000.00      2.7379    
+ STRESS PERIOD TIME 8.64000E+07 1.44000E+06  24000.      1000.0      2.7379    
          TOTAL TIME 2.59200E+08 4.32000E+06  72000.      3000.0      8.2136    
 1
 1
@@ -1116,6 +1116,6 @@ BEEN SUPERSEDED BY THE SUBSIDENCE AND AQUIFER-SYSTEM COMPACTION PACKAGE.
   10    0.000      5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03  5.5000E-03
        5.5000E-03   0.000    
 
- Run end date and time (yyyy/mm/dd hh:mm:ss): 2013/07/31 13:33:53
- Elapsed run time:  0.037 Seconds
+ Run end date and time (yyyy/mm/dd hh:mm:ss): 2017/02/02 12:53:08
+ Elapsed run time:  0.032 Seconds
 
