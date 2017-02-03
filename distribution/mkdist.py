@@ -8,6 +8,7 @@ import shutil
 import zipfile
 import shlex
 
+# Set flag for Windows or unix distribution
 unix = False
 
 def zipdir(dirname, zipname):
@@ -24,7 +25,8 @@ def zipdir(dirname, zipname):
 
 destpath = '.'
 version = 'MF2005.1_12'
-if unix: version += 'u'
+if unix:
+    version += 'u'
 dest = os.path.join(destpath, version)
 
 print(2*'\n')
