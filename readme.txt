@@ -37,7 +37,7 @@ A. DISTRIBUTION FILE
 
 The following distribution file is for use on personal computers:
 
-         mf2005v1_12_00.zip
+         MF2005.1_12.zip
 
 The distribution file contains:
 
@@ -49,7 +49,7 @@ The distribution file is a compressed zip file. The following directory
 structure is incorporated in the zip file:
 
  |
- |--mf2005.1_12
+ |--MF2005.1_12
     |--bin            ; MODFLOW-2005 executables for personal computers
     |--doc            ; Documentation files
        |MF2005convert ; Documentation of package conversions for MODFLOW-2005
@@ -59,14 +59,11 @@ structure is incorporated in the zip file:
     |--test-run       ; Input data to run verification tests
     |--test-out       ; Output files from running the tests
 
-The installation instructions assume that the files have been extracted from
-the zip file into directory C:\WRDAPP, maintaining the above structure.
-
-It is recommended that no user files are kept in the mf2005.1_12 directory
-structure.  If you do plan to put your own files in the mf2005.1_12
+It is recommended that no user files are kept in the MF2005.1_12 directory
+structure.  If you do plan to put your own files in the MF2005.1_12
 directory structure, do so only by creating additional subdirectories.
 
-Included in directory mf2005.1_12\doc are various documentation files.  Some
+Included in directory MF2005.1_12\doc are various documentation files.  Some
 of them are Portable Document Format (PDF) files. The PDF files are readable
 and printable on various computer platforms using Acrobat Reader from Adobe.
 The Acrobat Reader is freely available from the following World Wide Web
@@ -77,14 +74,14 @@ site:
 B. INSTALLING
 
 To make the executable versions of MODFLOW-2005 accessible from any
-directory, the directory containing the executables (mf2005.1_12\bin)
+directory, the directory containing the executables (MF2005.1_12\bin)
 should be included in the PATH environment variable.  Also, if a
 prior release of MODFLOW-2005 is installed on your system, the
 directory containing the executables for the prior release should
 be removed from the PATH environment variable.
 
 As an alternative, the executable files, mf2005.exe and mf2005dbl.exe,
-in the mf2005.1_12\bin directory can be copied into a directory already
+in the MF2005.1_12\bin directory can be copied into a directory already
 included in the PATH environment variable.
 
        HOW TO ADD TO THE PATH ENVIRONMENT VARIABLE
@@ -94,7 +91,7 @@ From the Start menu, select Control Panel.  Select System and Security,
 and within that screen choose the System option. Then select the Advanced
 System Settings option.  Select the Environment Variables button.  In the
 System Variables pane, select the PATH variable followed by Edit.  In the
-Edit window, add ";C:\WRDAPP\mf2005.1_12\bin" to the end of the Variable
+Edit window, add ";C:\WRDAPP\MF2005.1_12\bin" to the end of the Variable
 Value (ensure that the current contents of the User Value are not deleted)
 and click OK. Click OK in the Environment Variables window and then exit
 from the control panel windows.  Initiate and use a new Windows Command
@@ -108,7 +105,7 @@ System & Maintenance followed by System.  Choose the Advanced System
 option.  Select the Settings Task, and then select the Environmental
 Variables button.  In the System Variables pane, select the PATH
 variable followed by Edit.  In the Edit window, add
-";C:\WRDAPP\mf2005.1_12\bin" to the end of the Variable Value (ensure
+";C:\WRDAPP\MF2005.1_12\bin" to the end of the Variable Value (ensure
 that the current contents of the User Value are not deleted) and click
 OK. Click OK in the Environment Variables window and then exit from the
 control panel windows.  Initiate and use a new Windows Command window.
@@ -139,7 +136,7 @@ computers have adequate memory to run most double precision simulations, are
 nearly as fast performing double precision as mixed precision, and have
 abundant disk space for storing binary output files.
 
-After the executable files in the mf2005.1_12\bin directory are installed
+After the executable files in the MF2005.1_12\bin directory are installed
 in a directory that is included in your PATH, MODFLOW-2005 is initiated in
 a Windows Command-Prompt window using one of the following commands:
 
