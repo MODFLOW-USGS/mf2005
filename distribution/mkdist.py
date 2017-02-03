@@ -8,7 +8,7 @@ import shutil
 import zipfile
 import shlex
 
-unix = True
+unix = False
 
 def zipdir(dirname, zipname):
     print('zipping directory: {}'.format(dirname))

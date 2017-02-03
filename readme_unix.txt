@@ -22,7 +22,7 @@ official release; these changes may substantially affect users.
 
 The following file is provided for Unix computers:
 
-         MF2005.1_12.zip
+         MF2005.1_12u.zip
 
 The zipped file contains numerous individual files.  Source files will
 be in subdirectory src, and documentation files will be in subdirectory doc.
