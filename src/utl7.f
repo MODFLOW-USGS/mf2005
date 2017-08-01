@@ -262,7 +262,7 @@ C          TEST IF OPEN\CLOSE FILE EXISTS
          INQUIRE( FILE=FNAME, EXIST=LVAL )
          IF ( LVAL.EQV. .FALSE. ) THEN
            WRITE ( IOUT,112 ) LINE(ISTART:ISTOP)
-  112      FORMAT('Specified OPEN/CLOSE file ',(A),' does not exit')
+  112      FORMAT('Specified OPEN/CLOSE file ',(A),' does not exist')
            CALL USTOP('Specified OPEN/CLOSE file does not exit')
          END IF
          CALL URWORD(LINE,LLOC,ISTART,ISTOP,1,N,R,IOUT,IN)
@@ -316,13 +316,8 @@ C4------Setup indices for reading the list
       NREAD1=NREAD2-NAUX
       N=NLIST+LSTBEG-1
 C
-C4A-----READ THE LIST -- BINARY OR ASCII
-      IF (IBINARY.NE.0) THEN
-        READ(IN) ((RLIST(JJ,II),JJ=1,NREAD2),II=LSTBEG,N)
-      ELSE
 C
 C5------CHECK FOR AUXILIARY VARIABLE "AUXSFAC" AND STORE LOCATION 
-C5------READ AN ASCII LIST
         JAUX = 0
         DO 230 JJ=1,NAUX
           IF(CAUX(JJ) .EQ. "AUXSFAC") THEN
@@ -330,14 +325,19 @@ C5------READ AN ASCII LIST
             EXIT
           END IF
 230     CONTINUE
+C5A-----READ THE LIST -- BINARY OR ASCII
+      IF (IBINARY.NE.0) THEN
+        READ(IN) ((RLIST(JJ,II),JJ=1,NREAD2),II=LSTBEG,N)
+C5B-----READ AN ASCII LIST
+      ELSE
 C          
         DO 240 II=LSTBEG,N
 C
-C5A-----Read a line into the buffer.  (The first line has already been
-C5A-----read to scan for EXTERNAL and SFAC records.)
+C5C-----Read a line into the buffer.  (The first line has already been
+C5C-----read to scan for EXTERNAL and SFAC records.)
         IF(II.NE.LSTBEG) READ(IN,'(A)') LINE
 C
-C5B-----Get the non-optional values from the line.
+C5D-----Get the non-optional values from the line.
         IF(IFREFM.EQ.0) THEN
           READ(LINE,'(3I10,9F10.0)') K,I,J,(RLIST(JJ,II),JJ=4,NREAD1)
            LLOC=10*NREAD1+1
