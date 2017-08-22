@@ -2,8 +2,10 @@
 # Test of SFR2 Package; revised October 1, 2011
 # Example for using keyword options
 # Stress period inflow rates are now specified in testsfr2_tab.tab TRANSROUTE
+OPTIONS
 REACHINPUT
 TABFILES 1 50
+END
  100  1  0  0  1.0  0.00001 -1 0 5 20 5 20  0  1  0.7 0.0001     Item 1: NSTRM NSS NSFRPAR NPARSEG CONST DLEAK ISTCB1 ISTCB2 {ISFROPT} {NSTRAIL} {ISUZN} {NSFRSETS}
        1      4       1      1      1   200.0 
        1      4       2      1      2   200.0 
