@@ -656,21 +656,28 @@ C        SPECIFICATIONS:
 C     ------------------------------------------------------------------
       USE GLOBAL,    ONLY: RHS,HCOF,HNEW,HOLD,IBOUND,DELR,DELC,
      1                     NCOL,NROW,ISSFLG
-      USE GWFBASMODULE, ONLY: DELT
+      USE GWFBASMODULE, ONLY: DELT,HDRY
       USE SIPMODULE,    ONLY: V,HCLOSE
       USE GWFSUBMODULE ,ONLY: RNB,LN,LDN,HC,SCE,SCV,DHP,DH,DHC,
      1                        NZ,DZ,DP,
      1                        BB,NDF,NNDF,AC1,AC2,ITMIN,NN,
      1                        NDB,NNDB,NMZ
       LOGICAL ICHK
+      INTEGER :: IITER
       REAL, PARAMETER :: ZERO = 0.0
       REAL, PARAMETER :: ONE = 1.0
-      REAL, PARAMETER :: SMALL = SQRT(EPSILON(ONE))
+      REAL, PARAMETER :: TEN = 10.0
+      !REAL, PARAMETER :: SMALL = TEN * SQRT(EPSILON(ONE))
+      REAL :: SMALL 
+      REAL :: TDH
       REAL :: DHMAX
 C
       DATA ICHK/.FALSE./
 C     ------------------------------------------------------------------
       CALL SGWF2SUB7PNT(IGRID)
+C
+C
+      SMALL = TEN * SQRT(EPSILON(ONE))
 C
 C0------SKIP CALCULATIONS IF THIS IS A STEADY-STATE STRESS PERIOD.
       IF(ISSFLG(KPER).EQ.1) RETURN
@@ -734,22 +741,30 @@ C5------INITIALIZE VARIABLES FOR DIRECT SOLUTION OF HEAD IN INTERBED
        SSE=DP(NZONE,2)
        SSV=DP(NZONE,3)
        NEND=LOC3+NN-1
+       IITER = 0
        DHMAX = ZERO
 C-------ITERATE DIRECT SOLUTION OF HEAD IN INTERBED. ITERATION IS
 C-------PERFORMED TO ENSURE STRAGE COEFFICIENT FOR THE CURRENT 
 C-------OUTER ITERATION IS CONSISTENT WITH THE INTERBED HEAD.       
        DBITER: DO
+         IITER = IITER + 1
 C
-C-------ASSEMBLE COEFFICIENTS FOR DIRECT SOLUTION OF HEAD IN INTERBED     
-       CALL SGWF2SUB7A(HAQ,TLED,CI,SSE,SSV,DZZ,
+C-------ASSEMBLE COEFFICIENTS FOR DIRECT SOLUTION OF HEAD IN INTERBED  
+!       CALL SGWF2SUB7A(HAQ,TLED,CI,SSE,SSV,DZZ,
+!     1      DH(LOC3:NEND),DHP(LOC3:NEND),DHC(LOC3:NEND),NN)
+       CALL SGWF2SUB7AB(HAQ,TLED,CI,SSE,SSV,DZZ,
      1      DH(LOC3:NEND),DHP(LOC3:NEND),DHC(LOC3:NEND),NN)
 C
 C6------SOLVE FOR HEAD CHANGES IN STRING USING GAUSSIAN ELIMINATION.
 C6------ADD CHANGES TO HEAD VALUES TO GET HEAD AT CURRENT ITERATION.
        CALL SGWF2SUB7S(NN)
+!       CALL SGWF2SUB7SB(NN)
        DO 200 N=1,NN
-       DH(LOC3+N-1)=DH(LOC3+N-1)+BB(N)*AC2
-       IF (ABS(BB(N)).GT.ABS(DHMAX)) DHMAX = BB(N)
+!       DH(LOC3+N-1)=DH(LOC3+N-1)+BB(N)*AC2
+!       IF (ABS(BB(N)).GT.ABS(DHMAX)) DHMAX = BB(N)
+         TDH = BB(N) - DH(LOC3+N-1)
+         IF (ABS(TDH).GT.ABS(DHMAX)) DHMAX = TDH
+         DH(LOC3+N-1)=DH(LOC3+N-1) + TDH*AC2
   200  CONTINUE
 C
 C-------TERMINATE IF AC2 IS NOT ONE
@@ -765,29 +780,36 @@ C-------RESET DHMAX
 C
 C7------CALCULATE STORAGE CHANGE IN INTERBEDS
   205  AREA=DELR(IC)*DELC(IR)
-       STRGS=ZERO
-       L1=LOC3
-       L2=LOC3+NN-1
-       DO 210 LOC4=L1,L2
-       HHOLD=DHP(LOC4)
-       HHNEW=DH(LOC4)
-       HHC=DHC(LOC4)
+!       STRGS=ZERO
+!       L1=LOC3
+!       L2=LOC3+NN-1
+!       DO 210 LOC4=L1,L2
+!       HHOLD=DHP(LOC4)
+!       HHNEW=DH(LOC4)
+!       HHC=DHC(LOC4)
+!C
+!C8------GET STORAGE CAPACITIES AT BEGINNING AND END OF TIME STEP.
+!       SBGN=DP(NZ(LOC2),2)
+!       SEND=SBGN
+!       IF(HHNEW.LT.HHC) SEND=DP(NZ(LOC2),3)
+!C
+!C9------CALCULATE VOLUME CHANGE IN INTERBED STORAGE FOR TIME STEP.
+!       STR1=(HHC*(SEND-SBGN)+SBGN*HHOLD-
+!     1                 SEND*HHNEW)*DZ(LOC2)*RNB(LOC2)*2.
+!       IF(LOC4.EQ.L2) STR1=STR1*.5
+!       STRGS=STRGS+STR1
+!  210  CONTINUE
+!       RATES=STRGS*AREA*TLED
+!C
+!C10-----ADD APPROPRIATE TERMS TO RHS AND HCOF
+!       RHS(IC,IR,K)=RHS(IC,IR,K)-RATES
 C
-C8------GET STORAGE CAPACITIES AT BEGINNING AND END OF TIME STEP.
-       SBGN=DP(NZ(LOC2),2)
-       SEND=SBGN
-       IF(HHNEW.LT.HHC) SEND=DP(NZ(LOC2),3)
-C
-C9------CALCULATE VOLUME CHANGE IN INTERBED STORAGE FOR TIME STEP.
-       STR1=(HHC*(SEND-SBGN)+SBGN*HHOLD-
-     1                 SEND*HHNEW)*DZ(LOC2)*RNB(LOC2)*2.
-       IF(LOC4.EQ.L2) STR1=STR1*.5
-       STRGS=STRGS+STR1
-  210  CONTINUE
-       RATES=STRGS*AREA*TLED
-C
-C10-----ADD APPROPRIATE TERMS TO RHS AND HCOF
-       RHS(IC,IR,K)=RHS(IC,IR,K)-RATES
+C-------CALCULATE EXCHANGE OF GROUNDWATER WITH DELAY INTERBEDS
+       HHNEW=DH(LOC3)
+       F = 2. * CI * AREA * RNB(LOC2) * 2.
+       HCOF(IC,IR,K)=HCOF(IC,IR,K)-F
+       RHS(IC,IR,K)=RHS(IC,IR,K)-F*HHNEW
+       
   410  CONTINUE
   420  CONTINUE
       ENDIF
@@ -1416,6 +1438,58 @@ C4------SET COEFFICIENTS FOR CELL BORDERING MIDPLANE OF INTERBED
 C5------RETURN
       RETURN
       END
+      SUBROUTINE SGWF2SUB7AB(HAQ,TLED,CI,SSE,SSV,DZ,DH,DHP,DHC,NN)
+C     ******************************************************************
+C        ASSEMBLE COEFFICIENTS FOR SOLVING FOR HEAD DISTRIBUTION
+C        IN ONE STRING OF CELLS REPRESENTING ONE-HALF OF A DOUBLY
+C        DRAINING INTERBED
+C     ******************************************************************
+C
+C        SPECIFICATIONS:
+C     ------------------------------------------------------------------
+      USE GWFSUBMODULE ,ONLY:A1,A2,BB
+      DIMENSION DH(NN),DHP(NN),DHC(NN)
+C     ------------------------------------------------------------------
+C
+C1------INITIALIZE
+C
+      CI2=CI*2.0
+      DS=DZ*TLED
+      NN1=NN-1
+C2------SET COEFFICIENTS FOR CELL BORDERING AQUIFER
+      SS=SSE
+      A2(1)=CI
+      HD=DH(1)
+      HC=DHC(1)
+      IF(HD.LT.HC) SS=SSV
+      A1(1)=-3.*CI-DS*SS
+      BB(1)=DS*(SSE*(HC-DHP(1))-HC*SS)-CI2*HAQ !-A1(1)*HD
+C3------SET COEFFICIENTS FOR INTERIOR CELLS
+      !BB(2)=-CI*HD
+      DO 10 N=2,NN1
+      SS=SSE
+      A2(N)=CI
+      HD=DH(N)
+      HC=DHC(N)
+      IF(HD.LT.HC) SS=SSV
+      !CHN=-CI*HD
+      !BB(N-1)=BB(N-1)+CHN
+      !BB(N+1)=CHN
+      A1(N)=-CI2-DS*SS
+      BB(N)=DS*(SSE*(HC-DHP(N))-HC*SS) !-A1(N)*HD
+   10 CONTINUE
+C4------SET COEFFICIENTS FOR CELL BORDERING MIDPLANE OF INTERBED
+      SS=SSE
+      A2(NN)=CI
+      HD=DH(NN)
+      HC=DHC(NN)
+      !BB(NN1)=BB(NN1)-CI*HD
+      IF(HD.LT.HC) SS=SSV
+      A1(NN)=-CI-0.5*DS*SS
+      BB(NN)=DS*0.5*(SSE*(HC-DHP(NN))-HC*SS) !-A1(NN)*HD
+C5------RETURN
+      RETURN
+      END SUBROUTINE SGWF2SUB7AB
       SUBROUTINE SGWF2SUB7S(NN)
 C     ******************************************************************
 C        SOLVE SYSTEM OF EQUATIONS WITH A SYMMETRICAL TRI-DIAGONAL
@@ -1446,6 +1520,44 @@ C2------BACK SUBSTITE FOR SOLUTION
    40 CONTINUE
       RETURN
       END
+      SUBROUTINE SGWF2SUB7SB(NN)
+C     ******************************************************************
+C        SOLVE SYSTEM OF EQUATIONS WITH A SYMMETRICAL TRI-DIAGONAL
+C        COEFFICIENT MATRIX
+C     ******************************************************************
+C
+C        SPECIFICATIONS:
+C     ------------------------------------------------------------------
+      USE GWFSUBMODULE ,ONLY: A1,A2,BB
+      REAL :: D
+      REAL :: F
+      REAL :: C
+      REAL, PARAMETER :: ZERO = 0.
+      REAL, PARAMETER :: ONE = 1.
+C     ------------------------------------------------------------------
+C
+C-------INITIALIZE VARIABLES
+      NN1 = NN - 1
+C
+C1------DECOMPOSITION AND FORWARD SUBSTITUTION
+      !W(1) = ZERO
+      F = ONE / A1(1)
+      BB(1) = BB(1) * F
+      A2(1) = ZERO
+      DO N = 2, NN
+        C = A2(N)
+        A2(N) = C * F
+        D = A1(N) - C * A2(N)
+        F = ONE / D
+        BB(N) = (BB(N) - C * BB(N-1)) * F
+      END DO
+C
+C2------BACK SUBSTITUE FOR SOLUTION
+      DO N = NN1, 1, -1
+        BB(N) = BB(N) - A2(N+1) * BB(N+1)
+      END DO
+      RETURN
+      END SUBROUTINE SGWF2SUB7SB
       SUBROUTINE GWF2SUB72D1D(BUFF,NCOL,NROW,D,ND,LOC)
 C     ******************************************************************
 C     Move 2-D array into 1-D array

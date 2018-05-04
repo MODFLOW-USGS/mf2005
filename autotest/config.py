@@ -34,16 +34,16 @@ testpaths = [os.path.join('..', exdir),
 # Development version information
 srcdir = os.path.join('..', 'src')
 program = 'mf2005'
-version = '1.12.00'
+version = '1.13.00'
 target = os.path.join(testdir, program + '_' + version + exe_ext)
 target_dict[os.path.basename(target)] = target
 
 # Release version information
-url_release = ('http://water.usgs.gov/ogw/modflow/MODFLOW-2005_v1.11.00/'
-               'mf2005v1_11_00_unix.zip')
-dir_release = os.path.join(testdir, 'Unix')
+
+url_release = ('https://water.usgs.gov/ogw/modflow/MODFLOW-2005_v1.12.00/MF2005.1_12u.zip')
+dir_release = os.path.join(testdir, 'MF2005.1_12u')
 srcdir_release = os.path.join(dir_release, 'src')
-version_release = '1.11.00'
+version_release = '1.12.00'
 target_release = os.path.join(testdir, program + '_' + version_release +
                               exe_ext)
 target_dict[os.path.basename(target_release)] = target_release
