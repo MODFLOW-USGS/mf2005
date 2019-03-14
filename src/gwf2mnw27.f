@@ -2430,8 +2430,10 @@ C2-----IF CELL-BY-CELL FLOWS WILL BE SAVED AS A LIST, WRITE HEADER.
          NAUX=NMNWVL-30
 C-LFK         NAUX = 0   !!   Set to zero -- Change order to dump
 c         IF(IAUXSV.EQ.0) NAUX=0
+         ntotheader = 0
+         if (nmnw2.gt.0) ntotheader = ntotnod
          CALL UBDSV4(KSTP,KPER,TEXT,NAUX,MNWAUX,IWL2CB,NCOL,NROW,NLAY,
-     1          ntotnod,IOUT,DELT,PERTIM,TOTIM,IBOUND)
+     1          ntotheader,IOUT,DELT,PERTIM,TOTIM,IBOUND)
       END IF
 c  clear the buffer.
       buff=0.000000000
