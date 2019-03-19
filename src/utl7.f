@@ -224,6 +224,7 @@ C2------Check for and decode EXTERNAL and OPEN/CLOSE records.
       IBINARY=0
       READ(IN,'(A)') LINE
       SFAC=1.
+      JAUX=0
       LLOC=1
       CALL URWORD(LINE,LLOC,ISTART,ISTOP,1,I,R,IOUT,IN)
       IF(LINE(ISTART:ISTOP).EQ.'EXTERNAL') THEN
@@ -318,13 +319,12 @@ C4------Setup indices for reading the list
 C
 C
 C5------CHECK FOR AUXILIARY VARIABLE "AUXSFAC" AND STORE LOCATION 
-        JAUX = 0
-        DO 230 JJ=1,NAUX
-          IF(CAUX(JJ) .EQ. "AUXSFAC") THEN
-            JAUX=JJ+NREAD1
-            EXIT
-          END IF
-230     CONTINUE
+      DO JJ=1,NAUX
+        IF(CAUX(JJ) .EQ. "AUXSFAC") THEN
+          JAUX=JJ+NREAD1
+          EXIT
+        END IF
+      END DO
 C5A-----READ THE LIST -- BINARY OR ASCII
       IF (IBINARY.NE.0) THEN
         READ(IN) ((RLIST(JJ,II),JJ=1,NREAD2),II=LSTBEG,N)
@@ -375,7 +375,9 @@ C
 C6A------Scale fields ISCLOC1-ISCLOC2 by SFAC and AUXSFAC (if present)
       DO 204 ILOC=ISCLOC1,ISCLOC2
         RLIST(ILOC,II)=RLIST(ILOC,II)*SFAC
-        IF (JAUX .NE. 0) RLIST(ILOC,II)=RLIST(ILOC,II)*RLIST(JAUX,II)
+        IF (JAUX .NE. 0) THEN
+          RLIST(ILOC,II)=RLIST(ILOC,II)*RLIST(JAUX,II)
+        END IF
 204   CONTINUE
 C
 C6C-----Write the values that were read if IPRFLG is 1.
