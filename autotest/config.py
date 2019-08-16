@@ -1,5 +1,6 @@
 import os
 import platform
+import pymake
 
 # Autotest information
 testdir = 'temp'
@@ -39,8 +40,10 @@ target = os.path.join(testdir, program + '_' + version + exe_ext)
 target_dict[os.path.basename(target)] = target
 
 # Release version information
-
-url_release = ('https://water.usgs.gov/ogw/modflow/MODFLOW-2005_v1.12.00/MF2005.1_12u.zip')
+key_previous = 'mf2005'
+pd_previous = pymake.usgs_program_data.get_target(key=key_previous)
+# set url
+url_release = pd_previous.url
 dir_release = os.path.join(testdir, 'MF2005.1_12u')
 srcdir_release = os.path.join(dir_release, 'src')
 version_release = '1.12.00'

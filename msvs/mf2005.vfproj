@@ -77,7 +77,7 @@
 		<File RelativePath="..\src\gwf2sfr7.f"/>
 		<File RelativePath="..\src\gwf2str7.f"/>
 		<File RelativePath="..\src\gwf2sub7.f"/>
-		<File RelativePath="..\src\gwf2swi27.f"/>
+		<File RelativePath="..\src\gwf2swi27.fpp"/>
 		<File RelativePath="..\src\gwf2swr7.f"/>
 		<File RelativePath="..\src\gwf2swr7util.f"/>
 		<File RelativePath="..\src\gwf2swt7.f"/>
