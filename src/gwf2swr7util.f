@@ -2023,7 +2023,7 @@ C
 c-----------------------------------------------------------------------
       implicit none 
       integer n 
-      real*8 a(*),alu(*),w(n+1),droptol
+      doubleprecision a(*),alu(*),w(n+1),droptol
       integer ja(*),ia(n+1),jlu(*),ju(n),jw(2*n),lfil,iwk,ierr
 c----------------------------------------------------------------------*
 c                      *** ILUT preconditioner ***                     *
@@ -2046,7 +2046,7 @@ c           diagonal element). lfil must be .ge. 0.
 c           ** WARNING: THE MEANING OF LFIL HAS CHANGED WITH RESPECT TO
 c           EARLIER VERSIONS. 
 c
-c droptol = real*8. Sets the threshold for dropping small terms in the
+c droptol = doubleprecision. Sets the threshold for dropping small terms in the
 c           factorization. See below for details on dropping strategy.
 c
 c  
@@ -2109,7 +2109,7 @@ c (however, fill-in is then mpredictible).                             *
 c----------------------------------------------------------------------*
 c     locals
       integer ju0,k,j1,j2,j,ii,i,lenl,lenu,jj,jrow,jpos,len 
-      real*8 tnorm, t, abs, s, fact 
+      doubleprecision tnorm, t, abs, s, fact 
       if (lfil .lt. 0) goto 998
 c-----------------------------------------------------------------------
 c     initialize ju0 (points to next element to be added to alu,jlu)
@@ -2373,7 +2373,7 @@ c-----------------------------------------------------------------------
       end
 c-----------------------------------------------------------------------
 	subroutine lusol(n, y, x, alu, jlu, ju)
-        real*8 x(n), y(n), alu(*)
+        doubleprecision x(n), y(n), alu(*)
 	integer n, jlu(*), ju(*)
 c-----------------------------------------------------------------------
 c
@@ -2424,7 +2424,7 @@ c-----------------------------------------------------------------------
 	end
 c----------------------------------------------------------------------- 
         subroutine qsplit(a,ind,n,ncut)
-        real*8 a(n)
+        doubleprecision a(n)
         integer ind(n), n, ncut
 c-----------------------------------------------------------------------
 c     does a quick-sort split of a real array.
@@ -2436,7 +2436,7 @@ c     abs(a(i)) .le. abs(a(ncut)) for i .gt. ncut
 c
 c     ind(1:n) is an integer array which permuted in the same way as a(*).
 c-----------------------------------------------------------------------
-        real*8 tmp, abskey
+        doubleprecision tmp, abskey
         integer itmp, first, last
 c-----
         first = 1
