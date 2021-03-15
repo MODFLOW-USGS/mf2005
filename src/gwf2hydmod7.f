@@ -15,6 +15,7 @@ C  initial SE call in the AR subroutine.
         REAL,       SAVE,       POINTER                ::HYDNOH
         LOGICAL,    SAVE,       POINTER,DIMENSION(:)   ::IBHYDBAS
         LOGICAL,    SAVE,       POINTER,DIMENSION(:)   ::INTRPHYDBAS
+        CHARACTER(LEN=1), SAVE, POINTER, DIMENSION(:)  ::INTYPHYDBAS
         INTEGER,    SAVE,       POINTER,DIMENSION(:,:) ::JIKHYDBAS
         REAL,       SAVE,       POINTER,DIMENSION(:,:) ::HYDBASWT
         REAL,       SAVE,       POINTER,DIMENSION(:)   ::HYDBASSTRT
@@ -27,6 +28,7 @@ C  initial SE call in the AR subroutine.
           REAL,             POINTER                ::HYDNOH
           LOGICAL,          POINTER,DIMENSION(:)   ::IBHYDBAS
           LOGICAL,          POINTER,DIMENSION(:)   ::INTRPHYDBAS
+          CHARACTER(LEN=1), POINTER, DIMENSION(:)  ::INTYPHYDBAS
           INTEGER,          POINTER,DIMENSION(:,:) ::JIKHYDBAS
           REAL,             POINTER,DIMENSION(:,:) ::HYDBASWT
           REAL,             POINTER,DIMENSION(:)   ::HYDBASSTRT
@@ -117,7 +119,7 @@ C
 C1------IDENTIFY PROGRAM.
       WRITE(IOUT,1) IN
     1 FORMAT(1X,/1X,'HYD -- HYDROGRAPH DATA FOR BAS PACKAGE,',
-     1  ' VERSION 7, 07/14/2006',/
+     1  ' VERSION 7.1, 01/29/2016',/
      2  1X,'        INPUT READ FROM UNIT',I3)
 C
 C4------READ NUMBER OF HYDROGRAPHS AND UNIT FOR SAVING UNFORMATTED
@@ -165,6 +167,7 @@ C  ALLOCATE MEMORY FOR BAS HYDROGRAPH DATA
       IF(NHYDBAS.GT.0) THEN
         ALLOCATE(IBHYDBAS(NHYDBAS))
         ALLOCATE(INTRPHYDBAS(NHYDBAS))
+        ALLOCATE(INTYPHYDBAS(NHYDBAS))
         ALLOCATE(JIKHYDBAS(3,NHYDBAS))
         ALLOCATE(HYDBASWT(4,NHYDBAS))
         ALLOCATE(HYDBASSTRT(NHYDBAS))
@@ -172,6 +175,7 @@ C  ALLOCATE MEMORY FOR BAS HYDROGRAPH DATA
       ELSE
         ALLOCATE(IBHYDBAS(1))
         ALLOCATE(INTRPHYDBAS(1))
+        ALLOCATE(INTYPHYDBAS(1))
         ALLOCATE(JIKHYDBAS(3,1))
         ALLOCATE(HYDBASWT(4,1))
         ALLOCATE(HYDBASSTRT(1))
@@ -233,6 +237,12 @@ C  Not head or drawdown, so error.
 C
 C  Find the grid coordinates for the cell.
       CALL SGWF2HYD7GRDLOC(XL,YL,NR1,NC1,NR2,NC2,X1,X2,Y1,Y2)
+
+C
+C KEEP TRACK OF THE INTERPOLATION TYPE
+       INTYPHYDBAS(NHYDBAS) = INTYP
+
+
 C
 C  Check if interpolating between nodes.
       IF(INTYP.EQ.'C') THEN
@@ -254,15 +264,22 @@ C  Do not interpolate
          HYDBASWT(2,NHYDBAS)=ZERO
          HYDBASWT(3,NHYDBAS)=ZERO
          HYDBASWT(4,NHYDBAS)=ZERO
-      ELSE IF(INTYP.EQ.'I') THEN
-C
+      ELSE IF(INTYP.EQ.'I'.OR.INTYP.EQ.'H') THEN
+      
+C   
 C  Interpolate between cells
          INTRPHYDBAS(NHYDBAS)=.TRUE.
          CALL SGWF2HYD7MW(XL,YL,X1,X2,Y1,Y2,W1,W2,W3,W4)
-         IF(NR2.LT.2.OR.NR2.GT.NROW.OR.NC2.LT.1.OR.NC2.GT.(NCOL-1)) THEN
-            WRITE(IOUT,26) LINE
-            NHYDBAS=NHYDBAS-1
+        IF (INTYPHYDBAS(NHYDBAS).EQ.'I') THEN
+          IF(NR2.LT.1 .OR. NR2.GT.NROW .OR. NC2.LT.2 
+     &     .OR. NC2.GT.(NCOL-1)) THEN
+              WRITE(IOUT,27) LINE
+ 27           FORMAT(' Coordinates of at least one interpolation point ',
+     &        'for record are outside of the model grid',/,
+     &        ' Consider using type "C" or "H":',/,A80)
+              NHYDBAS=NHYDBAS-1
             GO TO 20
+           ENDIF
          ENDIF
          JIKHYDBAS(1,NHYDBAS)=NC2
          JIKHYDBAS(2,NHYDBAS)=NR2
@@ -274,8 +291,8 @@ C  Interpolate between cells
       ELSE
 C
 C  Interpolation coding error.
-         WRITE(IOUT,27) LINE
- 27      FORMAT(' Invalid interpolation type was found on the ',
+         WRITE(IOUT,28) LINE
+ 28      FORMAT(' Invalid interpolation type was found on the ',
      &   'following record:',/,A80)
          WRITE(IOUT,*) 'Hydrograph Record will be ignored.'
          NHYDBAS=NHYDBAS-1
@@ -415,7 +432,7 @@ C  Use cell value without interpolation
          IF(NR1.LT.1.OR.NR1.GT.NROW.OR.NC1.LT.1.OR.NC1.GT.NCOL) THEN
             WRITE(IOUT,26) LINE
  26         FORMAT(' Coordinates of the following record are ',
-     &           'outside of the model grid:',/,A80)
+     &      'outside of the model grid:',/,A80)
             WRITE(IOUT,*) 'Hydrograph Record will be ignored.'
             NHYDIBS=NHYDIBS-1
             GO TO 15
@@ -432,7 +449,9 @@ C  Interpolate value between nodes
          INTRPHYDIBS(NHYDIBS)=.TRUE.
          CALL SGWF2HYD7MW(XL,YL,X1,X2,Y1,Y2,W1,W2,W3,W4)
          IF(NR2.LT.2.OR.NR2.GT.NROW.OR.NC2.LT.1.OR.NC2.GT.NCOL-1) THEN
-            WRITE(IOUT,26) LINE
+            WRITE(IOUT,27) LINE
+ 27         FORMAT(' Coordinates of at least one interpolation point ',
+     &      'for record are outside of the model grid:',/,A80)
             NHYDIBS=NHYDIBS-1
             GO TO 15
          ENDIF
@@ -444,8 +463,8 @@ C  Interpolate value between nodes
          HYDIBSWT(3,NHYDIBS)=W3
          HYDIBSWT(4,NHYDIBS)=W4
       ELSE
-         WRITE(IOUT,27) LINE
- 27      FORMAT(' Invalid interpolation type was found on the ',
+         WRITE(IOUT,28) LINE
+ 28      FORMAT(' Invalid interpolation type was found on the ',
      &   'following hydrograph record:',/,A80)
          WRITE(IOUT,*) 'Hydrograph Record will be ignored.'
          NHYDIBS=NHYDIBS-1
@@ -590,7 +609,10 @@ C  Interpolate value between nodes
          INTRPHYDSUB(NHYDSUB)=.TRUE.
          CALL SGWF2HYD7MW(XL,YL,X1,X2,Y1,Y2,W1,W2,W3,W4)
          IF(NR2.LT.2.OR.NR2.GT.NROW.OR.NC2.LT.1.OR.NC2.GT.NCOL-1) THEN
-            WRITE(IOUT,26) LINE
+            WRITE(IOUT,27) LINE
+27         FORMAT(' Coordinates of at least one interpolation point ',
+     &     'for record are outside of the model grid:',/,A80)
+
             NHYDSUB=NHYDSUB-1
             GO TO 15
          ENDIF
@@ -602,8 +624,8 @@ C  Interpolate value between nodes
          HYDSUBWT(3,NHYDSUB)=W3
          HYDSUBWT(4,NHYDSUB)=W4
       ELSE
-         WRITE(IOUT,27) LINE
- 27      FORMAT(' Invalid interpolation type was found on the ',
+         WRITE(IOUT,28) LINE
+ 28      FORMAT(' Invalid interpolation type was found on the ',
      &   'following hydrograph record:',/,A80)
          WRITE(IOUT,*) 'Hydrograph Record will be ignored.'
          NHYDSUB=NHYDSUB-1
@@ -917,6 +939,8 @@ C
 C ------RETURN
       RETURN
       END
+      
+      
       SUBROUTINE GWF2HYD7BAS7SE(IHYDLOC,IGRID)
 C     ******************************************************************
 C     COMPUTE HYDROGRAPH RECORDS FOR BAS
@@ -957,19 +981,27 @@ C -----at or around hydrograph point.
 C
 C -----Check if hydrograph value is HEAD.
       IF(HYDBASARR(N).EQ.'HD') THEN
-         IF(IBHYDBAS(N) .AND. IBFACT.EQ.0) THEN
-            HYDVAL(N,IHYDLOC)=HYDNOH
-         ELSE
-            HYDVAL(N,IHYDLOC)=SHYD7WTAVG(NN)
+         IF (INTYPHYDBAS(N).EQ.'I') THEN
+            IF(IBHYDBAS(N) .AND. IBFACT.EQ.0) THEN
+               HYDVAL(N,IHYDLOC)=HYDNOH
+            ELSE
+               HYDVAL(N,IHYDLOC)=SHYD7WTAVG(NN)
+            ENDIF
+         ELSEIF (INTYPHYDBAS(N).EQ.'H') THEN
+            HYDVAL(N,IHYDLOC)=SHYD7WTAVGEDGE(NN)
          ENDIF
 C
 C -----Hydrograph value is DRAWDOWN if NOT HEAD
       ELSE
-         IF(IBHYDBAS(N) .AND. IBFACT.EQ.0) THEN
-            HYDVAL(N,IHYDLOC)=HYDNOH
-         ELSE
-            HYDVAL(N,IHYDLOC)=HYDBASSTRT(N) - SHYD7WTAVG(NN)
-         ENDIF
+         IF (INTYPHYDBAS(N).EQ.'I') THEN
+             IF(IBHYDBAS(N) .AND. IBFACT.EQ.0) THEN
+                HYDVAL(N,IHYDLOC)=HYDNOH
+             ELSE
+                HYDVAL(N,IHYDLOC)=HYDBASSTRT(N) - SHYD7WTAVG(NN)
+             ENDIF
+        ELSEIF (INTYPHYDBAS(N).EQ.'H') THEN
+            HYDVAL(N,IHYDLOC)=HYDBASSTRT(N) - SHYD7WTAVGEDGE(NN)
+        ENDIF
       ENDIF
    50 CONTINUE
 C
@@ -1338,7 +1370,8 @@ C     ------------------------------------------------------------------
       XCF=X2+DXF
       IF(XL.LE.X2) THEN
          NC1=N
-         IF(XL.LT.XC) THEN
+C ADDED CHECK FOR EDGES --> Only effects interpolation type 'H'
+         IF(XL.LT.XC .AND. N.GT.1) THEN
             NC2=N-1
             XX1=XCB
             XX2=XC
@@ -1370,7 +1403,7 @@ C     ------------------------------------------------------------------
       YCF=Y2+DYF
       IF(YL.LE.Y2) THEN
          NR1=N
-         IF(YL.LT.YC) THEN
+        IF(YL.LT.YC) THEN
             NR2=N+1
             YY1=YCB
             YY2=YC
@@ -1407,12 +1440,225 @@ C     ------------------------------------------------------------------
       W3=HYDBASWT(3,N)
       W4=HYDBASWT(4,N)
       HTOT=HNEW(J,I,K)*W1
-      if(W2.gt.0.)HTOT=HTOT+HNEW(J+1,I,K)*W2
-      if(W3.gt.0.)HTOT=HTOT+HNEW(J+1,I-1,K)*W3
-      if(W4.gt.0.)HTOT=HTOT+HNEW(J,I-1,K)*W4
+      HTOT=HTOT+HNEW(J+1,I,K)*W2
+      HTOT=HTOT+HNEW(J+1,I-1,K)*W3
+      HTOT=HTOT+HNEW(J,I-1,K)*W4
       SHYD7WTAVG=HTOT
       RETURN
       END
+      
+      FUNCTION SHYD7WTAVGEDGE(N)
+C     ******************************************************************
+C     COMPUTE WEIGHTED AVERAGE OF HEAD AT AN EDGE CELL
+C     ******************************************************************
+C
+C     SPECIFICATIONS:
+C     ------------------------------------------------------------------
+      USE GLOBAL,    ONLY: HNEW, IBOUND, NROW, NCOL
+      USE HYDBASMODULE, ONLY: JIKHYDBAS, HYDBASWT, HYDLBL
+      USE GWFBASMODULE, ONLY: HNOFLO, HDRY
+      DOUBLE PRECISION W1,W2,W3,W4,HTOT
+      DOUBLE PRECISION H1, H2, H3, H4, IB1, IB2, IB3, IB4
+      INTEGER HACT1, HACT2, HACT3, HACT4
+C     ------------------------------------------------------------------
+      J=JIKHYDBAS(1,N)
+      I=JIKHYDBAS(2,N)
+      K=JIKHYDBAS(3,N)
+      W1=HYDBASWT(1,N)
+      W2=HYDBASWT(2,N)
+      W3=HYDBASWT(3,N)
+      W4=HYDBASWT(4,N)
+
+C     HACT# IS AN INDICATOR IF HEAD VALUE IS GOOD AT A LOCATION      
+      HACT1 = 1
+      HACT2 = 1
+      HACT3 = 1
+      HACT4 = 1
+
+C     NOTE THE GEOMETRY IS LIKE THIS
+C
+C      ____ ____
+C     | H4 | H3 |
+C      ____ ____
+C     | H1 | H2 |
+C      ____ ____
+C
+
+       
+
+C     READ IN THE HEAD AND IBOUND VALUES .... HANDLE THE EDGE CASES
+      IF (J.LE.NCOL .AND. J.GT.0 .AND. I.LE.NROW .AND. I.GT.0) THEN      
+        H1 = HNEW(J, I, K)
+        IB1 = IBOUND(J, I, K)
+      ELSE
+        H1 = HYDNOH
+        IB1 = 0
+      ENDIF
+      
+      IF (J.LE.(NCOL-1) .AND. I.LE.NROW  .AND.I.GT.0) THEN      
+        H2 = HNEW(J+1,I,K)
+        IB2 = IBOUND(J+1,I,K)
+      ELSE
+        H2 = HYDNOH
+        IB2 = 0
+      ENDIF
+      
+      IF (J.LE.(NCOL-1) .AND. I.GT.1) THEN      
+        H3 = HNEW(J+1,I-1,K)
+        IB3 = IBOUND(J+1,I-1,K)
+      ELSE
+        H3 = HYDNOH
+        IB3 = 0
+      ENDIF
+      
+      IF (J.LE.NCOL .AND. I.GT.1 .AND.J.GT.0) THEN      
+        H4 = HNEW(J,I-1,K)
+        IB4 = IBOUND(J,I-1,K)
+      ELSE
+        H4 = HYDNOH
+        IB4 = 0
+      ENDIF
+C     IF EITHER THE HEAD IN A NODE IS EQUAL TO HYDNOH OR THE IBOUND VALUE IS 0
+C     OR IF THE CELL IS DRY OR NO FLOW SET HACT = 0
+      IF (H1.EQ.HYDNOH .OR. IB1.EQ.0 .OR. 
+     &               H1.EQ.HNOFLO .OR. H1.EQ.HDRY) THEN
+          HACT1 = 0
+      ENDIF
+      IF (H2.EQ.HYDNOH .OR. IB2.EQ.0 .OR. 
+     &               H2.EQ.HNOFLO .OR. H2.EQ.HDRY) THEN
+          HACT2 = 0
+      ENDIF
+      IF (H3.EQ.HYDNOH .OR. IB3.EQ.0 .OR. 
+     &                H3.EQ.HNOFLO .OR. H3.EQ.HDRY) THEN
+          HACT3 = 0
+      ENDIF
+      IF (H4.EQ.HYDNOH .OR. IB4.EQ.0 .OR. 
+     &                H4.EQ.HNOFLO .OR. H4.EQ.HDRY) THEN
+          HACT4 = 0
+      ENDIF
+      
+C     NOW WORK THROUGH THE POSSIBLE INACTIVE CELLS. IF APPROPRIATE, A 
+C     DIFFERENT HEAD VALUE GETS SUBSTITUTED
+      
+      SELECT CASE (HACT1)
+        CASE (0) !HACT1
+          SELECT CASE (HACT2)
+            CASE (0) !HACT2
+              SELECT CASE(HACT3)
+                CASE (0) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (1) !HACT4
+                      H1 = H4
+                      H2 = H4
+                      H3 = H4
+                    CASE (0) !HACT4
+                      H2 = H1
+                      H3 = H1
+                      H4 = H1
+                  END SELECT
+                CASE (1) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE(0) !HACT4
+                      H1 = H3
+                      H2 = H3 
+                      H4 = H3
+                    CASE(1) !HACT4
+                      H2 = H3
+                      H1 = H4                    
+                  END SELECT
+               END SELECT
+            CASE (1) !HACT2
+              SELECT CASE (HACT3)
+                CASE (0) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (0) !HACT4
+                      H1 = H2
+                      H3 = H2
+                      H4 = H2
+                    CASE (1) !HACT4
+                      H1 = H2
+                      H3 = H4
+                  END SELECT
+                CASE (1) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (0) !HACT4
+                      H1 = H2
+                      H4 = H3
+                    CASE (1) !HACT4
+                      IF ((W2+W4).LE.1.0E-06) THEN
+                        H1 = (H2+H4)/2.0
+                      ELSE
+                        H1 = (H2*W2 + H4*W4)/(W2+W4)
+                      ENDIF
+                  END SELECT
+              END SELECT
+          END SELECT
+        CASE(1) !HACT1
+          SELECT CASE (HACT2)
+            CASE (0) !HACT2
+              SELECT CASE (HACT3)
+                CASE (0) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (0) !HACT4
+                      H2 = H1
+                      H3 = H1
+                      H4 = H1
+                    CASE (1) !HACT4
+                      H2 = H1
+                      H3 = H4
+                  END SELECT
+                CASE (1) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (0) !HACT4
+                      H2 = H3
+                      H4 = H1
+                    CASE (1) !HACT4
+                     
+                      IF ((W3+W1).LE.1.0E-06) THEN
+                        H2 = (H3+H1)/2.0
+                      ELSE
+                        H2 = (H1*W1 + H3*W3)/(W1+W3)
+                      ENDIF    
+                  END SELECT
+              END SELECT
+            CASE (1) !HACT2
+              SELECT CASE (HACT3)
+                CASE (0) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (0) !HACT4
+                      H3 = H2
+                      H4 = H1
+                    CASE (1) !HACT4
+                      IF ((W2+W4).LE.1.0E-06) THEN
+                        H3 = (H2+H4)/2.0
+                      ELSE
+                        H3 = (H2*W2 + H4*W4)/(W2+W4)
+                      ENDIF                    
+                  END SELECT
+                CASE (1) !HACT3
+                  SELECT CASE (HACT4)
+                    CASE (0) !HACT4
+                      IF ((W3+W1).LE.1.0E-06) THEN
+                        H4 = (H3+H1)/2.0
+                      ELSE
+                        H4 = (H1*W1 + H3*W3)/(W1+W3)
+                      ENDIF                    
+                  END SELECT
+              END SELECT
+          END SELECT
+      END SELECT
+
+
+      HTOT=H1*W1
+      HTOT=HTOT+H2*W2
+      HTOT=HTOT+H3*W3
+      HTOT=HTOT+H4*W4
+      SHYD7WTAVGEDGE=HTOT
+      RETURN
+      END
+
+      
+      
       SUBROUTINE SGWF2HYD7MW(X0,Y0,X1,X2,Y1,Y2,W1,W2,W3,W4)
 C     ******************************************************************
 C     COMPUTE WEIGHTS FOR BILINEAR INTERPOLATION
@@ -1421,6 +1667,8 @@ C
 C        SPECIFICATIONS:
 C     ------------------------------------------------------------------
 C
+C     NOTE: These conventions follow that of polin2 function in 
+C           Numerical Recipes
       DX=(X0-X1)/(X2-X1)
       DY=(Y0-Y1)/(Y2-Y1)
       DXY=DX*DY
