@@ -1582,22 +1582,38 @@ C     ------------------------------------------------------------------
      1          IBOUND(NCOL,NROW,NLAY),
      2          HNEW(NCOL,NROW,NLAY),BOTM(NCOL,NROW,0:Nlay)
 C
+      INEGCNT = 0
       DO K=1,NLAY
       DO IR=1,NROW
       DO IC=1,NCOL
       EST(IC,IR,K)=0.0
       IF(IBOUND(IC,IR,K).EQ.0) CYCLE
       HHNEW=HNEW(IC,IR,K)
-      EST(IC,IR,K)=GL(IC,IR,K)-HHNEW+BOTM(IC,IR,K)
+      BBOTM = BOTM(IC,IR,K)
+      IF (HHNEW.LT.BBOTM) HHNEW = BBOTM
+      EST(IC,IR,K)=GL(IC,IR,K)-HHNEW+BBOTM
       IF(EST(IC,IR,K).LT.0.0) THEN
-       WRITE(IOUT,5) IR,IC,K
-    5  FORMAT(' NEGATIVE EFFECTIVE STRESS VALUE AT (ROW,COL,LAY):',
-     $ 3I5,/,'   ABORTING...')
-      CALL USTOP('')
+        INEGCNT = INEGCNT + 1
+        IF (INEGCNT.EQ.1) THEN
+          WRITE(IOUT,'(///,1X,A,//,1X,A10,3(1X,A5),6(1X,A10))')
+     1     'SUMMARY OF NEGATIVE EFFECTIVE STRESS LOCATIONS',     
+     2     '     COUNT', '  ROW', '  COL', '  LAY', 
+     3     '    BOTTOM', '       TOP', '      HEAD', 
+     4     'GEO.STRESS', 'PRESS.HEAD', 'EFF.STRESS'
+        ENDIF
+        WRITE(IOUT,'(1X,I10,1X,3(I5,1X),6(F10.3,1x))')
+     1    INEGCNT, IR, IC, K, BOTM(IC,IR,K-1), BBOTM, HHNEW,
+     2    GL(IC,IR,K), HHNEW-BBOTM, EST(IC,IR,K)
       ENDIF
       ENDDO
       ENDDO
       ENDDO
+    5 FORMAT(//1X,'NEGATIVE EFFECTIVE STRESS VALUES ABORTING...')
+      IF (INEGCNT.GT.0) THEN
+        WRITE(*,5)
+        WRITE(IOUT,5)
+        CALL USTOP('')
+      ENDIF
 C
 C ------RETURN
       RETURN
