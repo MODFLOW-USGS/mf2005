@@ -33,3 +33,5 @@ autotest/*.log
 autotest/.cache/
 
 .ipynb_checkpoints/
+
+msvs/.vs/
