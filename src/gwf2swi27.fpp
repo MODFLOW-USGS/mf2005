@@ -240,7 +240,6 @@ C       + + + LOCAL DEFINITIONS + + +
         INTEGER :: iz, kk
         INTEGER :: itmem
         INTEGER :: ic
-        INTEGER :: iusezone
         REAL :: r
         REAL :: d
         REAL :: bbot, ttop, z
@@ -451,7 +450,7 @@ C             WRITE DATASET 2B FOR PCG SOLVER
      5    /1X,'MAXIMUM ITERATIONS PER CALL TO PCG (ITER1):   ',1X,I5,
      6    /1X,'MATRIX PRECONDITIONING TYPE (NPCOND):         ',1X,I5,
      7    /1X,'  1 = MODIFIED INCOMPLETE CHOLESKY',
-     8    /1X,'  2 = NEUMANN POLYNOMIAL - THE MATRIX WILL BE SCALED',
+     8    /1X,'  2 = NEUMAN POLYNOMIAL - THE MATRIX WILL BE SCALED',
      9    /1X,'ZETA CLOSURE CRITERION (ZCLOSE):    ',1X,G15.5,
      X    /1X,'RESIDUAL CLOSURE CRITERION (RCLOSE):',1X,G15.5,
      1    /1X,'RELAXATION FACTOR (RELAX):          ',1X,G15.5,
@@ -700,11 +699,7 @@ C
 C-----------CHECK FOR INVALID ZONE NUMBERS
           DO i = 1, NROW
             DO j = 1, NCOL
-              iusezone = ABS(IZONENR(j,i,k))
-              if (iusezone > 100) then
-                iusezone = 100 - iusezone
-              end if
-              IF ( iusezone.GT.NZONES ) THEN
+              IF ( ABS(IZONENR(j,i,k)).GT.NZONES ) THEN
                 ierr = ierr + 1
                 IF ( ierr.EQ.1 ) WRITE(IOUT,'(//)')
                 WRITE(IOUT,2270) IZONENR(j,i,k),k,i,j 
@@ -930,7 +925,7 @@ C
       SUBROUTINE GWF2SWI2AD(Kkstp,Kkper,Igrid)
 C
 C     ******************************************************************
-C     SET FIRST AND LAST SURFACE TO TOP AND BOT OF LAYER ON FIRST TIME
+C     SET FIRST AND LAST SURFACE TO TOP AND BOTOM OF LAYER ON FIRST TIME
 C     STEP OF THE FIRST STRESS PERIOD AND ADVANCE ZETAOLD AND ZETASWITS0 
 C     TO ZETA EVERY TIME STEP.
 C     ******************************************************************
@@ -1080,7 +1075,7 @@ C---------COPY RHS TO RHSPRESWI FOR CALCULATING BOUNDARY FLUXES WHEN UPDATING ZE
         END DO KRHS
 C
 C-------SET ZETA TO ZETA VALUE AT THE END OF THE LAST SWI TIME STEP IN THE
-C       LAST MODFLOW TIME STEP (ZETAOLD). ZETAOLD IS ASSIGNED IN GWF2SWI2AD
+C       LAST MODFLOW TIME STEP (ZETAOLD). ZETAOLD IS ASSGNED IN GWF2SWI2AD
         DO k = 1, NLAY
           DO i = 1, NROW
             DO j = 1, NCOL
@@ -1459,7 +1454,6 @@ C       + + + LOCAL DEFINITIONS + + +
         DOUBLEPRECISION :: qbnd, qch, qstor, qcstor, qint, qtt, qmix
         REAL :: t0, b0
         REAL :: bt, ht
-        doubleprecision :: thick, thickb
         DOUBLEPRECISION :: db, dh
         REAL :: z
         REAL :: zero, rate, rin, rout
@@ -1649,7 +1643,7 @@ C---------REINITIALIZE BUFF
 C---------STORE TOTAL CONSTANT HEAD FLUXES in BUFF
         CALL SSWI2_BDCH(1)
 C
-C---------UPDATE ZETA SURFACE IF NON-ADAPTIVE
+C---------UPDATE ZETA SURFACE IF NON-ADAPATIVE
 C         SWI TIME STEPPING USED
         IF ( NADPTFLG.EQ.0 .AND. IFIXED.NE.1 ) THEN
           CALL SSWI2_UPDZ(Kkstp,Kkper)
@@ -1749,9 +1743,6 @@ C                 DETERMINE ZONE NUMBER FOR BOUNDARY CONDITION
                 IF ( (iusezone.LT.0) .AND. (q.GT.zero) ) THEN
                   iusezone = 1
                 ENDIF
-                IF ( (IZONENR(j,i,k) > 100) ) then
-                  iusezone = iusezone - 100
-                end if
 C-----------------FIND HIGHEST ACTIVE ZONE IF THICKNESS IS ZERO
                 t0 = ZETAOLD(j,i,k,ABS(iusezone))
                 b0 = ZETAOLD(j,i,k,ABS(iusezone)+1)
@@ -1765,18 +1756,6 @@ C-----------------FIND HIGHEST ACTIVE ZONE IF THICKNESS IS ZERO
                     END IF
                   END DO
                 END IF
-                IF ( IZONENR(j,i,k) > 100 ) then
-                  if (qbnd < 0. .or. qch < 0.) then
-                    thick = ZETAOLD(j,i,k,1) - ZETAOLD(j,i,k,NZONES+1)
-                    thickb = ZETAOLD(j,i,k,iz) - ZETAOLD(j,i,k,iz+1)
-                    if (thickb <  SWISMALL) then
-                      thickb = 0.d0
-                    end if
-                    qbnd = qbnd * thickb / thick
-                    qch = qch * thickb / thick
-                    iusezone = iz
-                  end if
-                end if
 
                 IF ( iz.EQ.ABS(iusezone) ) THEN
 C-----------------ADJUST qbnd USING qint TO REMOVE TOTAL ZONE CHANGE FROM
@@ -3497,7 +3476,6 @@ C       + + + LOCAL DEFINITIONS + + +
         REAL :: nuontop, nubelbot
         REAL :: rclose
         DOUBLEPRECISION :: dt, ht
-        real :: thick, thickb, fact
 C
 C-------OUTPUT FORMAT STATEMENTS
  2000  FORMAT(1X,/1X,A,'   PERIOD ',I4,'   STEP ',I3)
@@ -3542,24 +3520,12 @@ C               SET ZONE NUMBER FOR BOUNDARY CONDITIONS
               IF ( (IZONENR(j,i,k).LT.0) .AND. (q.GT.0) ) THEN
                 iusezone = 1
               ENDIF
-              thick = 0.0
-              IF ( (IZONENR(j,i,k) > 100) ) then
-                if (q.GT.0) THEN 
-                  thick = ZETA(j,i,k,1) - ZETA(j,i,k,NZONES+1)
-                end if
-                iusezone = iusezone - 100
-              end if
               IZBRHS: DO iz=1,NZONES
 C-----------------INITIALIZE BRHS
                 BRHS(j,i,iz)=0.
                 IF (IPLPOS(j,i,k,iz).EQ.0) THEN
                   IF ((iz.LE.ABS(iusezone)).AND.(q.NE.0)) THEN
-                    fact = 1.
-                    if (thick > 0.) then
-                      thickb = ZETA(j,i,k,iz) - ZETA(j,i,k,NZONES+1)
-                      fact = thickb / thick
-                    end if
-                    BRHS(j,i,iz)=BRHS(j,i,iz) + q * fact
+                    BRHS(j,i,iz)=BRHS(j,i,iz) + q
                   ENDIF
                 ELSE
                   BRHS(j,i,iz) = 0.0

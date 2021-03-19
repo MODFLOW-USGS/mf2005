@@ -222,6 +222,7 @@ C2------Check for and decode EXTERNAL and OPEN/CLOSE records.
       IN=INPACK
       ICLOSE=0
       IBINARY=0
+      JAUX=0
       READ(IN,'(A)') LINE
       SFAC=1.
       JAUX=0

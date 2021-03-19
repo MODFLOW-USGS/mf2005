@@ -1,23 +1,18 @@
-from __future__ import print_function
 import os
-import shutil
 import config
+
 
 def test_teardown():
 
-    if os.path.isdir(config.dir_release):
-        print('Removing folder ' + config.dir_release)
-        shutil.rmtree(config.dir_release)
+    success = config.get_success()
 
-    if os.path.isfile(config.target):
-        print('Removing ' + config.target)
-        os.remove(config.target)
-
-    if os.path.isfile(config.target_release):
-        print('Removing ' + config.target_release)
-        os.remove(config.target_release)
+    if success:
+        if os.path.isfile(config.target_dict[config.program]):
+            print("Removing " + config.target)
+            os.remove(config.target_dict[config.program])
 
     return
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     test_teardown()
