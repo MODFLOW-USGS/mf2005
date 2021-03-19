@@ -341,6 +341,7 @@ C ------INITIALIZE ARRAYS
       GL(J,I,N)=0.0
       PCS(J,I,N)=0.0
       EST(J,I,N)=0.0
+      PCS(J,I,N)=0.0
       ESTOLD(J,I,N)=0.0
       ZC(J,I,N)=0.0
       enddo
