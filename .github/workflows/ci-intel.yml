@@ -35,11 +35,11 @@ jobs:
       matrix:
         include:
           - os: ubuntu-20.04
-            build_script: ifortvars_linux.sh
+            os_script: ifortvars_linux.sh
           - os: macos-latest
-            build_script: ifortvars_macos.sh
+            os_script: ifortvars_macos.sh
           - os: windows-latest
-            build_script: ifortvars_windows.bat
+            os_script: ifortvars_windows.bat
     defaults:
       run:
         shell: bash
