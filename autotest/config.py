@@ -23,6 +23,7 @@ exclude = (
     "UzfTest",
     "mnw2_pc1",
     "mnw2_pc2",
+    "swr011_VCatch",
 )  # test-arc remove after v 1.13.00 is released
 if not is_CI:
     exclude += ("MNW2-Fig28",)

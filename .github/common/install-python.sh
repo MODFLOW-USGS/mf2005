@@ -1,7 +1,7 @@
 #!/bin/bash
 
 conda info
-conda install pip requests appdirs nose shapely
+conda install pip requests appdirs nose
 pip install nose-timer
 # use pip to install numpy and matplotlib because of a windows issue
 pip install numpy matplotlib
