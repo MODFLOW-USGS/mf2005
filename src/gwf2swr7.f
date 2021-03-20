@@ -6582,10 +6582,10 @@ C       + + + LOCAL DEFINITIONS + + +
         DO
           READ (Iu,'(A)',IOSTAT=ios) line
           IF (ios /= 0) THEN
-            WRITE(error_line,'(a,1x,i0,a,i0)') 
+            WRITE(error_line,'(a,1x,i0,1x,a,i0)') 
      2        'COULD NOT READ FROM UNIT Iu', Iu,
      3        'IOSTAT=', ios
-            inquire(unit=Iu, opened=openedq)  !, file=name_of_file)
+            inquire(unit=Iu, opened=openedq)
             IF (.NOT. openedq) then
             ELSE
               WRITE(error_line,'(a,1x,a)')

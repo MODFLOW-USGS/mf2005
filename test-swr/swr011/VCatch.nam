@@ -5,7 +5,7 @@ LPF           11 VCatch.lpf
 OC            22 VCatch.oc
 PCG           19 VCatch.pcg
 SWR           61 VCatch.swr
-DATA         201 rainfall.ref
+DATA         201 Rainfall.ref
 DATA(BINARY) 101 VCatch.flow
 DATA(BINARY) 102 VCatch.stg
 DATA(BINARY) 601 VCatch.hds
