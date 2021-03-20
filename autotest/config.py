@@ -61,6 +61,7 @@ target_dict["release"] = os.path.abspath(target_release)
 def get_htol(test_name):
     htols = {
         "swr007_mh2013ex1": 0.0002,
+        "swtex4": 5e-5,
     }
     if test_name in list(htols.keys()):
         tol = htols[test_name]

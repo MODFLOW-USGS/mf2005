@@ -68,6 +68,8 @@ def run_mf2005(namefile, comparison=True):
                 outfile1=outfile1,
                 outfile2=outfile2,
             )
+            if not success_cmp:
+                print("{} comparison failed".format(testname))
 
             outfile3 = os.path.join(
                 os.path.split(os.path.join(testpth, nam))[0], "swr.bud.cmp"
@@ -79,6 +81,8 @@ def run_mf2005(namefile, comparison=True):
                 max_incpd=pdtol,
                 outfile=outfile3,
             )
+            if not success_swr:
+                print("{} swr budget comparison failed".format(testname))
 
             # stage comparison
             outfile4 = os.path.join(
@@ -91,11 +95,14 @@ def run_mf2005(namefile, comparison=True):
                 htol=htol,
                 outfile=outfile4,
             )
+            if not success_stg:
+                print("{} swr stage comparison failed".format(testname))
 
             if success_cmp and success_swr and success_stg:
                 success = True
             else:
                 success = False
+
     # Clean things up
     config.teardown(success, testpth)
 

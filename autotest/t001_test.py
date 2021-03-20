@@ -14,6 +14,12 @@ def run_mf2005(namefile, regression=True):
     # Set root as the directory name where namefile is located
     testname = pymake.get_sim_name(namefile, rootpth=config.testpaths[0])[0]
 
+    # set htol
+    htol = config.get_htol(testname)
+
+    # set percent discrepancy
+    pdtol = config.get_pdtol(testname)
+
     # Set nam as namefile name without path
     nam = os.path.basename(namefile)
 
@@ -57,12 +63,14 @@ def run_mf2005(namefile, regression=True):
                 os.path.join(testpth, nam),
                 os.path.join(testpth_reg, nam),
                 precision="single",
-                max_cumpd=config.pdtol,
-                max_incpd=config.pdtol,
-                htol=config.htol,
+                max_cumpd=pdtol,
+                max_incpd=pdtol,
+                htol=htol,
                 outfile1=outfile1,
                 outfile2=outfile2,
             )
+            if not success:
+                print("{} comparison failed".format(testname))
 
     # Clean things up
     config.teardown(success, testpth)
