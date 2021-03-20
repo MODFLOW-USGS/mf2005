@@ -31,7 +31,10 @@ def run_mf2005(namefile, comparison=True):
     print("running model...{}".format(testname))
     exe_name = config.target_dict[config.program]
     success, buff = flopy.run_model(
-        exe_name, nam, model_ws=testpth, silent=True
+        exe_name,
+        nam,
+        model_ws=testpth,
+        silent=False,
     )
 
     if success and comparison:

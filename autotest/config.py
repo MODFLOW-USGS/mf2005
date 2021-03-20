@@ -19,12 +19,8 @@ if platform.system() == "Windows":
 
 # List of examples to skip from the testing
 is_CI = "CI" in os.environ
-exclude = (
-    "UzfTest",
-    "mnw2_pc1",
-    "mnw2_pc2",
-    "swr011_VCatch",
-)  # test-arc remove after v 1.13.00 is released
+# test-arc remove after v 1.13.00 is released
+exclude = ("UzfTest",)
 if not is_CI:
     exclude += ("MNW2-Fig28",)
 

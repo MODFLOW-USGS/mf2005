@@ -14,6 +14,9 @@ def run_mf2005(namefile, comparison=True):
     # Set root as the directory name where namefile is located
     testname = pymake.get_sim_name(namefile, rootpth=config.testpaths[3])[0]
 
+    # if "VCatch" not in testname:
+    #     return
+
     # set htol
     htol = config.get_htol(testname)
 
@@ -31,7 +34,10 @@ def run_mf2005(namefile, comparison=True):
     print("running model...{}".format(testname))
     exe_name = config.target_dict[config.program]
     success, buff = flopy.run_model(
-        exe_name, nam, model_ws=testpth, silent=False,
+        exe_name,
+        nam,
+        model_ws=testpth,
+        silent=False,
     )
 
     # If it is a comparison, then look for files in the comparison

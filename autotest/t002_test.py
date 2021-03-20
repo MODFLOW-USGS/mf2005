@@ -14,6 +14,14 @@ def run_mf2005(namefile, regression=True):
     # Set root as the directory name where namefile is located
     testname = pymake.get_sim_name(namefile, rootpth=config.testpaths[1])[0]
 
+    # run_it = False
+    # for test in ("mnw2_pc1", "mnw2_pc2",):
+    #     if test in testname:
+    #         run_it = True
+    #         break
+    # if not run_it:
+    #     return
+
     # set htol
     htol = config.get_htol(testname)
 
@@ -31,7 +39,10 @@ def run_mf2005(namefile, regression=True):
     print("running model...{}".format(testname))
     exe_name = config.target_dict[config.program]
     success, buff = flopy.run_model(
-        exe_name, nam, model_ws=testpth, silent=True
+        exe_name,
+        nam,
+        model_ws=testpth,
+        silent=False,
     )
 
     # If it is a regression run, then setup and run the model with the
@@ -43,7 +54,10 @@ def run_mf2005(namefile, regression=True):
         print("running regression model...{}".format(testname_reg))
         exe_name = config.target_dict["release"]
         success, buff = flopy.run_model(
-            exe_name, nam, model_ws=testpth_reg, silent=True
+            exe_name,
+            nam,
+            model_ws=testpth_reg,
+            silent=False,
         )
 
         if success:

@@ -8,3 +8,4 @@ SWR           61 VCatch.swr
 DATA         201 rainfall.ref
 DATA(BINARY) 101 VCatch.flow
 DATA(BINARY) 102 VCatch.stg
+DATA(BINARY) 601 VCatch.hds
