@@ -35,16 +35,28 @@ jobs:
       matrix:
         include:
           - os: ubuntu-20.04
-            build_script: ifortvars_linux.sh
+            os_script: ifortvars_linux.sh
           - os: macos-latest
-            build_script: ifortvars_macos.sh
+            os_script: ifortvars_macos.sh
           - os: windows-latest
-            build_script: ifortvars_windows.bat
+            os_script: ifortvars_windows.bat
     defaults:
       run:
         shell: bash
 
     steps:
+      - name: set environmental variables on linux and macOS
+        if: runner.os == 'Linux' || runner.os == 'macOS'
+        run: |
+          echo "FC=ifort" >> $GITHUB_ENV
+          echo "CC=icc" >> $GITHUB_ENV
+
+      - name: set environmental variables on windows
+        if: runner.os == 'Windows'
+        run: |
+          echo "FC=ifort" >> $GITHUB_ENV
+          echo "CC=icl" >> $GITHUB_ENV
+
       - name: Checkout repo
         uses: actions/checkout@v2.3.4
 
@@ -107,17 +119,11 @@ jobs:
 
       - name: activate intel and test on linux and macOS
         if: runner.os == 'Linux' || runner.os == 'macOS'
-        env:
-          FC: ifort
-          CC: icc
         run: |
           .github/intel-scripts/${{ matrix.os_script }}
 
       - name: activate intel and test on Windows
         if: runner.os == 'Windows'
-        env:
-          FC: ifort
-          CC: icl
         run: |
           .github/intel-scripts/${{ matrix.os_script }}
 

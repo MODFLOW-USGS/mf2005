@@ -6574,12 +6574,25 @@ C       + + + DUMMY ARGUMENTS + + +
 C       + + + LOCAL DEFINITIONS + + +
         CHARACTER (LEN=2), PARAMETER :: comment = '//'
         CHARACTER (LEN=200) :: line
+        CHARACTER (LEN=200) :: error_line
+        LOGICAL :: openedq
         LOGICAL :: iscomment
         INTEGER :: ios
         line = comment
         DO
           READ (Iu,'(A)',IOSTAT=ios) line
-          IF (ios /= 0) CALL USTOP('COULD NOT READ FROM UNIT Iu')
+          IF (ios /= 0) THEN
+            WRITE(error_line,'(a,1x,i0,1x,a,i0)') 
+     2        'COULD NOT READ FROM UNIT Iu', Iu,
+     3        'IOSTAT=', ios
+            inquire(unit=Iu, opened=openedq)
+            IF (.NOT. openedq) then
+            ELSE
+              WRITE(error_line,'(a,1x,a)')
+     2          TRIM(ADJUSTL(error_line)), 'FILE IS NOT OPENED'
+            END IF
+            CALL USTOP(TRIM(ADJUSTL(error_line)))
+          END IF
           IF (LEN_TRIM(line).LT.1) THEN
             line = comment
             CYCLE

@@ -1,4 +1,5 @@
 import os
+import sys
 import platform
 import pymake
 
@@ -19,13 +20,20 @@ if platform.system() == "Windows":
 
 # List of examples to skip from the testing
 is_CI = "CI" in os.environ
-exclude = (
-    "UzfTest",
-    "mnw2_pc1",
-    "mnw2_pc2",
-)  # test-arc remove after v 1.13.00 is released
+# test-arc remove after v 1.13.00 is released
+exclude = ("UzfTest",)
 if not is_CI:
     exclude += ("MNW2-Fig28",)
+
+FC = os.environ.get("FC")
+if FC is not None:
+    if sys.platform.lower() == "darwin":
+        exclude += (
+            "bcf2ss",
+            "sfrtest4",
+            "simple_bcf2ss",
+        )
+
 
 # default regression tolerances
 htol = 5e-6
@@ -61,6 +69,7 @@ target_dict["release"] = os.path.abspath(target_release)
 def get_htol(test_name):
     htols = {
         "swr007_mh2013ex1": 0.0002,
+        "swtex4": 5e-5,
     }
     if test_name in list(htols.keys()):
         tol = htols[test_name]

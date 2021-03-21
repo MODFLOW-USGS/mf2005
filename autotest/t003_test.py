@@ -14,6 +14,9 @@ def run_mf2005(namefile, comparison=True):
     # Set root as the directory name where namefile is located
     testname = pymake.get_sim_name(namefile, rootpth=config.testpaths[2])[0]
 
+    # set htol
+    htol = config.get_htol(testname)
+
     # set percent discrepancy
     pdtol = config.get_pdtol(testname)
 
@@ -28,7 +31,10 @@ def run_mf2005(namefile, comparison=True):
     print("running model...{}".format(testname))
     exe_name = config.target_dict[config.program]
     success, buff = flopy.run_model(
-        exe_name, nam, model_ws=testpth, silent=True
+        exe_name,
+        nam,
+        model_ws=testpth,
+        silent=False,
     )
 
     if success and comparison:
@@ -57,10 +63,12 @@ def run_mf2005(namefile, comparison=True):
                 precision="single",
                 max_cumpd=pdtol,
                 max_incpd=pdtol,
-                htol=config.htol,
+                htol=htol,
                 outfile1=outfile1,
                 outfile2=outfile2,
             )
+            if not success:
+                print("{} comparison failed".format(testname))
 
     # Clean things up
     config.teardown(success, testpth)

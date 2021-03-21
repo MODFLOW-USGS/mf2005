@@ -14,6 +14,17 @@ def run_mf2005(namefile, regression=True):
     # Set root as the directory name where namefile is located
     testname = pymake.get_sim_name(namefile, rootpth=config.testpaths[1])[0]
 
+    # run_it = False
+    # for test in ("mnw2_pc1", "mnw2_pc2",):
+    #     if test in testname:
+    #         run_it = True
+    #         break
+    # if not run_it:
+    #     return
+
+    # set htol
+    htol = config.get_htol(testname)
+
     # set percent discrepancy
     pdtol = config.get_pdtol(testname)
 
@@ -28,7 +39,10 @@ def run_mf2005(namefile, regression=True):
     print("running model...{}".format(testname))
     exe_name = config.target_dict[config.program]
     success, buff = flopy.run_model(
-        exe_name, nam, model_ws=testpth, silent=True
+        exe_name,
+        nam,
+        model_ws=testpth,
+        silent=False,
     )
 
     # If it is a regression run, then setup and run the model with the
@@ -40,7 +54,10 @@ def run_mf2005(namefile, regression=True):
         print("running regression model...{}".format(testname_reg))
         exe_name = config.target_dict["release"]
         success, buff = flopy.run_model(
-            exe_name, nam, model_ws=testpth_reg, silent=True
+            exe_name,
+            nam,
+            model_ws=testpth_reg,
+            silent=False,
         )
 
         if success:
@@ -56,10 +73,12 @@ def run_mf2005(namefile, regression=True):
                 precision="single",
                 max_cumpd=pdtol,
                 max_incpd=pdtol,
-                htol=config.htol,
+                htol=htol,
                 outfile1=outfile1,
                 outfile2=outfile2,
             )
+            if not success:
+                print("{} comparison failed".format(testname))
 
     # Clean things up
     config.teardown(success, testpth)

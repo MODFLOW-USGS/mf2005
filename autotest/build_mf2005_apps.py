@@ -30,8 +30,8 @@ def test_compile_ref():
     pm = pymake.Pymake(verbose=True)
     pm.target = "mf2005"
     pm.appdir = config.ebindir
-    download_pth = os.path.join("temp")
 
+    download_pth = os.path.join("temp")
     pm.download_target(pm.target, download_path=download_pth)
 
     # build the release version of MODFLOW-2005
