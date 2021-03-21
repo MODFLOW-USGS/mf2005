@@ -1,4 +1,5 @@
 import os
+import sys
 import platform
 import pymake
 
@@ -23,6 +24,16 @@ is_CI = "CI" in os.environ
 exclude = ("UzfTest",)
 if not is_CI:
     exclude += ("MNW2-Fig28",)
+
+FC = os.environ.get("FC")
+if FC is not None:
+    if sys.platform.lower() == "darwin":
+        exclude += (
+            "bcf2ss",
+            "sfrtest4",
+            "simple_bcf2ss",
+        )
+
 
 # default regression tolerances
 htol = 5e-6
