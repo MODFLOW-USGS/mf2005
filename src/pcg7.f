@@ -560,13 +560,13 @@ C-------CALCULATE CD - FIRST INTERNAL ITERATION ONLY
                 ENDIF
                 IF (NPCOND.EQ.1) THEN
                   IF (IR.GT.0) THEN
-                    FV = CV(IR)
+                    FV = REAL(CV(IR),8)
 C                 MODIFIED FROM HILL(1990) 9/27/90: 2 REPLACES 1
                     IF (K.EQ.NLAY .AND. ((J+I).GT.2)) FV = DZERO
                     IF (CD(IR).NE.0.) FCR = (F/CD(IR))*(CC(IR)+FV)
                   ENDIF
                   IF (IC.GT.0) THEN
-                    FV = CV(IC)
+                    FV = REAL(CV(IC),8)
                     IF (K.EQ.NLAY .AND. (I.GT.1)) FV = DZERO
                     IF (CD(IC).NE.0.) FCC = (H/CD(IC))*(CR(IC)+FV)
                   ENDIF
