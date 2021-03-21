@@ -16,7 +16,7 @@ if FC is not None:
     if sys.platform.lower() == "win32":
         fflags = "-fp:strict"
     else:
-        fflags = "-fp-model strict"
+        fflags = "-fp-model:strict"
 
 
 def test_compile_dev():
