@@ -232,6 +232,24 @@ C6------Allocate space for global arrays except discretization data.
       ALLOCATE (LAYHDT(NLAY))
       ALLOCATE (LAYHDS(NLAY))
 C
+C-------Initialize arrays dimensioned to (NCOL,NROW,NLAY)
+      DO K=1,NLAY
+        DO I=1,NROW
+          DO J=1,NCOL
+            HNEW(J,I,K) = 0.D0
+            HOLD(J,I,K) = 0.
+            IBOUND(J,I,K) = 0
+            CR(J,I,K) = 0.
+            CC(J,I,K) = 0.
+            CV(J,I,K) = 0.
+            HCOF(J,I,K) = 0.
+            RHS(J,I,K) = 0.
+            BUFF(J,I,K) = 0.
+            STRT(J,I,K) = 0.
+          END DO
+        END DO
+      END DO
+C
 C7------Initialize head-dependent thickness indicator to code that
 C7------indicates layer is undefined.
       DO 100 I=1,NLAY
