@@ -166,8 +166,8 @@ C     ------------------------------------------------------------------
       CHARACTER*1 A
       CHARACTER*2 B
       CHARACTER*7 CONCNAME
-      CHARACTER*9 DCTSNAME
-      CHARACTER*10 DCCMNAME
+      CHARACTER*11 DCTSNAME
+      CHARACTER*12 DCCMNAME
       CHARACTER*1256  LFRMAT
 C     ------------------------------------------------------------------
 C     TEMPORARY ARRAYS

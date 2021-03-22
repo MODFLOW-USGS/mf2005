@@ -3818,7 +3818,7 @@ C           TO SPECIFY STRCRIT OR STRVAL
                   CASE (1)
                     cstruct(1) = 'STRCRIT   '
                   CASE (2)
-                    cstruct(1) = 'STRVAL     '
+                    cstruct(1) = 'STRVAL    '
                   CASE DEFAULT
                     CALL USTOP('PROGRAMMING ERROR: UNDEFINED ISTRTYPE')
                 END SELECT
