@@ -26,13 +26,13 @@ if not is_CI:
     exclude += ("MNW2-Fig28",)
 
 FC = os.environ.get("FC")
-if FC is not None:
-    if sys.platform.lower() == "darwin":
-        exclude += (
-            "bcf2ss",
-            "sfrtest4",
-            "simple_bcf2ss",
-        )
+# if FC is not None:
+#     if sys.platform.lower() == "darwin":
+#         exclude += (
+#             "bcf2ss",
+#             "sfrtest4",
+#             "simple_bcf2ss",
+#         )
 
 
 # default regression tolerances

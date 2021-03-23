@@ -18,6 +18,14 @@ def test_compile_dev():
     pm.include_subdirs = False
     pm.inplace = False
     pm.makeclean = True
+    if config.FC is None:
+        pm.fflags = (
+            "-Wtabs "
+            + "-Wline-truncation "
+            + "-Wunused-label "
+            + "-Wunused-variable "
+            + "-Wcharacter-truncation"
+        )
 
     # build the release version of MODFLOW-2005
     pm.build()
@@ -47,5 +55,5 @@ def test_compile_ref():
 
 
 if __name__ == "__main__":
-    test_compile_ref()
     test_compile_dev()
+    test_compile_ref()
