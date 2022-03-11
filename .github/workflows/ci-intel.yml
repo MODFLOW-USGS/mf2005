@@ -17,14 +17,14 @@ on:
       - develop
 
 env:
-      WINDOWS_HPCKIT_URL: https://registrationcenter-download.intel.com/akdlm/irc_nas/17392/w_HPCKit_p_2021.1.0.2682_offline.exe
-      LINUX_HPCKIT_URL: https://registrationcenter-download.intel.com/akdlm/irc_nas/17427/l_HPCKit_p_2021.1.0.2684_offline.sh
-      MACOS_HPCKIT_URL: https://registrationcenter-download.intel.com/akdlm/irc_nas/17398/m_HPCKit_p_2021.1.0.2681_offline.dmg
+      WINDOWS_HPCKIT_URL: https://registrationcenter-download.intel.com/akdlm/irc_nas/18578/w_HPCKit_p_2022.1.3.145_offline.exe
+      LINUX_HPCKIT_URL: https://registrationcenter-download.intel.com/akdlm/irc_nas/18479/l_HPCKit_p_2022.1.2.117_offline.sh
+      MACOS_HPCKIT_URL: https://registrationcenter-download.intel.com/akdlm/irc_nas/18341/m_HPCKit_p_2022.1.0.86_offline.dmg
       WINDOWS_FORTRAN_COMPONENTS: intel.oneapi.win.ifort-compiler
       LINUX_FORTRAN_COMPONENTS_WEB: intel.oneapi.lin.ifort-compiler
       MACOS_FORTRAN_COMPONENTS: intel.oneapi.mac.ifort-compiler
       WINDOWS_CPP_COMPONENTS: intel.oneapi.win.cpp-compiler
-      LINUX_CPP_COMPONENTS_WEB: intel.oneapi.lin.dpcpp-cpp-compiler-pro
+      LINUX_CPP_COMPONENTS: intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic
       MACOS_CPP_COMPONENTS: intel.oneapi.mac.cpp-compiler
 
 jobs:
@@ -34,11 +34,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             os_script: ifortvars_linux.sh
           - os: macos-latest
             os_script: ifortvars_macos.sh
-          - os: windows-latest
+          - os: windows-2019
             os_script: ifortvars_windows.bat
     defaults:
       run:
