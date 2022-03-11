@@ -2,13 +2,6 @@ import os
 import pymake
 import config
 
-# paths to executables for previous versions of MODFLOW
-ebindir = os.path.abspath(
-    os.path.join(os.path.expanduser("~"), ".local", "bin")
-)
-if not os.path.exists(ebindir):
-    os.makedirs(ebindir)
-
 
 def test_compile_dev():
     pm = pymake.Pymake()
@@ -37,7 +30,7 @@ def test_compile_ref():
     # Compile reference version of the program from the source.
     pm = pymake.Pymake(verbose=True)
     pm.target = "mf2005"
-    pm.appdir = config.ebindir
+    pm.appdir = config.releasedir
 
     download_pth = os.path.join("temp")
     pm.download_target(pm.target, download_path=download_pth)
@@ -55,5 +48,5 @@ def test_compile_ref():
 
 
 if __name__ == "__main__":
-    test_compile_dev()
     test_compile_ref()
+    test_compile_dev()
