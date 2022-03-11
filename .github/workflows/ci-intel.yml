@@ -77,7 +77,7 @@ jobs:
       - name: install intel compilers on linux
         if: runner.os == 'Linux' && steps.cache-install-linux.outputs.cache-hit != 'true'
         run: |
-          .github/intel-scripts/install_linux.sh $LINUX_HPCKIT_URL $LINUX_CPP_COMPONENTS_WEB:$LINUX_FORTRAN_COMPONENTS_WEB
+          .github/intel-scripts/install_linux.sh $LINUX_HPCKIT_URL $LINUX_CPP_COMPONENTS:$LINUX_FORTRAN_COMPONENTS_WEB
 
       - name: cache install intel compilers on macos
         if: runner.os == 'macOS'
