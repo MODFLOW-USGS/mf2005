@@ -24,7 +24,7 @@ env:
       LINUX_FORTRAN_COMPONENTS_WEB: intel.oneapi.lin.ifort-compiler
       MACOS_FORTRAN_COMPONENTS: intel.oneapi.mac.ifort-compiler
       WINDOWS_CPP_COMPONENTS: intel.oneapi.win.cpp-compiler
-      LINUX_CPP_COMPONENTS: intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic
+      LINUX_CPP_COMPONENTS: intel.oneapi.lin.dpcpp-cpp-compiler-pro
       MACOS_CPP_COMPONENTS: intel.oneapi.mac.cpp-compiler
 
 jobs:
