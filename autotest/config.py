@@ -3,13 +3,8 @@ import sys
 import platform
 import pymake
 
-ebindir = os.path.abspath(
-    os.path.join(os.path.expanduser("~"), ".local", "bin")
-)
-if not os.path.exists(ebindir):
-    os.makedirs(ebindir)
-
 testdir = "temp"
+releasedir = os.path.join(testdir, "release")
 retain = False
 target_dict = {}
 
@@ -62,7 +57,7 @@ target = program + exe_ext
 target_dict[program] = os.path.abspath(os.path.join(testdir, target))
 
 # Release version information
-target_release = os.path.join(ebindir, program + exe_ext)
+target_release = os.path.join(releasedir, program + exe_ext)
 target_dict["release"] = os.path.abspath(target_release)
 
 

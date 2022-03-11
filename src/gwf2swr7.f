@@ -85,6 +85,11 @@ C           SUBROUTINE IS BEING USED
 C         - MODIFIED SSWR_SET_RCHOFF SO THAT LEVEL-POOL AND DIFFUSIVE-WAVE REACHES
 C           STAGES ARE SET TO GBELV WHEN STAGES SPECIFIED IN DATA SET 14 ARE
 C           LESS THAN GBELV.
+C
+C     VERSION 1.05 SWR1 for MODFLOW-2005 (1.12) AND MODFLOW NWT (1.2.1)
+C     CHANGES
+C     o MINOR BUG FIXES IN:
+C         NQAQCONN
 C      
 C
 C-----------------------------------------------------------------------------
@@ -107,7 +112,7 @@ C-----------------------------------------------------------------------------
 C      
       MODULE GWFSWRMODULE
         CHARACTER(LEN=64),PARAMETER :: VERSION_SWR =
-     +'$Id: gwf2swr7.f 1.04 2016-07-21 15:00:00Z jdhughes $'
+     +'$Id: gwf2swr7.f 1.05 2022-03-10 15:00:00Z jdhughes $'
 C
 C---------INVARIANT PARAMETERS
         INTEGER, PARAMETER          :: IUZFOFFS     = 100000
@@ -2959,13 +2964,6 @@ C-----------DETERMINE IF ANY QAQ CALCULATIONS ARE PERFORMED
           END IF
         END DO QAQCALC
 C
-C--------RECALCULATE THE TOTAL NUMBER OF QAQ CONNECTIONS
-        NQAQCONN = 0
-        CQAQCONN: DO irch = 1, NREACHES
-          NQAQCONN = NQAQCONN + 
-     2      REACH(irch)%LAYEND - REACH(irch)%LAYSTR + 1
-        END DO CQAQCONN
-C
 C--------RECALCULATE NGWET
         NGWET = 0
         CGWET: DO irch = 1, NREACHES
@@ -4141,6 +4139,14 @@ C-------UPDATE STAGES USING CURRENT STAGES TO CALCULATE VOLUME AND OFFSETS
       IF ( IRDGEO.NE.IZERO .OR. IRDSTG.NE.IZERO ) THEN
         CALL SSWR_VOL2STG_UPDATE()
       END IF
+C
+C-------CALCULATE THE TOTAL NUMBER OF QAQ CONNECTIONS
+      NQAQCONN = 0
+      DO irch = 1, NREACHES
+        DO k = REACH(irch)%LAYSTR, REACH(irch)%LAYEND
+          NQAQCONN = NQAQCONN + 1
+        END DO
+      END DO
 C
 C-------CLEAN UP TEMPORARY STORAGE
       IF ( IRDSTR.GT.0 ) THEN
@@ -5745,7 +5751,6 @@ C---------IF SAVING CELL-BY-CELL FLOWS IN A LIST, WRITE FLOW.
               ival   = 1
             END IF
             DO kl = REACH(irch)%LAYSTR, REACH(irch)%LAYEND
-              !rate = layrate(kl)
               rate = REACH(irch)%QAQRATE(kl)
               CALL UBDSVB(ISWRCB,NCOL,NROW,jc,ir,kl,rate,
      1                    AUXROW,ival,iaux,1,IBOUND,NLAY)
