@@ -743,5 +743,8 @@ C     Write times to file if requested
         ENDIF
       ENDIF
 C
+C     Ensure all output files are written
+      CALL FLUSH()
+C
       RETURN
       END
